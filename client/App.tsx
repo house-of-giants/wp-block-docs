@@ -29,6 +29,28 @@ const Anatomy = () => (
   </div>
 );
 
+const ParagraphBlock = () => (
+  <div className="space-y-6">
+    <h1 className="text-4xl font-bold text-foreground">
+      Paragraph Block Reference
+    </h1>
+    <p className="text-muted-foreground">
+      Coming soon - complete documentation for the Paragraph block.
+    </p>
+  </div>
+);
+
+const ButtonBlock = () => (
+  <div className="space-y-6">
+    <h1 className="text-4xl font-bold text-foreground">
+      Button Block Reference
+    </h1>
+    <p className="text-muted-foreground">
+      Coming soon - complete documentation for the Button block.
+    </p>
+  </div>
+);
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
