@@ -144,16 +144,18 @@ export function DocLayout({ children }: DocLayoutProps) {
           </Button>
 
           <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-            <div className="flex flex-1 items-center">
+            <form onSubmit={handleSearch} className="flex flex-1 items-center">
               <div className="relative w-full max-w-lg">
                 <Search className="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-muted-foreground pl-3" />
                 <input
                   className="block h-full w-full border-0 bg-transparent py-0 pl-10 pr-0 text-foreground placeholder:text-muted-foreground focus:ring-0 sm:text-sm"
                   placeholder="Search documentation..."
                   type="search"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
-            </div>
+            </form>
           </div>
         </div>
 
