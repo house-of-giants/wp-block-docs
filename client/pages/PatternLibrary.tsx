@@ -963,18 +963,252 @@ export default function PatternLibrary() {
         </TabsContent>
 
         <TabsContent value="cta" className="space-y-6 mt-6">
-          <Card className="bg-card/50 backdrop-blur border-border/50">
-            <CardContent className="py-8 text-center">
-              <Code className="h-8 w-8 text-muted-foreground mx-auto mb-3" />
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                Coming Soon
-              </h3>
-              <p className="text-muted-foreground">
-                Call-to-action patterns optimized for conversions and
-                engagement.
-              </p>
-            </CardContent>
-          </Card>
+          <div className="grid lg:grid-cols-2 gap-6">
+            <Card className="bg-card/50 backdrop-blur border-border/50">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle className="flex items-center">
+                      <Zap className="mr-2 h-4 w-4 text-neon-blue" />
+                      Newsletter Signup
+                    </CardTitle>
+                    <CardDescription>
+                      Email capture section with compelling copy and form
+                    </CardDescription>
+                  </div>
+                  <div className="flex space-x-2">
+                    <Button variant="outline" size="sm">
+                      <Eye className="h-4 w-4" />
+                    </Button>
+                    <Button variant="outline" size="sm">
+                      <Download className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <CodeBlock
+                  code={`<!-- wp:group {
+  "metadata": {
+    "name": "Newsletter CTA",
+    "categories": ["cta", "newsletter"]
+  },
+  "align": "full",
+  "style": {
+    "spacing": {
+      "padding": {
+        "top": "var:preset|spacing|60",
+        "bottom": "var:preset|spacing|60"
+      }
+    },
+    "color": {
+      "background": "var:preset|color|primary"
+    }
+  }
+} -->
+<section class="wp-block-group alignfull has-primary-background-color has-background"
+         style="padding-top:var(--wp--preset--spacing--60);
+                padding-bottom:var(--wp--preset--spacing--60)">
+
+  <!-- wp:group {"layout":{"type":"constrained","contentSize":"600px"}} -->
+  <div class="wp-block-group">
+
+    <!-- wp:heading {"textAlign":"center","level":2,"textColor":"base"} -->
+    <h2 class="wp-block-heading has-text-align-center has-base-color">
+      Stay Updated with WordPress Trends
+    </h2>
+    <!-- /wp:heading -->
+
+    <!-- wp:paragraph {"align":"center","textColor":"base","fontSize":"medium"} -->
+    <p class="has-text-align-center has-base-color has-medium-font-size">
+      Get the latest block patterns, themes, and WordPress development
+      tips delivered straight to your inbox. No spam, unsubscribe anytime.
+    </p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"center"}} -->
+    <div class="wp-block-group">
+
+      <!-- Email Input (Note: Use actual form in production) -->
+      <!-- wp:paragraph {"className":"email-input-placeholder","style":{"spacing":{"padding":{"top":"0.75rem","bottom":"0.75rem","left":"1rem","right":"1rem"}},"border":{"radius":"6px"},"color":{"background":"var:preset|color|base"}}} -->
+      <p class="email-input-placeholder has-base-background-color has-background"
+         style="border-radius:6px;padding:0.75rem 1rem">
+        your@email.com
+      </p>
+      <!-- /wp:paragraph -->
+
+      <!-- wp:button {"className":"newsletter-submit"} -->
+      <div class="wp-block-button newsletter-submit">
+        <a class="wp-block-button__link wp-element-button" href="#subscribe">
+          Subscribe
+        </a>
+      </div>
+      <!-- /wp:button -->
+
+    </div>
+    <!-- /wp:group -->
+
+    <!-- wp:paragraph {"align":"center","fontSize":"small","textColor":"base","style":{"color":{"text":"rgba(255,255,255,0.8)"}}} -->
+    <p class="has-text-align-center has-small-font-size"
+       style="color:rgba(255,255,255,0.8)">
+      Join 10,000+ developers already subscribed
+    </p>
+    <!-- /wp:paragraph -->
+
+  </div>
+  <!-- /wp:group -->
+
+</section>
+<!-- /wp:group -->`}
+                  language="html"
+                />
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <Badge variant="outline" className="text-xs">
+                    Email Capture
+                  </Badge>
+                  <Badge variant="outline" className="text-xs">
+                    Social Proof
+                  </Badge>
+                  <Badge variant="outline" className="text-xs">
+                    Flex Layout
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/50 backdrop-blur border-border/50">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle>Free Trial CTA</CardTitle>
+                    <CardDescription>
+                      Conversion-focused section with urgency and benefits
+                    </CardDescription>
+                  </div>
+                  <div className="flex space-x-2">
+                    <Button variant="outline" size="sm">
+                      <Eye className="h-4 w-4" />
+                    </Button>
+                    <Button variant="outline" size="sm">
+                      <Download className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <CodeBlock
+                  code={`<!-- wp:group {
+  "metadata": {
+    "name": "Free Trial CTA",
+    "categories": ["cta", "conversion"]
+  },
+  "className": "trial-cta",
+  "style": {
+    "spacing": {
+      "padding": {
+        "top": "var:preset|spacing|70",
+        "bottom": "var:preset|spacing|70"
+      }
+    },
+    "border": {
+      "radius": "16px"
+    },
+    "color": {
+      "background": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+    }
+  }
+} -->
+<section class="wp-block-group trial-cta has-background"
+         style="background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                border-radius:16px;
+                padding-top:var(--wp--preset--spacing--70);
+                padding-bottom:var(--wp--preset--spacing--70)">
+
+  <!-- wp:group {"layout":{"type":"constrained","contentSize":"700px"}} -->
+  <div class="wp-block-group">
+
+    <!-- wp:heading {"textAlign":"center","level":2,"fontSize":"x-large","textColor":"base"} -->
+    <h2 class="wp-block-heading has-text-align-center has-x-large-font-size has-base-color">
+      Ready to Transform Your WordPress Development?
+    </h2>
+    <!-- /wp:heading -->
+
+    <!-- wp:paragraph {"align":"center","textColor":"base","fontSize":"medium"} -->
+    <p class="has-text-align-center has-base-color has-medium-font-size">
+      Start your 14-day free trial today. No credit card required.
+      Cancel anytime. Join thousands of developers already building better sites.
+    </p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
+    <div class="wp-block-buttons">
+
+      <!-- wp:button {"className":"trial-primary","style":{"color":{"background":"var:preset|color|base","text":"var:preset|color|primary"},"typography":{"fontWeight":"600"},"spacing":{"padding":{"top":"1rem","bottom":"1rem","left":"2rem","right":"2rem"}}}} -->
+      <div class="wp-block-button trial-primary">
+        <a class="wp-block-button__link wp-element-button has-primary-color has-base-background-color has-text-color has-background"
+           style="font-weight:600;padding:1rem 2rem"
+           href="/start-trial">
+          Start Free Trial
+        </a>
+      </div>
+      <!-- /wp:button -->
+
+      <!-- wp:button {"className":"is-style-outline trial-secondary","textColor":"base"} -->
+      <div class="wp-block-button is-style-outline trial-secondary">
+        <a class="wp-block-button__link wp-element-button has-base-color" href="/demo">
+          Watch Demo
+        </a>
+      </div>
+      <!-- /wp:button -->
+
+    </div>
+    <!-- /wp:buttons -->
+
+    <!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center"}} -->
+    <div class="wp-block-group">
+
+      <!-- wp:paragraph {"fontSize":"small","textColor":"base","style":{"color":{"text":"rgba(255,255,255,0.9)"}}} -->
+      <p class="has-small-font-size" style="color:rgba(255,255,255,0.9)">
+        ✅ 14-day free trial
+      </p>
+      <!-- /wp:paragraph -->
+
+      <!-- wp:paragraph {"fontSize":"small","textColor":"base","style":{"color":{"text":"rgba(255,255,255,0.9)"}}} -->
+      <p class="has-small-font-size" style="color:rgba(255,255,255,0.9)">
+        ✅ No credit card required
+      </p>
+      <!-- /wp:paragraph -->
+
+      <!-- wp:paragraph {"fontSize":"small","textColor":"base","style":{"color":{"text":"rgba(255,255,255,0.9)"}}} -->
+      <p class="has-small-font-size" style="color:rgba(255,255,255,0.9)">
+        ✅ Cancel anytime
+      </p>
+      <!-- /wp:paragraph -->
+
+    </div>
+    <!-- /wp:group -->
+
+  </div>
+  <!-- /wp:group -->
+
+</section>
+<!-- /wp:group -->`}
+                  language="html"
+                />
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <Badge variant="outline" className="text-xs">
+                    Gradient Background
+                  </Badge>
+                  <Badge variant="outline" className="text-xs">
+                    Multiple CTAs
+                  </Badge>
+                  <Badge variant="outline" className="text-xs">
+                    Trust Signals
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </TabsContent>
 
         <TabsContent value="content" className="space-y-6 mt-6">
