@@ -60,6 +60,7 @@ const App = () => (
             <Route path="/blocks/paragraph" element={<ParagraphBlock />} />
             <Route path="/blocks/button" element={<ButtonBlock />} />
             <Route path="/properties" element={<PropertiesReferencePage />} />
+            <Route path="/patterns" element={<PatternLibrary />} />
             <Route path="/custom-blocks" element={<CustomBlocks />} />
             <Route path="/fse-quirks" element={<FSEQuirks />} />
             <Route path="/best-practices" element={<BestPractices />} />
