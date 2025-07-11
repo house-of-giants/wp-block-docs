@@ -50,6 +50,8 @@ const App = () => (
             <Route path="/blocks/paragraph" element={<ParagraphBlock />} />
             <Route path="/blocks/button" element={<ButtonBlock />} />
             <Route path="/properties" element={<PropertiesReferencePage />} />
+            <Route path="/fse-quirks" element={<FSEQuirks />} />
+            <Route path="/best-practices" element={<BestPractices />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
