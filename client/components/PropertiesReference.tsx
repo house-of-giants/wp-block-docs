@@ -72,16 +72,19 @@ const categoryIcons: Record<string, React.ComponentType<any>> = {
 function PropertyRow({ property }: { property: BlockProperty }) {
   const [copied, setCopied] = useState(false);
 
-  const handleCopy = async (text: string) => {
+  const handleCopy = async (propertyName: string, example: string) => {
+    // Create proper JSON markup format for the property
+    const markup = `"${propertyName}":${example}`;
+
     try {
-      await navigator.clipboard.writeText(text);
+      await navigator.clipboard.writeText(markup);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
       // Fallback for when clipboard API is blocked
       try {
         const textArea = document.createElement("textarea");
-        textArea.value = text;
+        textArea.value = markup;
         textArea.style.position = "fixed";
         textArea.style.left = "-999999px";
         textArea.style.top = "-999999px";
@@ -94,7 +97,6 @@ function PropertyRow({ property }: { property: BlockProperty }) {
         setTimeout(() => setCopied(false), 2000);
       } catch (fallbackErr) {
         console.error("Failed to copy text: ", err, fallbackErr);
-        // Could show a toast notification here that copy failed
       }
     }
   };
