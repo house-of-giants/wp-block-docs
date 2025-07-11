@@ -259,8 +259,9 @@ export function PropertiesReference({
   title = "Block Properties Reference",
   description = "Complete reference of all available block properties and attributes",
   showUniversalOnly = false,
+  initialSearch = "",
 }: PropertiesReferenceProps) {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState(initialSearch);
   const [activeTab, setActiveTab] = useState("all");
 
   // Get properties based on block type or show universal only
