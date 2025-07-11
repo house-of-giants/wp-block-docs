@@ -1212,18 +1212,437 @@ export default function PatternLibrary() {
         </TabsContent>
 
         <TabsContent value="content" className="space-y-6 mt-6">
-          <Card className="bg-card/50 backdrop-blur border-border/50">
-            <CardContent className="py-8 text-center">
-              <Code className="h-8 w-8 text-muted-foreground mx-auto mb-3" />
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                Coming Soon
-              </h3>
-              <p className="text-muted-foreground">
-                Content layout patterns for blogs, portfolios, and editorial
-                sites.
-              </p>
-            </CardContent>
-          </Card>
+          <div className="grid lg:grid-cols-2 gap-6">
+            <Card className="bg-card/50 backdrop-blur border-border/50">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle className="flex items-center">
+                      <Layout className="mr-2 h-4 w-4 text-neon-pink" />
+                      Blog Post Layout
+                    </CardTitle>
+                    <CardDescription>
+                      Article layout with sidebar, meta information, and content
+                    </CardDescription>
+                  </div>
+                  <div className="flex space-x-2">
+                    <Button variant="outline" size="sm">
+                      <Eye className="h-4 w-4" />
+                    </Button>
+                    <Button variant="outline" size="sm">
+                      <Download className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <CodeBlock
+                  code={`<!-- wp:group {
+  "metadata": {
+    "name": "Blog Post Layout",
+    "categories": ["content", "blog"]
+  },
+  "tagName": "article",
+  "style": {
+    "spacing": {
+      "padding": {
+        "top": "var:preset|spacing|50",
+        "bottom": "var:preset|spacing|80"
+      }
+    }
+  }
+} -->
+<article class="wp-block-group"
+         style="padding-top:var(--wp--preset--spacing--50);
+                padding-bottom:var(--wp--preset--spacing--80)">
+
+  <!-- wp:columns {"className":"blog-layout"} -->
+  <div class="wp-block-columns blog-layout">
+
+    <!-- Main Content -->
+    <!-- wp:column {"width":"70%"} -->
+    <div class="wp-block-column" style="flex-basis:70%">
+
+      <!-- Article Header -->
+      <!-- wp:group {"className":"article-header"} -->
+      <div class="wp-block-group article-header">
+
+        <!-- wp:paragraph {"fontSize":"small","className":"post-meta"} -->
+        <p class="has-small-font-size post-meta">
+          <time datetime="2024-01-15">January 15, 2024</time> •
+          <span>By John Doe</span> •
+          <span>5 min read</span>
+        </p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:heading {"level":1} -->
+        <h1 class="wp-block-heading">
+          The Complete Guide to WordPress Block Development
+        </h1>
+        <!-- /wp:heading -->
+
+        <!-- wp:paragraph {"className":"post-excerpt","fontSize":"medium"} -->
+        <p class="post-excerpt has-medium-font-size">
+          Learn everything you need to know about building custom WordPress
+          blocks from scratch, including best practices and real-world examples.
+        </p>
+        <!-- /wp:paragraph -->
+
+      </div>
+      <!-- /wp:group -->
+
+      <!-- Featured Image -->
+      <!-- wp:image {"sizeSlug":"large","linkDestination":"none","className":"featured-image"} -->
+      <figure class="wp-block-image size-large featured-image">
+        <img src="/blog-featured-image.jpg"
+             alt="WordPress block development illustration" />
+      </figure>
+      <!-- /wp:image -->
+
+      <!-- Article Content -->
+      <!-- wp:group {"className":"article-content"} -->
+      <div class="wp-block-group article-content">
+
+        <!-- wp:paragraph {"dropCap":true} -->
+        <p class="has-drop-cap">
+          WordPress block development has revolutionized how we build websites.
+          In this comprehensive guide, we'll explore everything from basic
+          concepts to advanced techniques.
+        </p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:heading {"level":2} -->
+        <h2 class="wp-block-heading">
+          Getting Started with Block Development
+        </h2>
+        <!-- /wp:heading -->
+
+        <!-- wp:paragraph -->
+        <p>
+          The WordPress block editor, also known as Gutenberg, provides a
+          powerful framework for creating rich, interactive content...
+        </p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:quote -->
+        <blockquote class="wp-block-quote">
+          <p>"The future of WordPress is blocks. Understanding how to create
+          and customize them is essential for modern web development."</p>
+          <cite>WordPress Core Team</cite>
+        </blockquote>
+        <!-- /wp:quote -->
+
+      </div>
+      <!-- /wp:group -->
+
+    </div>
+    <!-- /wp:column -->
+
+    <!-- Sidebar -->
+    <!-- wp:column {"width":"30%"} -->
+    <div class="wp-block-column" style="flex-basis:30%">
+
+      <!-- wp:group {"className":"sidebar sticky-sidebar"} -->
+      <div class="wp-block-group sidebar sticky-sidebar">
+
+        <!-- Author Bio -->
+        <!-- wp:group {"className":"author-bio"} -->
+        <div class="wp-block-group author-bio">
+
+          <!-- wp:heading {"level":3,"fontSize":"medium"} -->
+          <h3 class="wp-block-heading has-medium-font-size">
+            About the Author
+          </h3>
+          <!-- /wp:heading -->
+
+          <!-- wp:image {"width":80,"height":80,"sizeSlug":"thumbnail","className":"is-style-rounded"} -->
+          <figure class="wp-block-image size-thumbnail is-resized is-style-rounded">
+            <img src="/author-avatar.jpg" alt="John Doe" width="80" height="80"/>
+          </figure>
+          <!-- /wp:image -->
+
+          <!-- wp:paragraph {"fontSize":"small"} -->
+          <p class="has-small-font-size">
+            John is a senior WordPress developer with 10+ years of experience
+            building custom themes and plugins.
+          </p>
+          <!-- /wp:paragraph -->
+
+        </div>
+        <!-- /wp:group -->
+
+        <!-- Related Posts -->
+        <!-- wp:group {"className":"related-posts"} -->
+        <div class="wp-block-group related-posts">
+
+          <!-- wp:heading {"level":3,"fontSize":"medium"} -->
+          <h3 class="wp-block-heading has-medium-font-size">
+            Related Articles
+          </h3>
+          <!-- /wp:heading -->
+
+          <!-- wp:list {"className":"related-list"} -->
+          <ul class="wp-block-list related-list">
+            <!-- wp:list-item -->
+            <li><a href="/article-1">WordPress Security Best Practices</a></li>
+            <!-- /wp:list-item -->
+
+            <!-- wp:list-item -->
+            <li><a href="/article-2">Building Your First Block Theme</a></li>
+            <!-- /wp:list-item -->
+
+            <!-- wp:list-item -->
+            <li><a href="/article-3">Advanced Gutenberg Techniques</a></li>
+            <!-- /wp:list-item -->
+          </ul>
+          <!-- /wp:list -->
+
+        </div>
+        <!-- /wp:group -->
+
+      </div>
+      <!-- /wp:group -->
+
+    </div>
+    <!-- /wp:column -->
+
+  </div>
+  <!-- /wp:columns -->
+
+</article>
+<!-- /wp:group -->`}
+                  language="html"
+                />
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <Badge variant="outline" className="text-xs">
+                    Sidebar Layout
+                  </Badge>
+                  <Badge variant="outline" className="text-xs">
+                    Author Bio
+                  </Badge>
+                  <Badge variant="outline" className="text-xs">
+                    Related Posts
+                  </Badge>
+                  <Badge variant="outline" className="text-xs">
+                    Drop Cap
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/50 backdrop-blur border-border/50">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle>Portfolio Grid</CardTitle>
+                    <CardDescription>
+                      Showcase work with image gallery and project details
+                    </CardDescription>
+                  </div>
+                  <div className="flex space-x-2">
+                    <Button variant="outline" size="sm">
+                      <Eye className="h-4 w-4" />
+                    </Button>
+                    <Button variant="outline" size="sm">
+                      <Download className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <CodeBlock
+                  code={`<!-- wp:group {
+  "metadata": {
+    "name": "Portfolio Grid",
+    "categories": ["content", "portfolio"]
+  },
+  "style": {
+    "spacing": {
+      "padding": {
+        "top": "var:preset|spacing|60",
+        "bottom": "var:preset|spacing|60"
+      }
+    }
+  }
+} -->
+<section class="wp-block-group"
+         style="padding-top:var(--wp--preset--spacing--60);
+                padding-bottom:var(--wp--preset--spacing--60)">
+
+  <!-- wp:heading {"textAlign":"center","level":2} -->
+  <h2 class="wp-block-heading has-text-align-center">
+    Recent Projects
+  </h2>
+  <!-- /wp:heading -->
+
+  <!-- wp:paragraph {"align":"center","fontSize":"medium"} -->
+  <p class="has-text-align-center has-medium-font-size">
+    A selection of our latest work across web design, development, and branding.
+  </p>
+  <!-- /wp:paragraph -->
+
+  <!-- wp:columns {"columnCount":3,"className":"portfolio-grid"} -->
+  <div class="wp-block-columns portfolio-grid">
+
+    <!-- Project 1 -->
+    <!-- wp:column -->
+    <div class="wp-block-column">
+      <!-- wp:group {"className":"portfolio-item"} -->
+      <div class="wp-block-group portfolio-item">
+
+        <!-- wp:image {"sizeSlug":"medium","linkDestination":"custom","className":"portfolio-image"} -->
+        <figure class="wp-block-image size-medium portfolio-image">
+          <a href="/project-1">
+            <img src="/portfolio-1.jpg" alt="E-commerce redesign project" />
+          </a>
+        </figure>
+        <!-- /wp:image -->
+
+        <!-- wp:group {"className":"portfolio-content"} -->
+        <div class="wp-block-group portfolio-content">
+
+          <!-- wp:heading {"level":3,"fontSize":"medium"} -->
+          <h3 class="wp-block-heading has-medium-font-size">
+            <a href="/project-1">E-commerce Redesign</a>
+          </h3>
+          <!-- /wp:heading -->
+
+          <!-- wp:paragraph {"fontSize":"small"} -->
+          <p class="has-small-font-size">
+            Complete redesign of online store with improved UX and conversion optimization.
+          </p>
+          <!-- /wp:paragraph -->
+
+          <!-- wp:paragraph {"fontSize":"small","className":"project-tags"} -->
+          <p class="has-small-font-size project-tags">
+            <span class="tag">WordPress</span> •
+            <span class="tag">WooCommerce</span> •
+            <span class="tag">UI/UX</span>
+          </p>
+          <!-- /wp:paragraph -->
+
+        </div>
+        <!-- /wp:group -->
+
+      </div>
+      <!-- /wp:group -->
+    </div>
+    <!-- /wp:column -->
+
+    <!-- Project 2 -->
+    <!-- wp:column -->
+    <div class="wp-block-column">
+      <!-- wp:group {"className":"portfolio-item"} -->
+      <div class="wp-block-group portfolio-item">
+
+        <!-- wp:image {"sizeSlug":"medium","linkDestination":"custom","className":"portfolio-image"} -->
+        <figure class="wp-block-image size-medium portfolio-image">
+          <a href="/project-2">
+            <img src="/portfolio-2.jpg" alt="Mobile app interface design" />
+          </a>
+        </figure>
+        <!-- /wp:image -->
+
+        <!-- wp:group {"className":"portfolio-content"} -->
+        <div class="wp-block-group portfolio-content">
+
+          <!-- wp:heading {"level":3,"fontSize":"medium"} -->
+          <h3 class="wp-block-heading has-medium-font-size">
+            <a href="/project-2">Mobile App Design</a>
+          </h3>
+          <!-- /wp:heading -->
+
+          <!-- wp:paragraph {"fontSize":"small"} -->
+          <p class="has-small-font-size">
+            Native iOS and Android app design with focus on user experience.
+          </p>
+          <!-- /wp:paragraph -->
+
+          <!-- wp:paragraph {"fontSize":"small","className":"project-tags"} -->
+          <p class="has-small-font-size project-tags">
+            <span class="tag">UI Design</span> •
+            <span class="tag">Mobile</span> •
+            <span class="tag">Prototyping</span>
+          </p>
+          <!-- /wp:paragraph -->
+
+        </div>
+        <!-- /wp:group -->
+
+      </div>
+      <!-- /wp:group -->
+    </div>
+    <!-- /wp:column -->
+
+    <!-- Project 3 -->
+    <!-- wp:column -->
+    <div class="wp-block-column">
+      <!-- wp:group {"className":"portfolio-item"} -->
+      <div class="wp-block-group portfolio-item">
+
+        <!-- wp:image {"sizeSlug":"medium","linkDestination":"custom","className":"portfolio-image"} -->
+        <figure class="wp-block-image size-medium portfolio-image">
+          <a href="/project-3">
+            <img src="/portfolio-3.jpg" alt="Brand identity design" />
+          </a>
+        </figure>
+        <!-- /wp:image -->
+
+        <!-- wp:group {"className":"portfolio-content"} -->
+        <div class="wp-block-group portfolio-content">
+
+          <!-- wp:heading {"level":3,"fontSize":"medium"} -->
+          <h3 class="wp-block-heading has-medium-font-size">
+            <a href="/project-3">Brand Identity</a>
+          </h3>
+          <!-- /wp:heading -->
+
+          <!-- wp:paragraph {"fontSize":"small"} -->
+          <p class="has-small-font-size">
+            Complete brand identity system including logo, guidelines, and collateral.
+          </p>
+          <!-- /wp:paragraph -->
+
+          <!-- wp:paragraph {"fontSize":"small","className":"project-tags"} -->
+          <p class="has-small-font-size project-tags">
+            <span class="tag">Branding</span> •
+            <span class="tag">Logo Design</span> •
+            <span class="tag">Print</span>
+          </p>
+          <!-- /wp:paragraph -->
+
+        </div>
+        <!-- /wp:group -->
+
+      </div>
+      <!-- /wp:group -->
+    </div>
+    <!-- /wp:column -->
+
+  </div>
+  <!-- /wp:columns -->
+
+</section>
+<!-- /wp:group -->`}
+                  language="html"
+                />
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <Badge variant="outline" className="text-xs">
+                    Grid Layout
+                  </Badge>
+                  <Badge variant="outline" className="text-xs">
+                    Linked Images
+                  </Badge>
+                  <Badge variant="outline" className="text-xs">
+                    Project Tags
+                  </Badge>
+                  <Badge variant="outline" className="text-xs">
+                    Three Columns
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </TabsContent>
       </Tabs>
 
