@@ -66,22 +66,18 @@ export default function GroupBlock() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-              <pre className="text-neon-cyan">
-                {`<!-- wp:group -->
+            <CodeBlock
+              code={`<!-- wp:group -->
 <div class="wp-block-group">
   <!-- Inner blocks go here -->
 </div>
 <!-- /wp:group -->`}
-              </pre>
-            </div>
-            <div className="mt-4 flex items-center justify-between">
+              language="html"
+            />
+            <div className="mt-4">
               <span className="text-sm text-muted-foreground">
                 Basic group container
               </span>
-              <Button variant="ghost" size="sm">
-                <Copy className="h-4 w-4" />
-              </Button>
             </div>
           </CardContent>
         </Card>
@@ -343,7 +339,7 @@ export default function GroupBlock() {
                   • Block spacing presets depend on theme.json configuration
                 </li>
                 <li>
-                  • Background colors may not display if theme lacks color
+                  �� Background colors may not display if theme lacks color
                   palette
                 </li>
               </ul>
