@@ -167,9 +167,9 @@ function PropertyRow({ property }: { property: BlockProperty }) {
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => handleCopy(property.example!)}
+              onClick={() => handleCopy(property.name, property.example!)}
               className="h-8 w-8 p-0 flex-shrink-0"
-              title={copied ? "Copied!" : "Copy example"}
+              title={copied ? "Copied!" : "Copy property markup"}
             >
               {copied ? (
                 <span className="text-green-500 text-xs">✓</span>
