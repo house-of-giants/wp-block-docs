@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { DocLayout } from "@/components/DocLayout";
 import Index from "./pages/Index";
 import GroupBlock from "./pages/GroupBlock";
+import ColumnsBlock from "./pages/ColumnsBlock";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -21,17 +22,6 @@ const Anatomy = () => (
     </h1>
     <p className="text-muted-foreground">
       Coming soon - comprehensive guide to block structure and syntax.
-    </p>
-  </div>
-);
-
-const ColumnsBlock = () => (
-  <div className="space-y-6">
-    <h1 className="text-4xl font-bold text-foreground">
-      Columns Block Reference
-    </h1>
-    <p className="text-muted-foreground">
-      Coming soon - complete documentation for the Columns block.
     </p>
   </div>
 );
