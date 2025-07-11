@@ -15,6 +15,8 @@ import HeadingBlock from "./pages/HeadingBlock";
 import ParagraphBlock from "./pages/ParagraphBlock";
 import ButtonBlock from "./pages/ButtonBlock";
 import PropertiesReferencePage from "./pages/PropertiesReferencePage";
+import FSEQuirks from "./pages/FSEQuirks";
+import BestPractices from "./pages/BestPractices";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
