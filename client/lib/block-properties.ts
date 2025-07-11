@@ -399,9 +399,213 @@ export const columnsBlockProperties: PropertyCategory[] = [
   },
 ];
 
+// Block-specific properties for the Image block
+export const imageBlockProperties: PropertyCategory[] = [
+  {
+    name: "Image-Specific",
+    description: "Properties unique to the Image block",
+    properties: [
+      {
+        name: "id",
+        type: "number",
+        description: "WordPress media library attachment ID",
+        example: "123",
+      },
+      {
+        name: "url",
+        type: "string",
+        description: "Image URL",
+        example: '"https://example.com/image.jpg"',
+      },
+      {
+        name: "alt",
+        type: "string",
+        description: "Alternative text for accessibility",
+        example: '"A beautiful landscape photo"',
+        defaultValue: '""',
+      },
+      {
+        name: "caption",
+        type: "string",
+        description: "Image caption text",
+        example: '"Photo taken in Yosemite National Park"',
+      },
+      {
+        name: "title",
+        type: "string",
+        description: "Image title attribute",
+        example: '"Yosemite Valley"',
+      },
+      {
+        name: "href",
+        type: "string",
+        description: "Link URL when image is clickable",
+        example: '"https://example.com/gallery"',
+      },
+      {
+        name: "rel",
+        type: "string",
+        description: "Link relationship attribute",
+        example: '"lightbox"',
+      },
+      {
+        name: "linkClass",
+        type: "string",
+        description: "CSS class for the link wrapper",
+        example: '"image-link"',
+      },
+      {
+        name: "linkTarget",
+        type: "string",
+        description: "Link target attribute",
+        example: '"_blank"',
+        values: ["_self", "_blank", "_parent", "_top"],
+      },
+      {
+        name: "width",
+        type: "number",
+        description: "Image width in pixels",
+        example: "800",
+      },
+      {
+        name: "height",
+        type: "number",
+        description: "Image height in pixels",
+        example: "600",
+      },
+      {
+        name: "sizeSlug",
+        type: "string",
+        description: "WordPress image size slug",
+        example: '"large"',
+        values: ["thumbnail", "medium", "large", "full"],
+      },
+      {
+        name: "lightbox",
+        type: "object",
+        description: "Lightbox behavior settings",
+        example: '{"enabled": true}',
+        since: "WordPress 6.4",
+      },
+    ],
+  },
+];
+
+// Block-specific properties for the Heading block
+export const headingBlockProperties: PropertyCategory[] = [
+  {
+    name: "Heading-Specific",
+    description: "Properties unique to the Heading block",
+    properties: [
+      {
+        name: "level",
+        type: "number",
+        description: "Heading level (h1, h2, h3, h4, h5, h6)",
+        example: "2",
+        defaultValue: "2",
+        values: ["1", "2", "3", "4", "5", "6"],
+      },
+      {
+        name: "content",
+        type: "string",
+        description: "Heading text content",
+        example: '"Welcome to Our Site"',
+      },
+      {
+        name: "placeholder",
+        type: "string",
+        description: "Placeholder text when heading is empty",
+        example: '"Add heading..."',
+      },
+    ],
+  },
+];
+
+// Block-specific properties for the Paragraph block
+export const paragraphBlockProperties: PropertyCategory[] = [
+  {
+    name: "Paragraph-Specific",
+    description: "Properties unique to the Paragraph block",
+    properties: [
+      {
+        name: "content",
+        type: "string",
+        description: "Paragraph text content (HTML)",
+        example: '"This is a <strong>paragraph</strong> with some text."',
+      },
+      {
+        name: "placeholder",
+        type: "string",
+        description: "Placeholder text when paragraph is empty",
+        example: '"Start writing or type / to choose a block"',
+      },
+      {
+        name: "dropCap",
+        type: "boolean",
+        description: "Enable drop cap styling for first letter",
+        example: "true",
+        defaultValue: "false",
+      },
+    ],
+  },
+];
+
+// Block-specific properties for the Button block
+export const buttonBlockProperties: PropertyCategory[] = [
+  {
+    name: "Button-Specific",
+    description: "Properties unique to the Button block",
+    properties: [
+      {
+        name: "text",
+        type: "string",
+        description: "Button text content",
+        example: '"Click Me"',
+      },
+      {
+        name: "url",
+        type: "string",
+        description: "Button link URL",
+        example: '"https://example.com"',
+      },
+      {
+        name: "title",
+        type: "string",
+        description: "Button title attribute",
+        example: '"Learn more about our services"',
+      },
+      {
+        name: "linkTarget",
+        type: "string",
+        description: "Link target attribute",
+        example: '"_blank"',
+        values: ["_self", "_blank", "_parent", "_top"],
+      },
+      {
+        name: "rel",
+        type: "string",
+        description: "Link relationship attribute",
+        example: '"noopener noreferrer"',
+      },
+      {
+        name: "placeholder",
+        type: "string",
+        description: "Placeholder text when button is empty",
+        example: '"Add text..."',
+      },
+      {
+        name: "width",
+        type: "number",
+        description: "Button width percentage",
+        example: "50",
+      },
+    ],
+  },
+];
+
 // Helper function to get all properties for a specific block
 export function getBlockProperties(
-  blockType: "group" | "columns",
+  blockType: "group" | "columns" | "image" | "heading" | "paragraph" | "button",
 ): PropertyCategory[] {
   const universal = universalBlockProperties;
 
@@ -410,6 +614,14 @@ export function getBlockProperties(
       return [...universal, ...groupBlockProperties];
     case "columns":
       return [...universal, ...columnsBlockProperties];
+    case "image":
+      return [...universal, ...imageBlockProperties];
+    case "heading":
+      return [...universal, ...headingBlockProperties];
+    case "paragraph":
+      return [...universal, ...paragraphBlockProperties];
+    case "button":
+      return [...universal, ...buttonBlockProperties];
     default:
       return universal;
   }
