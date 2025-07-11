@@ -73,77 +73,90 @@ function PropertyRow({ property }: { property: BlockProperty }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async (text: string) => {
-    await navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy text: ", err);
+    }
   };
 
   return (
     <TableRow className="hover:bg-muted/50">
-      <TableCell className="font-mono text-sm">
-        <div className="flex items-center space-x-2">
-          <span className="text-neon-blue">{property.name}</span>
-          {property.deprecated && (
-            <Badge
-              variant="outline"
-              className="text-xs text-yellow-600 border-yellow-600"
-            >
-              Deprecated
-            </Badge>
-          )}
-          {property.since && (
-            <Badge variant="outline" className="text-xs">
-              {property.since}
-            </Badge>
-          )}
+      <TableCell className="font-mono text-sm min-w-[200px]">
+        <div className="flex flex-col space-y-2">
+          <span className="text-neon-blue break-words">{property.name}</span>
+          <div className="flex flex-wrap gap-1">
+            {property.deprecated && (
+              <Badge
+                variant="outline"
+                className="text-xs text-yellow-600 border-yellow-600"
+              >
+                Deprecated
+              </Badge>
+            )}
+            {property.since && (
+              <Badge variant="outline" className="text-xs">
+                {property.since}
+              </Badge>
+            )}
+          </div>
         </div>
       </TableCell>
-      <TableCell>
+      <TableCell className="min-w-[100px]">
         <Badge variant="secondary" className="font-mono text-xs">
           {property.type}
         </Badge>
       </TableCell>
-      <TableCell className="text-sm text-muted-foreground max-w-md">
-        {property.description}
-        {property.values && (
-          <div className="mt-2">
-            <span className="text-xs font-medium text-foreground">
-              Values:{" "}
-            </span>
-            <div className="flex flex-wrap gap-1 mt-1">
-              {property.values.map((value) => (
-                <Badge
-                  key={value}
-                  variant="outline"
-                  className="text-xs font-mono"
-                >
-                  {value}
-                </Badge>
-              ))}
+      <TableCell className="text-sm text-muted-foreground min-w-[300px] max-w-[400px]">
+        <div className="space-y-2">
+          <p>{property.description}</p>
+          {property.values && (
+            <div>
+              <span className="text-xs font-medium text-foreground">
+                Values:{" "}
+              </span>
+              <div className="flex flex-wrap gap-1 mt-1">
+                {property.values.map((value) => (
+                  <Badge
+                    key={value}
+                    variant="outline"
+                    className="text-xs font-mono"
+                  >
+                    {value}
+                  </Badge>
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </TableCell>
-      <TableCell>
+      <TableCell className="min-w-[120px]">
         {property.defaultValue && (
-          <Badge variant="outline" className="font-mono text-xs">
+          <Badge variant="outline" className="font-mono text-xs break-words">
             {property.defaultValue}
           </Badge>
         )}
       </TableCell>
-      <TableCell>
+      <TableCell className="min-w-[200px]">
         {property.example && (
-          <div className="flex items-center space-x-2">
-            <code className="bg-muted px-2 py-1 rounded text-xs font-mono text-neon-cyan">
+          <div className="flex items-start space-x-2">
+            <code className="bg-muted px-2 py-1 rounded text-xs font-mono text-neon-cyan break-words flex-1 min-w-0">
               {property.example}
             </code>
             <Button
               variant="ghost"
               size="sm"
               onClick={() => handleCopy(property.example!)}
-              className="h-6 w-6 p-0"
+              className="h-8 w-8 p-0 flex-shrink-0"
+              title={copied ? "Copied!" : "Copy example"}
             >
-              <Copy className="h-3 w-3" />
+              {copied ? (
+                <span className="text-green-500 text-xs">✓</span>
+              ) : (
+                <Copy className="h-3 w-3" />
+              )}
             </Button>
           </div>
         )}
