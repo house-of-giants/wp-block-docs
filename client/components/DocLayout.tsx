@@ -12,6 +12,7 @@ import {
   Zap,
   Settings,
   FileText,
+  ExternalLink,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -101,6 +102,22 @@ function SidebarContent() {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Footer */}
+      <div className="border-t border-border p-4">
+        <a
+          href="https://houseofgiants.com?utm_source=wp-block-docs&utm_medium=sidebar&utm_campaign=made-with-spite"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center space-x-2 text-xs text-muted-foreground hover:text-foreground transition-colors group"
+        >
+          <span>
+            Made with spite by{" "}
+            <span className="font-bold text-neon-pink">House of Giants</span>
+          </span>
+          <ExternalLink className="h-3 w-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+        </a>
       </div>
     </div>
   );
