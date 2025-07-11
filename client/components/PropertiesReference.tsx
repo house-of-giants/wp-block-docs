@@ -38,8 +38,8 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
-  PropertyCategory,
-  BlockProperty,
+  type PropertyCategory,
+  type BlockProperty,
   universalBlockProperties,
   getBlockProperties,
 } from "@/lib/block-properties";
