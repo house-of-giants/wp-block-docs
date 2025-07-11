@@ -55,6 +55,7 @@ interface PropertiesReferenceProps {
   title?: string;
   description?: string;
   showUniversalOnly?: boolean;
+  initialSearch?: string;
 }
 
 const categoryIcons: Record<string, React.ComponentType<any>> = {
