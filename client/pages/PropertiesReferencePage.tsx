@@ -164,6 +164,7 @@ export default function PropertiesReferencePage() {
         title="Universal Block Properties"
         description="These properties are available to all WordPress blocks and provide the foundation for styling, spacing, and core functionality."
         showUniversalOnly={true}
+        initialSearch={searchQuery}
       />
 
       {/* Block-Specific Note */}
