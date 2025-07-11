@@ -410,20 +410,276 @@ export default function PatternLibrary() {
           </Card>
         </TabsContent>
 
-        {/* Other tabs would have similar content */}
+        {/* Testimonials Section */}
         <TabsContent value="testimonials" className="space-y-6 mt-6">
-          <Card className="bg-card/50 backdrop-blur border-border/50">
-            <CardContent className="py-8 text-center">
-              <Code className="h-8 w-8 text-muted-foreground mx-auto mb-3" />
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                Coming Soon
-              </h3>
-              <p className="text-muted-foreground">
-                Testimonial patterns are being prepared with real customer
-                quotes and social proof elements.
-              </p>
-            </CardContent>
-          </Card>
+          <div className="grid lg:grid-cols-2 gap-6">
+            <Card className="bg-card/50 backdrop-blur border-border/50">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle className="flex items-center">
+                      <Star className="mr-2 h-4 w-4 text-yellow-500" />
+                      Single Testimonial Card
+                    </CardTitle>
+                    <CardDescription>
+                      Individual testimonial with quote, author, and photo
+                    </CardDescription>
+                  </div>
+                  <div className="flex space-x-2">
+                    <Button variant="outline" size="sm">
+                      <Eye className="h-4 w-4" />
+                    </Button>
+                    <Button variant="outline" size="sm">
+                      <Download className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <CodeBlock
+                  code={`<!-- wp:group {
+  "metadata": {
+    "name": "Testimonial Card",
+    "categories": ["testimonials", "social-proof"]
+  },
+  "className": "testimonial-card",
+  "style": {
+    "spacing": {
+      "padding": {
+        "top": "var:preset|spacing|50",
+        "bottom": "var:preset|spacing|50",
+        "left": "var:preset|spacing|40",
+        "right": "var:preset|spacing|40"
+      }
+    },
+    "border": {
+      "radius": "12px"
+    }
+  },
+  "backgroundColor": "base"
+} -->
+<div class="wp-block-group testimonial-card has-base-background-color has-background"
+     style="border-radius:12px;
+            padding:var(--wp--preset--spacing--50) var(--wp--preset--spacing--40)">
+
+  <!-- wp:paragraph {"fontSize":"medium","style":{"typography":{"lineHeight":"1.6"}}} -->
+  <p class="has-medium-font-size" style="line-height:1.6">
+    "This platform completely transformed how we build WordPress sites.
+    The block patterns are incredible and saved us weeks of development time."
+  </p>
+  <!-- /wp:paragraph -->
+
+  <!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} -->
+  <div class="wp-block-group">
+
+    <!-- wp:image {"width":60,"height":60,"sizeSlug":"thumbnail","linkDestination":"none","className":"is-style-rounded"} -->
+    <figure class="wp-block-image size-thumbnail is-resized is-style-rounded">
+      <img src="/testimonial-avatar.jpg"
+           alt="Sarah Johnson, Lead Developer"
+           width="60"
+           height="60"/>
+    </figure>
+    <!-- /wp:image -->
+
+    <!-- wp:group -->
+    <div class="wp-block-group">
+
+      <!-- wp:paragraph {"fontSize":"small","style":{"typography":{"fontWeight":"600"}}} -->
+      <p class="has-small-font-size" style="font-weight:600">
+        Sarah Johnson
+      </p>
+      <!-- /wp:paragraph -->
+
+      <!-- wp:paragraph {"fontSize":"small","style":{"color":{"text":"var:preset|color|contrast-2"}}} -->
+      <p class="has-small-font-size has-contrast-2-color">
+        Lead Developer, TechCorp
+      </p>
+      <!-- /wp:paragraph -->
+
+    </div>
+    <!-- /wp:group -->
+
+  </div>
+  <!-- /wp:group -->
+
+</div>
+<!-- /wp:group -->`}
+                  language="html"
+                />
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <Badge variant="outline" className="text-xs">
+                    Profile Image
+                  </Badge>
+                  <Badge variant="outline" className="text-xs">
+                    Flex Layout
+                  </Badge>
+                  <Badge variant="outline" className="text-xs">
+                    Custom Styling
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/50 backdrop-blur border-border/50">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle>Testimonials Grid</CardTitle>
+                    <CardDescription>
+                      Three-column testimonials layout with star ratings
+                    </CardDescription>
+                  </div>
+                  <div className="flex space-x-2">
+                    <Button variant="outline" size="sm">
+                      <Eye className="h-4 w-4" />
+                    </Button>
+                    <Button variant="outline" size="sm">
+                      <Download className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <CodeBlock
+                  code={`<!-- wp:group {
+  "metadata": {
+    "name": "Testimonials Grid",
+    "categories": ["testimonials", "grid"]
+  },
+  "style": {
+    "spacing": {
+      "padding": {
+        "top": "var:preset|spacing|60",
+        "bottom": "var:preset|spacing|60"
+      }
+    }
+  }
+} -->
+<section class="wp-block-group"
+         style="padding-top:var(--wp--preset--spacing--60);
+                padding-bottom:var(--wp--preset--spacing--60)">
+
+  <!-- wp:heading {"textAlign":"center","level":2} -->
+  <h2 class="wp-block-heading has-text-align-center">
+    What Our Customers Say
+  </h2>
+  <!-- /wp:heading -->
+
+  <!-- wp:columns {"columnCount":3} -->
+  <div class="wp-block-columns">
+
+    <!-- Testimonial 1 -->
+    <!-- wp:column -->
+    <div class="wp-block-column">
+      <!-- wp:group {"className":"testimonial-card"} -->
+      <div class="wp-block-group testimonial-card">
+
+        <!-- Star Rating -->
+        <!-- wp:paragraph {"align":"center","fontSize":"small"} -->
+        <p class="has-text-align-center has-small-font-size">
+          ⭐⭐⭐⭐⭐
+        </p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:paragraph {"align":"center"} -->
+        <p class="has-text-align-center">
+          "Incredible tool that made our development process 10x faster.
+          Highly recommended!"
+        </p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:paragraph {"align":"center","fontSize":"small","style":{"typography":{"fontWeight":"600"}}} -->
+        <p class="has-text-align-center has-small-font-size" style="font-weight:600">
+          — Alex Chen, Designer
+        </p>
+        <!-- /wp:paragraph -->
+
+      </div>
+      <!-- /wp:group -->
+    </div>
+    <!-- /wp:column -->
+
+    <!-- Testimonial 2 -->
+    <!-- wp:column -->
+    <div class="wp-block-column">
+      <!-- wp:group {"className":"testimonial-card"} -->
+      <div class="wp-block-group testimonial-card">
+
+        <!-- wp:paragraph {"align":"center","fontSize":"small"} -->
+        <p class="has-text-align-center has-small-font-size">
+          ⭐⭐⭐⭐⭐
+        </p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:paragraph {"align":"center"} -->
+        <p class="has-text-align-center">
+          "The documentation is phenomenal. Everything I needed to know
+          was right there."
+        </p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:paragraph {"align":"center","fontSize":"small","style":{"typography":{"fontWeight":"600"}}} -->
+        <p class="has-text-align-center has-small-font-size" style="font-weight:600">
+          — Maria Rodriguez, Developer
+        </p>
+        <!-- /wp:paragraph -->
+
+      </div>
+      <!-- /wp:group -->
+    </div>
+    <!-- /wp:column -->
+
+    <!-- Testimonial 3 -->
+    <!-- wp:column -->
+    <div class="wp-block-column">
+      <!-- wp:group {"className":"testimonial-card"} -->
+      <div class="wp-block-group testimonial-card">
+
+        <!-- wp:paragraph {"align":"center","fontSize":"small"} -->
+        <p class="has-text-align-center has-small-font-size">
+          ⭐⭐⭐⭐⭐
+        </p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:paragraph {"align":"center"} -->
+        <p class="has-text-align-center">
+          "Best block theme toolkit I've used. Clean, fast,
+          and incredibly well designed."
+        </p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:paragraph {"align":"center","fontSize":"small","style":{"typography":{"fontWeight":"600"}}} -->
+        <p class="has-text-align-center has-small-font-size" style="font-weight:600">
+          — James Wilson, Agency Owner
+        </p>
+        <!-- /wp:paragraph -->
+
+      </div>
+      <!-- /wp:group -->
+    </div>
+    <!-- /wp:column -->
+
+  </div>
+  <!-- /wp:columns -->
+
+</section>
+<!-- /wp:group -->`}
+                  language="html"
+                />
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <Badge variant="outline" className="text-xs">
+                    Star Ratings
+                  </Badge>
+                  <Badge variant="outline" className="text-xs">
+                    Three Columns
+                  </Badge>
+                  <Badge variant="outline" className="text-xs">
+                    Centered Text
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </TabsContent>
 
         <TabsContent value="pricing" className="space-y-6 mt-6">
