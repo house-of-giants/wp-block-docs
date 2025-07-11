@@ -72,20 +72,16 @@ export default function ParagraphBlock() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-              <pre className="text-neon-cyan">
-                {`<!-- wp:paragraph -->
+            <CodeBlock
+              code={`<!-- wp:paragraph -->
 <p>This is a simple paragraph with some text content.</p>
 <!-- /wp:paragraph -->`}
-              </pre>
-            </div>
-            <div className="mt-4 flex items-center justify-between">
+              language="html"
+            />
+            <div className="mt-4">
               <span className="text-sm text-muted-foreground">
                 Basic paragraph block
               </span>
-              <Button variant="ghost" size="sm">
-                <Copy className="h-4 w-4" />
-              </Button>
             </div>
           </CardContent>
         </Card>
