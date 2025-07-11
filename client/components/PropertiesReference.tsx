@@ -55,7 +55,7 @@ const categoryIcons: Record<string, React.ComponentType<any>> = {
   "Core Attributes": Settings,
   "Styling & Appearance": Palette,
   Typography: Type,
-  "Spacing & Layout": Spacing,
+  "Spacing & Layout": Move,
   "Border & Outline": Layout,
   Dimensions: Layout,
   "Group-Specific": Code,
