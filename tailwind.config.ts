@@ -57,6 +57,20 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Retrowave theme colors
+        neon: {
+          pink: "hsl(var(--neon-pink))",
+          blue: "hsl(var(--neon-blue))",
+          purple: "hsl(var(--neon-purple))",
+          cyan: "hsl(var(--neon-cyan))",
+        },
+        retro: {
+          dark: "hsl(var(--retro-dark))",
+          darker: "hsl(var(--retro-darker))",
+          pink: "hsl(var(--retro-pink))",
+          purple: "hsl(var(--retro-purple))",
+          blue: "hsl(var(--retro-blue))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
