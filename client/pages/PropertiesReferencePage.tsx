@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { PropertiesReference } from "@/components/PropertiesReference";
 import {
   Card,
@@ -11,6 +13,18 @@ import { Separator } from "@/components/ui/separator";
 import { Book, Info, Zap, Code } from "lucide-react";
 
 export default function PropertiesReferencePage() {
+  const [searchParams] = useSearchParams();
+  const searchQuery = searchParams.get("search") || "";
+
+  useEffect(() => {
+    // If there's a search query, we can scroll to search or highlight results
+    if (searchQuery) {
+      // The PropertiesReference component will handle the search internally
+      document.title = `Properties Reference - Search: ${searchQuery}`;
+    } else {
+      document.title = "Properties Reference";
+    }
+  }, [searchQuery]);
   return (
     <div className="space-y-8">
       {/* Header */}
