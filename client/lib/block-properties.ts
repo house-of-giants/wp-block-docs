@@ -393,7 +393,7 @@ export const columnsBlockProperties: PropertyCategory[] = [
         type: "string|boolean",
         description: "Prevents modification of column content",
         example: '"all"',
-        values: ["all", "insert", false],
+        values: ["all", "insert", "false"],
       },
     ],
   },
