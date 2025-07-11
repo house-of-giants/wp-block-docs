@@ -39,6 +39,7 @@ const navigation = [
   {
     title: "Advanced",
     items: [
+      { name: "Properties Reference", href: "/properties", icon: FileText },
       { name: "Custom Blocks", href: "/custom-blocks", icon: Zap },
       { name: "FSE Quirks", href: "/fse-quirks", icon: Settings },
       { name: "Best Practices", href: "/best-practices", icon: FileText },
