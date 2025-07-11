@@ -33,6 +33,15 @@ const Anatomy = () => (
   </div>
 );
 
+const CustomBlocks = () => (
+  <div className="space-y-6">
+    <h1 className="text-4xl font-bold text-foreground">Custom Blocks</h1>
+    <p className="text-muted-foreground">
+      Coming soon - guide to creating and using custom WordPress blocks.
+    </p>
+  </div>
+);
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
