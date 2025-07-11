@@ -12,6 +12,8 @@ import GroupBlock from "./pages/GroupBlock";
 import ColumnsBlock from "./pages/ColumnsBlock";
 import ImageBlock from "./pages/ImageBlock";
 import HeadingBlock from "./pages/HeadingBlock";
+import ParagraphBlock from "./pages/ParagraphBlock";
+import ButtonBlock from "./pages/ButtonBlock";
 import PropertiesReferencePage from "./pages/PropertiesReferencePage";
 import NotFound from "./pages/NotFound";
 
