@@ -20,6 +20,7 @@ import {
   Smartphone,
   Monitor,
 } from "lucide-react";
+import { PropertiesReference } from "@/components/PropertiesReference";
 
 export default function ColumnsBlock() {
   return (
