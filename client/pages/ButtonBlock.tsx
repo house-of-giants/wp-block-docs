@@ -22,6 +22,7 @@ import {
   Palette,
 } from "lucide-react";
 import { PropertiesReference } from "@/components/PropertiesReference";
+import { CodeBlock } from "@/components/CodeBlock";
 
 export default function ButtonBlock() {
   return (
@@ -70,8 +71,8 @@ export default function ButtonBlock() {
           </CardHeader>
           <CardContent>
             <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-              <pre className="text-neon-cyan">
-                {`<!-- wp:button -->
+              <CodeBlock
+                code={`<!-- wp:button -->
 <div class="wp-block-button">
   <a class="wp-block-button__link wp-element-button" 
      href="https://example.com">
@@ -79,15 +80,8 @@ export default function ButtonBlock() {
   </a>
 </div>
 <!-- /wp:button -->`}
-              </pre>
-            </div>
-            <div className="mt-4 flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">
-                Basic button with link
-              </span>
-              <Button variant="ghost" size="sm">
-                <Copy className="h-4 w-4" />
-              </Button>
+                language="html"
+              />
             </div>
           </CardContent>
         </Card>
@@ -118,8 +112,8 @@ export default function ButtonBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <pre className="text-neon-cyan">
-                    {`<!-- wp:button {
+                  <CodeBlock
+                    code={`<!-- wp:button {
   "backgroundColor":"vivid-red",
   "textColor":"white",
   "style": {
@@ -157,7 +151,8 @@ export default function ButtonBlock() {
   </a>
 </div>
 <!-- /wp:button -->`}
-                  </pre>
+                    language="html"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -173,8 +168,8 @@ export default function ButtonBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <pre className="text-neon-cyan">
-                    {`<!-- wp:button {
+                  <CodeBlock
+                    code={`<!-- wp:button {
   "url":"https://external-site.com",
   "title":"Visit our partner site",
   "linkTarget":"_blank",
@@ -200,7 +195,8 @@ export default function ButtonBlock() {
   </a>
 </div>
 <!-- /wp:button -->`}
-                  </pre>
+                    language="html"
+                  />
                 </div>
                 <div className="mt-4 p-3 bg-green-500/10 rounded border border-green-500/30">
                   <p className="text-sm text-green-600 dark:text-green-400">
@@ -223,8 +219,8 @@ export default function ButtonBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <pre className="text-neon-cyan">
-                    {`<!-- Full width button -->
+                  <CodeBlock
+                    code={`<!-- Full width button -->
 <!-- wp:button {"width":100} -->
 <div class="wp-block-button has-custom-width wp-block-button__width-100">
   <a class="wp-block-button__link wp-element-button" 
@@ -243,7 +239,8 @@ export default function ButtonBlock() {
   </a>
 </div>
 <!-- /wp:button -->`}
-                  </pre>
+                    language="html"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -259,8 +256,8 @@ export default function ButtonBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <pre className="text-neon-cyan">
-                    {`<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
+                  <CodeBlock
+                    code={`<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
 <div class="wp-block-buttons">
   <!-- wp:button {"backgroundColor":"primary"} -->
   <div class="wp-block-button">
@@ -282,7 +279,8 @@ export default function ButtonBlock() {
   <!-- /wp:button -->
 </div>
 <!-- /wp:buttons -->`}
-                  </pre>
+                    language="html"
+                  />
                 </div>
                 <div className="mt-4 p-3 bg-blue-500/10 rounded border border-blue-500/30">
                   <p className="text-sm text-blue-600 dark:text-blue-400">
@@ -314,8 +312,8 @@ export default function ButtonBlock() {
             </CardHeader>
             <CardContent>
               <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <pre className="text-neon-cyan text-xs">
-                  {`<!-- wp:button {"className":"is-style-outline"} -->
+                <CodeBlock
+                  code={`<!-- wp:button {"className":"is-style-outline"} -->
 <div class="wp-block-button is-style-outline">
   <a class="wp-block-button__link wp-element-button" 
      href="https://example.com">
@@ -323,7 +321,8 @@ export default function ButtonBlock() {
   </a>
 </div>
 <!-- /wp:button -->`}
-                </pre>
+                  language="html"
+                />
               </div>
             </CardContent>
           </Card>
@@ -337,8 +336,8 @@ export default function ButtonBlock() {
             </CardHeader>
             <CardContent>
               <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <pre className="text-neon-cyan text-xs">
-                  {`<!-- wp:button {"backgroundColor":"primary","textColor":"white"} -->
+                <CodeBlock
+                  code={`<!-- wp:button {"backgroundColor":"primary","textColor":"white"} -->
 <div class="wp-block-button">
   <a class="wp-block-button__link wp-element-button 
             has-white-color has-primary-background-color 
@@ -348,7 +347,8 @@ export default function ButtonBlock() {
   </a>
 </div>
 <!-- /wp:button -->`}
-                </pre>
+                  language="html"
+                />
               </div>
             </CardContent>
           </Card>
@@ -372,8 +372,8 @@ export default function ButtonBlock() {
             </CardHeader>
             <CardContent>
               <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <pre className="text-neon-cyan text-xs">
-                  {`<!-- wp:button {
+                <CodeBlock
+                  code={`<!-- wp:button {
   "url":"/signup",
   "className":"hero-cta",
   "width":50,
@@ -414,7 +414,8 @@ export default function ButtonBlock() {
   </a>
 </div>
 <!-- /wp:button -->`}
-                </pre>
+                  language="html"
+                />
               </div>
             </CardContent>
           </Card>
@@ -428,8 +429,8 @@ export default function ButtonBlock() {
             </CardHeader>
             <CardContent>
               <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <pre className="text-neon-cyan text-xs">
-                  {`<!-- wp:button {
+                <CodeBlock
+                  code={`<!-- wp:button {
   "url":"/files/guide.pdf",
   "title":"Download Complete WordPress Guide (PDF, 2.3MB)",
   "className":"download-button",
@@ -455,7 +456,8 @@ export default function ButtonBlock() {
   </a>
 </div>
 <!-- /wp:button -->`}
-                </pre>
+                  language="html"
+                />
               </div>
             </CardContent>
           </Card>

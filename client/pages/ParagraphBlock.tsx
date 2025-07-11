@@ -6,11 +6,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import {
-  Copy,
   AlertCircle,
   FileText,
   Code,
@@ -78,11 +76,6 @@ export default function ParagraphBlock() {
 <!-- /wp:paragraph -->`}
               language="html"
             />
-            <div className="mt-4">
-              <span className="text-sm text-muted-foreground">
-                Basic paragraph block
-              </span>
-            </div>
           </CardContent>
         </Card>
       </div>
@@ -112,14 +105,15 @@ export default function ParagraphBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <pre className="text-neon-cyan">
-                    {`<!-- wp:paragraph -->
+                  <CodeBlock
+                    code={`<!-- wp:paragraph -->
 <p>This paragraph contains <strong>bold text</strong>, 
 <em>italic text</em>, and <mark>highlighted text</mark>. 
 You can also use <del>strikethrough</del> and 
 <sup>superscript</sup> or <sub>subscript</sub>.</p>
 <!-- /wp:paragraph -->`}
-                  </pre>
+                    language="html"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -135,14 +129,15 @@ You can also use <del>strikethrough</del> and
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <pre className="text-neon-cyan">
-                    {`<!-- wp:paragraph {"dropCap":true} -->
+                  <CodeBlock
+                    code={`<!-- wp:paragraph {"dropCap":true} -->
 <p class="has-drop-cap">Lorem ipsum dolor sit amet, 
 consectetur adipiscing elit. The first letter will be 
 styled as a large drop cap that spans multiple lines 
 of text for an elegant typography effect.</p>
 <!-- /wp:paragraph -->`}
-                  </pre>
+                    language="html"
+                  />
                 </div>
                 <div className="mt-4 p-3 bg-neon-purple/10 rounded border border-neon-purple/30">
                   <p className="text-sm text-neon-purple">
@@ -164,8 +159,8 @@ of text for an elegant typography effect.</p>
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <pre className="text-neon-cyan">
-                    {`<!-- wp:paragraph {
+                  <CodeBlock
+                    code={`<!-- wp:paragraph {
   "fontSize":"large",
   "style": {
     "color": {
@@ -192,7 +187,8 @@ of text for an elegant typography effect.</p>
   This paragraph has custom typography styling.
 </p>
 <!-- /wp:paragraph -->`}
-                  </pre>
+                    language="html"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -208,14 +204,15 @@ of text for an elegant typography effect.</p>
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <pre className="text-neon-cyan">
-                    {`<!-- wp:paragraph -->
+                  <CodeBlock
+                    code={`<!-- wp:paragraph -->
 <p>Visit our <a href="https://example.com" target="_blank" 
 rel="noopener">website</a> for more information. 
 You can also use <code>inline code</code> and 
 <kbd>keyboard shortcuts</kbd> within paragraphs.</p>
 <!-- /wp:paragraph -->`}
-                  </pre>
+                    language="html"
+                  />
                 </div>
                 <div className="mt-4 p-3 bg-yellow-500/10 rounded border border-yellow-500/30">
                   <p className="text-sm text-yellow-600 dark:text-yellow-400">
@@ -247,8 +244,8 @@ You can also use <code>inline code</code> and
             </CardHeader>
             <CardContent>
               <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <pre className="text-neon-cyan text-xs">
-                  {`<!-- wp:paragraph {
+                <CodeBlock
+                  code={`<!-- wp:paragraph {
   "dropCap":true,
   "fontSize":"medium",
   "className":"intro-paragraph",
@@ -271,7 +268,8 @@ You can also use <code>inline code</code> and
   content creation.
 </p>
 <!-- /wp:paragraph -->`}
-                </pre>
+                  language="html"
+                />
               </div>
             </CardContent>
           </Card>
@@ -285,8 +283,8 @@ You can also use <code>inline code</code> and
             </CardHeader>
             <CardContent>
               <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <pre className="text-neon-cyan text-xs">
-                  {`<!-- wp:paragraph {
+                <CodeBlock
+                  code={`<!-- wp:paragraph {
   "align":"center",
   "fontSize":"large",
   "className":"cta-text",
@@ -316,7 +314,8 @@ You can also use <code>inline code</code> and
   <strong>Get started today</strong> and see the difference.
 </p>
 <!-- /wp:paragraph -->`}
-                </pre>
+                  language="html"
+                />
               </div>
             </CardContent>
           </Card>

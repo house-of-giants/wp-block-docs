@@ -61,13 +61,13 @@ export function CodeBlock({
             variant="ghost"
             size="sm"
             onClick={handleCopy}
-            className="absolute top-2 right-2 h-8 w-8 p-0 bg-background/10 hover:bg-background/20"
+            className="absolute top-2 right-2 h-8 w-8 p-0 bg-background/10 hover:bg-primary-foreground/70"
             title={copied ? "Copied!" : "Copy code"}
           >
             {copied ? (
               <Check className="h-4 w-4 text-green-500" />
             ) : (
-              <Copy className="h-4 w-4" />
+              <Copy className="h-4 w-4 text-neon-purple" />
             )}
           </Button>
         )}

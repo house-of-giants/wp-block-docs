@@ -21,6 +21,7 @@ import {
   Accessibility,
 } from "lucide-react";
 import { PropertiesReference } from "@/components/PropertiesReference";
+import { CodeBlock } from "@/components/CodeBlock";
 
 export default function ImageBlock() {
   return (
@@ -69,8 +70,8 @@ export default function ImageBlock() {
           </CardHeader>
           <CardContent>
             <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-              <pre className="text-neon-cyan">
-                {`<!-- wp:image {"id":123,"width":800,"height":600} -->
+              <CodeBlock
+                code={`<!-- wp:image {"id":123,"width":800,"height":600} -->
 <figure class="wp-block-image size-large is-resized">
   <img src="https://example.com/image.jpg" 
        alt="Beautiful landscape photo" 
@@ -79,15 +80,8 @@ export default function ImageBlock() {
        height="600"/>
 </figure>
 <!-- /wp:image -->`}
-              </pre>
-            </div>
-            <div className="mt-4 flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">
-                Image with dimensions and alt text
-              </span>
-              <Button variant="ghost" size="sm">
-                <Copy className="h-4 w-4" />
-              </Button>
+                language="html"
+              />
             </div>
           </CardContent>
         </Card>
@@ -118,8 +112,8 @@ export default function ImageBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <pre className="text-neon-cyan">
-                    {`<!-- wp:image {"id":123,"sizeSlug":"large"} -->
+                  <CodeBlock
+                    code={`<!-- wp:image {"id":123,"sizeSlug":"large"} -->
 <figure class="wp-block-image size-large">
   <img src="https://example.com/landscape.jpg" 
        alt="Yosemite Valley at sunset" 
@@ -129,7 +123,8 @@ export default function ImageBlock() {
   </figcaption>
 </figure>
 <!-- /wp:image -->`}
-                  </pre>
+                    language="html"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -145,8 +140,8 @@ export default function ImageBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <pre className="text-neon-cyan">
-                    {`<!-- wp:image {
+                  <CodeBlock
+                    code={`<!-- wp:image {
   "id":123,
   "linkDestination":"custom",
   "href":"https://example.com/gallery",
@@ -163,7 +158,8 @@ export default function ImageBlock() {
   </a>
 </figure>
 <!-- /wp:image -->`}
-                  </pre>
+                    language="html"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -179,8 +175,8 @@ export default function ImageBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <pre className="text-neon-cyan">
-                    {`<!-- wp:image {
+                  <CodeBlock
+                    code={`<!-- wp:image {
   "id":123,
   "lightbox":{"enabled":true},
   "linkDestination":"none"
@@ -193,7 +189,8 @@ export default function ImageBlock() {
        data-wp-on-click="lightbox::open"/>
 </figure>
 <!-- /wp:image -->`}
-                  </pre>
+                    language="html"
+                  />
                 </div>
                 <div className="mt-4 p-3 bg-neon-purple/10 rounded border border-neon-purple/30">
                   <p className="text-sm text-neon-purple">
@@ -215,8 +212,8 @@ export default function ImageBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <pre className="text-neon-cyan">
-                    {`<!-- wp:image {"id":123,"align":"wide"} -->
+                  <CodeBlock
+                    code={`<!-- wp:image {"id":123,"align":"wide"} -->
 <figure class="wp-block-image alignwide size-large">
   <img src="https://example.com/wide-image.jpg" 
        alt="Wide layout image" 
@@ -231,7 +228,8 @@ export default function ImageBlock() {
        class="wp-image-124"/>
 </figure>
 <!-- /wp:image -->`}
-                  </pre>
+                    language="html"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -256,8 +254,8 @@ export default function ImageBlock() {
             </CardHeader>
             <CardContent>
               <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <pre className="text-neon-cyan text-xs">
-                  {`<!-- wp:image {
+                <CodeBlock
+                  code={`<!-- wp:image {
   "id":456,
   "sizeSlug":"large",
   "className":"featured-image",
@@ -273,7 +271,8 @@ export default function ImageBlock() {
   </figcaption>
 </figure>
 <!-- /wp:image -->`}
-                </pre>
+                  language="html"
+                />
               </div>
             </CardContent>
           </Card>
@@ -287,8 +286,8 @@ export default function ImageBlock() {
             </CardHeader>
             <CardContent>
               <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <pre className="text-neon-cyan text-xs">
-                  {`<!-- wp:image {
+                <CodeBlock
+                  code={`<!-- wp:image {
   "id":789,
   "sizeSlug":"medium",
   "lightbox":{"enabled":true},
@@ -304,7 +303,8 @@ export default function ImageBlock() {
        data-wp-on-click="lightbox::open"/>
 </figure>
 <!-- /wp:image -->`}
-                </pre>
+                  language="html"
+                />
               </div>
             </CardContent>
           </Card>

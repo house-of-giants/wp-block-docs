@@ -21,6 +21,7 @@ import {
   Monitor,
 } from "lucide-react";
 import { PropertiesReference } from "@/components/PropertiesReference";
+import { CodeBlock } from "@/components/CodeBlock";
 
 export default function ColumnsBlock() {
   return (
@@ -69,8 +70,8 @@ export default function ColumnsBlock() {
           </CardHeader>
           <CardContent>
             <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-              <pre className="text-neon-cyan">
-                {`<!-- wp:columns -->
+              <CodeBlock
+                code={`<!-- wp:columns -->
 <div class="wp-block-columns">
   <!-- wp:column -->
   <div class="wp-block-column">
@@ -85,15 +86,8 @@ export default function ColumnsBlock() {
   <!-- /wp:column -->
 </div>
 <!-- /wp:columns -->`}
-              </pre>
-            </div>
-            <div className="mt-4 flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">
-                Equal-width columns (50% / 50%)
-              </span>
-              <Button variant="ghost" size="sm">
-                <Copy className="h-4 w-4" />
-              </Button>
+                language="html"
+              />
             </div>
           </CardContent>
         </Card>
@@ -124,8 +118,8 @@ export default function ColumnsBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <pre className="text-neon-cyan">
-                    {`<!-- wp:columns {"columnCount":3} -->
+                  <CodeBlock
+                    code={`<!-- wp:columns {"columnCount":3} -->
 <div class="wp-block-columns">
   <!-- wp:column -->
   <div class="wp-block-column"><!-- Content --></div>
@@ -140,7 +134,8 @@ export default function ColumnsBlock() {
   <!-- /wp:column -->
 </div>
 <!-- /wp:columns -->`}
-                  </pre>
+                    language="html"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -156,8 +151,8 @@ export default function ColumnsBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <pre className="text-neon-cyan">
-                    {`<!-- wp:columns -->
+                  <CodeBlock
+                    code={`<!-- wp:columns -->
 <div class="wp-block-columns">
   <!-- wp:column {"width":"70%"} -->
   <div class="wp-block-column" style="flex-basis:70%">
@@ -172,7 +167,8 @@ export default function ColumnsBlock() {
   <!-- /wp:column -->
 </div>
 <!-- /wp:columns -->`}
-                  </pre>
+                    language="html"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -208,8 +204,8 @@ export default function ColumnsBlock() {
                   </div>
                 </div>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <pre className="text-neon-cyan">
-                    {`/* Generated CSS */
+                  <CodeBlock
+                    code={`/* Generated CSS */
 .wp-block-columns {
   display: flex;
   flex-wrap: wrap;
@@ -223,7 +219,8 @@ export default function ColumnsBlock() {
     flex-basis: 100% !important;
   }
 }`}
-                  </pre>
+                    language="css"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -239,8 +236,8 @@ export default function ColumnsBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <pre className="text-neon-cyan text-xs">
-                    {`<!-- wp:columns -->
+                  <CodeBlock
+                    code={`<!-- wp:columns -->
 <div class="wp-block-columns">
   <!-- wp:column {"width":"60%"} -->
   <div class="wp-block-column" style="flex-basis:60%">
@@ -264,7 +261,8 @@ export default function ColumnsBlock() {
   <!-- /wp:column -->
 </div>
 <!-- /wp:columns -->`}
-                  </pre>
+                    language="html"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -287,8 +285,8 @@ export default function ColumnsBlock() {
             </CardHeader>
             <CardContent>
               <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <pre className="text-neon-cyan text-xs">
-                  {`<!-- wp:columns {
+                <CodeBlock
+                  code={`<!-- wp:columns {
   "style": {
     "spacing": {
       "blockGap": "var:preset|spacing|50"
@@ -300,7 +298,8 @@ export default function ColumnsBlock() {
   <!-- Columns with custom gap -->
 </div>
 <!-- /wp:columns -->`}
-                </pre>
+                  language="html"
+                />
               </div>
             </CardContent>
           </Card>
@@ -312,8 +311,8 @@ export default function ColumnsBlock() {
             </CardHeader>
             <CardContent>
               <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <pre className="text-neon-cyan text-xs">
-                  {`<!-- wp:columns {"verticalAlignment":"center"} -->
+                <CodeBlock
+                  code={`<!-- wp:columns {"verticalAlignment":"center"} -->
 <div class="wp-block-columns are-vertically-aligned-center">
   <!-- wp:column {"verticalAlignment":"top"} -->
   <div class="wp-block-column is-vertically-aligned-top">
@@ -322,7 +321,8 @@ export default function ColumnsBlock() {
   <!-- /wp:column -->
 </div>
 <!-- /wp:columns -->`}
-                </pre>
+                  language="html"
+                />
               </div>
             </CardContent>
           </Card>
@@ -345,8 +345,8 @@ export default function ColumnsBlock() {
             </CardHeader>
             <CardContent>
               <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <pre className="text-neon-cyan text-xs">
-                  {`<!-- wp:columns {"className":"sidebar-layout"} -->
+                <CodeBlock
+                  code={`<!-- wp:columns {"className":"sidebar-layout"} -->
 <div class="wp-block-columns sidebar-layout">
   <!-- wp:column {"width":"70%"} -->
   <div class="wp-block-column" style="flex-basis:70%">
@@ -365,7 +365,8 @@ export default function ColumnsBlock() {
   <!-- /wp:column -->
 </div>
 <!-- /wp:columns -->`}
-                </pre>
+                  language="html"
+                />
               </div>
             </CardContent>
           </Card>
@@ -379,8 +380,8 @@ export default function ColumnsBlock() {
             </CardHeader>
             <CardContent>
               <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <pre className="text-neon-cyan text-xs">
-                  {`<!-- wp:columns {"columnCount":3,"className":"feature-grid"} -->
+                <CodeBlock
+                  code={`<!-- wp:columns {"columnCount":3,"className":"feature-grid"} -->
 <div class="wp-block-columns feature-grid">
   <!-- wp:column -->
   <div class="wp-block-column">
@@ -397,7 +398,8 @@ export default function ColumnsBlock() {
   <!-- Repeat for other columns -->
 </div>
 <!-- /wp:columns -->`}
-                </pre>
+                  language="html"
+                />
               </div>
             </CardContent>
           </Card>

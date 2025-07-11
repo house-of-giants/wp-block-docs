@@ -74,11 +74,6 @@ export default function GroupBlock() {
 <!-- /wp:group -->`}
               language="html"
             />
-            <div className="mt-4">
-              <span className="text-sm text-muted-foreground">
-                Basic group container
-              </span>
-            </div>
           </CardContent>
         </Card>
       </div>
@@ -108,8 +103,8 @@ export default function GroupBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <pre className="text-neon-cyan">
-                    {`<!-- wp:group {
+                  <CodeBlock
+                    code={`<!-- wp:group {
   "style": {
     "spacing": {
       "padding": {
@@ -133,7 +128,8 @@ export default function GroupBlock() {
   <!-- Content -->
 </div>
 <!-- /wp:group -->`}
-                  </pre>
+                    language="html"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -149,8 +145,8 @@ export default function GroupBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <pre className="text-neon-cyan">
-                    {`<!-- wp:group {
+                  <CodeBlock
+                    code={`<!-- wp:group {
   "backgroundColor": "primary",
   "style": {
     "color": {
@@ -163,7 +159,8 @@ export default function GroupBlock() {
   <!-- Content -->
 </div>
 <!-- /wp:group -->`}
-                  </pre>
+                    language="html"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -179,8 +176,8 @@ export default function GroupBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <pre className="text-neon-cyan">
-                    {`<!-- wp:group {
+                  <CodeBlock
+                    code={`<!-- wp:group {
   "layout": {
     "type": "constrained",
     "contentSize": "800px",
@@ -191,7 +188,8 @@ export default function GroupBlock() {
   <!-- Content constrained to max-width -->
 </div>
 <!-- /wp:group -->`}
-                  </pre>
+                    language="html"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -207,8 +205,8 @@ export default function GroupBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <pre className="text-neon-cyan">
-                    {`<!-- wp:group {
+                  <CodeBlock
+                    code={`<!-- wp:group {
   "className": "custom-group-class",
   "anchor": "section-hero"
 } -->
@@ -216,7 +214,8 @@ export default function GroupBlock() {
   <!-- Content with custom ID and class -->
 </div>
 <!-- /wp:group -->`}
-                  </pre>
+                    language="html"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -241,8 +240,8 @@ export default function GroupBlock() {
             </CardHeader>
             <CardContent>
               <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <pre className="text-neon-cyan text-xs">
-                  {`<!-- wp:group {
+                <CodeBlock
+                  code={`<!-- wp:group {
   "className": "hero-section",
   "style": {
     "spacing": {
@@ -266,7 +265,8 @@ export default function GroupBlock() {
   <!-- Hero content -->
 </div>
 <!-- /wp:group -->`}
-                </pre>
+                  language="html"
+                />
               </div>
             </CardContent>
           </Card>
@@ -280,8 +280,8 @@ export default function GroupBlock() {
             </CardHeader>
             <CardContent>
               <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <pre className="text-neon-cyan text-xs">
-                  {`<!-- wp:group {
+                <CodeBlock
+                  code={`<!-- wp:group {
   "className": "card",
   "style": {
     "spacing": {
@@ -307,7 +307,8 @@ export default function GroupBlock() {
   <!-- Card content -->
 </div>
 <!-- /wp:group -->`}
-                </pre>
+                  language="html"
+                />
               </div>
             </CardContent>
           </Card>

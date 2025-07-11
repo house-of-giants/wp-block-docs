@@ -21,6 +21,7 @@ import {
   Search,
 } from "lucide-react";
 import { PropertiesReference } from "@/components/PropertiesReference";
+import { CodeBlock } from "@/components/CodeBlock";
 
 export default function HeadingBlock() {
   return (
@@ -70,11 +71,12 @@ export default function HeadingBlock() {
           </CardHeader>
           <CardContent>
             <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-              <pre className="text-neon-cyan">
-                {`<!-- wp:heading -->
+              <CodeBlock
+                code={`<!-- wp:heading -->
 <h2 class="wp-block-heading">Your Heading Text</h2>
 <!-- /wp:heading -->`}
-              </pre>
+                language="html"
+              />
             </div>
             <div className="mt-4 flex items-center justify-between">
               <span className="text-sm text-muted-foreground">
@@ -113,8 +115,8 @@ export default function HeadingBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <pre className="text-neon-cyan">
-                    {`<!-- wp:heading {"level":1} -->
+                  <CodeBlock
+                    code={`<!-- wp:heading {"level":1} -->
 <h1 class="wp-block-heading">Page Title (H1)</h1>
 <!-- /wp:heading -->
 
@@ -137,7 +139,8 @@ export default function HeadingBlock() {
 <!-- wp:heading {"level":6} -->
 <h6 class="wp-block-heading">Smallest Heading (H6)</h6>
 <!-- /wp:heading -->`}
-                  </pre>
+                    language="html"
+                  />
                 </div>
                 <div className="mt-4 p-3 bg-yellow-500/10 rounded border border-yellow-500/30">
                   <p className="text-sm text-yellow-600 dark:text-yellow-400">
@@ -159,8 +162,8 @@ export default function HeadingBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <pre className="text-neon-cyan">
-                    {`<!-- wp:heading {
+                  <CodeBlock
+                    code={`<!-- wp:heading {
   "level":2,
   "style": {
     "color": {
@@ -187,7 +190,8 @@ export default function HeadingBlock() {
   Styled Heading
 </h2>
 <!-- /wp:heading -->`}
-                  </pre>
+                    language="html"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -203,8 +207,8 @@ export default function HeadingBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <pre className="text-neon-cyan">
-                    {`<!-- wp:heading {
+                  <CodeBlock
+                    code={`<!-- wp:heading {
   "level":2,
   "fontSize":"large",
   "style": {
@@ -222,7 +226,8 @@ export default function HeadingBlock() {
   Typography Heading
 </h2>
 <!-- /wp:heading -->`}
-                  </pre>
+                    language="html"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -238,8 +243,8 @@ export default function HeadingBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <pre className="text-neon-cyan">
-                    {`<!-- wp:heading {
+                  <CodeBlock
+                    code={`<!-- wp:heading {
   "level":2,
   "anchor":"getting-started"
 } -->
@@ -250,7 +255,8 @@ export default function HeadingBlock() {
 
 <!-- Link to this heading -->
 <a href="#getting-started">Jump to Getting Started</a>`}
-                  </pre>
+                    language="html"
+                  />
                 </div>
                 <div className="mt-4 p-3 bg-blue-500/10 rounded border border-blue-500/30">
                   <p className="text-sm text-blue-600 dark:text-blue-400">
@@ -282,8 +288,8 @@ export default function HeadingBlock() {
             </CardHeader>
             <CardContent>
               <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <pre className="text-neon-cyan text-xs">
-                  {`<!-- Main article title -->
+                <CodeBlock
+                  code={`<!-- Main article title -->
 <!-- wp:heading {"level":1} -->
 <h1 class="wp-block-heading">
   Complete Guide to WordPress Blocks
@@ -309,7 +315,8 @@ export default function HeadingBlock() {
   Installing WordPress
 </h3>
 <!-- /wp:heading -->`}
-                </pre>
+                  language="html"
+                />
               </div>
             </CardContent>
           </Card>
@@ -323,8 +330,8 @@ export default function HeadingBlock() {
             </CardHeader>
             <CardContent>
               <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <pre className="text-neon-cyan text-xs">
-                  {`<!-- wp:heading {
+                <CodeBlock
+                  code={`<!-- wp:heading {
   "level":1,
   "className":"hero-title",
   "style": {
@@ -355,7 +362,8 @@ export default function HeadingBlock() {
   Transform Your Business
 </h1>
 <!-- /wp:heading -->`}
-                </pre>
+                  language="html"
+                />
               </div>
             </CardContent>
           </Card>

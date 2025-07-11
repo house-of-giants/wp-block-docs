@@ -7,17 +7,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import {
   Code,
   BookOpen,
   Zap,
   Search,
-  Copy,
   Github,
   ArrowRight,
   Sparkles,
 } from "lucide-react";
+import { CodeBlock } from "@/components/CodeBlock";
 
 export default function Index() {
   return (
@@ -74,8 +73,8 @@ export default function Index() {
           </CardHeader>
           <CardContent>
             <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-              <pre className="text-neon-cyan">
-                {`<!-- wp:group {
+              <CodeBlock
+                code={`<!-- wp:group {
   "style": {
     "spacing": {
       "padding": {
@@ -90,18 +89,8 @@ export default function Index() {
   <!-- /wp:heading -->
 </div>
 <!-- /wp:group -->`}
-              </pre>
-            </div>
-            <div className="mt-4 flex items-center justify-between">
-              <Badge
-                variant="secondary"
-                className="bg-neon-purple/20 text-neon-purple border-neon-purple/30"
-              >
-                Group Block with Custom Spacing
-              </Badge>
-              <Button variant="ghost" size="sm">
-                <Copy className="h-4 w-4" />
-              </Button>
+                language="html"
+              />
             </div>
           </CardContent>
         </Card>
