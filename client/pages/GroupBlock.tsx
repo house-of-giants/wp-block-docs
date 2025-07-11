@@ -370,6 +370,16 @@ export default function GroupBlock() {
         </div>
       </div>
 
+      {/* Properties Reference */}
+      <div className="space-y-4">
+        <Separator />
+        <PropertiesReference
+          blockType="group"
+          title="Group Block Properties"
+          description="Complete reference of all properties available to the Group block, including universal block properties and Group-specific attributes"
+        />
+      </div>
+
       {/* Related Blocks */}
       <div className="space-y-4">
         <h2 className="text-2xl font-semibold text-foreground">
