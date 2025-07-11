@@ -63,6 +63,10 @@ const App = () => (
             <Route path="/anatomy" element={<Anatomy />} />
             <Route path="/blocks/group" element={<GroupBlock />} />
             <Route path="/blocks/columns" element={<ColumnsBlock />} />
+            <Route path="/blocks/image" element={<ImageBlock />} />
+            <Route path="/blocks/heading" element={<HeadingBlock />} />
+            <Route path="/blocks/paragraph" element={<ParagraphBlock />} />
+            <Route path="/blocks/button" element={<ButtonBlock />} />
             <Route path="/properties" element={<PropertiesReferencePage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
