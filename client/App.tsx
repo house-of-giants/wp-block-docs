@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { DocLayout } from "@/components/DocLayout";
 import Index from "./pages/Index";
+import GroupBlock from "./pages/GroupBlock";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -20,17 +21,6 @@ const Anatomy = () => (
     </h1>
     <p className="text-muted-foreground">
       Coming soon - comprehensive guide to block structure and syntax.
-    </p>
-  </div>
-);
-
-const GroupBlock = () => (
-  <div className="space-y-6">
-    <h1 className="text-4xl font-bold text-foreground">
-      Group Block Reference
-    </h1>
-    <p className="text-muted-foreground">
-      Coming soon - complete documentation for the Group block.
     </p>
   </div>
 );
