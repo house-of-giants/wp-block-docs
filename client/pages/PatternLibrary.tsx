@@ -683,18 +683,283 @@ export default function PatternLibrary() {
         </TabsContent>
 
         <TabsContent value="pricing" className="space-y-6 mt-6">
-          <Card className="bg-card/50 backdrop-blur border-border/50">
-            <CardContent className="py-8 text-center">
-              <Code className="h-8 w-8 text-muted-foreground mx-auto mb-3" />
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                Coming Soon
-              </h3>
-              <p className="text-muted-foreground">
-                Pricing table patterns with various layouts and feature
-                comparisons.
-              </p>
-            </CardContent>
-          </Card>
+          <div className="grid lg:grid-cols-1 gap-6">
+            <Card className="bg-card/50 backdrop-blur border-border/50">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle className="flex items-center">
+                      <Star className="mr-2 h-4 w-4 text-yellow-500" />
+                      Three-Tier Pricing Table
+                    </CardTitle>
+                    <CardDescription>
+                      Complete pricing section with features comparison and
+                      popular badge
+                    </CardDescription>
+                  </div>
+                  <div className="flex space-x-2">
+                    <Button variant="outline" size="sm">
+                      <Eye className="h-4 w-4" />
+                    </Button>
+                    <Button variant="outline" size="sm">
+                      <Download className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <CodeBlock
+                  code={`<!-- wp:group {
+  "metadata": {
+    "name": "Pricing Table - 3 Tier",
+    "categories": ["pricing", "comparison"]
+  },
+  "style": {
+    "spacing": {
+      "padding": {
+        "top": "var:preset|spacing|60",
+        "bottom": "var:preset|spacing|60"
+      }
+    }
+  }
+} -->
+<section class="wp-block-group"
+         style="padding-top:var(--wp--preset--spacing--60);
+                padding-bottom:var(--wp--preset--spacing--60)">
+
+  <!-- wp:heading {"textAlign":"center","level":2} -->
+  <h2 class="wp-block-heading has-text-align-center">
+    Choose Your Plan
+  </h2>
+  <!-- /wp:heading -->
+
+  <!-- wp:paragraph {"align":"center","fontSize":"medium"} -->
+  <p class="has-text-align-center has-medium-font-size">
+    Select the perfect plan for your needs. Upgrade or downgrade at any time.
+  </p>
+  <!-- /wp:paragraph -->
+
+  <!-- wp:columns {"columnCount":3,"className":"pricing-table"} -->
+  <div class="wp-block-columns pricing-table">
+
+    <!-- Starter Plan -->
+    <!-- wp:column -->
+    <div class="wp-block-column">
+      <!-- wp:group {"className":"pricing-card","style":{"border":{"radius":"12px"},"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}}}} -->
+      <div class="wp-block-group pricing-card has-background"
+           style="border-radius:12px;padding:var(--wp--preset--spacing--50) var(--wp--preset--spacing--40)">
+
+        <!-- wp:heading {"textAlign":"center","level":3} -->
+        <h3 class="wp-block-heading has-text-align-center">
+          Starter
+        </h3>
+        <!-- /wp:heading -->
+
+        <!-- wp:paragraph {"align":"center","fontSize":"small"} -->
+        <p class="has-text-align-center has-small-font-size">
+          Perfect for personal projects
+        </p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:paragraph {"align":"center","fontSize":"huge","style":{"typography":{"fontWeight":"700"}}} -->
+        <p class="has-text-align-center has-huge-font-size" style="font-weight:700">
+          $9<span style="font-size:0.5em;font-weight:400">/month</span>
+        </p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:list {"className":"pricing-features"} -->
+        <ul class="wp-block-list pricing-features">
+          <!-- wp:list-item -->
+          <li>✅ 5 Block Themes</li>
+          <!-- /wp:list-item -->
+
+          <!-- wp:list-item -->
+          <li>✅ Basic Support</li>
+          <!-- /wp:list-item -->
+
+          <!-- wp:list-item -->
+          <li>✅ Pattern Library Access</li>
+          <!-- /wp:list-item -->
+
+          <!-- wp:list-item -->
+          <li>❌ Premium Patterns</li>
+          <!-- /wp:list-item -->
+
+          <!-- wp:list-item -->
+          <li>❌ Priority Support</li>
+          <!-- /wp:list-item -->
+        </ul>
+        <!-- /wp:list -->
+
+        <!-- wp:button {"width":100,"className":"is-style-outline"} -->
+        <div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline">
+          <a class="wp-block-button__link wp-element-button" href="/pricing/starter">
+            Get Started
+          </a>
+        </div>
+        <!-- /wp:button -->
+
+      </div>
+      <!-- /wp:group -->
+    </div>
+    <!-- /wp:column -->
+
+    <!-- Pro Plan (Popular) -->
+    <!-- wp:column -->
+    <div class="wp-block-column">
+      <!-- wp:group {"className":"pricing-card popular","style":{"border":{"radius":"12px","color":"var:preset|color|primary","width":"2px"},"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}}}} -->
+      <div class="wp-block-group pricing-card popular has-background"
+           style="border-radius:12px;border-color:var(--wp--preset--color--primary);border-width:2px;padding:var(--wp--preset--spacing--50) var(--wp--preset--spacing--40)">
+
+        <!-- Popular Badge -->
+        <!-- wp:paragraph {"align":"center","fontSize":"small","className":"popular-badge","style":{"color":{"background":"var:preset|color|primary","text":"var:preset|color|base"},"spacing":{"padding":{"top":"0.25rem","bottom":"0.25rem","left":"0.75rem","right":"0.75rem"}},"border":{"radius":"20px"}}} -->
+        <p class="has-text-align-center has-small-font-size popular-badge has-base-color has-primary-background-color has-text-color has-background"
+           style="border-radius:20px;padding:0.25rem 0.75rem">
+          Most Popular
+        </p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:heading {"textAlign":"center","level":3} -->
+        <h3 class="wp-block-heading has-text-align-center">
+          Pro
+        </h3>
+        <!-- /wp:heading -->
+
+        <!-- wp:paragraph {"align":"center","fontSize":"small"} -->
+        <p class="has-text-align-center has-small-font-size">
+          Best for growing businesses
+        </p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:paragraph {"align":"center","fontSize":"huge","style":{"typography":{"fontWeight":"700"}}} -->
+        <p class="has-text-align-center has-huge-font-size" style="font-weight:700">
+          $29<span style="font-size:0.5em;font-weight:400">/month</span>
+        </p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:list {"className":"pricing-features"} -->
+        <ul class="wp-block-list pricing-features">
+          <!-- wp:list-item -->
+          <li>✅ Unlimited Block Themes</li>
+          <!-- /wp:list-item -->
+
+          <!-- wp:list-item -->
+          <li>✅ Priority Support</li>
+          <!-- /wp:list-item -->
+
+          <!-- wp:list-item -->
+          <li>✅ All Pattern Libraries</li>
+          <!-- /wp:list-item -->
+
+          <!-- wp:list-item -->
+          <li>✅ Premium Patterns</li>
+          <!-- /wp:list-item -->
+
+          <!-- wp:list-item -->
+          <li>✅ Advanced Tools</li>
+          <!-- /wp:list-item -->
+        </ul>
+        <!-- /wp:list -->
+
+        <!-- wp:button {"width":100,"style":{"color":{"background":"var:preset|color|primary"}}} -->
+        <div class="wp-block-button has-custom-width wp-block-button__width-100">
+          <a class="wp-block-button__link wp-element-button has-primary-background-color has-background" href="/pricing/pro">
+            Start Free Trial
+          </a>
+        </div>
+        <!-- /wp:button -->
+
+      </div>
+      <!-- /wp:group -->
+    </div>
+    <!-- /wp:column -->
+
+    <!-- Enterprise Plan -->
+    <!-- wp:column -->
+    <div class="wp-block-column">
+      <!-- wp:group {"className":"pricing-card","style":{"border":{"radius":"12px"},"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}}}} -->
+      <div class="wp-block-group pricing-card has-background"
+           style="border-radius:12px;padding:var(--wp--preset--spacing--50) var(--wp--preset--spacing--40)">
+
+        <!-- wp:heading {"textAlign":"center","level":3} -->
+        <h3 class="wp-block-heading has-text-align-center">
+          Enterprise
+        </h3>
+        <!-- /wp:heading -->
+
+        <!-- wp:paragraph {"align":"center","fontSize":"small"} -->
+        <p class="has-text-align-center has-small-font-size">
+          For large teams and agencies
+        </p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:paragraph {"align":"center","fontSize":"huge","style":{"typography":{"fontWeight":"700"}}} -->
+        <p class="has-text-align-center has-huge-font-size" style="font-weight:700">
+          $99<span style="font-size:0.5em;font-weight:400">/month</span>
+        </p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:list {"className":"pricing-features"} -->
+        <ul class="wp-block-list pricing-features">
+          <!-- wp:list-item -->
+          <li>✅ Everything in Pro</li>
+          <!-- /wp:list-item -->
+
+          <!-- wp:list-item -->
+          <li>✅ Custom Development</li>
+          <!-- /wp:list-item -->
+
+          <!-- wp:list-item -->
+          <li>✅ White Label Options</li>
+          <!-- /wp:list-item -->
+
+          <!-- wp:list-item -->
+          <li>✅ Dedicated Support</li>
+          <!-- /wp:list-item -->
+
+          <!-- wp:list-item -->
+          <li>✅ SLA Guarantee</li>
+          <!-- /wp:list-item -->
+        </ul>
+        <!-- /wp:list -->
+
+        <!-- wp:button {"width":100,"className":"is-style-outline"} -->
+        <div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline">
+          <a class="wp-block-button__link wp-element-button" href="/contact">
+            Contact Sales
+          </a>
+        </div>
+        <!-- /wp:button -->
+
+      </div>
+      <!-- /wp:group -->
+    </div>
+    <!-- /wp:column -->
+
+  </div>
+  <!-- /wp:columns -->
+
+</section>
+<!-- /wp:group -->`}
+                  language="html"
+                />
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <Badge variant="outline" className="text-xs">
+                    Three Columns
+                  </Badge>
+                  <Badge variant="outline" className="text-xs">
+                    Popular Badge
+                  </Badge>
+                  <Badge variant="outline" className="text-xs">
+                    Feature Lists
+                  </Badge>
+                  <Badge variant="outline" className="text-xs">
+                    Different CTAs
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </TabsContent>
 
         <TabsContent value="cta" className="space-y-6 mt-6">
