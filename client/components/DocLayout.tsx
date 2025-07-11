@@ -47,6 +47,10 @@ const navigation = [
     ],
   },
   {
+    title: "Developer Tools",
+    items: [{ name: "Block Validator", href: "/validator", icon: Code }],
+  },
+  {
     title: "Advanced",
     items: [
       { name: "Custom Blocks", href: "/custom-blocks", icon: Zap },
