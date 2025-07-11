@@ -209,22 +209,24 @@ function PropertyCategory({ category }: { category: PropertyCategory }) {
       <CollapsibleContent className="mt-4">
         <Card className="bg-card/30 backdrop-blur border-border/30">
           <CardContent className="p-0">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-[200px]">Property</TableHead>
-                  <TableHead className="w-[100px]">Type</TableHead>
-                  <TableHead>Description</TableHead>
-                  <TableHead className="w-[120px]">Default</TableHead>
-                  <TableHead className="w-[200px]">Example</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {category.properties.map((property) => (
-                  <PropertyRow key={property.name} property={property} />
-                ))}
-              </TableBody>
-            </Table>
+            <div className="overflow-x-auto">
+              <Table className="w-full">
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="min-w-[200px]">Property</TableHead>
+                    <TableHead className="min-w-[100px]">Type</TableHead>
+                    <TableHead className="min-w-[300px]">Description</TableHead>
+                    <TableHead className="min-w-[120px]">Default</TableHead>
+                    <TableHead className="min-w-[250px]">Example</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {category.properties.map((property) => (
+                    <PropertyRow key={property.name} property={property} />
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           </CardContent>
         </Card>
       </CollapsibleContent>
