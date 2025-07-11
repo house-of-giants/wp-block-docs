@@ -18,6 +18,7 @@ import {
   Settings,
   Lightbulb,
 } from "lucide-react";
+import { PropertiesReference } from "@/components/PropertiesReference";
 
 export default function GroupBlock() {
   return (
