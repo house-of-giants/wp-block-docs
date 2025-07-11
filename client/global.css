@@ -9,51 +9,57 @@
    * A different format will require also updating the theme in tailwind.config.ts.
   */
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Base theme - dark retrowave by default */
+    --background: 230 15% 8%;
+    --foreground: 280 30% 90%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 230 15% 10%;
+    --card-foreground: 280 30% 90%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 230 15% 10%;
+    --popover-foreground: 280 30% 90%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 320 100% 70%;
+    --primary-foreground: 230 15% 8%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 240 15% 15%;
+    --secondary-foreground: 280 30% 90%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 240 15% 12%;
+    --muted-foreground: 280 10% 60%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 260 100% 75%;
+    --accent-foreground: 230 15% 8%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 240 15% 20%;
+    --input: 240 15% 15%;
+    --ring: 320 100% 70%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    --sidebar-background: 0 0% 98%;
+    --sidebar-background: 230 20% 6%;
+    --sidebar-foreground: 280 30% 85%;
+    --sidebar-primary: 320 100% 70%;
+    --sidebar-primary-foreground: 230 15% 8%;
+    --sidebar-accent: 240 15% 12%;
+    --sidebar-accent-foreground: 280 30% 90%;
+    --sidebar-border: 240 15% 18%;
+    --sidebar-ring: 320 100% 70%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Retrowave specific colors */
+    --neon-pink: 320 100% 70%;
+    --neon-blue: 200 100% 70%;
+    --neon-purple: 260 100% 75%;
+    --neon-cyan: 180 100% 70%;
 
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --retro-dark: 230 15% 8%;
+    --retro-darker: 230 20% 4%;
+    --retro-pink: 320 60% 60%;
+    --retro-purple: 260 60% 65%;
+    --retro-blue: 200 80% 60%;
   }
 
   .dark {
