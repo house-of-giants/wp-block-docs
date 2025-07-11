@@ -10,6 +10,8 @@ import { DocLayout } from "@/components/DocLayout";
 import Index from "./pages/Index";
 import GroupBlock from "./pages/GroupBlock";
 import ColumnsBlock from "./pages/ColumnsBlock";
+import ImageBlock from "./pages/ImageBlock";
+import HeadingBlock from "./pages/HeadingBlock";
 import PropertiesReferencePage from "./pages/PropertiesReferencePage";
 import NotFound from "./pages/NotFound";
 
