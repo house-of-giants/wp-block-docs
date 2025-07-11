@@ -117,7 +117,7 @@ function SidebarContent() {
           className="flex items-center justify-center space-x-2 text-xs text-muted-foreground hover:text-foreground transition-colors group"
         >
           <span>
-            Made with spite by{" "}
+            Born from spite by{" "}
             <span className="font-bold text-neon-pink">House of Giants</span>
           </span>
           <ExternalLink className="h-3 w-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
