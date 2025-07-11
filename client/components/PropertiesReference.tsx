@@ -45,7 +45,13 @@ import {
 } from "@/lib/block-properties";
 
 interface PropertiesReferenceProps {
-  blockType?: "group" | "columns";
+  blockType?:
+    | "group"
+    | "columns"
+    | "image"
+    | "heading"
+    | "paragraph"
+    | "button";
   title?: string;
   description?: string;
   showUniversalOnly?: boolean;
