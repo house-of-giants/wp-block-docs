@@ -18,6 +18,7 @@ import PropertiesReferencePage from "./pages/PropertiesReferencePage";
 import FSEQuirks from "./pages/FSEQuirks";
 import BestPractices from "./pages/BestPractices";
 import PatternLibrary from "./pages/PatternLibrary";
+import BlockValidator from "./pages/BlockValidator";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
