@@ -214,17 +214,21 @@ export default function BlockValidator() {
       }
 
       // Check for semantic HTML
-      if (
-        trimmed.includes('<div class="wp-block-group"') &&
-        !attributesStr?.includes('"tagName"')
-      ) {
-        if (code.includes("navigation") || code.includes("nav")) {
-          results.push({
-            type: "info",
-            message: "Consider using semantic HTML",
-            line: lineNumber,
-            suggestion: 'Add "tagName":"nav" for navigation sections',
-          });
+      if (trimmed.includes('<div class="wp-block-group"')) {
+        const currentLineAttributes = lines
+          .slice(Math.max(0, index - 2), index + 1)
+          .join("")
+          .match(/<!-- wp:group\s+({.*?})\s*-->/)?.[1];
+
+        if (!currentLineAttributes?.includes('"tagName"')) {
+          if (code.includes("navigation") || code.includes("nav")) {
+            results.push({
+              type: "info",
+              message: "Consider using semantic HTML",
+              line: lineNumber,
+              suggestion: 'Add "tagName":"nav" for navigation sections',
+            });
+          }
         }
       }
     });
