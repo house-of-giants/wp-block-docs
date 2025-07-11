@@ -34,6 +34,8 @@ const navigation = [
       { name: "Columns Block", href: "/blocks/columns", icon: Layers },
       { name: "Image Block", href: "/blocks/image", icon: Layers },
       { name: "Heading Block", href: "/blocks/heading", icon: Layers },
+      { name: "Paragraph Block", href: "/blocks/paragraph", icon: Layers },
+      { name: "Button Block", href: "/blocks/button", icon: Layers },
     ],
   },
   {
