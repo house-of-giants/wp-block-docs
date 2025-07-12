@@ -23,6 +23,7 @@ import {
   FileText,
 } from "lucide-react";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
+import { generateDocumentationSchema, SEO } from "@/components/SEO";
 
 interface ValidationResult {
   type: "error" | "warning" | "success" | "info";
@@ -41,6 +42,16 @@ interface BlockInfo {
 }
 
 export default function BlockValidator() {
+  const blockValidatorSchema = generateDocumentationSchema(
+    "WordPress Block Validator - Validate your WordPress block markup",
+    "Validate your WordPress block markup with custom syntax highlighting designed specifically for WP blocks. Get real-time feedback on syntax errors, accessibility issues, and best practices.",
+    "https://wpblockdocs.com/block-validator",
+    "WordPress Block Documentation",
+    [
+      "WordPress block validator",
+      "WordPress block markup validator",
+    ],
+  );
   const [inputCode, setInputCode] = useState("");
   const [results, setResults] = useState<ValidationResult[]>([]);
   const [blockInfo, setBlockInfo] = useState<BlockInfo[]>([]);
@@ -369,25 +380,6 @@ export default function BlockValidator() {
     return results;
   };
 
-  const generateFixedCode = (code: string): string => {
-    let fixed = code;
-
-    // Fix common issues automatically
-    // Add alt attributes to images without them
-    fixed = fixed.replace(
-      /<img([^>]*?)src="([^"]*)"([^>]*?)(?!.*alt=)([^>]*?)>/g,
-      '<img$1src="$2"$3 alt="Image description needed"$4>',
-    );
-
-    // Add rel attributes to external buttons
-    fixed = fixed.replace(
-      /"linkTarget":"_blank"(?!.*"rel":)/g,
-      '"linkTarget":"_blank","rel":"noopener noreferrer"',
-    );
-
-    return fixed;
-  };
-
   const handleValidate = () => {
     setIsValidating(true);
 
@@ -488,346 +480,356 @@ export default function BlockValidator() {
   };
 
   return (
-    <div className="space-y-8">
-      {/* Header */}
-      <div className="space-y-4">
-        <div className="flex items-center space-x-2">
-          <div className="p-2 rounded-lg bg-neon-blue/20">
-            <Code className="h-6 w-6 text-neon-blue" />
+    <>
+      <SEO
+        title="WordPress Block Validator - Validate your WordPress block markup"
+        description="Validate your WordPress block markup with custom syntax highlighting designed specifically for WP blocks. Get real-time feedback on syntax errors, accessibility issues, and best practices."
+        keywords="WordPress block validator, WordPress block markup validator, WordPress block validator, WordPress block validator"
+        canonical="/block-validator"
+        ogType="article"
+        schema={[blockValidatorSchema]}
+      />
+      <div className="space-y-8">
+        {/* Header */}
+        <div className="space-y-4">
+          <div className="flex items-center space-x-2">
+            <div className="p-2 rounded-lg bg-neon-blue/20">
+              <Code className="h-6 w-6 text-neon-blue" />
+            </div>
+            <h1 className="text-4xl font-bold text-foreground">
+              Block Validator
+            </h1>
           </div>
-          <h1 className="text-4xl font-bold text-foreground">
-            Block Validator
-          </h1>
-        </div>
-        <p className="text-xl text-muted-foreground">
-          Validate your WordPress block markup with custom syntax highlighting
-          designed specifically for WP blocks. Get real-time feedback on syntax
-          errors, accessibility issues, and best practices.
-        </p>
-        <div className="flex flex-wrap gap-2">
-          <Badge
-            variant="secondary"
-            className="bg-neon-blue/20 text-neon-blue border-neon-blue/30"
-          >
-            Real-time Validation
-          </Badge>
-          <Badge variant="outline">Custom Syntax Highlighting</Badge>
-          <Badge variant="outline">Accessibility Checks</Badge>
-          <Badge variant="outline">Performance Tips</Badge>
-          <Badge variant="outline">Auto-fix Suggestions</Badge>
-        </div>
-      </div>
-
-      <Separator />
-
-      {/* Validator Interface */}
-      <div className="grid lg:grid-cols-2 gap-6">
-        {/* Input Section */}
-        <Card className="bg-card/50 backdrop-blur border-border/50">
-          <CardHeader>
-            <CardTitle className="flex items-center justify-between">
-              <span>Block Markup Input</span>
-              <div className="flex space-x-2">
-                <Button variant="outline" size="sm" onClick={loadSample}>
-                  Load Sample
-                </Button>
-                <Button variant="outline" size="sm" onClick={clearInput}>
-                  Clear
-                </Button>
-              </div>
-            </CardTitle>
-            <CardDescription>
-              Paste your WordPress block markup here for validation
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-4">
-              {/* Input Editor */}
-              <div className="relative">
-                <div className="flex border rounded-md overflow-hidden">
-                  <div
-                    ref={lineNumbersRef}
-                    className="bg-muted/50 px-2 py-3 text-xs font-mono text-muted-foreground select-none overflow-hidden whitespace-pre min-w-[3rem] text-right border-r"
-                    style={{ lineHeight: "1.5" }}
-                  />
-                  <Textarea
-                    ref={textareaRef}
-                    placeholder='<!-- wp:group -->
-<div class="wp-block-group">
-  <!-- wp:heading -->
-  <h2>Your content here</h2>
-  <!-- /wp:heading -->
-</div>
-<!-- /wp:group -->'
-                    value={inputCode}
-                    onChange={(e) => handleInputChange(e.target.value)}
-                    onScroll={handleScroll}
-                    className={cn(
-                      "min-h-[400px] font-mono text-sm border-0 resize-none focus:ring-0 rounded-none",
-                      "scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border",
-                    )}
-                    style={{ lineHeight: "1.5" }}
-                  />
-                </div>
-              </div>
-
-              {/* Live Preview with Syntax Highlighting */}
-              {inputCode.trim() && (
-                <div>
-                  <h4 className="text-sm font-medium mb-2 text-muted-foreground flex items-center gap-2">
-                    <Code className="h-4 w-4" />
-                    Live Preview with Custom WP Block Syntax Highlighting
-                  </h4>
-                  <WPBlockCodeBlock
-                    code={inputCode}
-                    showCopy={false}
-                    maxHeight="300px"
-                    className="border-2 border-neon-blue/20 shadow-lg shadow-neon-blue/10"
-                  />
-                </div>
-              )}
-            </div>
-            <Button
-              onClick={handleValidate}
-              disabled={!inputCode.trim() || isValidating}
-              className="w-full"
+          <p className="text-xl text-muted-foreground">
+            Validate your WordPress block markup with custom syntax highlighting
+            designed specifically for WP blocks. Get real-time feedback on syntax
+            errors, accessibility issues, and best practices.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <Badge
+              variant="secondary"
+              className="bg-neon-blue/20 text-neon-blue border-neon-blue/30"
             >
-              {isValidating ? (
-                <>
-                  <RefreshCw className="mr-2 h-4 w-4 animate-spin" />
-                  Validating...
-                </>
-              ) : (
-                <>
-                  <Zap className="mr-2 h-4 w-4" />
-                  Validate Markup
-                </>
-              )}
-            </Button>
-          </CardContent>
-        </Card>
+              Real-time Validation
+            </Badge>
+            <Badge variant="outline">Custom Syntax Highlighting</Badge>
+            <Badge variant="outline">Accessibility Checks</Badge>
+            <Badge variant="outline">Performance Tips</Badge>
+            <Badge variant="outline">Auto-fix Suggestions</Badge>
+          </div>
+        </div>
 
-        {/* Results Section */}
-        <Card className="bg-card/50 backdrop-blur border-border/50">
-          <CardHeader>
-            <CardTitle>Validation Results</CardTitle>
-            <CardDescription>
-              Errors, warnings, and suggestions for your block markup
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            {results.length === 0 ? (
-              <div className="text-center py-8 text-muted-foreground">
-                <Code className="h-8 w-8 mx-auto mb-3 opacity-50" />
-                <p>Validation results will appear here</p>
-                <p className="text-sm mt-1">
-                  Enter block markup above and click validate
-                </p>
-              </div>
-            ) : (
-              <div className="space-y-3 max-h-[400px] overflow-y-auto">
-                {results.map((result, index) => (
-                  <Card key={index} className={getResultColor(result.type)}>
-                    <CardContent className="p-4">
-                      <div className="flex items-start space-x-3">
-                        {getResultIcon(result.type)}
-                        <div className="flex-1 space-y-2">
-                          <div className="flex items-center justify-between">
-                            <p className="font-medium text-sm">
-                              {result.message}
-                            </p>
-                            {result.line && (
-                              <Badge variant="outline" className="text-xs">
-                                Line {result.line}
-                              </Badge>
-                            )}
-                          </div>
-                          {result.suggestion && (
-                            <p className="text-xs text-muted-foreground">
-                              💡 {result.suggestion}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            )}
-          </CardContent>
-        </Card>
-      </div>
+        <Separator />
 
-      {/* Enhanced Results */}
-      {results.length > 0 && (
-        <Tabs defaultValue="summary" className="w-full">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="summary">Summary</TabsTrigger>
-            <TabsTrigger value="blocks">Block Analysis</TabsTrigger>
-            <TabsTrigger value="suggestions">Suggestions</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="summary" className="space-y-4 mt-6">
-            <div className="grid md:grid-cols-4 gap-4">
-              <Card className="bg-green-500/10 border-green-500/30">
-                <CardContent className="p-4 text-center">
-                  <CheckCircle className="h-8 w-8 text-green-500 mx-auto mb-2" />
-                  <p className="text-2xl font-bold text-green-600">
-                    {results.filter((r) => r.type === "success").length}
-                  </p>
-                  <p className="text-sm text-muted-foreground">Passed</p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-red-500/10 border-red-500/30">
-                <CardContent className="p-4 text-center">
-                  <XCircle className="h-8 w-8 text-red-500 mx-auto mb-2" />
-                  <p className="text-2xl font-bold text-red-600">
-                    {results.filter((r) => r.type === "error").length}
-                  </p>
-                  <p className="text-sm text-muted-foreground">Errors</p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-yellow-500/10 border-yellow-500/30">
-                <CardContent className="p-4 text-center">
-                  <AlertTriangle className="h-8 w-8 text-yellow-500 mx-auto mb-2" />
-                  <p className="text-2xl font-bold text-yellow-600">
-                    {results.filter((r) => r.type === "warning").length}
-                  </p>
-                  <p className="text-sm text-muted-foreground">Warnings</p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-blue-500/10 border-blue-500/30">
-                <CardContent className="p-4 text-center">
-                  <Lightbulb className="h-8 w-8 text-blue-500 mx-auto mb-2" />
-                  <p className="text-2xl font-bold text-blue-600">
-                    {results.filter((r) => r.type === "info").length}
-                  </p>
-                  <p className="text-sm text-muted-foreground">Info</p>
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
-
-          <TabsContent value="blocks" className="space-y-4 mt-6">
-            {blockInfo.length > 0 ? (
+        {/* Validator Interface */}
+        <div className="grid lg:grid-cols-2 gap-6">
+          {/* Input Section */}
+          <Card className="bg-card/50 backdrop-blur border-border/50">
+            <CardHeader>
+              <CardTitle className="flex items-center justify-between">
+                <span>Block Markup Input</span>
+                <div className="flex space-x-2">
+                  <Button variant="outline" size="sm" onClick={loadSample}>
+                    Load Sample
+                  </Button>
+                  <Button variant="outline" size="sm" onClick={clearInput}>
+                    Clear
+                  </Button>
+                </div>
+              </CardTitle>
+              <CardDescription>
+                Paste your WordPress block markup here for validation
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
               <div className="space-y-4">
-                {blockInfo.map((block, index) => (
-                  <Card
-                    key={index}
-                    className="bg-card/50 backdrop-blur border-border/50"
-                  >
-                    <CardHeader>
-                      <CardTitle className="flex items-center justify-between">
-                        <span className="flex items-center">
-                          {block.isValid ? (
-                            <CheckCircle className="mr-2 h-4 w-4 text-green-500" />
-                          ) : (
-                            <XCircle className="mr-2 h-4 w-4 text-red-500" />
-                          )}
-                          {block.blockType} Block
-                        </span>
-                        <Badge
-                          variant={block.isValid ? "default" : "destructive"}
-                        >
-                          {block.isValid ? "Valid" : "Invalid"}
-                        </Badge>
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      {Object.keys(block.attributes).length > 0 && (
-                        <div className="space-y-2">
-                          <p className="text-sm font-medium">Attributes:</p>
-                          <WPBlockCodeBlock
-                            code={JSON.stringify(block.attributes, null, 2)}
-                            showCopy={false}
-                          />
-                        </div>
+                {/* Input Editor */}
+                <div className="relative">
+                  <div className="flex border rounded-md overflow-hidden">
+                    <div
+                      ref={lineNumbersRef}
+                      className="bg-muted/50 px-2 py-3 text-xs font-mono text-muted-foreground select-none overflow-hidden whitespace-pre min-w-[3rem] text-right border-r"
+                      style={{ lineHeight: "1.5" }}
+                    />
+                    <Textarea
+                      ref={textareaRef}
+                      placeholder='<!-- wp:group -->
+  <div class="wp-block-group">
+    <!-- wp:heading -->
+    <h2>Your content here</h2>
+    <!-- /wp:heading -->
+  </div>
+  <!-- /wp:group -->'
+                      value={inputCode}
+                      onChange={(e) => handleInputChange(e.target.value)}
+                      onScroll={handleScroll}
+                      className={cn(
+                        "min-h-[400px] font-mono text-sm border-0 resize-none focus:ring-0 rounded-none",
+                        "scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border",
                       )}
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-8 text-muted-foreground">
-                <FileText className="h-8 w-8 mx-auto mb-3 opacity-50" />
-                <p>No blocks detected in the provided markup</p>
-              </div>
-            )}
-          </TabsContent>
+                      style={{ lineHeight: "1.5" }}
+                    />
+                  </div>
+                </div>
 
-          <TabsContent value="suggestions" className="space-y-4 mt-6">
-            <div className="space-y-4">
-              {results.filter((r) => r.suggestion).length > 0 ? (
-                results
-                  .filter((r) => r.suggestion)
-                  .map((result, index) => (
-                    <Card
-                      key={index}
-                      className="bg-blue-500/10 border-blue-500/30"
-                    >
+                {/* Live Preview with Syntax Highlighting */}
+                {inputCode.trim() && (
+                  <div>
+                    <h4 className="text-sm font-medium mb-2 text-muted-foreground flex items-center gap-2">
+                      <Code className="h-4 w-4" />
+                      Live Preview with Custom WP Block Syntax Highlighting
+                    </h4>
+                    <WPBlockCodeBlock
+                      code={inputCode}
+                      showCopy={false}
+                      maxHeight="300px"
+                      className="border-2 border-neon-blue/20 shadow-lg shadow-neon-blue/10"
+                    />
+                  </div>
+                )}
+              </div>
+              <Button
+                onClick={handleValidate}
+                disabled={!inputCode.trim() || isValidating}
+                className="w-full"
+              >
+                {isValidating ? (
+                  <>
+                    <RefreshCw className="mr-2 h-4 w-4 animate-spin" />
+                    Validating...
+                  </>
+                ) : (
+                  <>
+                    <Zap className="mr-2 h-4 w-4" />
+                    Validate Markup
+                  </>
+                )}
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Results Section */}
+          <Card className="bg-card/50 backdrop-blur border-border/50">
+            <CardHeader>
+              <CardTitle>Validation Results</CardTitle>
+              <CardDescription>
+                Errors, warnings, and suggestions for your block markup
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              {results.length === 0 ? (
+                <div className="text-center py-8 text-muted-foreground">
+                  <Code className="h-8 w-8 mx-auto mb-3 opacity-50" />
+                  <p>Validation results will appear here</p>
+                  <p className="text-sm mt-1">
+                    Enter block markup above and click validate
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-3 max-h-[400px] overflow-y-auto">
+                  {results.map((result, index) => (
+                    <Card key={index} className={getResultColor(result.type)}>
                       <CardContent className="p-4">
                         <div className="flex items-start space-x-3">
-                          <Lightbulb className="h-4 w-4 text-blue-500 mt-0.5" />
-                          <div className="space-y-2">
-                            <p className="font-medium text-sm">
-                              {result.message}
-                            </p>
-                            <p className="text-sm text-muted-foreground">
-                              {result.suggestion}
-                            </p>
+                          {getResultIcon(result.type)}
+                          <div className="flex-1 space-y-2">
+                            <div className="flex items-center justify-between">
+                              <p className="font-medium text-sm">
+                                {result.message}
+                              </p>
+                              {result.line && (
+                                <Badge variant="outline" className="text-xs">
+                                  Line {result.line}
+                                </Badge>
+                              )}
+                            </div>
+                            {result.suggestion && (
+                              <p className="text-xs text-muted-foreground">
+                                💡 {result.suggestion}
+                              </p>
+                            )}
                           </div>
                         </div>
                       </CardContent>
                     </Card>
-                  ))
-              ) : (
-                <div className="text-center py-8 text-muted-foreground">
-                  <Lightbulb className="h-8 w-8 mx-auto mb-3 opacity-50" />
-                  <p>No suggestions available</p>
-                  <p className="text-sm mt-1">Your markup looks good!</p>
+                  ))}
                 </div>
               )}
-            </div>
-          </TabsContent>
-        </Tabs>
-      )}
+            </CardContent>
+          </Card>
+        </div>
 
-      {/* Quick Tips */}
-      <Card className="bg-card/50 backdrop-blur border-border/50">
-        <CardHeader>
-          <CardTitle className="flex items-center">
-            <Lightbulb className="mr-2 h-5 w-5 text-neon-cyan" />
-            Validation Tips
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <h4 className="font-medium mb-3">Common Issues to Check:</h4>
-              <ul className="space-y-2 text-sm">
-                <li>• Proper opening and closing block comments</li>
-                <li>• Valid JSON syntax in block attributes</li>
-                <li>• Alt text for all images</li>
-                <li>• Semantic HTML structure</li>
-                <li>• Only one H1 heading per page</li>
-              </ul>
+        {/* Enhanced Results */}
+        {results.length > 0 && (
+          <Tabs defaultValue="summary" className="w-full">
+            <TabsList className="grid w-full grid-cols-3">
+              <TabsTrigger value="summary">Summary</TabsTrigger>
+              <TabsTrigger value="blocks">Block Analysis</TabsTrigger>
+              <TabsTrigger value="suggestions">Suggestions</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="summary" className="space-y-4 mt-6">
+              <div className="grid md:grid-cols-4 gap-4">
+                <Card className="bg-green-500/10 border-green-500/30">
+                  <CardContent className="p-4 text-center">
+                    <CheckCircle className="h-8 w-8 text-green-500 mx-auto mb-2" />
+                    <p className="text-2xl font-bold text-green-600">
+                      {results.filter((r) => r.type === "success").length}
+                    </p>
+                    <p className="text-sm text-muted-foreground">Passed</p>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-red-500/10 border-red-500/30">
+                  <CardContent className="p-4 text-center">
+                    <XCircle className="h-8 w-8 text-red-500 mx-auto mb-2" />
+                    <p className="text-2xl font-bold text-red-600">
+                      {results.filter((r) => r.type === "error").length}
+                    </p>
+                    <p className="text-sm text-muted-foreground">Errors</p>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-yellow-500/10 border-yellow-500/30">
+                  <CardContent className="p-4 text-center">
+                    <AlertTriangle className="h-8 w-8 text-yellow-500 mx-auto mb-2" />
+                    <p className="text-2xl font-bold text-yellow-600">
+                      {results.filter((r) => r.type === "warning").length}
+                    </p>
+                    <p className="text-sm text-muted-foreground">Warnings</p>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-blue-500/10 border-blue-500/30">
+                  <CardContent className="p-4 text-center">
+                    <Lightbulb className="h-8 w-8 text-blue-500 mx-auto mb-2" />
+                    <p className="text-2xl font-bold text-blue-600">
+                      {results.filter((r) => r.type === "info").length}
+                    </p>
+                    <p className="text-sm text-muted-foreground">Info</p>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="blocks" className="space-y-4 mt-6">
+              {blockInfo.length > 0 ? (
+                <div className="space-y-4">
+                  {blockInfo.map((block, index) => (
+                    <Card
+                      key={index}
+                      className="bg-card/50 backdrop-blur border-border/50"
+                    >
+                      <CardHeader>
+                        <CardTitle className="flex items-center justify-between">
+                          <span className="flex items-center">
+                            {block.isValid ? (
+                              <CheckCircle className="mr-2 h-4 w-4 text-green-500" />
+                            ) : (
+                              <XCircle className="mr-2 h-4 w-4 text-red-500" />
+                            )}
+                            {block.blockType} Block
+                          </span>
+                          <Badge
+                            variant={block.isValid ? "default" : "destructive"}
+                          >
+                            {block.isValid ? "Valid" : "Invalid"}
+                          </Badge>
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        {Object.keys(block.attributes).length > 0 && (
+                          <div className="space-y-2">
+                            <p className="text-sm font-medium">Attributes:</p>
+                            <WPBlockCodeBlock
+                              code={JSON.stringify(block.attributes, null, 2)}
+                              showCopy={false}
+                            />
+                          </div>
+                        )}
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-8 text-muted-foreground">
+                  <FileText className="h-8 w-8 mx-auto mb-3 opacity-50" />
+                  <p>No blocks detected in the provided markup</p>
+                </div>
+              )}
+            </TabsContent>
+
+            <TabsContent value="suggestions" className="space-y-4 mt-6">
+              <div className="space-y-4">
+                {results.filter((r) => r.suggestion).length > 0 ? (
+                  results
+                    .filter((r) => r.suggestion)
+                    .map((result, index) => (
+                      <Card
+                        key={index}
+                        className="bg-blue-500/10 border-blue-500/30"
+                      >
+                        <CardContent className="p-4">
+                          <div className="flex items-start space-x-3">
+                            <Lightbulb className="h-4 w-4 text-blue-500 mt-0.5" />
+                            <div className="space-y-2">
+                              <p className="font-medium text-sm">
+                                {result.message}
+                              </p>
+                              <p className="text-sm text-muted-foreground">
+                                {result.suggestion}
+                              </p>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))
+                ) : (
+                  <div className="text-center py-8 text-muted-foreground">
+                    <Lightbulb className="h-8 w-8 mx-auto mb-3 opacity-50" />
+                    <p>No suggestions available</p>
+                    <p className="text-sm mt-1">Your markup looks good!</p>
+                  </div>
+                )}
+              </div>
+            </TabsContent>
+          </Tabs>
+        )}
+
+        {/* Quick Tips */}
+        <Card className="bg-card/50 backdrop-blur border-border/50">
+          <CardHeader>
+            <CardTitle className="flex items-center">
+              <Lightbulb className="mr-2 h-5 w-5 text-neon-cyan" />
+              Validation Tips
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-medium mb-3">Common Issues to Check:</h4>
+                <ul className="space-y-2 text-sm">
+                  <li>• Proper opening and closing block comments</li>
+                  <li>• Valid JSON syntax in block attributes</li>
+                  <li>• Alt text for all images</li>
+                  <li>• Semantic HTML structure</li>
+                  <li>• Only one H1 heading per page</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium mb-3">Best Practices:</h4>
+                <ul className="space-y-2 text-sm">
+                  <li>• Use CSS classes instead of inline styles</li>
+                  <li>• Include metadata for block patterns</li>
+                  <li>• Add rel="noopener noreferrer" for external links</li>
+                  <li>• Use semantic tagName attributes</li>
+                  <li>• Follow WordPress coding standards</li>
+                </ul>
+              </div>
             </div>
-            <div>
-              <h4 className="font-medium mb-3">Best Practices:</h4>
-              <ul className="space-y-2 text-sm">
-                <li>• Use CSS classes instead of inline styles</li>
-                <li>• Include metadata for block patterns</li>
-                <li>• Add rel="noopener noreferrer" for external links</li>
-                <li>• Use semantic tagName attributes</li>
-                <li>• Follow WordPress coding standards</li>
-              </ul>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+          </CardContent>
+        </Card>
+      </div>
+    </>
   );
 }

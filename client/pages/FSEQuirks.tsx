@@ -20,10 +20,32 @@ import {
   Smartphone,
 } from "lucide-react";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
+import { generateDocumentationSchema, SEO } from "@/components/SEO";
 
 export default function FSEQuirks() {
+  const fseQuirksSchema = generateDocumentationSchema(
+    "WordPress FSE Quirks - Complete HTML Markup Guide & Examples",
+    "Master WordPress FSE quirks with comprehensive examples, attributes, and best practices. Learn how to create flexible layouts using Group blocks with custom styling and semantic HTML.",
+    "https://wpblockdocs.com/fse-quirks",
+    "WordPress Block Documentation",
+    [
+      "WordPress FSE quirks",
+      "WordPress FSE quirks markup",
+      "WordPress FSE quirks best practices",
+      "WordPress FSE quirks examples",
+    ],
+  );
   return (
-    <div className="space-y-8">
+    <>
+      <SEO
+        title="WordPress FSE Quirks - Complete HTML Markup Guide & Examples"
+        description="Master WordPress FSE quirks with comprehensive examples, attributes, and best practices. Learn how to create flexible layouts using Group blocks with custom styling and semantic HTML."
+        keywords="WordPress FSE quirks, WordPress FSE quirks markup, WordPress FSE quirks best practices, WordPress FSE quirks examples"
+        canonical="/fse-quirks"
+        ogType="article"
+        schema={[fseQuirksSchema]}
+      />
+      <div className="space-y-8">
       {/* Header */}
       <div className="space-y-4">
         <div className="flex items-center space-x-2">
@@ -525,5 +547,6 @@ Customized templates in database override file-based templates`}
         </Card>
       </div>
     </div>
+    </>
   );
 }

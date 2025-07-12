@@ -22,10 +22,31 @@ import {
 } from "lucide-react";
 import { PropertiesReference } from "@/components/PropertiesReference";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
+import { generateDocumentationSchema, SEO } from "@/components/SEO";
 
 export default function ButtonBlock() {
+  const buttonBlockSchema = generateDocumentationSchema(
+    "WordPress Button Block - Complete HTML Markup Guide & Examples",
+    "Master WordPress button block markup with comprehensive examples, attributes, and best practices. Learn how to create customizable buttons with links, styling, and accessibility features.",
+    "https://wpblockdocs.com/button-block",
+    "WordPress Block Documentation",
+    [
+      "WordPress button block",
+      "WordPress button block markup",
+      "WordPress button block best practices",
+      "WordPress button block examples",
+    ],
+  );
   return (
-    <div className="space-y-8">
+    <>
+      <SEO
+        title="WordPress Button Block - Complete HTML Markup Guide & Examples"
+        description="Master WordPress button block markup with comprehensive examples, attributes, and best practices. Learn how to create customizable buttons with links, styling, and accessibility features."
+        keywords="WordPress button block, WordPress button block markup, WordPress button block best practices, WordPress button block examples"
+        canonical="/button-block"
+        ogType="article"
+        schema={[buttonBlockSchema]}
+      />
       {/* Header */}
       <div className="space-y-4">
         <div className="flex items-center space-x-2">
@@ -608,6 +629,6 @@ Get Started Now
           </Card>
         </div>
       </div>
-    </div>
+    </>
   );
 }

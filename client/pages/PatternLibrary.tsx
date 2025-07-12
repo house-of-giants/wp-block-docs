@@ -20,10 +20,31 @@ import {
   Code,
 } from "lucide-react";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
+import { generateDocumentationSchema, SEO } from "@/components/SEO";
 
 export default function PatternLibrary() {
+  const patternLibrarySchema = generateDocumentationSchema(
+    "WordPress Pattern Library - Complete HTML Markup Guide & Examples",
+    "Master WordPress pattern library markup with comprehensive examples, attributes, and best practices. Learn how to create production-ready block patterns for your WordPress block themes.",
+    "https://wpblockdocs.com/pattern-library",
+    "WordPress Block Documentation",
+    [
+      "WordPress pattern library",
+      "WordPress pattern library markup",
+      "WordPress pattern library best practices",
+      "WordPress pattern library examples",
+    ],
+  );
   return (
-    <div className="space-y-8">
+    <>
+      <SEO
+        title="WordPress Pattern Library - Complete HTML Markup Guide & Examples"
+        description="Master WordPress pattern library markup with comprehensive examples, attributes, and best practices. Learn how to create production-ready block patterns for your WordPress block themes."
+        keywords="WordPress pattern library, WordPress pattern library markup, WordPress pattern library best practices, WordPress pattern library examples"
+        canonical="/pattern-library"
+        ogType="article"
+        schema={[patternLibrarySchema]}
+      />
       {/* Header */}
       <div className="space-y-4">
         <div className="flex items-center space-x-2">
@@ -1690,6 +1711,6 @@ export default function PatternLibrary() {
           </Card>
         </div>
       </div>
-    </div>
+    </>
   );
 }

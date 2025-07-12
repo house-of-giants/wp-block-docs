@@ -22,10 +22,31 @@ import {
 } from "lucide-react";
 import { PropertiesReference } from "@/components/PropertiesReference";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
+import { generateDocumentationSchema, SEO } from "@/components/SEO";
 
 export default function HeadingBlock() {
+  const headingBlockSchema = generateDocumentationSchema(
+    "WordPress Heading Block - Complete HTML Markup Guide & Examples",
+    "Master WordPress heading block markup with comprehensive examples, attributes, and best practices. Learn how to create semantic HTML headings with customizable styling.",
+    "https://wpblockdocs.com/heading-block",
+    "WordPress Block Documentation",
+    [
+      "WordPress heading block",
+      "WordPress heading block markup",
+      "WordPress heading block best practices",
+      "WordPress heading block examples",
+    ],
+  );
   return (
-    <div className="space-y-8">
+    <>
+      <SEO
+        title="WordPress Heading Block - Complete HTML Markup Guide & Examples"
+        description="Master WordPress heading block markup with comprehensive examples, attributes, and best practices. Learn how to create semantic HTML headings with customizable styling."
+        keywords="WordPress heading block, WordPress heading block markup, WordPress heading block best practices, WordPress heading block examples"
+        canonical="/heading-block"
+        ogType="article"
+        schema={[headingBlockSchema]}
+      />
       {/* Header */}
       <div className="space-y-4">
         <div className="flex items-center space-x-2">
@@ -516,6 +537,6 @@ export default function HeadingBlock() {
           </Card>
         </div>
       </div>
-    </div>
+    </>
   );
 }

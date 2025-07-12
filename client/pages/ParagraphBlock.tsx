@@ -20,10 +20,31 @@ import {
 } from "lucide-react";
 import { PropertiesReference } from "@/components/PropertiesReference";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
+import { generateDocumentationSchema, SEO } from "@/components/SEO";
 
 export default function ParagraphBlock() {
+  const paragraphBlockSchema = generateDocumentationSchema(
+    "WordPress Paragraph Block - Complete HTML Markup Guide & Examples",
+    "Master WordPress paragraph block markup with comprehensive examples, attributes, and best practices. Learn how to create rich text content with typography styling, drop caps, and accessibility features.",
+    "https://wpblockdocs.com/paragraph-block",
+    "WordPress Block Documentation",
+    [
+      "WordPress paragraph block",
+      "WordPress paragraph block markup",
+      "WordPress paragraph block best practices",
+      "WordPress paragraph block examples",
+    ],
+  );
   return (
-    <div className="space-y-8">
+    <>
+      <SEO
+        title="WordPress Paragraph Block - Complete HTML Markup Guide & Examples"
+        description="Master WordPress paragraph block markup with comprehensive examples, attributes, and best practices. Learn how to create rich text content with typography styling, drop caps, and accessibility features."
+        keywords="WordPress paragraph block, WordPress paragraph block markup, WordPress paragraph block best practices, WordPress paragraph block examples"
+        canonical="/paragraph-block"
+        ogType="article"
+        schema={[paragraphBlockSchema]}
+      />
       {/* Header */}
       <div className="space-y-4">
         <div className="flex items-center space-x-2">
@@ -470,6 +491,6 @@ You can also use <code>inline code</code> and
           </Card>
         </div>
       </div>
-    </div>
+    </>
   );
 }

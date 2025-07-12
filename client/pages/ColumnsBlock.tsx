@@ -6,11 +6,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import {
-  Copy,
   AlertCircle,
   Columns,
   Code,
@@ -22,10 +20,31 @@ import {
 } from "lucide-react";
 import { PropertiesReference } from "@/components/PropertiesReference";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
+import { generateDocumentationSchema, SEO } from "@/components/SEO";
 
 export default function ColumnsBlock() {
+  const columnsBlockSchema = generateDocumentationSchema(
+    "WordPress Columns Block - Complete HTML Markup Guide & Examples",
+    "Master WordPress columns block markup with comprehensive examples, attributes, and best practices. Learn how to create responsive multi-column layouts using CSS Grid and Flexbox.",
+    "https://wpblockdocs.com/columns-block",
+    "WordPress Block Documentation",
+    [
+      "WordPress columns block",
+      "WordPress columns block markup",
+      "WordPress columns block best practices",
+      "WordPress columns block examples",
+    ],
+  );
   return (
-    <div className="space-y-8">
+    <>
+      <SEO
+        title="WordPress Columns Block - Complete HTML Markup Guide & Examples"
+        description="Master WordPress columns block markup with comprehensive examples, attributes, and best practices. Learn how to create responsive multi-column layouts using CSS Grid and Flexbox."
+        keywords="WordPress columns block, WordPress columns block markup, WordPress columns block best practices, WordPress columns block examples"
+        canonical="/columns-block"
+        ogType="article"
+        schema={[columnsBlockSchema]}
+      />
       {/* Header */}
       <div className="space-y-4">
         <div className="flex items-center space-x-2">
@@ -508,6 +527,6 @@ export default function ColumnsBlock() {
           </Card>
         </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -6,26 +6,44 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import {
-  Copy,
   AlertCircle,
   Image,
   Code,
   Eye,
   Settings,
   Lightbulb,
-  Link,
   Accessibility,
 } from "lucide-react";
 import { PropertiesReference } from "@/components/PropertiesReference";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
+import { generateDocumentationSchema, SEO } from "@/components/SEO";
 
 export default function ImageBlock() {
+  const imageBlockSchema = generateDocumentationSchema(
+    "WordPress Image Block - Complete HTML Markup Guide & Examples",
+    "Master WordPress image block markup with comprehensive examples, attributes, and best practices. Learn how to display images with captions, alt text, and accessibility features.",
+    "https://wpblockdocs.com/image-block",
+    "WordPress Block Documentation",
+    [
+      "WordPress image block",
+      "WordPress image block markup",
+      "WordPress image block best practices",
+      "WordPress image block examples",
+    ],
+  );
   return (
-    <div className="space-y-8">
+    <>
+      <SEO
+        title="WordPress Image Block - Complete HTML Markup Guide & Examples"
+        description="Master WordPress image block markup with comprehensive examples, attributes, and best practices. Learn how to display images with captions, alt text, and accessibility features."
+        keywords="WordPress image block, WordPress image block markup, WordPress image block best practices, WordPress image block examples"
+        canonical="/image-block"
+        ogType="article"
+        schema={[imageBlockSchema]}
+      />
       {/* Header */}
       <div className="space-y-4">
         <div className="flex items-center space-x-2">
@@ -445,6 +463,6 @@ export default function ImageBlock() {
           </Card>
         </div>
       </div>
-    </div>
+    </>
   );
 }
