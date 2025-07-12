@@ -18,7 +18,11 @@ import {
 } from "lucide-react";
 import { PropertiesReference } from "@/components/PropertiesReference";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
-import { SEO, generateDocumentationSchema, generateBreadcrumbSchema } from "@/components/SEO";
+import {
+  SEO,
+  generateDocumentationSchema,
+  generateBreadcrumbSchema,
+} from "@/components/SEO";
 
 export default function GroupBlock() {
   const groupBlockSchema = generateDocumentationSchema(
@@ -36,14 +40,14 @@ export default function GroupBlock() {
       "WordPress block layout",
       "Group block attributes",
       "WordPress block nesting",
-      "Group block semantic HTML"
-    ]
+      "Group block semantic HTML",
+    ],
   );
 
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: "WP Block Docs", url: "https://wpblockdocs.com/" },
     { name: "Core Blocks", url: "https://wpblockdocs.com/#core-blocks" },
-    { name: "Group Block", url: "https://wpblockdocs.com/group" }
+    { name: "Group Block", url: "https://wpblockdocs.com/group" },
   ]);
 
   return (
@@ -58,86 +62,86 @@ export default function GroupBlock() {
         lastModified="2024-01-15T10:00:00Z"
       />
       <div className="space-y-8">
-      {/* Header */}
-      <div className="space-y-4">
-        <div className="flex items-center space-x-2">
-          <div className="p-2 rounded-lg bg-neon-purple/20">
-            <Layers className="h-6 w-6 text-neon-purple" />
+        {/* Header */}
+        <div className="space-y-4">
+          <div className="flex items-center space-x-2">
+            <div className="p-2 rounded-lg bg-neon-purple/20">
+              <Layers className="h-6 w-6 text-neon-purple" />
+            </div>
+            <h1 className="text-4xl font-bold text-foreground">Group Block</h1>
           </div>
-          <h1 className="text-4xl font-bold text-foreground">Group Block</h1>
+          <p className="text-xl text-muted-foreground">
+            The Group block is a container block that allows you to group other
+            blocks together and apply shared styling, spacing, and layout
+            properties.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <Badge
+              variant="secondary"
+              className="bg-neon-purple/20 text-neon-purple border-neon-purple/30"
+            >
+              Core Block
+            </Badge>
+            <Badge variant="outline">Layout Container</Badge>
+            <Badge variant="outline">Styling Support</Badge>
+          </div>
         </div>
-        <p className="text-xl text-muted-foreground">
-          The Group block is a container block that allows you to group other
-          blocks together and apply shared styling, spacing, and layout
-          properties.
-        </p>
-        <div className="flex flex-wrap gap-2">
-          <Badge
-            variant="secondary"
-            className="bg-neon-purple/20 text-neon-purple border-neon-purple/30"
-          >
-            Core Block
-          </Badge>
-          <Badge variant="outline">Layout Container</Badge>
-          <Badge variant="outline">Styling Support</Badge>
-        </div>
-      </div>
 
-      <Separator />
+        <Separator />
 
-      {/* Basic Syntax */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold text-foreground flex items-center">
-          <Code className="mr-2 h-5 w-5 text-neon-blue" />
-          Basic Syntax
-        </h2>
+        {/* Basic Syntax */}
+        <div className="space-y-4">
+          <h2 className="text-2xl font-semibold text-foreground flex items-center">
+            <Code className="mr-2 h-5 w-5 text-neon-blue" />
+            Basic Syntax
+          </h2>
 
-        <Card className="bg-card/50 backdrop-blur border-border/50">
-          <CardHeader>
-            <CardTitle className="text-lg">Minimal Group Block</CardTitle>
-            <CardDescription>
-              The simplest form of a Group block
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <WPBlockCodeBlock
-              code={`<!-- wp:group -->
+          <Card className="bg-card/50 backdrop-blur border-border/50">
+            <CardHeader>
+              <CardTitle className="text-lg">Minimal Group Block</CardTitle>
+              <CardDescription>
+                The simplest form of a Group block
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <WPBlockCodeBlock
+                code={`<!-- wp:group -->
 <div class="wp-block-group">
   <!-- Inner blocks go here -->
 </div>
 <!-- /wp:group -->`}
-            />
-          </CardContent>
-        </Card>
-      </div>
+              />
+            </CardContent>
+          </Card>
+        </div>
 
-      {/* Common Attributes */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold text-foreground flex items-center">
-          <Settings className="mr-2 h-5 w-5 text-neon-pink" />
-          Common Attributes
-        </h2>
+        {/* Common Attributes */}
+        <div className="space-y-4">
+          <h2 className="text-2xl font-semibold text-foreground flex items-center">
+            <Settings className="mr-2 h-5 w-5 text-neon-pink" />
+            Common Attributes
+          </h2>
 
-        <Tabs defaultValue="spacing" className="w-full">
-          <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="spacing">Spacing</TabsTrigger>
-            <TabsTrigger value="background">Background</TabsTrigger>
-            <TabsTrigger value="layout">Layout</TabsTrigger>
-            <TabsTrigger value="advanced">Advanced</TabsTrigger>
-          </TabsList>
+          <Tabs defaultValue="spacing" className="w-full">
+            <TabsList className="grid w-full grid-cols-4">
+              <TabsTrigger value="spacing">Spacing</TabsTrigger>
+              <TabsTrigger value="background">Background</TabsTrigger>
+              <TabsTrigger value="layout">Layout</TabsTrigger>
+              <TabsTrigger value="advanced">Advanced</TabsTrigger>
+            </TabsList>
 
-          <TabsContent value="spacing" className="space-y-4">
-            <Card className="bg-card/50 backdrop-blur border-border/50">
-              <CardHeader>
-                <CardTitle>Padding & Margin</CardTitle>
-                <CardDescription>
-                  Control spacing around and inside the group
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <WPBlockCodeBlock
-                    code={`<!-- wp:group {
+            <TabsContent value="spacing" className="space-y-4">
+              <Card className="bg-card/50 backdrop-blur border-border/50">
+                <CardHeader>
+                  <CardTitle>Padding & Margin</CardTitle>
+                  <CardDescription>
+                    Control spacing around and inside the group
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                    <WPBlockCodeBlock
+                      code={`<!-- wp:group {
   "style": {
     "spacing": {
       "padding": {
@@ -161,24 +165,24 @@ export default function GroupBlock() {
   <!-- Content -->
 </div>
 <!-- /wp:group -->`}
-                  />
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
 
-          <TabsContent value="background" className="space-y-4">
-            <Card className="bg-card/50 backdrop-blur border-border/50">
-              <CardHeader>
-                <CardTitle>Background Colors & Images</CardTitle>
-                <CardDescription>
-                  Apply background styling to the group
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <WPBlockCodeBlock
-                    code={`<!-- wp:group {
+            <TabsContent value="background" className="space-y-4">
+              <Card className="bg-card/50 backdrop-blur border-border/50">
+                <CardHeader>
+                  <CardTitle>Background Colors & Images</CardTitle>
+                  <CardDescription>
+                    Apply background styling to the group
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                    <WPBlockCodeBlock
+                      code={`<!-- wp:group {
   "backgroundColor": "primary",
   "style": {
     "color": {
@@ -191,24 +195,24 @@ export default function GroupBlock() {
   <!-- Content -->
 </div>
 <!-- /wp:group -->`}
-                  />
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
 
-          <TabsContent value="layout" className="space-y-4">
-            <Card className="bg-card/50 backdrop-blur border-border/50">
-              <CardHeader>
-                <CardTitle>Layout Settings</CardTitle>
-                <CardDescription>
-                  Configure group layout behavior
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <WPBlockCodeBlock
-                    code={`<!-- wp:group {
+            <TabsContent value="layout" className="space-y-4">
+              <Card className="bg-card/50 backdrop-blur border-border/50">
+                <CardHeader>
+                  <CardTitle>Layout Settings</CardTitle>
+                  <CardDescription>
+                    Configure group layout behavior
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                    <WPBlockCodeBlock
+                      code={`<!-- wp:group {
   "layout": {
     "type": "constrained",
     "contentSize": "800px",
@@ -219,24 +223,24 @@ export default function GroupBlock() {
   <!-- Content constrained to max-width -->
 </div>
 <!-- /wp:group -->`}
-                  />
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
 
-          <TabsContent value="advanced" className="space-y-4">
-            <Card className="bg-card/50 backdrop-blur border-border/50">
-              <CardHeader>
-                <CardTitle>CSS Classes & Anchor</CardTitle>
-                <CardDescription>
-                  Custom CSS and anchor functionality
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <WPBlockCodeBlock
-                    code={`<!-- wp:group {
+            <TabsContent value="advanced" className="space-y-4">
+              <Card className="bg-card/50 backdrop-blur border-border/50">
+                <CardHeader>
+                  <CardTitle>CSS Classes & Anchor</CardTitle>
+                  <CardDescription>
+                    Custom CSS and anchor functionality
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                    <WPBlockCodeBlock
+                      code={`<!-- wp:group {
   "className": "custom-group-class",
   "anchor": "section-hero"
 } -->
@@ -244,33 +248,33 @@ export default function GroupBlock() {
   <!-- Content with custom ID and class -->
 </div>
 <!-- /wp:group -->`}
-                  />
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
-      </div>
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
+        </div>
 
-      {/* Real-World Examples */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold text-foreground flex items-center">
-          <Eye className="mr-2 h-5 w-5 text-neon-cyan" />
-          Real-World Examples
-        </h2>
+        {/* Real-World Examples */}
+        <div className="space-y-4">
+          <h2 className="text-2xl font-semibold text-foreground flex items-center">
+            <Eye className="mr-2 h-5 w-5 text-neon-cyan" />
+            Real-World Examples
+          </h2>
 
-        <div className="grid lg:grid-cols-2 gap-6">
-          <Card className="bg-card/50 backdrop-blur border-border/50">
-            <CardHeader>
-              <CardTitle>Hero Section</CardTitle>
-              <CardDescription>
-                A typical hero section with background and spacing
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <WPBlockCodeBlock
-                  code={`<!-- wp:group {
+          <div className="grid lg:grid-cols-2 gap-6">
+            <Card className="bg-card/50 backdrop-blur border-border/50">
+              <CardHeader>
+                <CardTitle>Hero Section</CardTitle>
+                <CardDescription>
+                  A typical hero section with background and spacing
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                  <WPBlockCodeBlock
+                    code={`<!-- wp:group {
   "className": "hero-section",
   "style": {
     "spacing": {
@@ -294,22 +298,22 @@ export default function GroupBlock() {
   <!-- Hero content -->
 </div>
 <!-- /wp:group -->`}
-                />
-              </div>
-            </CardContent>
-          </Card>
+                  />
+                </div>
+              </CardContent>
+            </Card>
 
-          <Card className="bg-card/50 backdrop-blur border-border/50">
-            <CardHeader>
-              <CardTitle>Card Container</CardTitle>
-              <CardDescription>
-                A card-style container with border and shadow
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <WPBlockCodeBlock
-                  code={`<!-- wp:group {
+            <Card className="bg-card/50 backdrop-blur border-border/50">
+              <CardHeader>
+                <CardTitle>Card Container</CardTitle>
+                <CardDescription>
+                  A card-style container with border and shadow
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                  <WPBlockCodeBlock
+                    code={`<!-- wp:group {
   "className": "card",
   "style": {
     "spacing": {
@@ -338,116 +342,117 @@ export default function GroupBlock() {
   <!-- Card content -->
 </div>
 <!-- /wp:group -->`}
-                />
-              </div>
-            </CardContent>
-          </Card>
+                  />
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
-      </div>
 
-      {/* Gotchas & Tips */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold text-foreground flex items-center">
-          <Lightbulb className="mr-2 h-5 w-5 text-yellow-500" />
-          Tips & Gotchas
-        </h2>
-
+        {/* Gotchas & Tips */}
         <div className="space-y-4">
-          <Card className="bg-yellow-500/10 border-yellow-500/30">
-            <CardHeader>
-              <CardTitle className="flex items-center text-yellow-600 dark:text-yellow-400">
-                <AlertCircle className="mr-2 h-5 w-5" />
-                Theme Compatibility
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  • Some themes override Group block styles - check your theme's
-                  CSS
-                </li>
-                <li>
-                  • Block spacing presets depend on theme.json configuration
-                </li>
-                <li>
-                  �� Background colors may not display if theme lacks color
-                  palette
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
+          <h2 className="text-2xl font-semibold text-foreground flex items-center">
+            <Lightbulb className="mr-2 h-5 w-5 text-yellow-500" />
+            Tips & Gotchas
+          </h2>
 
-          <Card className="bg-blue-500/10 border-blue-500/30">
-            <CardHeader>
-              <CardTitle className="flex items-center text-blue-600 dark:text-blue-400">
-                <Lightbulb className="mr-2 h-5 w-5" />
-                Best Practices
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  • Use CSS classes instead of inline styles when possible
-                </li>
-                <li>• Prefer spacing presets over hardcoded values</li>
-                <li>• Test group blocks across different screen sizes</li>
-                <li>• Use semantic anchor IDs for navigation</li>
-              </ul>
-            </CardContent>
-          </Card>
+          <div className="space-y-4">
+            <Card className="bg-yellow-500/10 border-yellow-500/30">
+              <CardHeader>
+                <CardTitle className="flex items-center text-yellow-600 dark:text-yellow-400">
+                  <AlertCircle className="mr-2 h-5 w-5" />
+                  Theme Compatibility
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm">
+                  <li>
+                    • Some themes override Group block styles - check your
+                    theme's CSS
+                  </li>
+                  <li>
+                    • Block spacing presets depend on theme.json configuration
+                  </li>
+                  <li>
+                    �� Background colors may not display if theme lacks color
+                    palette
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-blue-500/10 border-blue-500/30">
+              <CardHeader>
+                <CardTitle className="flex items-center text-blue-600 dark:text-blue-400">
+                  <Lightbulb className="mr-2 h-5 w-5" />
+                  Best Practices
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm">
+                  <li>
+                    • Use CSS classes instead of inline styles when possible
+                  </li>
+                  <li>• Prefer spacing presets over hardcoded values</li>
+                  <li>• Test group blocks across different screen sizes</li>
+                  <li>• Use semantic anchor IDs for navigation</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        {/* Properties Reference */}
+        <div className="space-y-4">
+          <Separator />
+          <PropertiesReference
+            blockType="group"
+            title="Group Block Properties"
+            description="Complete reference of all properties available to the Group block, including universal block properties and Group-specific attributes"
+          />
+        </div>
+
+        {/* Related Blocks */}
+        <div className="space-y-4">
+          <h2 className="text-2xl font-semibold text-foreground">
+            Related Blocks
+          </h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <Card className="bg-card/50 backdrop-blur border-border/50 hover:border-neon-blue/50 transition-colors cursor-pointer">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base">Columns Block</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Create multi-column layouts
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/50 backdrop-blur border-border/50 hover:border-neon-blue/50 transition-colors cursor-pointer">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base">Stack Block</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Vertical stacking container
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/50 backdrop-blur border-border/50 hover:border-neon-blue/50 transition-colors cursor-pointer">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base">Row Block</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Horizontal flex container
+                </p>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
-
-      {/* Properties Reference */}
-      <div className="space-y-4">
-        <Separator />
-        <PropertiesReference
-          blockType="group"
-          title="Group Block Properties"
-          description="Complete reference of all properties available to the Group block, including universal block properties and Group-specific attributes"
-        />
-      </div>
-
-      {/* Related Blocks */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold text-foreground">
-          Related Blocks
-        </h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <Card className="bg-card/50 backdrop-blur border-border/50 hover:border-neon-blue/50 transition-colors cursor-pointer">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-base">Columns Block</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Create multi-column layouts
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-card/50 backdrop-blur border-border/50 hover:border-neon-blue/50 transition-colors cursor-pointer">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-base">Stack Block</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Vertical stacking container
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-card/50 backdrop-blur border-border/50 hover:border-neon-blue/50 transition-colors cursor-pointer">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-base">Row Block</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Horizontal flex container
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-    </div>
+    </>
   );
 }
