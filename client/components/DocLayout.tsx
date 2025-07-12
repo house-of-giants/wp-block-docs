@@ -2,7 +2,12 @@ import { ReactNode, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import {
   Menu,
@@ -32,12 +37,22 @@ const navigation = [
   {
     title: "Core Blocks",
     items: [
+      { name: "Block Index", href: "/blocks", icon: BookOpen },
+      { name: "Query Loop Block", href: "/blocks/query-loop", icon: Database },
+      {
+        name: "Navigation Block",
+        href: "/blocks/navigation",
+        icon: Navigation,
+      },
       { name: "Group Block", href: "/blocks/group", icon: Layers },
       { name: "Columns Block", href: "/blocks/columns", icon: Layers },
-      { name: "Image Block", href: "/blocks/image", icon: Layers },
-      { name: "Heading Block", href: "/blocks/heading", icon: Layers },
-      { name: "Paragraph Block", href: "/blocks/paragraph", icon: Layers },
-      { name: "Button Block", href: "/blocks/button", icon: Layers },
+      { name: "List Block", href: "/blocks/list", icon: List },
+      { name: "Quote Block", href: "/blocks/quote", icon: Quote },
+      { name: "Gallery Block", href: "/blocks/gallery", icon: Images },
+      { name: "Image Block", href: "/blocks/image", icon: Image },
+      { name: "Heading Block", href: "/blocks/heading", icon: Type },
+      { name: "Paragraph Block", href: "/blocks/paragraph", icon: FileText },
+      { name: "Button Block", href: "/blocks/button", icon: MousePointer },
     ],
   },
   {
