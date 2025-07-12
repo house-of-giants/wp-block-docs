@@ -502,9 +502,9 @@ export default function BlockValidator() {
           </h1>
         </div>
         <p className="text-xl text-muted-foreground">
-          Validate your WordPress block markup for syntax errors, accessibility
-          issues, and best practices. Get real-time feedback and suggestions to
-          improve your block code.
+          Validate your WordPress block markup with custom syntax highlighting
+          designed specifically for WP blocks. Get real-time feedback on syntax
+          errors, accessibility issues, and best practices.
         </p>
         <div className="flex flex-wrap gap-2">
           <Badge
