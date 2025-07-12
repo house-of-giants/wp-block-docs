@@ -18,15 +18,46 @@ import {
 } from "lucide-react";
 import { PropertiesReference } from "@/components/PropertiesReference";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
-import {
-  SEO,
-  generateDocumentationSchema,
-  generateBreadcrumbSchema,
-} from "@/components/SEO";
+import { SEO, generateDocumentationSchema, generateBreadcrumbSchema } from "@/components/SEO";
 
 export default function GroupBlock() {
+  const groupBlockSchema = generateDocumentationSchema(
+    "WordPress Group Block - Complete HTML Markup Guide & Examples",
+    "Master WordPress Group block markup with comprehensive examples, attributes, and best practices. Learn how to create flexible layouts using Group blocks with custom styling and semantic HTML.",
+    "https://wpblockdocs.com/group",
+    "WordPress Block Documentation",
+    [
+      "WordPress Group block",
+      "Group block markup",
+      "WordPress layout blocks",
+      "Group block HTML",
+      "WordPress container blocks",
+      "Group block styling",
+      "WordPress block layout",
+      "Group block attributes",
+      "WordPress block nesting",
+      "Group block semantic HTML"
+    ]
+  );
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "WP Block Docs", url: "https://wpblockdocs.com/" },
+    { name: "Core Blocks", url: "https://wpblockdocs.com/#core-blocks" },
+    { name: "Group Block", url: "https://wpblockdocs.com/group" }
+  ]);
+
   return (
-    <div className="space-y-8">
+    <>
+      <SEO
+        title="WordPress Group Block - Complete HTML Markup Guide & Examples"
+        description="Master WordPress Group block markup with comprehensive examples, attributes, and best practices. Learn how to create flexible layouts using Group blocks with custom styling and semantic HTML tags."
+        keywords="WordPress Group block, Group block markup, WordPress layout blocks, Group block HTML, WordPress container blocks, Group block styling, WordPress block layout, Group block attributes, WordPress block nesting"
+        canonical="/group"
+        ogType="article"
+        schema={[groupBlockSchema, breadcrumbSchema]}
+        lastModified="2024-01-15T10:00:00Z"
+      />
+      <div className="space-y-8">
       {/* Header */}
       <div className="space-y-4">
         <div className="flex items-center space-x-2">
