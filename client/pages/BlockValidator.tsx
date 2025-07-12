@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Card,
   CardContent,
@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -45,6 +46,8 @@ export default function BlockValidator() {
   const [results, setResults] = useState<ValidationResult[]>([]);
   const [blockInfo, setBlockInfo] = useState<BlockInfo[]>([]);
   const [isValidating, setIsValidating] = useState(false);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const lineNumbersRef = useRef<HTMLDivElement>(null);
 
   // Sample code for demonstration
   const sampleCode = `<!-- wp:group {
@@ -71,6 +74,61 @@ export default function BlockValidator() {
 </div>
 <!-- /wp:group -->`;
 
+  // Advanced block parser that handles complex multi-line structures
+  const parseBlocks = (code: string) => {
+    const blocks: Array<{
+      type: string;
+      attributes: string;
+      startLine: number;
+      endLine?: number;
+      isValid: boolean;
+      errors: string[];
+    }> = [];
+
+    const lines = code.split("\n");
+    let i = 0;
+
+    while (i < lines.length) {
+      const line = lines[i].trim();
+
+      // Match opening block comment
+      const openMatch = line.match(/^<!--\s*wp:(\w+)(?:\s|$)/);
+      if (openMatch) {
+        const blockType = openMatch[1];
+        let attributesStr = "";
+        let currentLine = i;
+        let fullComment = lines[i];
+
+        // Handle multi-line block comments
+        while (!fullComment.includes("-->") && currentLine < lines.length - 1) {
+          currentLine++;
+          fullComment += "\n" + lines[currentLine];
+        }
+
+        // Extract attributes if present
+        const attrMatch = fullComment.match(
+          /<!--\s*wp:\w+\s+({[\s\S]*?})\s*-->/,
+        );
+        if (attrMatch) {
+          attributesStr = attrMatch[1];
+        }
+
+        blocks.push({
+          type: blockType,
+          attributes: attributesStr,
+          startLine: i + 1,
+          isValid: true,
+          errors: [],
+        });
+
+        i = currentLine;
+      }
+      i++;
+    }
+
+    return blocks;
+  };
+
   const validateBlockMarkup = (code: string): ValidationResult[] => {
     const results: ValidationResult[] = [];
     const lines = code.split("\n");
@@ -85,111 +143,148 @@ export default function BlockValidator() {
       return results;
     }
 
-    // Track opened and closed blocks
-    const blockStack: string[] = [];
+    // Parse all blocks first
+    const parsedBlocks = parseBlocks(code);
+
+    // Track opened and closed blocks with enhanced logic
+    const blockStack: Array<{ type: string; line: number }> = [];
     let lineNumber = 0;
 
     lines.forEach((line, index) => {
       lineNumber = index + 1;
       const trimmed = line.trim();
 
-      // Check for opening block comments
-      const openMatch = trimmed.match(/<!-- wp:(\w+)(?:\s+({.*?}))?\s*-->/);
+      // Handle opening block comments (including multi-line)
+      const openMatch = trimmed.match(/^<!--\s*wp:(\w+)/);
       if (openMatch) {
         const blockType = openMatch[1];
-        const attributesStr = openMatch[2];
+        blockStack.push({ type: blockType, line: lineNumber });
 
-        blockStack.push(blockType);
+        // Find the complete block definition
+        let fullComment = line;
+        let checkLine = index;
+        while (!fullComment.includes("-->") && checkLine < lines.length - 1) {
+          checkLine++;
+          fullComment += "\n" + lines[checkLine];
+        }
 
-        // Validate JSON attributes if present
-        if (attributesStr) {
+        // Extract and validate JSON attributes
+        const attrMatch = fullComment.match(
+          /<!--\s*wp:\w+\s+({[\s\S]*?})\s*-->/,
+        );
+        if (attrMatch) {
+          const attributesStr = attrMatch[1];
           try {
-            JSON.parse(attributesStr);
+            const parsed = JSON.parse(attributesStr);
             results.push({
               type: "success",
               message: `Valid ${blockType} block with proper JSON attributes`,
               line: lineNumber,
             });
+
+            // Block-specific validations with parsed attributes
+            if (blockType === "heading" && parsed.level === 1) {
+              const h1Count = parsedBlocks.filter((b) => {
+                try {
+                  const attrs = JSON.parse(b.attributes || "{}");
+                  return b.type === "heading" && attrs.level === 1;
+                } catch {
+                  return false;
+                }
+              }).length;
+
+              if (h1Count > 1) {
+                results.push({
+                  type: "warning",
+                  message:
+                    "Multiple H1 headings found - only one H1 per page is recommended for SEO",
+                  line: lineNumber,
+                  suggestion: "Consider using H2-H6 for subsequent headings",
+                });
+              }
+            }
+
+            if (blockType === "image") {
+              if (!parsed.alt && !fullComment.includes("alt=")) {
+                results.push({
+                  type: "warning",
+                  message: "Image block missing alt text",
+                  line: lineNumber,
+                  suggestion:
+                    'Add alt text for accessibility: {"alt":"Descriptive text"}',
+                });
+              }
+            }
+
+            if (blockType === "button") {
+              if (parsed.linkTarget === "_blank" && !parsed.rel) {
+                results.push({
+                  type: "warning",
+                  message: "External button link missing rel attribute",
+                  line: lineNumber,
+                  suggestion: 'Add rel="noopener noreferrer" for security',
+                });
+              }
+            }
           } catch (e) {
             results.push({
               type: "error",
               message: `Invalid JSON in ${blockType} block attributes`,
               line: lineNumber,
               suggestion:
-                "Check for missing quotes, commas, or brackets in block attributes",
-            });
-          }
-        }
-
-        // Block-specific validations
-        if (blockType === "heading") {
-          if (attributesStr && attributesStr.includes('"level":1')) {
-            const h1Count =
-              code.match(/<!-- wp:heading.*"level":1/g)?.length || 0;
-            if (h1Count > 1) {
-              results.push({
-                type: "warning",
-                message:
-                  "Multiple H1 headings found - only one H1 per page is recommended for SEO",
-                line: lineNumber,
-                suggestion: "Consider using H2-H6 for subsequent headings",
-              });
-            }
-          }
-        }
-
-        if (blockType === "image") {
-          if (!attributesStr?.includes('"alt"') && !line.includes("alt=")) {
-            results.push({
-              type: "warning",
-              message: "Image block missing alt text",
-              line: lineNumber,
-              suggestion:
-                'Add alt text for accessibility: alt="Descriptive text"',
-            });
-          }
-        }
-
-        if (blockType === "button") {
-          if (
-            attributesStr?.includes('"linkTarget":"_blank"') &&
-            !attributesStr.includes('"rel"')
-          ) {
-            results.push({
-              type: "warning",
-              message: "External button link missing rel attribute",
-              line: lineNumber,
-              suggestion: 'Add rel="noopener noreferrer" for security',
+                "Check for missing quotes, commas, or brackets in block attributes. JSON must be valid.",
+              fixedCode: attributesStr
+                .replace(/([{,])\s*(\w+)\s*:/g, '$1"$2":')
+                .replace(/:\s*([^\s"\[\{][^,}\]]*)/g, ':"$1"'),
             });
           }
         }
       }
 
-      // Check for closing block comments
-      const closeMatch = trimmed.match(/<!-- \/wp:(\w+) -->/);
+      // Handle closing block comments
+      const closeMatch = trimmed.match(/^<!--\s*\/wp:(\w+)\s*-->$/);
       if (closeMatch) {
         const blockType = closeMatch[1];
         const lastOpened = blockStack.pop();
 
-        if (lastOpened !== blockType) {
+        if (!lastOpened) {
           results.push({
             type: "error",
-            message: `Mismatched block closing: expected ${lastOpened}, found ${blockType}`,
+            message: `Unexpected closing block: ${blockType} (no matching opening block)`,
+            line: lineNumber,
+            suggestion:
+              "Remove this closing comment or add the corresponding opening block comment",
+          });
+        } else if (lastOpened.type !== blockType) {
+          results.push({
+            type: "error",
+            message: `Mismatched block closing: expected ${lastOpened.type} (opened at line ${lastOpened.line}), found ${blockType}`,
             line: lineNumber,
             suggestion:
               "Check that all blocks are properly nested and closed in the correct order",
           });
+          // Put the unmatched block back on the stack
+          blockStack.push(lastOpened);
         }
       }
 
-      // Check for common issues
-      if (
-        trimmed.includes('style="') &&
-        trimmed.includes("var:preset|spacing|")
-      ) {
-        const spacingMatch = trimmed.match(/var:preset\|spacing\|(\w+)/g);
-        if (spacingMatch) {
-          spacingMatch.forEach((spacing) => {
+      // Additional validation checks
+      if (trimmed.includes("<img") && !trimmed.includes("alt=")) {
+        results.push({
+          type: "error",
+          message: "Image missing alt attribute",
+          line: lineNumber,
+          suggestion: "Add alt attribute for screen reader accessibility",
+        });
+      }
+
+      // Check for proper spacing preset format
+      if (trimmed.includes("var:preset|spacing|")) {
+        const spacingMatches = trimmed.match(
+          /var:preset\|spacing\|([^"\s)]+)/g,
+        );
+        if (spacingMatches) {
+          spacingMatches.forEach((spacing) => {
             if (!spacing.match(/var:preset\|spacing\|[0-9]+[a-z]*$/)) {
               results.push({
                 type: "warning",
@@ -203,31 +298,27 @@ export default function BlockValidator() {
         }
       }
 
-      // Check for accessibility issues
-      if (trimmed.includes("<img") && !trimmed.includes("alt=")) {
-        results.push({
-          type: "error",
-          message: "Image missing alt attribute",
-          line: lineNumber,
-          suggestion: "Add alt attribute for screen reader accessibility",
-        });
-      }
-
-      // Check for semantic HTML
+      // Semantic HTML suggestions
       if (trimmed.includes('<div class="wp-block-group"')) {
-        const currentLineAttributes = lines
-          .slice(Math.max(0, index - 2), index + 1)
-          .join("")
-          .match(/<!-- wp:group\s+({.*?})\s*-->/)?.[1];
-
-        if (!currentLineAttributes?.includes('"tagName"')) {
-          if (code.includes("navigation") || code.includes("nav")) {
-            results.push({
-              type: "info",
-              message: "Consider using semantic HTML",
-              line: lineNumber,
-              suggestion: 'Add "tagName":"nav" for navigation sections',
-            });
+        const groupBlock = parsedBlocks.find(
+          (b) => b.type === "group" && Math.abs(b.startLine - lineNumber) <= 3,
+        );
+        if (groupBlock && groupBlock.attributes) {
+          try {
+            const attrs = JSON.parse(groupBlock.attributes);
+            if (
+              !attrs.tagName &&
+              (code.includes("nav") || code.includes("navigation"))
+            ) {
+              results.push({
+                type: "info",
+                message: "Consider using semantic HTML",
+                line: lineNumber,
+                suggestion: 'Add "tagName":"nav" for navigation sections',
+              });
+            }
+          } catch {
+            // Ignore parsing errors for this check
           }
         }
       }
@@ -235,10 +326,13 @@ export default function BlockValidator() {
 
     // Check for unclosed blocks
     if (blockStack.length > 0) {
-      results.push({
-        type: "error",
-        message: `Unclosed blocks: ${blockStack.join(", ")}`,
-        suggestion: "Add closing comments for all opened blocks",
+      blockStack.forEach((block) => {
+        results.push({
+          type: "error",
+          message: `Unclosed block: ${block.type} (opened at line ${block.line})`,
+          line: block.line,
+          suggestion: `Add closing comment: <!-- /wp:${block.type} -->`,
+        });
       });
     }
 
@@ -253,14 +347,11 @@ export default function BlockValidator() {
       });
     }
 
-    // If no issues found
-    if (
-      results.filter((r) => r.type === "error").length === 0 &&
-      results.length === 0
-    ) {
+    // Success message if no errors
+    if (results.filter((r) => r.type === "error").length === 0) {
       results.push({
         type: "success",
-        message: "Block markup looks great! No issues found.",
+        message: "Block markup validation passed! No critical errors found.",
       });
     }
 
@@ -294,42 +385,60 @@ export default function BlockValidator() {
       const validationResults = validateBlockMarkup(inputCode);
       setResults(validationResults);
 
-      // Extract block information
-      const blocks: BlockInfo[] = [];
-      const blockMatches = inputCode.matchAll(
-        /<!-- wp:(\w+)(?:\s+({.*?}))?\s*-->/g,
-      );
-
-      for (const match of blockMatches) {
-        const blockType = match[1];
-        const attributesStr = match[2];
+      // Extract block information using improved parser
+      const parsedBlocks = parseBlocks(inputCode);
+      const blocks: BlockInfo[] = parsedBlocks.map((block) => {
         let attributes = {};
         let isValid = true;
         const errors: string[] = [];
         const warnings: string[] = [];
 
-        if (attributesStr) {
+        if (block.attributes) {
           try {
-            attributes = JSON.parse(attributesStr);
+            attributes = JSON.parse(block.attributes);
           } catch (e) {
             isValid = false;
             errors.push("Invalid JSON syntax in attributes");
           }
         }
 
-        blocks.push({
-          blockType,
+        return {
+          blockType: block.type,
           attributes,
           isValid,
           errors,
           warnings,
-        });
-      }
+        };
+      });
 
       setBlockInfo(blocks);
       setIsValidating(false);
     }, 500);
   };
+
+  const updateLineNumbers = () => {
+    if (!lineNumbersRef.current || !textareaRef.current) return;
+
+    const lines = inputCode.split("\n");
+    const lineNumbers = lines.map((_, index) => index + 1).join("\n");
+    lineNumbersRef.current.textContent = lineNumbers;
+
+    // Sync scroll
+    lineNumbersRef.current.scrollTop = textareaRef.current.scrollTop;
+  };
+
+  const handleScroll = () => {
+    updateLineNumbers();
+  };
+
+  const handleInputChange = (value: string) => {
+    setInputCode(value);
+    setTimeout(updateLineNumbers, 0);
+  };
+
+  useEffect(() => {
+    updateLineNumbers();
+  }, [inputCode]);
 
   const loadSample = () => {
     setInputCode(sampleCode);
@@ -420,18 +529,33 @@ export default function BlockValidator() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <Textarea
-              placeholder='<!-- wp:group -->
+            <div className="relative">
+              <div className="flex border rounded-md overflow-hidden">
+                <div
+                  ref={lineNumbersRef}
+                  className="bg-muted/50 px-2 py-3 text-xs font-mono text-muted-foreground select-none overflow-hidden whitespace-pre min-w-[3rem] text-right border-r"
+                  style={{ lineHeight: "1.5" }}
+                />
+                <Textarea
+                  ref={textareaRef}
+                  placeholder='<!-- wp:group -->
 <div class="wp-block-group">
   <!-- wp:heading -->
   <h2>Your content here</h2>
   <!-- /wp:heading -->
 </div>
 <!-- /wp:group -->'
-              value={inputCode}
-              onChange={(e) => setInputCode(e.target.value)}
-              className="min-h-[400px] font-mono text-sm"
-            />
+                  value={inputCode}
+                  onChange={(e) => handleInputChange(e.target.value)}
+                  onScroll={handleScroll}
+                  className={cn(
+                    "min-h-[400px] font-mono text-sm border-0 resize-none focus:ring-0 rounded-none",
+                    "scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border",
+                  )}
+                  style={{ lineHeight: "1.5" }}
+                />
+              </div>
+            </div>
             <Button
               onClick={handleValidate}
               disabled={!inputCode.trim() || isValidating}
