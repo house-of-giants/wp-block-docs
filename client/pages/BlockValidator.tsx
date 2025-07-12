@@ -542,32 +542,52 @@ export default function BlockValidator() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="relative">
-              <div className="flex border rounded-md overflow-hidden">
-                <div
-                  ref={lineNumbersRef}
-                  className="bg-muted/50 px-2 py-3 text-xs font-mono text-muted-foreground select-none overflow-hidden whitespace-pre min-w-[3rem] text-right border-r"
-                  style={{ lineHeight: "1.5" }}
-                />
-                <Textarea
-                  ref={textareaRef}
-                  placeholder='<!-- wp:group -->
+            <div className="space-y-4">
+              {/* Input Editor */}
+              <div className="relative">
+                <div className="flex border rounded-md overflow-hidden">
+                  <div
+                    ref={lineNumbersRef}
+                    className="bg-muted/50 px-2 py-3 text-xs font-mono text-muted-foreground select-none overflow-hidden whitespace-pre min-w-[3rem] text-right border-r"
+                    style={{ lineHeight: "1.5" }}
+                  />
+                  <Textarea
+                    ref={textareaRef}
+                    placeholder='<!-- wp:group -->
 <div class="wp-block-group">
   <!-- wp:heading -->
   <h2>Your content here</h2>
   <!-- /wp:heading -->
 </div>
 <!-- /wp:group -->'
-                  value={inputCode}
-                  onChange={(e) => handleInputChange(e.target.value)}
-                  onScroll={handleScroll}
-                  className={cn(
-                    "min-h-[400px] font-mono text-sm border-0 resize-none focus:ring-0 rounded-none",
-                    "scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border",
-                  )}
-                  style={{ lineHeight: "1.5" }}
-                />
+                    value={inputCode}
+                    onChange={(e) => handleInputChange(e.target.value)}
+                    onScroll={handleScroll}
+                    className={cn(
+                      "min-h-[400px] font-mono text-sm border-0 resize-none focus:ring-0 rounded-none",
+                      "scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border",
+                    )}
+                    style={{ lineHeight: "1.5" }}
+                  />
+                </div>
               </div>
+
+              {/* Live Preview with Syntax Highlighting */}
+              {inputCode.trim() && (
+                <div>
+                  <h4 className="text-sm font-medium mb-2 text-muted-foreground flex items-center gap-2">
+                    <Code className="h-4 w-4" />
+                    Live Preview with Custom WP Block Syntax Highlighting
+                  </h4>
+                  <WPBlockCodeBlock
+                    code={inputCode}
+                    showCopy={false}
+                    showLineNumbers={true}
+                    maxHeight="300px"
+                    className="border-2 border-neon-blue/20 shadow-lg shadow-neon-blue/10"
+                  />
+                </div>
+              )}
             </div>
             <Button
               onClick={handleValidate}
