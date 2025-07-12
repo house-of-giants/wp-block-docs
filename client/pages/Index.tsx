@@ -17,15 +17,58 @@ import {
   Sparkles,
 } from "lucide-react";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
-import {
-  SEO,
-  generateDocumentationSchema,
-  generateFAQSchema,
-} from "@/components/SEO";
+import { SEO, generateDocumentationSchema, generateFAQSchema } from "@/components/SEO";
 
 export default function Index() {
+  const homeSchema = generateDocumentationSchema(
+    "WordPress Gutenberg Block Markup Documentation - Complete Developer Guide",
+    "The ultimate resource for WordPress Gutenberg block HTML markup, syntax, and properties. Learn WordPress block development with interactive examples, validation tools, and comprehensive documentation.",
+    "https://wpblockdocs.com/",
+    "WordPress Development",
+    [
+      "WordPress blocks",
+      "Gutenberg blocks",
+      "WordPress block markup",
+      "WordPress block syntax",
+      "WordPress block HTML",
+      "WordPress block development",
+      "WordPress FSE",
+      "WordPress block properties",
+      "WordPress block themes",
+      "Gutenberg documentation"
+    ]
+  );
+
+  const faqSchema = generateFAQSchema([
+    {
+      question: "What are WordPress Gutenberg blocks?",
+      answer: "WordPress Gutenberg blocks are the fundamental units of content in WordPress's block editor. Each block represents a different type of content like paragraphs, headings, images, or complex layouts, and generates specific HTML markup."
+    },
+    {
+      question: "How do I learn WordPress block markup syntax?",
+      answer: "Our comprehensive documentation covers all WordPress block markup syntax with interactive examples, live validation, and copy-paste code snippets. Start with our basic block examples and progress to advanced patterns."
+    },
+    {
+      question: "What's the difference between WordPress blocks and HTML?",
+      answer: "WordPress blocks use HTML with special WordPress comments that define block types and attributes. For example: <!-- wp:paragraph --> surrounds regular HTML paragraph tags to create a WordPress paragraph block."
+    },
+    {
+      question: "Can I validate my WordPress block markup?",
+      answer: "Yes! Our block validator tool provides real-time validation of WordPress block markup, checking for syntax errors, accessibility issues, and best practices with custom syntax highlighting."
+    }
+  ]);
+
   return (
-    <div className="space-y-16">
+    <>
+      <SEO
+        title="WordPress Gutenberg Block Markup Documentation - Complete Developer Guide"
+        description="The ultimate resource for WordPress Gutenberg block HTML markup, syntax, and properties. Learn WordPress block development with interactive examples, validation tools, and comprehensive documentation for developers and theme creators."
+        keywords="WordPress blocks, Gutenberg blocks, WordPress block markup, WordPress block syntax, WordPress block HTML, WordPress block development, WordPress FSE, WordPress block properties, WordPress block themes, Gutenberg documentation, WordPress block editor, WordPress block patterns"
+        canonical="/"
+        ogType="website"
+        schema={[homeSchema, faqSchema]}
+      />
+      <div className="space-y-16">
       {/* Hero Section */}
       <div className="text-center space-y-8">
         <div className="inline-flex items-center rounded-full border border-border bg-muted px-3 py-1 text-sm font-medium">
@@ -94,6 +137,7 @@ export default function Index() {
   <!-- /wp:heading -->
 </div>
 <!-- /wp:group -->`}
+                
               />
             </div>
           </CardContent>
