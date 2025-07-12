@@ -19,11 +19,9 @@ import {
   Code,
   Lightbulb,
   Zap,
-  Copy,
   RefreshCw,
   FileText,
 } from "lucide-react";
-import { CodeBlock } from "@/components/CodeBlock";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
 
 interface ValidationResult {
@@ -583,7 +581,6 @@ export default function BlockValidator() {
                   <WPBlockCodeBlock
                     code={inputCode}
                     showCopy={false}
-                    showLineNumbers={true}
                     maxHeight="300px"
                     className="border-2 border-neon-blue/20 shadow-lg shadow-neon-blue/10"
                   />
@@ -743,9 +740,8 @@ export default function BlockValidator() {
                       {Object.keys(block.attributes).length > 0 && (
                         <div className="space-y-2">
                           <p className="text-sm font-medium">Attributes:</p>
-                          <CodeBlock
+                          <WPBlockCodeBlock
                             code={JSON.stringify(block.attributes, null, 2)}
-                            language="json"
                             showCopy={false}
                           />
                         </div>

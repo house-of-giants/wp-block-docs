@@ -6,11 +6,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import {
-  Copy,
   AlertCircle,
   Layers,
   Code,
@@ -20,7 +18,6 @@ import {
 } from "lucide-react";
 import { PropertiesReference } from "@/components/PropertiesReference";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
-import { CodeBlock } from "@/components/CodeBlock";
 
 export default function GroupBlock() {
   return (
@@ -67,19 +64,12 @@ export default function GroupBlock() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex items-center gap-2">
-              <Eye className="h-4 w-4 text-neon-cyan" />
-              <span className="text-sm font-medium text-muted-foreground">
-                Enhanced with Custom WP Block Syntax Highlighting
-              </span>
-            </div>
             <WPBlockCodeBlock
               code={`<!-- wp:group -->
 <div class="wp-block-group">
   <!-- Inner blocks go here -->
 </div>
 <!-- /wp:group -->`}
-              showLineNumbers={true}
             />
           </CardContent>
         </Card>
@@ -110,7 +100,7 @@ export default function GroupBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <CodeBlock
+                  <WPBlockCodeBlock
                     code={`<!-- wp:group {
   "style": {
     "spacing": {
@@ -135,7 +125,6 @@ export default function GroupBlock() {
   <!-- Content -->
 </div>
 <!-- /wp:group -->`}
-                    language="html"
                   />
                 </div>
               </CardContent>
@@ -152,7 +141,7 @@ export default function GroupBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <CodeBlock
+                  <WPBlockCodeBlock
                     code={`<!-- wp:group {
   "backgroundColor": "primary",
   "style": {
@@ -166,7 +155,6 @@ export default function GroupBlock() {
   <!-- Content -->
 </div>
 <!-- /wp:group -->`}
-                    language="html"
                   />
                 </div>
               </CardContent>
@@ -183,7 +171,7 @@ export default function GroupBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <CodeBlock
+                  <WPBlockCodeBlock
                     code={`<!-- wp:group {
   "layout": {
     "type": "constrained",
@@ -195,7 +183,6 @@ export default function GroupBlock() {
   <!-- Content constrained to max-width -->
 </div>
 <!-- /wp:group -->`}
-                    language="html"
                   />
                 </div>
               </CardContent>
@@ -212,7 +199,7 @@ export default function GroupBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <CodeBlock
+                  <WPBlockCodeBlock
                     code={`<!-- wp:group {
   "className": "custom-group-class",
   "anchor": "section-hero"
@@ -221,7 +208,6 @@ export default function GroupBlock() {
   <!-- Content with custom ID and class -->
 </div>
 <!-- /wp:group -->`}
-                    language="html"
                   />
                 </div>
               </CardContent>
@@ -247,7 +233,7 @@ export default function GroupBlock() {
             </CardHeader>
             <CardContent>
               <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <CodeBlock
+                <WPBlockCodeBlock
                   code={`<!-- wp:group {
   "className": "hero-section",
   "style": {
@@ -265,14 +251,13 @@ export default function GroupBlock() {
     "type": "constrained"
   }
 } -->
-<div class="wp-block-group hero-section" 
+<div class="wp-block-group hero-section has-background" 
      style="background-color:#1a1a2e;
             padding-top:var(--wp--preset--spacing--80);
             padding-bottom:var(--wp--preset--spacing--80)">
   <!-- Hero content -->
 </div>
 <!-- /wp:group -->`}
-                  language="html"
                 />
               </div>
             </CardContent>
@@ -287,7 +272,7 @@ export default function GroupBlock() {
             </CardHeader>
             <CardContent>
               <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <CodeBlock
+                <WPBlockCodeBlock
                   code={`<!-- wp:group {
   "className": "card",
   "style": {
@@ -306,15 +291,17 @@ export default function GroupBlock() {
     }
   }
 } -->
-<div class="wp-block-group card" 
+<div class="wp-block-group card has-border-color" 
      style="border-color:#e5e7eb;
             border-width:1px;
             border-radius:8px;
-            padding:var(--wp--preset--spacing--50)">
+            padding-top:var(--wp--preset--spacing--50);
+            padding-right:var(--wp--preset--spacing--50);
+            padding-bottom:var(--wp--preset--spacing--50);
+            padding-left:var(--wp--preset--spacing--50)">
   <!-- Card content -->
 </div>
 <!-- /wp:group -->`}
-                  language="html"
                 />
               </div>
             </CardContent>

@@ -19,7 +19,7 @@ import {
   Type,
 } from "lucide-react";
 import { PropertiesReference } from "@/components/PropertiesReference";
-import { CodeBlock } from "@/components/CodeBlock";
+import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
 
 export default function ParagraphBlock() {
   return (
@@ -70,11 +70,11 @@ export default function ParagraphBlock() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <CodeBlock
+            <WPBlockCodeBlock
               code={`<!-- wp:paragraph -->
 <p>This is a simple paragraph with some text content.</p>
 <!-- /wp:paragraph -->`}
-              language="html"
+              
             />
           </CardContent>
         </Card>
@@ -105,14 +105,14 @@ export default function ParagraphBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <CodeBlock
+                  <WPBlockCodeBlock
                     code={`<!-- wp:paragraph -->
 <p>This paragraph contains <strong>bold text</strong>, 
 <em>italic text</em>, and <mark>highlighted text</mark>. 
 You can also use <del>strikethrough</del> and 
 <sup>superscript</sup> or <sub>subscript</sub>.</p>
 <!-- /wp:paragraph -->`}
-                    language="html"
+                    
                   />
                 </div>
               </CardContent>
@@ -129,14 +129,14 @@ You can also use <del>strikethrough</del> and
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <CodeBlock
+                  <WPBlockCodeBlock
                     code={`<!-- wp:paragraph {"dropCap":true} -->
 <p class="has-drop-cap">Lorem ipsum dolor sit amet, 
 consectetur adipiscing elit. The first letter will be 
 styled as a large drop cap that spans multiple lines 
 of text for an elegant typography effect.</p>
 <!-- /wp:paragraph -->`}
-                    language="html"
+                    
                   />
                 </div>
                 <div className="mt-4 p-3 bg-neon-purple/10 rounded border border-neon-purple/30">
@@ -159,7 +159,7 @@ of text for an elegant typography effect.</p>
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <CodeBlock
+                  <WPBlockCodeBlock
                     code={`<!-- wp:paragraph {
   "fontSize":"large",
   "style": {
@@ -187,7 +187,7 @@ of text for an elegant typography effect.</p>
   This paragraph has custom typography styling.
 </p>
 <!-- /wp:paragraph -->`}
-                    language="html"
+                    
                   />
                 </div>
               </CardContent>
@@ -204,14 +204,14 @@ of text for an elegant typography effect.</p>
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <CodeBlock
+                  <WPBlockCodeBlock
                     code={`<!-- wp:paragraph -->
 <p>Visit our <a href="https://example.com" target="_blank" 
 rel="noopener">website</a> for more information. 
 You can also use <code>inline code</code> and 
 <kbd>keyboard shortcuts</kbd> within paragraphs.</p>
 <!-- /wp:paragraph -->`}
-                    language="html"
+                    
                   />
                 </div>
                 <div className="mt-4 p-3 bg-yellow-500/10 rounded border border-yellow-500/30">
@@ -244,7 +244,7 @@ You can also use <code>inline code</code> and
             </CardHeader>
             <CardContent>
               <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <CodeBlock
+                <WPBlockCodeBlock
                   code={`<!-- wp:paragraph {
   "dropCap":true,
   "fontSize":"medium",
@@ -268,7 +268,7 @@ You can also use <code>inline code</code> and
   content creation.
 </p>
 <!-- /wp:paragraph -->`}
-                  language="html"
+                  
                 />
               </div>
             </CardContent>
@@ -283,7 +283,7 @@ You can also use <code>inline code</code> and
             </CardHeader>
             <CardContent>
               <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <CodeBlock
+                <WPBlockCodeBlock
                   code={`<!-- wp:paragraph {
   "align":"center",
   "fontSize":"large",
@@ -314,7 +314,7 @@ You can also use <code>inline code</code> and
   <strong>Get started today</strong> and see the difference.
 </p>
 <!-- /wp:paragraph -->`}
-                  language="html"
+                  
                 />
               </div>
             </CardContent>

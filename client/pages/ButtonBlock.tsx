@@ -6,23 +6,22 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import {
-  Copy,
   AlertCircle,
   MousePointer,
   Code,
-  Eye,
   Settings,
   Lightbulb,
   Accessibility,
   ExternalLink,
   Palette,
+  Info,
+  CircleHelp
 } from "lucide-react";
 import { PropertiesReference } from "@/components/PropertiesReference";
-import { CodeBlock } from "@/components/CodeBlock";
+import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
 
 export default function ButtonBlock() {
   return (
@@ -71,17 +70,110 @@ export default function ButtonBlock() {
           </CardHeader>
           <CardContent>
             <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-              <CodeBlock
-                code={`<!-- wp:button -->
+              <WPBlockCodeBlock
+                code={`<!-- wp:buttons -->
+<div class="wp-block-buttons">
+  <!-- wp:button -->
+  <div class="wp-block-button">
+    <a class="wp-block-button__link wp-element-button">
+      Click Me
+    </a>
+  </div>
+  <!-- /wp:button -->
+</div>
+<!-- /wp:buttons -->`}
+                
+              />
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Button Wrapper Requirement */}
+      <div className="space-y-4">
+        <h2 className="text-2xl font-semibold text-foreground flex items-center">
+          <Code className="mr-2 h-5 w-5 text-neon-cyan" />
+          The wp:buttons Wrapper Requirement
+        </h2>
+
+        <Card className="bg-yellow-500/10 border-yellow-500/30">
+          <CardHeader>
+            <CardTitle className="flex items-center text-yellow-600 dark:text-yellow-400">
+              <Lightbulb className="mr-2 h-5 w-5" />
+              Important: Button Block Architecture
+            </CardTitle>
+            <CardDescription>
+              Understanding WordPress block theme structure for buttons
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-3">
+              <p className="text-sm">
+                In WordPress block themes, <strong>individual Button blocks cannot exist alone</strong>. 
+                They must always be wrapped inside a <code className="bg-muted px-1 py-0.5 rounded text-xs">wp:buttons</code> block.
+              </p>
+              
+              <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                <WPBlockCodeBlock
+                  code={`<!-- ❌ INCORRECT: Button block alone -->
+<!-- wp:button -->
 <div class="wp-block-button">
-  <a class="wp-block-button__link wp-element-button" 
-     href="https://example.com">
-    Click Me
+  <a class="wp-block-button__link wp-element-button">
+    Standalone Button
   </a>
 </div>
-<!-- /wp:button -->`}
-                language="html"
-              />
+<!-- /wp:button -->
+
+<!-- ✅ CORRECT: Button wrapped in Buttons block -->
+<!-- wp:buttons -->
+<div class="wp-block-buttons">
+  <!-- wp:button -->
+  <div class="wp-block-button">
+    <a class="wp-block-button__link wp-element-button">
+      Wrapped Button
+    </a>
+  </div>
+  <!-- /wp:button -->
+</div>
+<!-- /wp:buttons -->`}
+                  
+                />
+              </div>
+              <Card className="bg-blue-500/10 border-blue-500/30">
+                <CardHeader>
+                  <CardTitle className="flex items-center text-blue-600 dark:text-blue-400">
+                    <CircleHelp className="mr-2 h-5 w-5" />
+                        Why the wp:buttons wrapper?
+                  </CardTitle>
+                  <CardDescription>
+                    Understanding the importance of the wp:buttons wrapper
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 text-sm">
+                    <li>• <strong>Layout Control:</strong> Handles button group spacing and alignment</li>
+                    <li>• <strong>Responsive Design:</strong> Manages how buttons stack on mobile devices</li>
+                    <li>• <strong>Block Editor Integration:</strong> Provides proper selection and editing experience</li>
+                    <li>• <strong>Theme Consistency:</strong> Ensures buttons follow theme-defined group styles</li>
+                    <li>• <strong>WordPress Standards:</strong> Follows the hierarchical block structure pattern</li>
+                  </ul>
+                </CardContent>
+              </Card>
+              
+              <Card className="bg-green-500/10 border-green-500/30">
+                <CardHeader>
+                  <CardTitle className="flex items-center text-green-600 dark:text-green-400">
+                    <Info className="mr-2 h-5 w-5" />
+                        Single vs Multiple Buttons
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm">
+                    Even for a single button, you still need the <code className="bg-muted px-1 py-0.5 rounded text-xs">wp:buttons</code> wrapper. 
+                    This maintains consistency and ensures proper theme styling is applied.
+                  </p>
+                </CardContent>
+              </Card>
             </div>
           </CardContent>
         </Card>
@@ -112,46 +204,42 @@ export default function ButtonBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <CodeBlock
-                    code={`<!-- wp:button {
+                  <WPBlockCodeBlock
+                    code={`<!-- wp:buttons -->
+<div class="wp-block-buttons">
+  <!-- wp:button {
   "backgroundColor":"vivid-red",
   "textColor":"white",
-  "style": {
-    "border": {
-      "radius": "25px"
+  "className":"custom-button",
+  "style":{
+    "border":{
+      "radius":"25px"
     },
-    "typography": {
-      "fontSize": "18px",
-      "fontWeight": "600"
+    "typography":{
+      "fontSize":"18px",
+      "fontWeight":"600",
+      "fontStyle":"normal"
     },
-    "spacing": {
-      "padding": {
-        "top": "15px",
-        "bottom": "15px",
-        "left": "30px",
-        "right": "30px"
+    "spacing":{
+      "padding":{
+        "top":"15px",
+        "bottom":"15px",
+        "left":"30px",
+        "right":"30px"
       }
     }
-  },
-  "className":"custom-button"
+  }
 } -->
-<div class="wp-block-button custom-button">
-  <a class="wp-block-button__link wp-element-button 
-            has-white-color has-vivid-red-background-color 
-            has-text-color has-background" 
-     href="https://example.com"
-     style="border-radius:25px;
-            font-size:18px;
-            font-weight:600;
-            padding-top:15px;
-            padding-bottom:15px;
-            padding-left:30px;
-            padding-right:30px">
-    Get Started Now
-  </a>
+  <div class="wp-block-button custom-button">
+    <a class="wp-block-button__link has-white-color has-vivid-red-background-color has-text-color has-background has-custom-font-size wp-element-button" href="https://example.com"
+      style="border-radius:25px;padding-top:15px;padding-right:30px;padding-bottom:15px;padding-left:30px;font-size:18px;font-style:normal;font-weight:600">
+Get Started Now
+    </a>
+  </div>
+<!-- /wp:button -->
 </div>
-<!-- /wp:button -->`}
-                    language="html"
+<!-- /wp:buttons -->`}
+                    
                   />
                 </div>
               </CardContent>
@@ -168,34 +256,38 @@ export default function ButtonBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <CodeBlock
-                    code={`<!-- wp:button {
-  "url":"https://external-site.com",
-  "title":"Visit our partner site",
-  "linkTarget":"_blank",
-  "rel":"noopener noreferrer"
-} -->
-<div class="wp-block-button">
-  <a class="wp-block-button__link wp-element-button" 
-     href="https://external-site.com"
-     target="_blank"
-     rel="noopener noreferrer"
-     title="Visit our partner site">
-    Visit Partner Site
-  </a>
-</div>
-<!-- /wp:button -->
+                  <WPBlockCodeBlock
+                    code={`<!-- wp:buttons -->
+<div class="wp-block-buttons">
+  <!-- wp:button {
+    "url":"https://external-site.com",
+    "title":"Visit our partner site",
+    "linkTarget":"_blank",
+    "rel":"noopener noreferrer"
+  } -->
+  <div class="wp-block-button">
+    <a class="wp-block-button__link wp-element-button" 
+      href="https://external-site.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="Visit our partner site">
+      Visit Partner Site
+    </a>
+  </div>
+  <!-- /wp:button -->
 
-<!-- Internal link example -->
-<!-- wp:button {"url":"#contact-form"} -->
-<div class="wp-block-button">
-  <a class="wp-block-button__link wp-element-button" 
-     href="#contact-form">
-    Contact Us
-  </a>
+  <!-- Internal link example -->
+  <!-- wp:button {"url":"#contact-form"} -->
+  <div class="wp-block-button">
+    <a class="wp-block-button__link wp-element-button" 
+      href="#contact-form">
+      Contact Us
+    </a>
+  </div>
+  <!-- /wp:button -->
 </div>
-<!-- /wp:button -->`}
-                    language="html"
+<!-- /wp:buttons -->`}
+                    
                   />
                 </div>
                 <div className="mt-4 p-3 bg-green-500/10 rounded border border-green-500/30">
@@ -219,27 +311,29 @@ export default function ButtonBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <CodeBlock
-                    code={`<!-- Full width button -->
-<!-- wp:button {"width":100} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100">
-  <a class="wp-block-button__link wp-element-button" 
-     href="https://example.com">
-    Full Width Button
-  </a>
-</div>
-<!-- /wp:button -->
+                  <WPBlockCodeBlock
+                    code={`<!-- wp:buttons -->
+<div class="wp-block-buttons">
+  <!-- wp:button {"width":100} -->
+  <div class="wp-block-button has-custom-width wp-block-button__width-100">
+    <a class="wp-block-button__link wp-element-button" 
+      href="https://example.com">
+      Full Width Button
+    </a>
+  </div>
+  <!-- /wp:button -->
 
-<!-- 50% width button -->
-<!-- wp:button {"width":50,"align":"center"} -->
-<div class="wp-block-button aligncenter has-custom-width wp-block-button__width-50">
-  <a class="wp-block-button__link wp-element-button" 
-     href="https://example.com">
-    Half Width Button
-  </a>
+  <!-- wp:button {"width":50,"align":"center"} -->
+  <div class="wp-block-button aligncenter has-custom-width wp-block-button__width-50">
+    <a class="wp-block-button__link wp-element-button" 
+      href="https://example.com">
+      Half Width Button
+    </a>
+  </div>
+  <!-- /wp:button -->
 </div>
-<!-- /wp:button -->`}
-                    language="html"
+<!-- /wp:buttons -->`}
+                    
                   />
                 </div>
               </CardContent>
@@ -256,7 +350,7 @@ export default function ButtonBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <CodeBlock
+                  <WPBlockCodeBlock
                     code={`<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
 <div class="wp-block-buttons">
   <!-- wp:button {"backgroundColor":"primary"} -->
@@ -279,7 +373,7 @@ export default function ButtonBlock() {
   <!-- /wp:button -->
 </div>
 <!-- /wp:buttons -->`}
-                    language="html"
+                    
                   />
                 </div>
                 <div className="mt-4 p-3 bg-blue-500/10 rounded border border-blue-500/30">
@@ -312,16 +406,20 @@ export default function ButtonBlock() {
             </CardHeader>
             <CardContent>
               <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <CodeBlock
-                  code={`<!-- wp:button {"className":"is-style-outline"} -->
-<div class="wp-block-button is-style-outline">
-  <a class="wp-block-button__link wp-element-button" 
-     href="https://example.com">
-    Outline Button
-  </a>
+                <WPBlockCodeBlock
+                  code={`<!-- wp:buttons -->
+<div class="wp-block-buttons">
+  <!-- wp:button {"className":"is-style-outline"} -->
+  <div class="wp-block-button is-style-outline">
+    <a class="wp-block-button__link wp-element-button" 
+      href="https://example.com">
+      Outline Button
+    </a>
+  </div>
+  <!-- /wp:button -->
 </div>
-<!-- /wp:button -->`}
-                  language="html"
+<!-- /wp:buttons -->`}
+                  
                 />
               </div>
             </CardContent>
@@ -336,127 +434,22 @@ export default function ButtonBlock() {
             </CardHeader>
             <CardContent>
               <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <CodeBlock
-                  code={`<!-- wp:button {"backgroundColor":"primary","textColor":"white"} -->
-<div class="wp-block-button">
-  <a class="wp-block-button__link wp-element-button 
-            has-white-color has-primary-background-color 
-            has-text-color has-background" 
-     href="https://example.com">
-    Filled Button
-  </a>
+                <WPBlockCodeBlock
+                  code={`<!-- wp:buttons -->
+<div class="wp-block-buttons">
+  <!-- wp:button {"backgroundColor":"primary","textColor":"white"} -->
+  <div class="wp-block-button">
+    <a class="wp-block-button__link wp-element-button 
+              has-white-color has-primary-background-color 
+              has-text-color has-background" 
+      href="https://example.com">
+      Filled Button
+    </a>
+  </div>
+  <!-- /wp:button -->
 </div>
-<!-- /wp:button -->`}
-                  language="html"
-                />
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-
-      {/* Real-World Examples */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold text-foreground flex items-center">
-          <Eye className="mr-2 h-5 w-5 text-neon-cyan" />
-          Real-World Examples
-        </h2>
-
-        <div className="grid lg:grid-cols-2 gap-6">
-          <Card className="bg-card/50 backdrop-blur border-border/50">
-            <CardHeader>
-              <CardTitle>Hero Section CTA</CardTitle>
-              <CardDescription>
-                Primary call-to-action for landing pages
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <CodeBlock
-                  code={`<!-- wp:button {
-  "url":"/signup",
-  "className":"hero-cta",
-  "width":50,
-  "style": {
-    "color": {
-      "background": "linear-gradient(45deg, #ff6b9d, #c44569)",
-      "text": "#ffffff"
-    },
-    "border": {
-      "radius": "50px"
-    },
-    "typography": {
-      "fontSize": "20px",
-      "fontWeight": "700",
-      "textTransform": "uppercase"
-    },
-    "spacing": {
-      "padding": {
-        "top": "20px",
-        "bottom": "20px"
-      }
-    }
-  }
-} -->
-<div class="wp-block-button has-custom-width 
-            wp-block-button__width-50 hero-cta">
-  <a class="wp-block-button__link wp-element-button" 
-     href="/signup"
-     style="background:linear-gradient(45deg, #ff6b9d, #c44569);
-            color:#ffffff;
-            border-radius:50px;
-            font-size:20px;
-            font-weight:700;
-            text-transform:uppercase;
-            padding-top:20px;
-            padding-bottom:20px">
-    Start Free Trial
-  </a>
-</div>
-<!-- /wp:button -->`}
-                  language="html"
-                />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-card/50 backdrop-blur border-border/50">
-            <CardHeader>
-              <CardTitle>Download Button</CardTitle>
-              <CardDescription>
-                File download with accessibility attributes
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <CodeBlock
-                  code={`<!-- wp:button {
-  "url":"/files/guide.pdf",
-  "title":"Download Complete WordPress Guide (PDF, 2.3MB)",
-  "className":"download-button",
-  "style": {
-    "color": {
-      "background": "#4a90e2",
-      "text": "#ffffff"
-    },
-    "border": {
-      "radius": "4px"
-    }
-  }
-} -->
-<div class="wp-block-button download-button">
-  <a class="wp-block-button__link wp-element-button" 
-     href="/files/guide.pdf"
-     title="Download Complete WordPress Guide (PDF, 2.3MB)"
-     download
-     style="background-color:#4a90e2;
-            color:#ffffff;
-            border-radius:4px">
-    📥 Download Guide
-  </a>
-</div>
-<!-- /wp:button -->`}
-                  language="html"
+<!-- /wp:buttons -->`}
+                  
                 />
               </div>
             </CardContent>
@@ -471,7 +464,7 @@ export default function ButtonBlock() {
           UX & Accessibility Best Practices
         </h2>
 
-        <div className="space-y-4">
+        <div className="grid lg:grid-cols-2 gap-6">
           <Card className="bg-green-500/10 border-green-500/30">
             <CardHeader>
               <CardTitle className="flex items-center text-green-600 dark:text-green-400">
@@ -524,7 +517,7 @@ export default function ButtonBlock() {
           Common Issues & Solutions
         </h2>
 
-        <div className="space-y-4">
+        <div className="grid lg:grid-cols-2 gap-6">
           <Card className="bg-red-500/10 border-red-500/30">
             <CardHeader>
               <CardTitle className="flex items-center text-red-600 dark:text-red-400">

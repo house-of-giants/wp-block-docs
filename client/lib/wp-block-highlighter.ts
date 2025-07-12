@@ -23,9 +23,10 @@ export interface HighlightToken {
 export class WPBlockHighlighter {
   private static readonly PATTERNS = {
     // WordPress block opening comment: <!-- wp:blockname {attributes} -->
-    blockStart: /^<!--\s*wp:(\w+)(\s+({[\s\S]*?}))?\s*-->/,
+    // Updated to handle multiline JSON attributes
+    blockStart: /^<!--\s*wp:([a-zA-Z0-9\-\/]+)(\s+({[\s\S]*?}))?\s*-->/,
     // WordPress block closing comment: <!-- /wp:blockname -->
-    blockEnd: /^<!--\s*\/wp:(\w+)\s*-->/,
+    blockEnd: /^<!--\s*\/wp:([a-zA-Z0-9\-\/]+)\s*-->/,
     // HTML tag opening: <tagname attributes>
     htmlTagStart: /^<(\w+)([^>]*)>/,
     // HTML tag closing: </tagname>
@@ -40,43 +41,49 @@ export class WPBlockHighlighter {
 
   public static highlight(code: string): HighlightToken[] {
     const tokens: HighlightToken[] = [];
-    const lines = code.split("\n");
+    let remaining = code;
+    let currentLine = 1;
+    let currentColumn = 1;
 
-    for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
-      let line = lines[lineIndex];
-      let column = 0;
-
-      while (line.length > 0) {
-        const consumed = this.consumeNext(
-          line,
-          lineIndex + 1,
-          column + 1,
-          tokens,
-        );
-        if (consumed === 0) {
-          // If we can't match anything, consume one character as text
-          tokens.push({
-            type: "text",
-            content: line[0],
-            line: lineIndex + 1,
-            column: column + 1,
-          });
-          line = line.slice(1);
-          column += 1;
-        } else {
-          line = line.slice(consumed);
-          column += consumed;
-        }
-      }
-
-      // Add newline if not the last line
-      if (lineIndex < lines.length - 1) {
+    while (remaining.length > 0) {
+      const consumed = this.consumeNext(
+        remaining,
+        currentLine,
+        currentColumn,
+        tokens,
+      );
+      
+      if (consumed === 0) {
+        // If we can't match anything, consume one character as text
+        const char = remaining[0];
         tokens.push({
-          type: "whitespace",
-          content: "\n",
-          line: lineIndex + 1,
-          column: column + 1,
+          type: "text",
+          content: char,
+          line: currentLine,
+          column: currentColumn,
         });
+        
+        if (char === '\n') {
+          currentLine++;
+          currentColumn = 1;
+        } else {
+          currentColumn++;
+        }
+        
+        remaining = remaining.slice(1);
+      } else {
+        // Update position based on consumed content
+        const consumedContent = remaining.slice(0, consumed);
+        const newlines = consumedContent.split('\n').length - 1;
+        
+        if (newlines > 0) {
+          currentLine += newlines;
+          currentColumn = consumedContent.length - consumedContent.lastIndexOf('\n');
+        } else {
+          currentColumn += consumed;
+        }
+        
+        remaining = remaining.slice(consumed);
       }
     }
 
@@ -84,13 +91,13 @@ export class WPBlockHighlighter {
   }
 
   private static consumeNext(
-    line: string,
+    remaining: string,
     lineNum: number,
     col: number,
     tokens: HighlightToken[],
   ): number {
     // Try to match whitespace first
-    const whitespaceMatch = line.match(this.PATTERNS.whitespace);
+    const whitespaceMatch = remaining.match(this.PATTERNS.whitespace);
     if (whitespaceMatch) {
       tokens.push({
         type: "whitespace",
@@ -102,34 +109,42 @@ export class WPBlockHighlighter {
     }
 
     // Try to match WordPress block start comment
-    const blockStartMatch = line.match(this.PATTERNS.blockStart);
+    const blockStartMatch = remaining.match(this.PATTERNS.blockStart);
     if (blockStartMatch) {
       const [fullMatch, blockName, , attributes] = blockStartMatch;
+      let currentCol = col;
 
       // Add the comment start
       tokens.push({
         type: "block-comment-start",
         content: "<!-- wp:",
         line: lineNum,
-        column: col,
+        column: currentCol,
       });
+      currentCol += 8;
 
       // Add the block name
       tokens.push({
         type: "block-name",
         content: blockName,
         line: lineNum,
-        column: col + 8,
+        column: currentCol,
       });
+      currentCol += blockName.length;
 
       // Add attributes if present
       if (attributes) {
-        tokens.push({
-          type: "whitespace",
-          content: " ",
-          line: lineNum,
-          column: col + 8 + blockName.length,
-        });
+        // Find the space before attributes
+        const beforeAttributes = fullMatch.slice(8 + blockName.length, fullMatch.indexOf(attributes));
+        if (beforeAttributes.trim() === '') {
+          tokens.push({
+            type: "whitespace",
+            content: beforeAttributes,
+            line: lineNum,
+            column: currentCol,
+          });
+          currentCol += beforeAttributes.length;
+        }
 
         // Try to parse JSON attributes
         try {
@@ -138,31 +153,46 @@ export class WPBlockHighlighter {
             type: "block-attributes",
             content: attributes,
             line: lineNum,
-            column: col + 9 + blockName.length,
+            column: currentCol,
           });
         } catch {
           tokens.push({
             type: "error",
             content: attributes,
             line: lineNum,
-            column: col + 9 + blockName.length,
+            column: currentCol,
           });
         }
+        currentCol += attributes.length;
+      }
+
+      // Add any whitespace before the closing -->
+      const endPart = fullMatch.slice(fullMatch.lastIndexOf('-->') - fullMatch.length);
+      const beforeEnd = fullMatch.slice(0, fullMatch.lastIndexOf(' -->'));
+      const whitespaceBeforeEnd = fullMatch.slice(beforeEnd.length, fullMatch.lastIndexOf('-->'));
+      
+      if (whitespaceBeforeEnd) {
+        tokens.push({
+          type: "whitespace",
+          content: whitespaceBeforeEnd,
+          line: lineNum,
+          column: currentCol,
+        });
       }
 
       // Add the comment end
       tokens.push({
         type: "block-comment-start",
-        content: " -->",
+        content: "-->",
         line: lineNum,
-        column: col + fullMatch.length - 4,
+        column: col + fullMatch.length - 3,
       });
 
       return fullMatch.length;
     }
 
     // Try to match WordPress block end comment
-    const blockEndMatch = line.match(this.PATTERNS.blockEnd);
+    const blockEndMatch = remaining.match(this.PATTERNS.blockEnd);
     if (blockEndMatch) {
       const [fullMatch, blockName] = blockEndMatch;
 
@@ -191,7 +221,7 @@ export class WPBlockHighlighter {
     }
 
     // Try to match HTML self-closing tag
-    const htmlSelfClosingMatch = line.match(this.PATTERNS.htmlSelfClosing);
+    const htmlSelfClosingMatch = remaining.match(this.PATTERNS.htmlSelfClosing);
     if (htmlSelfClosingMatch) {
       const [fullMatch, tagName, attributes] = htmlSelfClosingMatch;
 
@@ -229,7 +259,7 @@ export class WPBlockHighlighter {
     }
 
     // Try to match HTML opening tag
-    const htmlTagStartMatch = line.match(this.PATTERNS.htmlTagStart);
+    const htmlTagStartMatch = remaining.match(this.PATTERNS.htmlTagStart);
     if (htmlTagStartMatch) {
       const [fullMatch, tagName, attributes] = htmlTagStartMatch;
 
@@ -267,7 +297,7 @@ export class WPBlockHighlighter {
     }
 
     // Try to match HTML closing tag
-    const htmlTagEndMatch = line.match(this.PATTERNS.htmlTagEnd);
+    const htmlTagEndMatch = remaining.match(this.PATTERNS.htmlTagEnd);
     if (htmlTagEndMatch) {
       const [fullMatch, tagName] = htmlTagEndMatch;
 
@@ -417,16 +447,16 @@ export class WPBlockHighlighter {
 
   public static tokensToHtml(tokens: HighlightToken[]): string {
     const colorMap: Record<HighlightToken["type"], string> = {
-      "block-comment-start": "#6b7280", // Gray for comment syntax
-      "block-comment-end": "#6b7280",
-      "block-name": "#10b981", // Emerald for block names
-      "block-attributes": "#f59e0b", // Amber for JSON attributes
-      "html-tag": "#3b82f6", // Blue for HTML tags
-      "html-attribute": "#8b5cf6", // Purple for attributes
-      "html-value": "#ef4444", // Red for attribute values
-      text: "#e5e7eb", // Light gray for regular text
+      "block-comment-start": "hsl(280, 10%, 60%)", // Muted foreground - subtle gray
+      "block-comment-end": "hsl(280, 10%, 60%)", // Muted foreground - subtle gray
+      "block-name": "hsl(320, 100%, 70%)", // Neon pink - WordPress block names
+      "block-attributes": "hsl(180, 100%, 70%)", // Neon cyan - JSON attributes
+      "html-tag": "hsl(200, 100%, 70%)", // Neon blue - HTML tags
+      "html-attribute": "hsl(260, 100%, 75%)", // Neon purple - HTML attributes
+      "html-value": "hsl(320, 60%, 60%)", // Retro pink - HTML attribute values
+      text: "hsl(280, 30%, 90%)", // Foreground - regular text
       whitespace: "transparent",
-      error: "#dc2626", // Red for errors
+      error: "hsl(0, 70%, 55%)", // Destructive - errors
     };
 
     return tokens

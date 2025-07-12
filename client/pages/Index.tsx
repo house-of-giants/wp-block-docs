@@ -16,7 +16,7 @@ import {
   ArrowRight,
   Sparkles,
 } from "lucide-react";
-import { CodeBlock } from "@/components/CodeBlock";
+import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
 
 export default function Index() {
   return (
@@ -73,7 +73,7 @@ export default function Index() {
           </CardHeader>
           <CardContent>
             <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-              <CodeBlock
+              <WPBlockCodeBlock
                 code={`<!-- wp:group {
   "style": {
     "spacing": {
@@ -89,7 +89,7 @@ export default function Index() {
   <!-- /wp:heading -->
 </div>
 <!-- /wp:group -->`}
-                language="html"
+                
               />
             </div>
           </CardContent>

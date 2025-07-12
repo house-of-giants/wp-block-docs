@@ -21,7 +21,7 @@ import {
   Search,
 } from "lucide-react";
 import { PropertiesReference } from "@/components/PropertiesReference";
-import { CodeBlock } from "@/components/CodeBlock";
+import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
 
 export default function HeadingBlock() {
   return (
@@ -71,11 +71,11 @@ export default function HeadingBlock() {
           </CardHeader>
           <CardContent>
             <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-              <CodeBlock
+              <WPBlockCodeBlock
                 code={`<!-- wp:heading -->
 <h2 class="wp-block-heading">Your Heading Text</h2>
 <!-- /wp:heading -->`}
-                language="html"
+                
               />
             </div>
             <div className="mt-4 flex items-center justify-between">
@@ -115,7 +115,7 @@ export default function HeadingBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <CodeBlock
+                  <WPBlockCodeBlock
                     code={`<!-- wp:heading {"level":1} -->
 <h1 class="wp-block-heading">Page Title (H1)</h1>
 <!-- /wp:heading -->
@@ -139,7 +139,7 @@ export default function HeadingBlock() {
 <!-- wp:heading {"level":6} -->
 <h6 class="wp-block-heading">Smallest Heading (H6)</h6>
 <!-- /wp:heading -->`}
-                    language="html"
+                    
                   />
                 </div>
                 <div className="mt-4 p-3 bg-yellow-500/10 rounded border border-yellow-500/30">
@@ -162,35 +162,36 @@ export default function HeadingBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <CodeBlock
+                  <WPBlockCodeBlock
                     code={`<!-- wp:heading {
-  "level":2,
-  "style": {
-    "color": {
-      "text": "#ff6b9d"
+  "style":{
+    "color":{
+      "text":"#ff6b9d"
     },
-    "typography": {
-      "fontSize": "clamp(2rem, 5vw, 3rem)",
-      "fontWeight": "700",
-      "lineHeight": "1.2"
+    "typography":{
+      "fontSize":"clamp(2rem, 5vw, 3rem)",
+      "fontWeight":"700",
+      "lineHeight":"1.2",
+      "fontStyle":"normal"
     },
-    "spacing": {
-      "margin": {
-        "bottom": "var:preset|spacing|50"
+    "spacing":{
+      "margin":{
+        "bottom":"var:preset|spacing|50"
       }
     }
   }
 } -->
-<h2 class="wp-block-heading" 
-    style="color:#ff6b9d;
-           font-size:clamp(2rem, 5vw, 3rem);
-           font-weight:700;
-           line-height:1.2;
-           margin-bottom:var(--wp--preset--spacing--50)">
+<h2 class="wp-block-heading has-text-color"
+  style="color:#ff6b9d;
+         margin-bottom:var(--wp--preset--spacing--50);
+         font-size:clamp(2rem, 5vw, 3rem);
+         font-style:normal;
+         font-weight:700;
+         line-height:1.2">
   Styled Heading
 </h2>
 <!-- /wp:heading -->`}
-                    language="html"
+                    
                   />
                 </div>
               </CardContent>
@@ -207,7 +208,7 @@ export default function HeadingBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <CodeBlock
+                  <WPBlockCodeBlock
                     code={`<!-- wp:heading {
   "level":2,
   "fontSize":"large",
@@ -226,7 +227,7 @@ export default function HeadingBlock() {
   Typography Heading
 </h2>
 <!-- /wp:heading -->`}
-                    language="html"
+                    
                   />
                 </div>
               </CardContent>
@@ -243,7 +244,7 @@ export default function HeadingBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <CodeBlock
+                  <WPBlockCodeBlock
                     code={`<!-- wp:heading {
   "level":2,
   "anchor":"getting-started"
@@ -251,11 +252,8 @@ export default function HeadingBlock() {
 <h2 id="getting-started" class="wp-block-heading">
   Getting Started
 </h2>
-<!-- /wp:heading -->
-
-<!-- Link to this heading -->
-<a href="#getting-started">Jump to Getting Started</a>`}
-                    language="html"
+<!-- /wp:heading -->`}
+                    
                   />
                 </div>
                 <div className="mt-4 p-3 bg-blue-500/10 rounded border border-blue-500/30">
@@ -288,7 +286,7 @@ export default function HeadingBlock() {
             </CardHeader>
             <CardContent>
               <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <CodeBlock
+                <WPBlockCodeBlock
                   code={`<!-- Main article title -->
 <!-- wp:heading {"level":1} -->
 <h1 class="wp-block-heading">
@@ -315,7 +313,7 @@ export default function HeadingBlock() {
   Installing WordPress
 </h3>
 <!-- /wp:heading -->`}
-                  language="html"
+                  
                 />
               </div>
             </CardContent>
@@ -330,39 +328,38 @@ export default function HeadingBlock() {
             </CardHeader>
             <CardContent>
               <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <CodeBlock
+                <WPBlockCodeBlock
                   code={`<!-- wp:heading {
   "level":1,
   "className":"hero-title",
-  "style": {
-    "typography": {
-      "fontSize": "clamp(3rem, 8vw, 6rem)",
-      "fontWeight": "900",
-      "lineHeight": "0.9",
-      "textTransform": "uppercase"
+  "style":{
+    "typography":{
+      "fontSize":"clamp(3rem, 8vw, 6rem)",
+      "fontWeight":"900",
+      "lineHeight":"0.9",
+      "textTransform":"uppercase",
+      "fontStyle":"normal"
     },
-    "color": {
-      "gradient": "linear-gradient(45deg, #ff6b9d, #c44569)"
+    "color":{
+      "gradient":"linear-gradient(45deg, #ff6b9d, #c44569)"
     },
-    "spacing": {
-      "margin": {"bottom": "var:preset|spacing|60"}
+    "spacing":{
+      "margin":{"bottom":"var:preset|spacing|60"}
     }
-  }
+  } 
 } -->
-<h1 class="wp-block-heading hero-title" 
-    style="background:linear-gradient(45deg, #ff6b9d, #c44569);
-           background-clip:text;
-           -webkit-background-clip:text;
-           color:transparent;
-           font-size:clamp(3rem, 8vw, 6rem);
-           font-weight:900;
-           line-height:0.9;
-           text-transform:uppercase;
-           margin-bottom:var(--wp--preset--spacing--60)">
+<h1 class="wp-block-heading hero-title has-background"
+  style="background:linear-gradient(45deg, #ff6b9d, #c44569);
+         margin-bottom:var(--wp--preset--spacing--60);
+         font-size:clamp(3rem, 8vw, 6rem);
+         font-style:normal;
+         font-weight:900;
+         line-height:0.9;
+         text-transform:uppercase">
   Transform Your Business
 </h1>
 <!-- /wp:heading -->`}
-                  language="html"
+                  
                 />
               </div>
             </CardContent>

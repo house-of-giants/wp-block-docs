@@ -19,7 +19,7 @@ import {
   Palette,
   Smartphone,
 } from "lucide-react";
-import { CodeBlock } from "@/components/CodeBlock";
+import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
 
 export default function BestPractices() {
   return (
@@ -76,7 +76,7 @@ export default function BestPractices() {
                   <h4 className="font-medium text-red-600 dark:text-red-400 mb-2">
                     ❌ Avoid Generic Divs
                   </h4>
-                  <CodeBlock
+                  <WPBlockCodeBlock
                     code={`<!-- wp:group {"tagName":"div"} -->
 <div class="wp-block-group">
   <div class="wp-block-group">
@@ -84,7 +84,6 @@ export default function BestPractices() {
   </div>
 </div>
 <!-- /wp:group -->`}
-                    language="html"
                     showCopy={false}
                   />
                 </div>
@@ -92,7 +91,7 @@ export default function BestPractices() {
                   <h4 className="font-medium text-green-600 dark:text-green-400 mb-2">
                     ✅ Use Semantic Elements
                   </h4>
-                  <CodeBlock
+                  <WPBlockCodeBlock
                     code={`<!-- wp:group {"tagName":"nav"} -->
 <nav class="wp-block-group">
   <ul>
@@ -101,7 +100,6 @@ export default function BestPractices() {
   </ul>
 </nav>
 <!-- /wp:group -->`}
-                    language="html"
                     showCopy={false}
                   />
                 </div>
@@ -127,7 +125,7 @@ export default function BestPractices() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <CodeBlock
+              <WPBlockCodeBlock
                 code={`<!-- ✅ Proper hierarchy -->
 <!-- wp:heading {"level":1} -->
 <h1>Page Title</h1>
@@ -148,7 +146,6 @@ export default function BestPractices() {
 <!-- wp:heading {"level":2} -->
 <h2>Next Main Section</h2>
 <!-- /wp:heading -->`}
-                language="html"
               />
               <ul className="space-y-1 text-sm">
                 <li>• Only one H1 per page</li>
@@ -184,7 +181,7 @@ export default function BestPractices() {
                   <h4 className="font-medium text-red-600 dark:text-red-400 mb-2">
                     ❌ Excessive Inline Styles
                   </h4>
-                  <CodeBlock
+                  <WPBlockCodeBlock
                     code={`<!-- wp:group {
   "style": {
     "spacing": {"padding": {"top": "2rem"}},
@@ -192,7 +189,6 @@ export default function BestPractices() {
     "border": {"radius": "8px"}
   }
 } -->`}
-                    language="html"
                     showCopy={false}
                   />
                 </div>
@@ -200,13 +196,12 @@ export default function BestPractices() {
                   <h4 className="font-medium text-green-600 dark:text-green-400 mb-2">
                     ✅ Reusable CSS Classes
                   </h4>
-                  <CodeBlock
+                  <WPBlockCodeBlock
                     code={`<!-- wp:group {"className":"hero-section"} -->
 <div class="wp-block-group hero-section">
   <!-- Styles defined in theme CSS -->
 </div>
 <!-- /wp:group -->`}
-                    language="html"
                     showCopy={false}
                   />
                 </div>
@@ -283,7 +278,7 @@ export default function BestPractices() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <CodeBlock
+              <WPBlockCodeBlock
                 code={`<!-- ✅ Accessible button with proper attributes -->
 <!-- wp:button {
   "url": "/contact",
@@ -297,7 +292,6 @@ export default function BestPractices() {
   </a>
 </div>
 <!-- /wp:button -->`}
-                language="html"
               />
               <ul className="space-y-1 text-sm">
                 <li>• Use descriptive link text (avoid "click here")</li>
@@ -338,7 +332,7 @@ export default function BestPractices() {
                 <li>• Structure content with proper paragraph breaks</li>
                 <li>• Include internal links to related content</li>
               </ul>
-              <CodeBlock
+              <WPBlockCodeBlock
                 code={`<!-- ✅ SEO-friendly heading with anchor -->
 <!-- wp:heading {
   "level": 2,
@@ -348,7 +342,6 @@ export default function BestPractices() {
   Complete WordPress Block Editor Guide
 </h2>
 <!-- /wp:heading -->`}
-                language="html"
               />
             </CardContent>
           </Card>
@@ -411,7 +404,7 @@ export default function BestPractices() {
                   </ul>
                 </div>
               </div>
-              <CodeBlock
+              <WPBlockCodeBlock
                 code={`/* Mobile-first responsive spacing */
 .custom-section {
   padding: 1rem; /* Mobile default */
@@ -428,7 +421,6 @@ export default function BestPractices() {
     padding: 4rem; /* Desktop */
   }
 }`}
-                language="css"
               />
             </CardContent>
           </Card>
@@ -460,7 +452,7 @@ export default function BestPractices() {
                 <li>• Use HTTPS for all external resources</li>
                 <li>• Regularly update WordPress and plugins</li>
               </ul>
-              <CodeBlock
+              <WPBlockCodeBlock
                 code={`<!-- ✅ Secure external link -->
 <!-- wp:button {
   "url": "https://external-site.com",
@@ -475,7 +467,6 @@ export default function BestPractices() {
   </a>
 </div>
 <!-- /wp:button -->`}
-                language="html"
               />
             </CardContent>
           </Card>

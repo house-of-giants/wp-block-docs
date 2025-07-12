@@ -2,7 +2,8 @@ import { ReactNode, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import {
   Menu,
   Search,
@@ -93,8 +94,8 @@ function SidebarContent() {
                       className={cn(
                         "flex items-center rounded-lg px-2 py-2 text-sm font-medium transition-colors",
                         isActive
-                          ? "bg-accent text-accent-foreground shadow-sm border-l-4 border-neon-pink"
-                          : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+                          ? "bg-gradient-to-tr from-neon-pink/10 to-neon-blue/10 text-foreground shadow-sm"
+                          : "text-muted-foreground hover:bg-gradient-to-tr hover:from-neon-pink/10 hover:to-neon-blue/10 hover:text-foreground",
                       )}
                     >
                       <Icon className="mr-3 h-4 w-4" />
@@ -152,6 +153,9 @@ export function DocLayout({ children }: DocLayoutProps) {
       {/* Mobile sidebar */}
       <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
         <SheetContent side="left" className="w-72 p-0">
+          <VisuallyHidden.Root asChild>
+            <SheetTitle>Navigation Menu</SheetTitle>
+          </VisuallyHidden.Root>
           <SidebarContent />
         </SheetContent>
       </Sheet>

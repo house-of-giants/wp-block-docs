@@ -19,7 +19,7 @@ import {
   Layout,
   Smartphone,
 } from "lucide-react";
-import { CodeBlock } from "@/components/CodeBlock";
+import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
 
 export default function FSEQuirks() {
   return (
@@ -77,7 +77,7 @@ export default function FSEQuirks() {
                 Block themes use a different template hierarchy that can be
                 confusing for developers used to classic themes.
               </p>
-              <CodeBlock
+              <WPBlockCodeBlock
                 code={`<!-- Traditional expectation -->
 single-product.php → single.php → index.php
 
@@ -85,7 +85,7 @@ single-product.php → single.php → index.php
 single-product.html → single.html → index.html
 ↓ (but also...)
 Customized templates in database override file-based templates`}
-                language="text"
+                
               />
               <div className="p-3 bg-blue-500/10 rounded border border-blue-500/30">
                 <p className="text-sm text-blue-600 dark:text-blue-400">
@@ -113,12 +113,12 @@ Customized templates in database override file-based templates`}
                 Changes to template parts may not reflect immediately on all
                 pages, or may show differently in the editor vs. frontend.
               </p>
-              <CodeBlock
+              <WPBlockCodeBlock
                 code={`<!-- Template part that might not sync -->
 <!-- wp:template-part {"slug":"header","area":"header"} /-->
 
 <!-- Sometimes requires clearing caches or editing the template part directly -->`}
-                language="html"
+                
               />
               <div className="p-3 bg-green-500/10 rounded border border-green-500/30">
                 <p className="text-sm text-green-600 dark:text-green-400">
@@ -157,7 +157,7 @@ Customized templates in database override file-based templates`}
                 WordPress auto-generates CSS custom properties from theme.json
                 that might override your existing CSS variables.
               </p>
-              <CodeBlock
+              <WPBlockCodeBlock
                 code={`/* Your theme CSS */
 :root {
   --wp--preset--color--primary: #your-color;
@@ -174,7 +174,7 @@ Customized templates in database override file-based templates`}
   <!-- Uses WordPress-generated value, not your CSS -->
 </div>
 <!-- /wp:group -->`}
-                language="css"
+                
               />
               <div className="p-3 bg-blue-500/10 rounded border border-blue-500/30">
                 <p className="text-sm text-blue-600 dark:text-blue-400">
@@ -201,7 +201,7 @@ Customized templates in database override file-based templates`}
                 The spacing scale in theme.json might not generate the CSS
                 custom properties you expect, especially with complex values.
               </p>
-              <CodeBlock
+              <WPBlockCodeBlock
                 code={`// theme.json
 {
   "spacing": {
@@ -216,7 +216,7 @@ Customized templates in database override file-based templates`}
 
 /* Sometimes generated instead */
 --wp--preset--spacing--medium: 1rem; /* Simplified/broken */`}
-                language="json"
+                
               />
             </CardContent>
           </Card>
@@ -246,7 +246,7 @@ Customized templates in database override file-based templates`}
                 The block editor applies different CSS styles than the frontend,
                 leading to inconsistent appearances.
               </p>
-              <CodeBlock
+              <WPBlockCodeBlock
                 code={`<!-- Same block markup -->
 <!-- wp:group {"style":{"spacing":{"padding":"2rem"}}} -->
 <div class="wp-block-group" style="padding:2rem">Content</div>
@@ -261,7 +261,7 @@ Customized templates in database override file-based templates`}
 .wp-block-group {
   padding: 1rem !important; /* Theme override */
 }`}
-                language="html"
+                
               />
               <div className="p-3 bg-green-500/10 rounded border border-green-500/30">
                 <p className="text-sm text-green-600 dark:text-green-400">
@@ -289,7 +289,7 @@ Customized templates in database override file-based templates`}
                 WordPress doesn't provide granular responsive controls for all
                 properties, leading to mobile layout issues.
               </p>
-              <CodeBlock
+              <WPBlockCodeBlock
                 code={`<!-- Desktop: Large padding works great -->
 <!-- wp:group {"style":{"spacing":{"padding":"4rem"}}} -->
 <div class="wp-block-group" style="padding:4rem">
@@ -304,7 +304,7 @@ Customized templates in database override file-based templates`}
     padding: 1rem !important;
   }
 }`}
-                language="html"
+                
               />
               <div className="p-3 bg-blue-500/10 rounded border border-blue-500/30">
                 <p className="text-sm text-blue-600 dark:text-blue-400">
@@ -342,7 +342,7 @@ Customized templates in database override file-based templates`}
                 Each block with custom styles generates inline CSS, which can
                 significantly increase page size and reduce performance.
               </p>
-              <CodeBlock
+              <WPBlockCodeBlock
                 code={`<!-- Each styled block generates CSS like this -->
 <style id="wp-block-library-inline-css">
 .wp-block-group.is-layout-flow > .alignleft { float: left; }
@@ -352,7 +352,7 @@ Customized templates in database override file-based templates`}
 
 <!-- Multiple blocks = lots of repeated CSS -->
 <!-- Consider: 20 blocks × 50 lines CSS = 1000 lines of inline CSS -->`}
-                language="html"
+                
               />
               <div className="p-3 bg-green-500/10 rounded border border-green-500/30">
                 <p className="text-sm text-green-600 dark:text-green-400">

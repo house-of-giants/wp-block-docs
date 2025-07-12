@@ -19,7 +19,7 @@ import {
   Download,
   Code,
 } from "lucide-react";
-import { CodeBlock } from "@/components/CodeBlock";
+import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
 
 export default function PatternLibrary() {
   return (
@@ -92,7 +92,7 @@ export default function PatternLibrary() {
                 </div>
               </CardHeader>
               <CardContent>
-                <CodeBlock
+                <WPBlockCodeBlock
                   code={`<!-- wp:group {
   "metadata": {
     "name": "Hero Section - Centered",
@@ -157,7 +157,7 @@ export default function PatternLibrary() {
   
 </section>
 <!-- /wp:group -->`}
-                  language="html"
+                  
                 />
                 <div className="mt-4 flex flex-wrap gap-2">
                   <Badge variant="outline" className="text-xs">
@@ -193,7 +193,7 @@ export default function PatternLibrary() {
                 </div>
               </CardHeader>
               <CardContent>
-                <CodeBlock
+                <WPBlockCodeBlock
                   code={`<!-- wp:group {
   "align": "full",
   "style": {
@@ -256,7 +256,7 @@ export default function PatternLibrary() {
   
 </section>
 <!-- /wp:group -->`}
-                  language="html"
+                  
                 />
                 <div className="mt-4 flex flex-wrap gap-2">
                   <Badge variant="outline" className="text-xs">
@@ -287,7 +287,7 @@ export default function PatternLibrary() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <CodeBlock
+              <WPBlockCodeBlock
                 code={`<!-- wp:group {
   "metadata": {
     "name": "Features Grid - 3 Column",
@@ -404,7 +404,7 @@ export default function PatternLibrary() {
   
 </section>
 <!-- /wp:group -->`}
-                language="html"
+                
               />
             </CardContent>
           </Card>
@@ -436,7 +436,7 @@ export default function PatternLibrary() {
                 </div>
               </CardHeader>
               <CardContent>
-                <CodeBlock
+                <WPBlockCodeBlock
                   code={`<!-- wp:group {
   "metadata": {
     "name": "Testimonial Card",
@@ -504,7 +504,7 @@ export default function PatternLibrary() {
 
 </div>
 <!-- /wp:group -->`}
-                  language="html"
+                  
                 />
                 <div className="mt-4 flex flex-wrap gap-2">
                   <Badge variant="outline" className="text-xs">
@@ -540,7 +540,7 @@ export default function PatternLibrary() {
                 </div>
               </CardHeader>
               <CardContent>
-                <CodeBlock
+                <WPBlockCodeBlock
                   code={`<!-- wp:group {
   "metadata": {
     "name": "Testimonials Grid",
@@ -664,7 +664,7 @@ export default function PatternLibrary() {
 
 </section>
 <!-- /wp:group -->`}
-                  language="html"
+                  
                 />
                 <div className="mt-4 flex flex-wrap gap-2">
                   <Badge variant="outline" className="text-xs">
@@ -708,7 +708,7 @@ export default function PatternLibrary() {
                 </div>
               </CardHeader>
               <CardContent>
-                <CodeBlock
+                <WPBlockCodeBlock
                   code={`<!-- wp:group {
   "metadata": {
     "name": "Pricing Table - 3 Tier",
@@ -941,7 +941,7 @@ export default function PatternLibrary() {
 
 </section>
 <!-- /wp:group -->`}
-                  language="html"
+                  
                 />
                 <div className="mt-4 flex flex-wrap gap-2">
                   <Badge variant="outline" className="text-xs">
@@ -987,7 +987,7 @@ export default function PatternLibrary() {
                 </div>
               </CardHeader>
               <CardContent>
-                <CodeBlock
+                <WPBlockCodeBlock
                   code={`<!-- wp:group {
   "metadata": {
     "name": "Newsletter CTA",
@@ -1060,7 +1060,7 @@ export default function PatternLibrary() {
 
 </section>
 <!-- /wp:group -->`}
-                  language="html"
+                  
                 />
                 <div className="mt-4 flex flex-wrap gap-2">
                   <Badge variant="outline" className="text-xs">
@@ -1096,7 +1096,7 @@ export default function PatternLibrary() {
                 </div>
               </CardHeader>
               <CardContent>
-                <CodeBlock
+                <WPBlockCodeBlock
                   code={`<!-- wp:group {
   "metadata": {
     "name": "Free Trial CTA",
@@ -1193,7 +1193,7 @@ export default function PatternLibrary() {
 
 </section>
 <!-- /wp:group -->`}
-                  language="html"
+                  
                 />
                 <div className="mt-4 flex flex-wrap gap-2">
                   <Badge variant="outline" className="text-xs">
@@ -1236,7 +1236,7 @@ export default function PatternLibrary() {
                 </div>
               </CardHeader>
               <CardContent>
-                <CodeBlock
+                <WPBlockCodeBlock
                   code={`<!-- wp:group {
   "metadata": {
     "name": "Blog Post Layout",
@@ -1411,7 +1411,7 @@ export default function PatternLibrary() {
 
 </article>
 <!-- /wp:group -->`}
-                  language="html"
+                  
                 />
                 <div className="mt-4 flex flex-wrap gap-2">
                   <Badge variant="outline" className="text-xs">
@@ -1450,7 +1450,7 @@ export default function PatternLibrary() {
                 </div>
               </CardHeader>
               <CardContent>
-                <CodeBlock
+                <WPBlockCodeBlock
                   code={`<!-- wp:group {
   "metadata": {
     "name": "Portfolio Grid",
@@ -1624,7 +1624,7 @@ export default function PatternLibrary() {
 
 </section>
 <!-- /wp:group -->`}
-                  language="html"
+                  
                 />
                 <div className="mt-4 flex flex-wrap gap-2">
                   <Badge variant="outline" className="text-xs">

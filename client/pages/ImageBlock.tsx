@@ -21,7 +21,7 @@ import {
   Accessibility,
 } from "lucide-react";
 import { PropertiesReference } from "@/components/PropertiesReference";
-import { CodeBlock } from "@/components/CodeBlock";
+import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
 
 export default function ImageBlock() {
   return (
@@ -70,7 +70,7 @@ export default function ImageBlock() {
           </CardHeader>
           <CardContent>
             <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-              <CodeBlock
+              <WPBlockCodeBlock
                 code={`<!-- wp:image {"id":123,"width":800,"height":600} -->
 <figure class="wp-block-image size-large is-resized">
   <img src="https://example.com/image.jpg" 
@@ -80,7 +80,7 @@ export default function ImageBlock() {
        height="600"/>
 </figure>
 <!-- /wp:image -->`}
-                language="html"
+                
               />
             </div>
           </CardContent>
@@ -112,7 +112,7 @@ export default function ImageBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <CodeBlock
+                  <WPBlockCodeBlock
                     code={`<!-- wp:image {"id":123,"sizeSlug":"large"} -->
 <figure class="wp-block-image size-large">
   <img src="https://example.com/landscape.jpg" 
@@ -123,7 +123,7 @@ export default function ImageBlock() {
   </figcaption>
 </figure>
 <!-- /wp:image -->`}
-                    language="html"
+                    
                   />
                 </div>
               </CardContent>
@@ -140,7 +140,7 @@ export default function ImageBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <CodeBlock
+                  <WPBlockCodeBlock
                     code={`<!-- wp:image {
   "id":123,
   "linkDestination":"custom",
@@ -158,7 +158,7 @@ export default function ImageBlock() {
   </a>
 </figure>
 <!-- /wp:image -->`}
-                    language="html"
+                    
                   />
                 </div>
               </CardContent>
@@ -175,21 +175,26 @@ export default function ImageBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <CodeBlock
+                  <WPBlockCodeBlock
                     code={`<!-- wp:image {
+  "lightbox":{
+    "enabled":true
+  },
   "id":123,
-  "lightbox":{"enabled":true},
-  "linkDestination":"none"
+  "width":"672px",
+  "height":"auto",
+  "aspectRatio":"1",
+  "linkDestination":"none",
+  "className":"size-large"
 } -->
-<figure class="wp-block-image size-large">
-  <img src="https://example.com/image.jpg" 
-       alt="Click to view in lightbox" 
-       class="wp-image-123"
-       data-wp-on="click" 
-       data-wp-on-click="lightbox::open"/>
+<figure class="wp-block-image is-resized size-large">
+  <img src="https://example.com/image.jpg"
+    alt="Click to view in lightbox"
+    class="wp-image-123"
+    style="aspect-ratio:1; width:672px; height:auto" />
 </figure>
 <!-- /wp:image -->`}
-                    language="html"
+                    
                   />
                 </div>
                 <div className="mt-4 p-3 bg-neon-purple/10 rounded border border-neon-purple/30">
@@ -212,7 +217,7 @@ export default function ImageBlock() {
               </CardHeader>
               <CardContent>
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <CodeBlock
+                  <WPBlockCodeBlock
                     code={`<!-- wp:image {"id":123,"align":"wide"} -->
 <figure class="wp-block-image alignwide size-large">
   <img src="https://example.com/wide-image.jpg" 
@@ -228,7 +233,7 @@ export default function ImageBlock() {
        class="wp-image-124"/>
 </figure>
 <!-- /wp:image -->`}
-                    language="html"
+                    
                   />
                 </div>
               </CardContent>
@@ -254,7 +259,7 @@ export default function ImageBlock() {
             </CardHeader>
             <CardContent>
               <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <CodeBlock
+                <WPBlockCodeBlock
                   code={`<!-- wp:image {
   "id":456,
   "sizeSlug":"large",
@@ -271,7 +276,7 @@ export default function ImageBlock() {
   </figcaption>
 </figure>
 <!-- /wp:image -->`}
-                  language="html"
+                  
                 />
               </div>
             </CardContent>
@@ -286,7 +291,7 @@ export default function ImageBlock() {
             </CardHeader>
             <CardContent>
               <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <CodeBlock
+                <WPBlockCodeBlock
                   code={`<!-- wp:image {
   "id":789,
   "sizeSlug":"medium",
@@ -303,7 +308,7 @@ export default function ImageBlock() {
        data-wp-on-click="lightbox::open"/>
 </figure>
 <!-- /wp:image -->`}
-                  language="html"
+                  
                 />
               </div>
             </CardContent>
