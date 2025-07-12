@@ -18,6 +18,11 @@ import {
 } from "lucide-react";
 import { PropertiesReference } from "@/components/PropertiesReference";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
+import {
+  SEO,
+  generateDocumentationSchema,
+  generateBreadcrumbSchema,
+} from "@/components/SEO";
 
 export default function GroupBlock() {
   return (
