@@ -19,6 +19,14 @@ import {
   Settings,
   FileText,
   ExternalLink,
+  Database,
+  Navigation,
+  List,
+  Quote,
+  Images,
+  Image,
+  Type,
+  MousePointer,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
