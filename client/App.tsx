@@ -46,9 +46,17 @@ const CustomBlocks = () => (
   </div>
 );
 
+// Initialize analytics on app start
+if (typeof window !== 'undefined') {
+  initGA();
+  trackWebVitals();
+  initScrollTracking();
+}
+
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
+  <HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
       <Toaster />
       <Sonner />
       <BrowserRouter>
