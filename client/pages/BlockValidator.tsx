@@ -24,6 +24,7 @@ import {
   FileText,
 } from "lucide-react";
 import { CodeBlock } from "@/components/CodeBlock";
+import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
 
 interface ValidationResult {
   type: "error" | "warning" | "success" | "info";
