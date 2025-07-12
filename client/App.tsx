@@ -72,6 +72,12 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/anatomy" element={<Anatomy />} />
+              <Route path="/blocks" element={<BlockIndex />} />
+              <Route path="/blocks/query-loop" element={<QueryLoopBlock />} />
+              <Route path="/blocks/navigation" element={<NavigationBlock />} />
+              <Route path="/blocks/list" element={<ListBlock />} />
+              <Route path="/blocks/quote" element={<QuoteBlock />} />
+              <Route path="/blocks/gallery" element={<GalleryBlock />} />
               <Route path="/blocks/group" element={<GroupBlock />} />
               <Route path="/blocks/columns" element={<ColumnsBlock />} />
               <Route path="/blocks/image" element={<ImageBlock />} />
