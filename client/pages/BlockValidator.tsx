@@ -68,9 +68,21 @@ export default function BlockValidator() {
   <h1 class="wp-block-heading">Welcome to Our Site</h1>
   <!-- /wp:heading -->
   
-  <!-- wp:paragraph -->
+    <!-- wp:paragraph -->
   <p>This is a sample paragraph in our hero section.</p>
   <!-- /wp:paragraph -->
+
+  <!-- wp:image {"url":"https://example.com/image.jpg"} -->
+  <figure class="wp-block-image">
+    <img src="https://example.com/image.jpg" alt="Sample image" />
+  </figure>
+  <!-- /wp:image -->
+
+  <!-- wp:button {"linkTarget":"_blank","url":"https://external-site.com"} -->
+  <div class="wp-block-button">
+    <a class="wp-block-button__link" href="https://external-site.com" target="_blank">Click Here</a>
+  </div>
+  <!-- /wp:button -->
 </div>
 <!-- /wp:group -->`;
 
