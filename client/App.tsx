@@ -47,7 +47,7 @@ const CustomBlocks = () => (
 );
 
 // Initialize analytics on app start
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   initGA();
   trackWebVitals();
   initScrollTracking();
@@ -57,32 +57,33 @@ const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <DocLayout>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/anatomy" element={<Anatomy />} />
-            <Route path="/blocks/group" element={<GroupBlock />} />
-            <Route path="/blocks/columns" element={<ColumnsBlock />} />
-            <Route path="/blocks/image" element={<ImageBlock />} />
-            <Route path="/blocks/heading" element={<HeadingBlock />} />
-            <Route path="/blocks/paragraph" element={<ParagraphBlock />} />
-            <Route path="/blocks/button" element={<ButtonBlock />} />
-            <Route path="/properties" element={<PropertiesReferencePage />} />
-            <Route path="/patterns" element={<PatternLibrary />} />
-            <Route path="/validator" element={<BlockValidator />} />
-            <Route path="/custom-blocks" element={<CustomBlocks />} />
-            <Route path="/fse-quirks" element={<FSEQuirks />} />
-            <Route path="/best-practices" element={<BestPractices />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </DocLayout>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <DocLayout>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/anatomy" element={<Anatomy />} />
+              <Route path="/blocks/group" element={<GroupBlock />} />
+              <Route path="/blocks/columns" element={<ColumnsBlock />} />
+              <Route path="/blocks/image" element={<ImageBlock />} />
+              <Route path="/blocks/heading" element={<HeadingBlock />} />
+              <Route path="/blocks/paragraph" element={<ParagraphBlock />} />
+              <Route path="/blocks/button" element={<ButtonBlock />} />
+              <Route path="/properties" element={<PropertiesReferencePage />} />
+              <Route path="/patterns" element={<PatternLibrary />} />
+              <Route path="/validator" element={<BlockValidator />} />
+              <Route path="/custom-blocks" element={<CustomBlocks />} />
+              <Route path="/fse-quirks" element={<FSEQuirks />} />
+              <Route path="/best-practices" element={<BestPractices />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </DocLayout>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </HelmetProvider>
 );
 
 createRoot(document.getElementById("root")!).render(<App />);
