@@ -66,14 +66,20 @@ export default function GroupBlock() {
               The simplest form of a Group block
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <CodeBlock
+          <CardContent className="space-y-4">
+            <div className="flex items-center gap-2">
+              <Eye className="h-4 w-4 text-neon-cyan" />
+              <span className="text-sm font-medium text-muted-foreground">
+                Enhanced with Custom WP Block Syntax Highlighting
+              </span>
+            </div>
+            <WPBlockCodeBlock
               code={`<!-- wp:group -->
 <div class="wp-block-group">
   <!-- Inner blocks go here -->
 </div>
 <!-- /wp:group -->`}
-              language="html"
+              showLineNumbers={true}
             />
           </CardContent>
         </Card>
