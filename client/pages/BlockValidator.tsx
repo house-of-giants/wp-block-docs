@@ -513,6 +513,7 @@ export default function BlockValidator() {
           >
             Real-time Validation
           </Badge>
+          <Badge variant="outline">Custom Syntax Highlighting</Badge>
           <Badge variant="outline">Accessibility Checks</Badge>
           <Badge variant="outline">Performance Tips</Badge>
           <Badge variant="outline">Auto-fix Suggestions</Badge>
