@@ -19,6 +19,7 @@ import {
   Lightbulb,
 } from "lucide-react";
 import { PropertiesReference } from "@/components/PropertiesReference";
+import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
 import { CodeBlock } from "@/components/CodeBlock";
 
 export default function GroupBlock() {
