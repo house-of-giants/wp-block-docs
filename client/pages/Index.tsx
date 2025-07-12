@@ -17,6 +17,11 @@ import {
   Sparkles,
 } from "lucide-react";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
+import {
+  SEO,
+  generateDocumentationSchema,
+  generateFAQSchema,
+} from "@/components/SEO";
 
 export default function Index() {
   return (
@@ -89,7 +94,6 @@ export default function Index() {
   <!-- /wp:heading -->
 </div>
 <!-- /wp:group -->`}
-                
               />
             </div>
           </CardContent>
