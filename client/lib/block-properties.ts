@@ -652,9 +652,298 @@ export const buttonBlockProperties: PropertyCategory[] = [
   },
 ];
 
+// Block-specific properties for the Query Loop block
+export const queryLoopBlockProperties: PropertyCategory[] = [
+  {
+    name: "Query Loop Specific",
+    description: "Properties for dynamic content queries",
+    properties: [
+      {
+        name: "queryId",
+        type: "number",
+        description: "Unique identifier for the query instance",
+        example: "1",
+      },
+      {
+        name: "query",
+        type: "object",
+        description: "Query parameters for posts",
+        example: '{"perPage": 3, "postType": "post", "order": "desc"}',
+      },
+      {
+        name: "query.perPage",
+        type: "number",
+        description: "Number of posts to display per page",
+        example: "6",
+        defaultValue: "10",
+      },
+      {
+        name: "query.postType",
+        type: "string",
+        description: "Post type to query",
+        example: '"post"',
+        values: ["post", "page", "product", "custom_post_type"],
+      },
+      {
+        name: "query.order",
+        type: "string",
+        description: "Sort order for posts",
+        example: '"desc"',
+        values: ["asc", "desc"],
+      },
+      {
+        name: "query.orderBy",
+        type: "string",
+        description: "Field to sort posts by",
+        example: '"date"',
+        values: ["date", "title", "menu_order", "meta_value", "rand"],
+      },
+      {
+        name: "query.inherit",
+        type: "boolean",
+        description: "Whether to inherit the main query context",
+        example: "true",
+        defaultValue: "false",
+      },
+      {
+        name: "query.sticky",
+        type: "string",
+        description: "How to handle sticky posts",
+        example: '"exclude"',
+        values: ["", "only", "exclude"],
+      },
+    ],
+  },
+];
+
+// Block-specific properties for the Navigation block
+export const navigationBlockProperties: PropertyCategory[] = [
+  {
+    name: "Navigation Specific",
+    description: "Properties for site navigation menus",
+    properties: [
+      {
+        name: "ref",
+        type: "number",
+        description: "WordPress menu ID to display",
+        example: "123",
+      },
+      {
+        name: "overlayMenu",
+        type: "string",
+        description: "When to show mobile overlay menu",
+        example: '"mobile"',
+        values: ["never", "mobile", "always"],
+        defaultValue: '"mobile"',
+      },
+      {
+        name: "hasIcon",
+        type: "boolean",
+        description: "Whether to show mobile menu icon",
+        example: "true",
+        defaultValue: "true",
+      },
+      {
+        name: "overlayBackgroundColor",
+        type: "string",
+        description: "Background color for mobile overlay",
+        example: '"background"',
+      },
+      {
+        name: "overlayTextColor",
+        type: "string",
+        description: "Text color for mobile overlay",
+        example: '"foreground"',
+      },
+      {
+        name: "layout.justifyContent",
+        type: "string",
+        description: "Horizontal alignment of navigation items",
+        example: '"left"',
+        values: ["left", "center", "right", "space-between"],
+      },
+      {
+        name: "layout.orientation",
+        type: "string",
+        description: "Navigation layout orientation",
+        example: '"horizontal"',
+        values: ["horizontal", "vertical"],
+      },
+    ],
+  },
+];
+
+// Block-specific properties for the List block
+export const listBlockProperties: PropertyCategory[] = [
+  {
+    name: "List Specific",
+    description: "Properties for ordered and unordered lists",
+    properties: [
+      {
+        name: "ordered",
+        type: "boolean",
+        description: "Whether the list is ordered (numbered) or unordered",
+        example: "true",
+        defaultValue: "false",
+      },
+      {
+        name: "values",
+        type: "string",
+        description: "HTML content of list items",
+        example: '"<li>First item</li><li>Second item</li>"',
+      },
+      {
+        name: "type",
+        type: "string",
+        description: "List marker type for ordered lists",
+        example: '"1"',
+        values: ["1", "A", "a", "I", "i"],
+      },
+      {
+        name: "start",
+        type: "number",
+        description: "Starting number for ordered lists",
+        example: "5",
+        defaultValue: "1",
+      },
+      {
+        name: "reversed",
+        type: "boolean",
+        description: "Whether to reverse the numbering",
+        example: "true",
+        defaultValue: "false",
+      },
+    ],
+  },
+];
+
+// Block-specific properties for the Quote block
+export const quoteBlockProperties: PropertyCategory[] = [
+  {
+    name: "Quote Specific",
+    description: "Properties for blockquotes and testimonials",
+    properties: [
+      {
+        name: "value",
+        type: "string",
+        description: "The quote text content",
+        example: '"This is an inspiring quote about WordPress."',
+      },
+      {
+        name: "citation",
+        type: "string",
+        description: "Citation/attribution for the quote",
+        example: '"John Doe, WordPress Developer"',
+      },
+      {
+        name: "align",
+        type: "string",
+        description: "Quote alignment",
+        example: '"center"',
+        values: ["left", "center", "right", "wide", "full"],
+      },
+      {
+        name: "className",
+        type: "string",
+        description: "CSS classes for quote styling",
+        example: '"is-style-large"',
+        values: [
+          "is-style-default",
+          "is-style-large",
+          "is-style-plain",
+          "is-style-pullquote",
+        ],
+      },
+    ],
+  },
+];
+
+// Block-specific properties for the Gallery block
+export const galleryBlockProperties: PropertyCategory[] = [
+  {
+    name: "Gallery Specific",
+    description: "Properties for image galleries and collections",
+    properties: [
+      {
+        name: "images",
+        type: "array",
+        description: "Array of image objects in the gallery",
+        example: '[{"id": 123, "url": "image1.jpg", "alt": "Description"}]',
+      },
+      {
+        name: "ids",
+        type: "array",
+        description: "Array of image attachment IDs",
+        example: "[123, 124, 125]",
+      },
+      {
+        name: "columns",
+        type: "number",
+        description: "Number of columns in the gallery grid",
+        example: "3",
+        defaultValue: "3",
+      },
+      {
+        name: "linkTo",
+        type: "string",
+        description: "Where gallery images should link",
+        example: '"media"',
+        values: ["none", "media", "attachment"],
+        defaultValue: '"none"',
+      },
+      {
+        name: "sizeSlug",
+        type: "string",
+        description: "WordPress image size to use",
+        example: '"large"',
+        values: ["thumbnail", "medium", "large", "full"],
+        defaultValue: '"large"',
+      },
+      {
+        name: "imageCrop",
+        type: "boolean",
+        description: "Whether to crop images to fit grid",
+        example: "true",
+        defaultValue: "true",
+      },
+      {
+        name: "fixedHeight",
+        type: "boolean",
+        description: "Whether all images should have the same height",
+        example: "false",
+        defaultValue: "true",
+      },
+      {
+        name: "allowResize",
+        type: "boolean",
+        description: "Whether to allow resizing of images",
+        example: "false",
+        defaultValue: "true",
+      },
+      {
+        name: "caption",
+        type: "string",
+        description: "Gallery caption text",
+        example: '"Portfolio gallery showcasing recent work"',
+      },
+    ],
+  },
+];
+
 // Helper function to get all properties for a specific block
 export function getBlockProperties(
-  blockType: "group" | "columns" | "image" | "heading" | "paragraph" | "button",
+  blockType:
+    | "group"
+    | "columns"
+    | "image"
+    | "heading"
+    | "paragraph"
+    | "button"
+    | "query-loop"
+    | "navigation"
+    | "list"
+    | "quote"
+    | "gallery",
 ): PropertyCategory[] {
   const universal = universalBlockProperties;
 
@@ -671,6 +960,16 @@ export function getBlockProperties(
       return [...universal, ...paragraphBlockProperties];
     case "button":
       return [...universal, ...buttonBlockProperties];
+    case "query-loop":
+      return [...universal, ...queryLoopBlockProperties];
+    case "navigation":
+      return [...universal, ...navigationBlockProperties];
+    case "list":
+      return [...universal, ...listBlockProperties];
+    case "quote":
+      return [...universal, ...quoteBlockProperties];
+    case "gallery":
+      return [...universal, ...galleryBlockProperties];
     default:
       return universal;
   }
