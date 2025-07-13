@@ -106,7 +106,7 @@ export default function Index() {
                 Start Learning
               </Button>
             </Link>
-            <Link to="/blocks/group">
+            <Link to="/blocks">
               <Button variant="outline" size="lg">
                 View Examples
                 <ArrowRight className="ml-2 h-5 w-5" />

@@ -325,12 +325,12 @@ export function PropertiesReference({
     <div className="space-y-6">
       {/* Header */}
       <div className="space-y-4">
-        <div className="flex items-start space-x-3">
+        <div className="flex items-start space-x-3 pt-12">
           <div className="p-2 rounded-lg bg-neon-cyan/20">
             <Info className="h-6 w-6 text-neon-cyan" />
           </div>
           <div className="flex-1">
-            <h2 className="text-2xl font-semibold text-foreground">{title}</h2>
+            <h2 className="text-2xl font-semibold text-foreground mt-0">{title}</h2>
             <p className="text-muted-foreground mt-1">{description}</p>
           </div>
         </div>

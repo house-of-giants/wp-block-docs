@@ -8,7 +8,6 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Separator } from "@/components/ui/separator";
 import {
   Eye,
   Palette,
@@ -19,6 +18,8 @@ import {
 } from "lucide-react";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
 import { generateDocumentationSchema, SEO } from "@/components/SEO";
+import { PageHeader } from "@/components/PageHeader";
+import { ContentSection } from "@/components/ContentSection";
 
 export default function PatternLibrary() {
   const patternLibrarySchema = generateDocumentationSchema(
@@ -43,77 +44,60 @@ export default function PatternLibrary() {
         ogType="article"
         schema={[patternLibrarySchema]}
       />
+      <PageHeader
+        icon={Palette}
+        iconColor="text-neon-pink"
+        iconBgColor="bg-neon-pink/20"
+        title="Pattern Library"
+        description="Production-ready block patterns you can copy and paste directly into your WordPress block themes. Each pattern is optimized for performance, accessibility, and modern design principles."
+        badges={[
+          { text: "Copy & Paste Ready", variant: "secondary", className: "bg-neon-pink/20 text-neon-pink border-neon-pink/30" },
+          { text: "Responsive", variant: "outline" },
+          { text: "Accessible", variant: "outline" },
+          { text: "Performance Optimized", variant: "outline" },
+        ]}
+      />
       <div className="space-y-8">
-      {/* Header */}
-      <div className="space-y-4">
-        <div className="flex items-center space-x-2">
-          <div className="p-2 rounded-lg bg-neon-pink/20">
-            <Palette className="h-6 w-6 text-neon-pink" />
-          </div>
-          <h1 className="text-4xl font-bold text-foreground mb-0">
-            Pattern Library
-          </h1>
-        </div>
-        <p className="text-xl text-muted-foreground">
-          Production-ready block patterns you can copy and paste directly into
-          your WordPress block themes. Each pattern is optimized for
-          performance, accessibility, and modern design principles.
-        </p>
-        <div className="flex flex-wrap gap-2">
-          <Badge
-            variant="secondary"
-            className="bg-neon-pink/20 text-neon-pink border-neon-pink/30"
-          >
-            Copy & Paste Ready
-          </Badge>
-          <Badge variant="outline">Responsive</Badge>
-          <Badge variant="outline">Accessible</Badge>
-          <Badge variant="outline">Performance Optimized</Badge>
-        </div>
-      </div>
+        <ContentSection title="Pattern Categories" icon={Palette} iconColor="text-neon-pink">
+          <Tabs defaultValue="hero" className="w-full">
+            <TabsList className="grid w-full grid-cols-6">
+              <TabsTrigger value="hero">Hero Sections</TabsTrigger>
+              <TabsTrigger value="features">Features</TabsTrigger>
+              <TabsTrigger value="testimonials">Testimonials</TabsTrigger>
+              <TabsTrigger value="pricing">Pricing</TabsTrigger>
+              <TabsTrigger value="cta">Call-to-Action</TabsTrigger>
+              <TabsTrigger value="content">Content</TabsTrigger>
+            </TabsList>
 
-      <Separator />
-
-      {/* Categories */}
-      <Tabs defaultValue="hero" className="w-full">
-        <TabsList className="grid w-full grid-cols-6">
-          <TabsTrigger value="hero">Hero Sections</TabsTrigger>
-          <TabsTrigger value="features">Features</TabsTrigger>
-          <TabsTrigger value="testimonials">Testimonials</TabsTrigger>
-          <TabsTrigger value="pricing">Pricing</TabsTrigger>
-          <TabsTrigger value="cta">Call-to-Action</TabsTrigger>
-          <TabsTrigger value="content">Content</TabsTrigger>
-        </TabsList>
-
-        {/* Hero Sections */}
-        <TabsContent value="hero" className="space-y-6 mt-6">
-          <div className="grid lg:grid-cols-2 gap-6">
-            <Card className="bg-card/50 backdrop-blur border-border/50">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <CardTitle className="flex items-center">
-                      <Star className="mr-2 h-4 w-4 text-yellow-500" />
-                      Centered Hero with CTA
-                    </CardTitle>
-                    <CardDescription>
-                      Clean, centered hero section with heading, description,
-                      and call-to-action buttons
-                    </CardDescription>
-                  </div>
-                  <div className="flex space-x-2">
-                    <Button variant="outline" size="sm">
-                      <Eye className="h-4 w-4" />
-                    </Button>
-                    <Button variant="outline" size="sm">
-                      <Download className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <WPBlockCodeBlock
-                  code={`<!-- wp:group {
+            {/* Hero Sections */}
+            <TabsContent value="hero" className="space-y-6 mt-6">
+              <div className="grid lg:grid-cols-2 gap-6">
+                <Card className="bg-card/50 backdrop-blur border-border/50">
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <CardTitle className="flex items-center">
+                          <Star className="mr-2 h-4 w-4 text-yellow-500" />
+                          Centered Hero with CTA
+                        </CardTitle>
+                        <CardDescription>
+                          Clean, centered hero section with heading, description,
+                          and call-to-action buttons
+                        </CardDescription>
+                      </div>
+                      <div className="flex space-x-2">
+                        <Button variant="outline" size="sm">
+                          <Eye className="h-4 w-4" />
+                        </Button>
+                        <Button variant="outline" size="sm">
+                          <Download className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <WPBlockCodeBlock
+                      code={`<!-- wp:group {
   "metadata": {
     "name": "Hero Section - Centered",
     "categories": ["hero", "landing"]
@@ -177,44 +161,44 @@ export default function PatternLibrary() {
   
 </section>
 <!-- /wp:group -->`}
-                  
-                />
-                <div className="mt-4 flex flex-wrap gap-2">
-                  <Badge variant="outline" className="text-xs">
-                    Responsive
-                  </Badge>
-                  <Badge variant="outline" className="text-xs">
-                    Gradient Background
-                  </Badge>
-                  <Badge variant="outline" className="text-xs">
-                    Button Groups
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
+                      
+                    />
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      <Badge variant="outline" className="text-xs">
+                        Responsive
+                      </Badge>
+                      <Badge variant="outline" className="text-xs">
+                        Gradient Background
+                      </Badge>
+                      <Badge variant="outline" className="text-xs">
+                        Button Groups
+                      </Badge>
+                    </div>
+                  </CardContent>
+                </Card>
 
-            <Card className="bg-card/50 backdrop-blur border-border/50">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <CardTitle>Split Hero with Image</CardTitle>
-                    <CardDescription>
-                      Two-column hero with content on left, image on right
-                    </CardDescription>
-                  </div>
-                  <div className="flex space-x-2">
-                    <Button variant="outline" size="sm">
-                      <Eye className="h-4 w-4" />
-                    </Button>
-                    <Button variant="outline" size="sm">
-                      <Download className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <WPBlockCodeBlock
-                  code={`<!-- wp:group {
+                <Card className="bg-card/50 backdrop-blur border-border/50">
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <CardTitle>Split Hero with Image</CardTitle>
+                        <CardDescription>
+                          Two-column hero with content on left, image on right
+                        </CardDescription>
+                      </div>
+                      <div className="flex space-x-2">
+                        <Button variant="outline" size="sm">
+                          <Eye className="h-4 w-4" />
+                        </Button>
+                        <Button variant="outline" size="sm">
+                          <Download className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <WPBlockCodeBlock
+                      code={`<!-- wp:group {
   "align": "full",
   "style": {
     "spacing": {
@@ -276,39 +260,39 @@ export default function PatternLibrary() {
   
 </section>
 <!-- /wp:group -->`}
-                  
-                />
-                <div className="mt-4 flex flex-wrap gap-2">
-                  <Badge variant="outline" className="text-xs">
-                    Two Column
-                  </Badge>
-                  <Badge variant="outline" className="text-xs">
-                    Image + Text
-                  </Badge>
-                  <Badge variant="outline" className="text-xs">
-                    Vertical Alignment
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </TabsContent>
+                      
+                    />
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      <Badge variant="outline" className="text-xs">
+                        Two Column
+                      </Badge>
+                      <Badge variant="outline" className="text-xs">
+                        Image + Text
+                      </Badge>
+                      <Badge variant="outline" className="text-xs">
+                        Vertical Alignment
+                      </Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
 
-        {/* Features Section */}
-        <TabsContent value="features" className="space-y-6 mt-6">
-          <Card className="bg-card/50 backdrop-blur border-border/50">
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <Zap className="mr-2 h-4 w-4 text-neon-blue" />
-                Three-Column Feature Grid
-              </CardTitle>
-              <CardDescription>
-                Showcase key features with icons, headings, and descriptions
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <WPBlockCodeBlock
-                code={`<!-- wp:group {
+            {/* Features Section */}
+            <TabsContent value="features" className="space-y-6 mt-6">
+              <Card className="bg-card/50 backdrop-blur border-border/50">
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <Zap className="mr-2 h-4 w-4 text-neon-blue" />
+                    Three-Column Feature Grid
+                  </CardTitle>
+                  <CardDescription>
+                    Showcase key features with icons, headings, and descriptions
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <WPBlockCodeBlock
+                    code={`<!-- wp:group {
   "metadata": {
     "name": "Features Grid - 3 Column",
     "categories": ["features", "grid"]
@@ -424,40 +408,40 @@ export default function PatternLibrary() {
   
 </section>
 <!-- /wp:group -->`}
-                
-              />
-            </CardContent>
-          </Card>
-        </TabsContent>
+                    
+                  />
+                </CardContent>
+              </Card>
+            </TabsContent>
 
-        {/* Testimonials Section */}
-        <TabsContent value="testimonials" className="space-y-6 mt-6">
-          <div className="grid lg:grid-cols-2 gap-6">
-            <Card className="bg-card/50 backdrop-blur border-border/50">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <CardTitle className="flex items-center">
-                      <Star className="mr-2 h-4 w-4 text-yellow-500" />
-                      Single Testimonial Card
-                    </CardTitle>
-                    <CardDescription>
-                      Individual testimonial with quote, author, and photo
-                    </CardDescription>
-                  </div>
-                  <div className="flex space-x-2">
-                    <Button variant="outline" size="sm">
-                      <Eye className="h-4 w-4" />
-                    </Button>
-                    <Button variant="outline" size="sm">
-                      <Download className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <WPBlockCodeBlock
-                  code={`<!-- wp:group {
+            {/* Testimonials Section */}
+            <TabsContent value="testimonials" className="space-y-6 mt-6">
+              <div className="grid lg:grid-cols-2 gap-6">
+                <Card className="bg-card/50 backdrop-blur border-border/50">
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <CardTitle className="flex items-center">
+                          <Star className="mr-2 h-4 w-4 text-yellow-500" />
+                          Single Testimonial Card
+                        </CardTitle>
+                        <CardDescription>
+                          Individual testimonial with quote, author, and photo
+                        </CardDescription>
+                      </div>
+                      <div className="flex space-x-2">
+                        <Button variant="outline" size="sm">
+                          <Eye className="h-4 w-4" />
+                        </Button>
+                        <Button variant="outline" size="sm">
+                          <Download className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <WPBlockCodeBlock
+                      code={`<!-- wp:group {
   "metadata": {
     "name": "Testimonial Card",
     "categories": ["testimonials", "social-proof"]
@@ -524,44 +508,44 @@ export default function PatternLibrary() {
 
 </div>
 <!-- /wp:group -->`}
-                  
-                />
-                <div className="mt-4 flex flex-wrap gap-2">
-                  <Badge variant="outline" className="text-xs">
-                    Profile Image
-                  </Badge>
-                  <Badge variant="outline" className="text-xs">
-                    Flex Layout
-                  </Badge>
-                  <Badge variant="outline" className="text-xs">
-                    Custom Styling
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
+                      
+                    />
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      <Badge variant="outline" className="text-xs">
+                        Profile Image
+                      </Badge>
+                      <Badge variant="outline" className="text-xs">
+                        Flex Layout
+                      </Badge>
+                      <Badge variant="outline" className="text-xs">
+                        Custom Styling
+                      </Badge>
+                    </div>
+                  </CardContent>
+                </Card>
 
-            <Card className="bg-card/50 backdrop-blur border-border/50">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <CardTitle>Testimonials Grid</CardTitle>
-                    <CardDescription>
-                      Three-column testimonials layout with star ratings
-                    </CardDescription>
-                  </div>
-                  <div className="flex space-x-2">
-                    <Button variant="outline" size="sm">
-                      <Eye className="h-4 w-4" />
-                    </Button>
-                    <Button variant="outline" size="sm">
-                      <Download className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <WPBlockCodeBlock
-                  code={`<!-- wp:group {
+                <Card className="bg-card/50 backdrop-blur border-border/50">
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <CardTitle>Testimonials Grid</CardTitle>
+                        <CardDescription>
+                          Three-column testimonials layout with star ratings
+                        </CardDescription>
+                      </div>
+                      <div className="flex space-x-2">
+                        <Button variant="outline" size="sm">
+                          <Eye className="h-4 w-4" />
+                        </Button>
+                        <Button variant="outline" size="sm">
+                          <Download className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <WPBlockCodeBlock
+                      code={`<!-- wp:group {
   "metadata": {
     "name": "Testimonials Grid",
     "categories": ["testimonials", "grid"]
@@ -684,52 +668,52 @@ export default function PatternLibrary() {
 
 </section>
 <!-- /wp:group -->`}
-                  
-                />
-                <div className="mt-4 flex flex-wrap gap-2">
-                  <Badge variant="outline" className="text-xs">
-                    Star Ratings
-                  </Badge>
-                  <Badge variant="outline" className="text-xs">
-                    Three Columns
-                  </Badge>
-                  <Badge variant="outline" className="text-xs">
-                    Centered Text
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </TabsContent>
+                      
+                    />
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      <Badge variant="outline" className="text-xs">
+                        Star Ratings
+                      </Badge>
+                      <Badge variant="outline" className="text-xs">
+                        Three Columns
+                      </Badge>
+                      <Badge variant="outline" className="text-xs">
+                        Centered Text
+                      </Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
 
-        <TabsContent value="pricing" className="space-y-6 mt-6">
-          <div className="grid lg:grid-cols-1 gap-6">
-            <Card className="bg-card/50 backdrop-blur border-border/50">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <CardTitle className="flex items-center">
-                      <Star className="mr-2 h-4 w-4 text-yellow-500" />
-                      Three-Tier Pricing Table
-                    </CardTitle>
-                    <CardDescription>
-                      Complete pricing section with features comparison and
-                      popular badge
-                    </CardDescription>
-                  </div>
-                  <div className="flex space-x-2">
-                    <Button variant="outline" size="sm">
-                      <Eye className="h-4 w-4" />
-                    </Button>
-                    <Button variant="outline" size="sm">
-                      <Download className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <WPBlockCodeBlock
-                  code={`<!-- wp:group {
+            <TabsContent value="pricing" className="space-y-6 mt-6">
+              <div className="grid lg:grid-cols-1 gap-6">
+                <Card className="bg-card/50 backdrop-blur border-border/50">
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <CardTitle className="flex items-center">
+                          <Star className="mr-2 h-4 w-4 text-yellow-500" />
+                          Three-Tier Pricing Table
+                        </CardTitle>
+                        <CardDescription>
+                          Complete pricing section with features comparison and
+                          popular badge
+                        </CardDescription>
+                      </div>
+                      <div className="flex space-x-2">
+                        <Button variant="outline" size="sm">
+                          <Eye className="h-4 w-4" />
+                        </Button>
+                        <Button variant="outline" size="sm">
+                          <Download className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <WPBlockCodeBlock
+                      code={`<!-- wp:group {
   "metadata": {
     "name": "Pricing Table - 3 Tier",
     "categories": ["pricing", "comparison"]
@@ -961,54 +945,54 @@ export default function PatternLibrary() {
 
 </section>
 <!-- /wp:group -->`}
-                  
-                />
-                <div className="mt-4 flex flex-wrap gap-2">
-                  <Badge variant="outline" className="text-xs">
-                    Three Columns
-                  </Badge>
-                  <Badge variant="outline" className="text-xs">
-                    Popular Badge
-                  </Badge>
-                  <Badge variant="outline" className="text-xs">
-                    Feature Lists
-                  </Badge>
-                  <Badge variant="outline" className="text-xs">
-                    Different CTAs
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </TabsContent>
+                      
+                    />
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      <Badge variant="outline" className="text-xs">
+                        Three Columns
+                      </Badge>
+                      <Badge variant="outline" className="text-xs">
+                        Popular Badge
+                      </Badge>
+                      <Badge variant="outline" className="text-xs">
+                        Feature Lists
+                      </Badge>
+                      <Badge variant="outline" className="text-xs">
+                        Different CTAs
+                      </Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
 
-        <TabsContent value="cta" className="space-y-6 mt-6">
-          <div className="grid lg:grid-cols-2 gap-6">
-            <Card className="bg-card/50 backdrop-blur border-border/50">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <CardTitle className="flex items-center">
-                      <Zap className="mr-2 h-4 w-4 text-neon-blue" />
-                      Newsletter Signup
-                    </CardTitle>
-                    <CardDescription>
-                      Email capture section with compelling copy and form
-                    </CardDescription>
-                  </div>
-                  <div className="flex space-x-2">
-                    <Button variant="outline" size="sm">
-                      <Eye className="h-4 w-4" />
-                    </Button>
-                    <Button variant="outline" size="sm">
-                      <Download className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <WPBlockCodeBlock
-                  code={`<!-- wp:group {
+            <TabsContent value="cta" className="space-y-6 mt-6">
+              <div className="grid lg:grid-cols-2 gap-6">
+                <Card className="bg-card/50 backdrop-blur border-border/50">
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <CardTitle className="flex items-center">
+                          <Zap className="mr-2 h-4 w-4 text-neon-blue" />
+                          Newsletter Signup
+                        </CardTitle>
+                        <CardDescription>
+                          Email capture section with compelling copy and form
+                        </CardDescription>
+                      </div>
+                      <div className="flex space-x-2">
+                        <Button variant="outline" size="sm">
+                          <Eye className="h-4 w-4" />
+                        </Button>
+                        <Button variant="outline" size="sm">
+                          <Download className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <WPBlockCodeBlock
+                      code={`<!-- wp:group {
   "metadata": {
     "name": "Newsletter CTA",
     "categories": ["cta", "newsletter"]
@@ -1080,44 +1064,44 @@ export default function PatternLibrary() {
 
 </section>
 <!-- /wp:group -->`}
-                  
-                />
-                <div className="mt-4 flex flex-wrap gap-2">
-                  <Badge variant="outline" className="text-xs">
-                    Email Capture
-                  </Badge>
-                  <Badge variant="outline" className="text-xs">
-                    Social Proof
-                  </Badge>
-                  <Badge variant="outline" className="text-xs">
-                    Flex Layout
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
+                      
+                    />
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      <Badge variant="outline" className="text-xs">
+                        Email Capture
+                      </Badge>
+                      <Badge variant="outline" className="text-xs">
+                        Social Proof
+                      </Badge>
+                      <Badge variant="outline" className="text-xs">
+                        Flex Layout
+                      </Badge>
+                    </div>
+                  </CardContent>
+                </Card>
 
-            <Card className="bg-card/50 backdrop-blur border-border/50">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <CardTitle>Free Trial CTA</CardTitle>
-                    <CardDescription>
-                      Conversion-focused section with urgency and benefits
-                    </CardDescription>
-                  </div>
-                  <div className="flex space-x-2">
-                    <Button variant="outline" size="sm">
-                      <Eye className="h-4 w-4" />
-                    </Button>
-                    <Button variant="outline" size="sm">
-                      <Download className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <WPBlockCodeBlock
-                  code={`<!-- wp:group {
+                <Card className="bg-card/50 backdrop-blur border-border/50">
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <CardTitle>Free Trial CTA</CardTitle>
+                        <CardDescription>
+                          Conversion-focused section with urgency and benefits
+                        </CardDescription>
+                      </div>
+                      <div className="flex space-x-2">
+                        <Button variant="outline" size="sm">
+                          <Eye className="h-4 w-4" />
+                        </Button>
+                        <Button variant="outline" size="sm">
+                          <Download className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <WPBlockCodeBlock
+                      code={`<!-- wp:group {
   "metadata": {
     "name": "Free Trial CTA",
     "categories": ["cta", "conversion"]
@@ -1213,51 +1197,51 @@ export default function PatternLibrary() {
 
 </section>
 <!-- /wp:group -->`}
-                  
-                />
-                <div className="mt-4 flex flex-wrap gap-2">
-                  <Badge variant="outline" className="text-xs">
-                    Gradient Background
-                  </Badge>
-                  <Badge variant="outline" className="text-xs">
-                    Multiple CTAs
-                  </Badge>
-                  <Badge variant="outline" className="text-xs">
-                    Trust Signals
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </TabsContent>
+                      
+                    />
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      <Badge variant="outline" className="text-xs">
+                        Gradient Background
+                      </Badge>
+                      <Badge variant="outline" className="text-xs">
+                        Multiple CTAs
+                      </Badge>
+                      <Badge variant="outline" className="text-xs">
+                        Trust Signals
+                      </Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
 
-        <TabsContent value="content" className="space-y-6 mt-6">
-          <div className="grid lg:grid-cols-2 gap-6">
-            <Card className="bg-card/50 backdrop-blur border-border/50">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <CardTitle className="flex items-center">
-                      <Layout className="mr-2 h-4 w-4 text-neon-pink" />
-                      Blog Post Layout
-                    </CardTitle>
-                    <CardDescription>
-                      Article layout with sidebar, meta information, and content
-                    </CardDescription>
-                  </div>
-                  <div className="flex space-x-2">
-                    <Button variant="outline" size="sm">
-                      <Eye className="h-4 w-4" />
-                    </Button>
-                    <Button variant="outline" size="sm">
-                      <Download className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <WPBlockCodeBlock
-                  code={`<!-- wp:group {
+            <TabsContent value="content" className="space-y-6 mt-6">
+              <div className="grid lg:grid-cols-2 gap-6">
+                <Card className="bg-card/50 backdrop-blur border-border/50">
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <CardTitle className="flex items-center">
+                          <Layout className="mr-2 h-4 w-4 text-neon-pink" />
+                          Blog Post Layout
+                        </CardTitle>
+                        <CardDescription>
+                          Article layout with sidebar, meta information, and content
+                        </CardDescription>
+                      </div>
+                      <div className="flex space-x-2">
+                        <Button variant="outline" size="sm">
+                          <Eye className="h-4 w-4" />
+                        </Button>
+                        <Button variant="outline" size="sm">
+                          <Download className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <WPBlockCodeBlock
+                      code={`<!-- wp:group {
   "metadata": {
     "name": "Blog Post Layout",
     "categories": ["content", "blog"]
@@ -1431,47 +1415,47 @@ export default function PatternLibrary() {
 
 </article>
 <!-- /wp:group -->`}
-                  
-                />
-                <div className="mt-4 flex flex-wrap gap-2">
-                  <Badge variant="outline" className="text-xs">
-                    Sidebar Layout
-                  </Badge>
-                  <Badge variant="outline" className="text-xs">
-                    Author Bio
-                  </Badge>
-                  <Badge variant="outline" className="text-xs">
-                    Related Posts
-                  </Badge>
-                  <Badge variant="outline" className="text-xs">
-                    Drop Cap
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
+                      
+                    />
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      <Badge variant="outline" className="text-xs">
+                        Sidebar Layout
+                      </Badge>
+                      <Badge variant="outline" className="text-xs">
+                        Author Bio
+                      </Badge>
+                      <Badge variant="outline" className="text-xs">
+                        Related Posts
+                      </Badge>
+                      <Badge variant="outline" className="text-xs">
+                        Drop Cap
+                      </Badge>
+                    </div>
+                  </CardContent>
+                </Card>
 
-            <Card className="bg-card/50 backdrop-blur border-border/50">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <CardTitle>Portfolio Grid</CardTitle>
-                    <CardDescription>
-                      Showcase work with image gallery and project details
-                    </CardDescription>
-                  </div>
-                  <div className="flex space-x-2">
-                    <Button variant="outline" size="sm">
-                      <Eye className="h-4 w-4" />
-                    </Button>
-                    <Button variant="outline" size="sm">
-                      <Download className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <WPBlockCodeBlock
-                  code={`<!-- wp:group {
+                <Card className="bg-card/50 backdrop-blur border-border/50">
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <CardTitle>Portfolio Grid</CardTitle>
+                        <CardDescription>
+                          Showcase work with image gallery and project details
+                        </CardDescription>
+                      </div>
+                      <div className="flex space-x-2">
+                        <Button variant="outline" size="sm">
+                          <Eye className="h-4 w-4" />
+                        </Button>
+                        <Button variant="outline" size="sm">
+                          <Download className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <WPBlockCodeBlock
+                      code={`<!-- wp:group {
   "metadata": {
     "name": "Portfolio Grid",
     "categories": ["content", "portfolio"]
@@ -1644,73 +1628,70 @@ export default function PatternLibrary() {
 
 </section>
 <!-- /wp:group -->`}
-                  
-                />
-                <div className="mt-4 flex flex-wrap gap-2">
-                  <Badge variant="outline" className="text-xs">
-                    Grid Layout
-                  </Badge>
-                  <Badge variant="outline" className="text-xs">
-                    Linked Images
-                  </Badge>
-                  <Badge variant="outline" className="text-xs">
-                    Project Tags
-                  </Badge>
-                  <Badge variant="outline" className="text-xs">
-                    Three Columns
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </TabsContent>
-      </Tabs>
+                      
+                    />
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      <Badge variant="outline" className="text-xs">
+                        Grid Layout
+                      </Badge>
+                      <Badge variant="outline" className="text-xs">
+                        Linked Images
+                      </Badge>
+                      <Badge variant="outline" className="text-xs">
+                        Project Tags
+                      </Badge>
+                      <Badge variant="outline" className="text-xs">
+                        Three Columns
+                      </Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+          </Tabs>
+        </ContentSection>
 
-      {/* Usage Instructions */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold text-foreground">
-          How to Use These Patterns
-        </h2>
+          {/* Usage Instructions */}
+          <ContentSection title="How to Use These Patterns" icon={Layout} iconColor="text-neon-pink">
+            <div className="grid md:grid-cols-2 gap-6">
+              <Card className="bg-green-500/10 border-green-500/30">
+                <CardHeader>
+                  <CardTitle className="text-green-600 dark:text-green-400">
+                    Copy & Paste
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ol className="space-y-2 text-sm list-decimal list-inside">
+                    <li>Copy the HTML markup from any pattern above</li>
+                    <li>
+                      Paste it into your WordPress block editor's "Code editor" view
+                    </li>
+                    <li>Switch back to visual editor to see the result</li>
+                    <li>Customize colors, text, and spacing as needed</li>
+                  </ol>
+                </CardContent>
+              </Card>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          <Card className="bg-green-500/10 border-green-500/30">
-            <CardHeader>
-              <CardTitle className="text-green-600 dark:text-green-400">
-                Copy & Paste
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ol className="space-y-2 text-sm list-decimal list-inside">
-                <li>Copy the HTML markup from any pattern above</li>
-                <li>
-                  Paste it into your WordPress block editor's "Code editor" view
-                </li>
-                <li>Switch back to visual editor to see the result</li>
-                <li>Customize colors, text, and spacing as needed</li>
-              </ol>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-blue-500/10 border-blue-500/30">
-            <CardHeader>
-              <CardTitle className="text-blue-600 dark:text-blue-400">
-                Template Files
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ol className="space-y-2 text-sm list-decimal list-inside">
-                <li>
-                  Save patterns as .html files in your theme/patterns/ folder
-                </li>
-                <li>Add pattern headers for WordPress recognition</li>
-                <li>Register patterns in your theme's functions.php</li>
-                <li>Access via Patterns library in block editor</li>
-              </ol>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
+              <Card className="bg-blue-500/10 border-blue-500/30">
+                <CardHeader>
+                  <CardTitle className="text-blue-600 dark:text-blue-400">
+                    Template Files
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ol className="space-y-2 text-sm list-decimal list-inside">
+                    <li>
+                      Save patterns as .html files in your theme/patterns/ folder
+                    </li>
+                    <li>Add pattern headers for WordPress recognition</li>
+                    <li>Register patterns in your theme's functions.php</li>
+                    <li>Access via Patterns library in block editor</li>
+                  </ol>
+                </CardContent>
+              </Card>
+            </div>
+          </ContentSection>
       </div>
     </>
-  );
-}
+    );
+  }

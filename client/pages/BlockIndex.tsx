@@ -34,6 +34,8 @@ import {
   generateDocumentationSchema,
   generateBreadcrumbSchema,
 } from "@/components/SEO";
+import { PageHeader } from "@/components/PageHeader";
+import { ContentSection } from "@/components/ContentSection";
 
 const coreBlocks = [
   {
@@ -271,178 +273,47 @@ export default function BlockIndex() {
     <>
       <SEO
         title="WordPress Blocks Overview - Complete Block Reference Index"
-        description="Browse all documented WordPress core blocks with descriptions, difficulty levels, and features. Complete block index for developers building block themes and custom layouts with WordPress FSE."
+        description="Browse all documented WordPress core blocks with descriptions, difficulty levels, and features. Complete block index for developers building block themes and custom layouts."
         keywords="WordPress blocks overview, Block reference index, WordPress core blocks, Block documentation index, WordPress block types, Block theme development, WordPress block catalog"
         canonical="/blocks"
-        ogType="website"
-        schema={[indexSchema, breadcrumbSchema]}
+        ogType="article"
+        schema={[indexSchema]}
+      />
+      <PageHeader
+        icon={Layers}
+        iconColor="text-neon-blue"
+        iconBgColor="bg-neon-blue/20"
+        title="Block Index"
+        description="Browse all documented WordPress core blocks with descriptions, difficulty levels, and features. Complete block index for developers building block themes and custom layouts."
+        badges={categories.map(cat => ({ text: cat.name, variant: "outline", className: cat.color }))}
       />
       <div className="space-y-8">
-        {/* Header */}
-        <div className="space-y-4">
-          <div className="flex items-center space-x-2">
-            <div className="p-2 rounded-lg bg-neon-blue/20">
-              <BookOpen className="h-6 w-6 text-neon-blue" />
-            </div>
-            <h1 className="text-4xl font-bold text-foreground mb-0">
-              WordPress Blocks Overview
-            </h1>
-          </div>
-          <p className="text-xl text-muted-foreground">
-            Comprehensive reference to all documented WordPress core blocks.
-            Find the right block for your project with detailed descriptions,
-            difficulty levels, and feature highlights.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            <Badge
-              variant="secondary"
-              className="bg-neon-blue/20 text-neon-blue border-neon-blue/30"
-            >
-              {coreBlocks.length} Blocks Documented
-            </Badge>
-            <Badge variant="outline">
-              {essentialBlocks.length} Essential Blocks
-            </Badge>
-            <Badge variant="outline">7 Categories</Badge>
-            <Badge variant="outline">Code Examples</Badge>
-            <Badge variant="outline">Best Practices</Badge>
-          </div>
-        </div>
-
-        <Separator />
-
-        {/* Essential Blocks Spotlight */}
-        <div className="space-y-6">
-          <div className="flex items-center space-x-2">
-            <Star className="h-5 w-5 text-neon-pink" />
-            <h2 className="text-2xl font-semibold text-foreground">
-              Essential Blocks
-            </h2>
-            <Badge
-              variant="secondary"
-              className="bg-neon-pink/20 text-neon-pink border-neon-pink/30"
-            >
-              Start Here
-            </Badge>
-          </div>
-          <p className="text-muted-foreground">
-            These are the most important blocks for WordPress block theme
-            development. Master these first for a solid foundation.
-          </p>
-
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
-            {essentialBlocks.map((block) => {
-              const Icon = block.icon;
-              return (
-                <Link key={block.name} to={block.href}>
-                  <Card className="bg-card/50 backdrop-blur border-border/50 hover:border-neon-blue/50 transition-all duration-200 group">
-                    <CardHeader className="pb-3">
-                      <CardTitle className="flex items-center justify-between">
-                        <div className="flex items-center space-x-2">
-                          <Icon className="h-5 w-5 text-neon-blue" />
-                          <span className="group-hover:text-neon-blue transition-colors">
-                            {block.name}
-                          </span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <Badge
-                            variant="outline"
-                            className={difficultyColors[block.difficulty]}
-                          >
-                            {block.difficulty}
-                          </Badge>
-                          <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-neon-blue group-hover:translate-x-1 transition-all" />
-                        </div>
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                      <CardDescription className="mb-3">
-                        {block.description}
-                      </CardDescription>
-                      <div className="flex flex-wrap gap-1">
-                        {block.features.slice(0, 3).map((feature) => (
-                          <Badge
-                            key={feature}
-                            variant="secondary"
-                            className="text-xs"
-                          >
-                            {feature}
-                          </Badge>
-                        ))}
-                        {block.features.length > 3 && (
-                          <Badge variant="secondary" className="text-xs">
-                            +{block.features.length - 3} more
-                          </Badge>
-                        )}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-
-        <Separator />
-
-        {/* Search and Filter */}
-        <div className="space-y-6">
-          <div className="flex items-center space-x-2">
-            <Search className="h-5 w-5 text-neon-cyan" />
-            <h2 className="text-2xl font-semibold text-foreground">
-              Browse All Blocks
-            </h2>
-          </div>
-
-          {/* Search Bar */}
-          <div className="relative max-w-md">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Search blocks, features, or descriptions..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
-            />
-          </div>
-
-          {/* Category Filter */}
-          <div className="flex flex-wrap gap-2">
-            {categories.map((category) => (
-              <button
-                key={category.name}
-                onClick={() => setSelectedCategory(category.name)}
-                className={`px-3 py-1 rounded-full text-sm transition-all ${
-                  selectedCategory === category.name
-                    ? category.color
-                    : "bg-muted/50 text-muted-foreground hover:bg-muted"
-                }`}
+        <ContentSection title="All Blocks" icon={Layers} iconColor="text-neon-blue">
+          {/* Essential Blocks Spotlight */}
+          <div className="space-y-6">
+            <div className="flex items-center space-x-2">
+              <Star className="h-5 w-5 text-neon-pink" />
+              <h2 className="text-2xl font-semibold text-foreground mt-4">
+                Essential Blocks
+              </h2>
+              <Badge
+                variant="secondary"
+                className="bg-neon-pink/20 text-neon-pink border-neon-pink/30"
               >
-                {category.name} ({category.count})
-              </button>
-            ))}
-          </div>
-        </div>
+                Start Here
+              </Badge>
+            </div>
+            <p className="text-muted-foreground">
+              These are the most important blocks for WordPress block theme
+              development. Master these first for a solid foundation.
+            </p>
 
-        {/* Blocks Grid */}
-        <div className="space-y-4">
-          {filteredBlocks.length === 0 ? (
-            <Card className="bg-card/50 backdrop-blur border-border/50">
-              <CardContent className="p-8 text-center">
-                <Search className="h-8 w-8 mx-auto mb-4 text-muted-foreground" />
-                <h3 className="text-lg font-semibold mb-2">No blocks found</h3>
-                <p className="text-muted-foreground">
-                  Try adjusting your search terms or selecting a different
-                  category.
-                </p>
-              </CardContent>
-            </Card>
-          ) : (
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {filteredBlocks.map((block) => {
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
+              {essentialBlocks.map((block) => {
                 const Icon = block.icon;
                 return (
                   <Link key={block.name} to={block.href}>
-                    <Card className="bg-card/50 backdrop-blur border-border/50 hover:border-neon-blue/50 transition-all duration-200 group h-full">
+                    <Card className="bg-card/50 backdrop-blur border-border/50 hover:border-neon-blue/50 transition-all duration-200 group">
                       <CardHeader className="pb-3">
                         <CardTitle className="flex items-center justify-between">
                           <div className="flex items-center space-x-2">
@@ -451,34 +322,23 @@ export default function BlockIndex() {
                               {block.name}
                             </span>
                           </div>
-                          <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-neon-blue group-hover:translate-x-1 transition-all" />
+                          <div className="flex items-center space-x-2">
+                            <Badge
+                              variant="outline"
+                              className={difficultyColors[block.difficulty]}
+                            >
+                              {block.difficulty}
+                            </Badge>
+                            <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-neon-blue group-hover:translate-x-1 transition-all" />
+                          </div>
                         </CardTitle>
                       </CardHeader>
-                      <CardContent className="pt-0 space-y-3">
-                        <CardDescription>{block.description}</CardDescription>
-
-                        <div className="flex items-center justify-between">
-                          <Badge
-                            variant="outline"
-                            className={difficultyColors[block.difficulty]}
-                          >
-                            {block.difficulty}
-                          </Badge>
-                          <Badge variant="outline" className="text-xs">
-                            {block.category}
-                          </Badge>
-                          {block.essential && (
-                            <Badge
-                              variant="secondary"
-                              className="bg-neon-pink/20 text-neon-pink border-neon-pink/30 text-xs"
-                            >
-                              Essential
-                            </Badge>
-                          )}
-                        </div>
-
+                      <CardContent className="pt-0">
+                        <CardDescription className="mb-3">
+                          {block.description}
+                        </CardDescription>
                         <div className="flex flex-wrap gap-1">
-                          {block.features.map((feature) => (
+                          {block.features.slice(0, 3).map((feature) => (
                             <Badge
                               key={feature}
                               variant="secondary"
@@ -487,6 +347,11 @@ export default function BlockIndex() {
                               {feature}
                             </Badge>
                           ))}
+                          {block.features.length > 3 && (
+                            <Badge variant="secondary" className="text-xs">
+                              +{block.features.length - 3} more
+                            </Badge>
+                          )}
                         </div>
                       </CardContent>
                     </Card>
@@ -494,19 +359,125 @@ export default function BlockIndex() {
                 );
               })}
             </div>
-          )}
-        </div>
-
-        {/* Learning Path */}
-        <div className="space-y-6">
-          <Separator />
-          <div className="flex items-center space-x-2">
-            <TrendingUp className="h-5 w-5 text-neon-purple" />
-            <h2 className="text-2xl font-semibold text-foreground">
-              Recommended Learning Path
-            </h2>
           </div>
 
+          <Separator />
+
+          {/* Search and Filter */}
+          <div className="space-y-6">
+            <div className="flex items-center space-x-2">
+              <Search className="h-5 w-5 text-neon-cyan" />
+              <h2 className="text-2xl font-semibold text-foreground">
+                Browse All Blocks
+              </h2>
+            </div>
+
+            {/* Search Bar */}
+            <div className="relative max-w-md">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder="Search blocks, features, or descriptions..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10"
+              />
+            </div>
+
+            {/* Category Filter */}
+            <div className="flex flex-wrap gap-2">
+              {categories.map((category) => (
+                <button
+                  key={category.name}
+                  onClick={() => setSelectedCategory(category.name)}
+                  className={`px-3 py-1 rounded-full text-sm transition-all ${
+                    selectedCategory === category.name
+                      ? category.color
+                      : "bg-muted/50 text-muted-foreground hover:bg-muted"
+                  }`}
+                >
+                  {category.name} ({category.count})
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Blocks Grid */}
+          <div className="space-y-4">
+            {filteredBlocks.length === 0 ? (
+              <Card className="bg-card/50 backdrop-blur border-border/50">
+                <CardContent className="p-8 text-center">
+                  <Search className="h-8 w-8 mx-auto mb-4 text-muted-foreground" />
+                  <h3 className="text-lg font-semibold mb-2">No blocks found</h3>
+                  <p className="text-muted-foreground">
+                    Try adjusting your search terms or selecting a different
+                    category.
+                  </p>
+                </CardContent>
+              </Card>
+            ) : (
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                {filteredBlocks.map((block) => {
+                  const Icon = block.icon;
+                  return (
+                    <Link key={block.name} to={block.href}>
+                      <Card className="bg-card/50 backdrop-blur border-border/50 hover:border-neon-blue/50 transition-all duration-200 group h-full">
+                        <CardHeader className="pb-3">
+                          <CardTitle className="flex items-center justify-between">
+                            <div className="flex items-center space-x-2">
+                              <Icon className="h-5 w-5 text-neon-blue" />
+                              <span className="group-hover:text-neon-blue transition-colors">
+                                {block.name}
+                              </span>
+                            </div>
+                            <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-neon-blue group-hover:translate-x-1 transition-all" />
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent className="pt-0 space-y-3">
+                          <CardDescription>{block.description}</CardDescription>
+
+                          <div className="flex items-center justify-between">
+                            <Badge
+                              variant="outline"
+                              className={difficultyColors[block.difficulty]}
+                            >
+                              {block.difficulty}
+                            </Badge>
+                            <Badge variant="outline" className="text-xs">
+                              {block.category}
+                            </Badge>
+                            {block.essential && (
+                              <Badge
+                                variant="secondary"
+                                className="bg-neon-pink/20 text-neon-pink border-neon-pink/30 text-xs"
+                              >
+                                Essential
+                              </Badge>
+                            )}
+                          </div>
+
+                          <div className="flex flex-wrap gap-1">
+                            {block.features.map((feature) => (
+                              <Badge
+                                key={feature}
+                                variant="secondary"
+                                className="text-xs"
+                              >
+                                {feature}
+                              </Badge>
+                            ))}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        </ContentSection>
+
+        {/* Learning Path */}
+        <ContentSection title="Recommended Learning Path" icon={TrendingUp} iconColor="text-neon-purple">
           <div className="grid gap-6 md:grid-cols-3">
             <Card className="bg-gradient-to-br from-green-500/10 to-green-600/10 border-green-500/30">
               <CardHeader>
@@ -571,11 +542,10 @@ export default function BlockIndex() {
               </CardContent>
             </Card>
           </div>
-        </div>
+        </ContentSection>
 
         {/* Quick Actions */}
-        <div className="space-y-6">
-          <Separator />
+        <ContentSection title="Quick Actions" icon={Zap} iconColor="text-neon-cyan">
           <div className="grid gap-4 md:grid-cols-3">
             <Link to="/patterns">
               <Card className="bg-card/50 backdrop-blur border-border/50 hover:border-neon-cyan/50 transition-all duration-200 group">
@@ -619,7 +589,7 @@ export default function BlockIndex() {
               </Card>
             </Link>
           </div>
-        </div>
+        </ContentSection>
       </div>
     </>
   );

@@ -23,6 +23,8 @@ import {
   generateBreadcrumbSchema,
 } from "@/components/SEO";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { PageHeader } from "@/components/PageHeader";
+import { ContentSection } from "@/components/ContentSection";
 
 export default function QueryLoopBlock() {
   const queryLoopSchema = generateDocumentationSchema(
@@ -61,51 +63,27 @@ export default function QueryLoopBlock() {
         schema={[queryLoopSchema, breadcrumbSchema]}
         lastModified="2024-01-15T10:00:00Z"
       />
+      <PageHeader
+        icon={Database}
+        iconColor="text-neon-purple"
+        iconBgColor="bg-neon-purple/20"
+        title="Query Loop Block"
+        description="The Query Loop block is the powerhouse of dynamic content in WordPress block themes. It displays lists of posts, pages, or custom post types with complete control over queries, templates, and pagination."
+        badges={[
+          { text: "Dynamic Content", variant: "secondary", className: "bg-neon-purple/20 text-neon-purple border-neon-purple/30" },
+          { text: "Block Themes", variant: "outline" },
+          { text: "FSE Essential", variant: "outline" },
+          { text: "Template Parts", variant: "outline" },
+          { text: "Custom Queries", variant: "outline" },
+        ]}
+      />
       <div className="space-y-8">
-        {/* Header */}
-        <div className="space-y-4">
-          <div className="flex items-center space-x-2">
-            <div className="p-2 rounded-lg bg-neon-purple/20">
-              <Database className="h-6 w-6 text-neon-purple" />
-            </div>
-            <h1 className="text-4xl font-bold text-foreground mb-0">
-              Query Loop Block
-            </h1>
-          </div>
-          <p className="text-xl text-muted-foreground">
-            The Query Loop block is the powerhouse of dynamic content in
-            WordPress block themes. It displays lists of posts, pages, or custom
-            post types with complete control over queries, templates, and
-            pagination.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            <Badge
-              variant="secondary"
-              className="bg-neon-purple/20 text-neon-purple border-neon-purple/30"
-            >
-              Dynamic Content
-            </Badge>
-            <Badge variant="outline">Block Themes</Badge>
-            <Badge variant="outline">FSE Essential</Badge>
-            <Badge variant="outline">Template Parts</Badge>
-            <Badge variant="outline">Custom Queries</Badge>
-          </div>
-        </div>
-
-        <Separator />
-
-        {/* Basic Usage */}
-        <div className="space-y-6">
+        <ContentSection title="Basic Usage" icon={Database} iconColor="text-neon-purple">
           <Card className="bg-card/50 backdrop-blur border-border/50">
             <CardHeader>
-              <CardTitle className="flex items-center">
-                <Database className="mr-2 h-5 w-5 text-neon-purple" />
-                Basic Query Loop
+              <CardTitle className="text-lg">
+                Simple Query Loop to display recent posts
               </CardTitle>
-              <CardDescription>
-                The simplest Query Loop displays recent posts with default
-                template
-              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center gap-2">
@@ -147,14 +125,9 @@ export default function QueryLoopBlock() {
               </Alert>
             </CardContent>
           </Card>
-        </div>
+        </ContentSection>
 
-        {/* Key Concepts */}
-        <div className="space-y-6">
-          <h2 className="text-2xl font-semibold text-foreground">
-            Key Concepts & Gotchas
-          </h2>
-
+        <ContentSection title="Key Concepts & Gotchas" icon={Lightbulb} iconColor="text-blue-500">
           <div className="grid gap-6 md:grid-cols-2">
             <Card className="bg-amber-500/10 border-amber-500/30">
               <CardContent className="p-6">
@@ -229,15 +202,9 @@ export default function QueryLoopBlock() {
               </CardContent>
             </Card>
           </div>
-        </div>
+        </ContentSection>
 
-        {/* Properties Reference */}
-        <div className="space-y-6">
-          <h2 className="text-2xl font-semibold text-foreground">
-            Query Loop Properties
-          </h2>
-          <PropertiesReference blockType="query-loop" />
-        </div>
+        <PropertiesReference blockType="query-loop" />
       </div>
     </>
   );

@@ -5,9 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Separator } from "@/components/ui/separator";
 import {
   AlertCircle,
   List,
@@ -23,6 +21,8 @@ import {
   generateDocumentationSchema,
   generateBreadcrumbSchema,
 } from "@/components/SEO";
+import { PageHeader } from "@/components/PageHeader";
+import { ContentSection } from "@/components/ContentSection";
 
 export default function ListBlock() {
   const listSchema = generateDocumentationSchema(
@@ -61,47 +61,27 @@ export default function ListBlock() {
         schema={[listSchema, breadcrumbSchema]}
         lastModified="2024-01-15T10:00:00Z"
       />
+      <PageHeader
+        icon={List}
+        iconColor="text-neon-blue"
+        iconBgColor="bg-neon-blue/20"
+        title="List Block"
+        description="The List block creates semantic ordered and unordered lists with full control over styling, nesting, and formatting. Essential for structured content and improved SEO."
+        badges={[
+          { text: "Content Structure", variant: "secondary", className: "bg-neon-blue/20 text-neon-blue border-neon-blue/30" },
+          { text: "Semantic HTML", variant: "outline" },
+          { text: "Nested Lists", variant: "outline" },
+          { text: "SEO Friendly", variant: "outline" },
+          { text: "Accessible", variant: "outline" },
+        ]}
+      />
       <div className="space-y-8">
-        {/* Header */}
-        <div className="space-y-4">
-          <div className="flex items-center space-x-2">
-            <div className="p-2 rounded-lg bg-neon-blue/20">
-              <List className="h-6 w-6 text-neon-blue" />
-            </div>
-            <h1 className="text-4xl font-bold text-foreground mb-0">List Block</h1>
-          </div>
-          <p className="text-xl text-muted-foreground">
-            The List block creates semantic ordered and unordered lists with
-            full control over styling, nesting, and formatting. Essential for
-            structured content and improved SEO.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            <Badge
-              variant="secondary"
-              className="bg-neon-blue/20 text-neon-blue border-neon-blue/30"
-            >
-              Content Structure
-            </Badge>
-            <Badge variant="outline">Semantic HTML</Badge>
-            <Badge variant="outline">Nested Lists</Badge>
-            <Badge variant="outline">SEO Friendly</Badge>
-            <Badge variant="outline">Accessible</Badge>
-          </div>
-        </div>
-
-        <Separator />
-
-        {/* Basic Usage */}
-        <div className="space-y-6">
+        <ContentSection title="Basic Usage" icon={List} iconColor="text-neon-blue">
           <Card className="bg-card/50 backdrop-blur border-border/50">
             <CardHeader>
-              <CardTitle className="flex items-center">
-                <List className="mr-2 h-5 w-5 text-neon-blue" />
-                Basic Unordered List
-              </CardTitle>
-              <CardDescription>
+              <CardTitle className="text-lg">
                 Simple bullet-point list for related items
-              </CardDescription>
+              </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center gap-2">
@@ -133,14 +113,9 @@ export default function ListBlock() {
               />
             </CardContent>
           </Card>
-        </div>
+        </ContentSection>
 
-        {/* List Types */}
-        <div className="space-y-6">
-          <h2 className="text-2xl font-semibold text-foreground">
-            List Types & Variations
-          </h2>
-
+        <ContentSection title="List Types & Variations" icon={Hash} iconColor="text-neon-purple">
           <Tabs defaultValue="ordered" className="w-full">
             <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="ordered">Ordered Lists</TabsTrigger>
@@ -370,14 +345,10 @@ export default function ListBlock() {
               </Card>
             </TabsContent>
           </Tabs>
-        </div>
+        </ContentSection>
 
         {/* Key Concepts */}
-        <div className="space-y-6">
-          <h2 className="text-2xl font-semibold text-foreground">
-            List Best Practices & Guidelines
-          </h2>
-
+        <ContentSection title="List Best Practices & Guidelines" icon={AlertCircle} iconColor="text-amber-500">
           <div className="grid gap-6 md:grid-cols-2">
             <Card className="bg-green-500/10 border-green-500/30">
               <CardContent className="p-6">
@@ -451,15 +422,9 @@ export default function ListBlock() {
               </CardContent>
             </Card>
           </div>
-        </div>
+        </ContentSection>
 
-        {/* Properties Reference */}
-        <div className="space-y-6">
-          <h2 className="text-2xl font-semibold text-foreground">
-            List Properties
-          </h2>
-          <PropertiesReference blockType="list" />
-        </div>
+        <PropertiesReference blockType="list" />
       </div>
     </>
   );

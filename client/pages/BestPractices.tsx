@@ -21,6 +21,8 @@ import {
 } from "lucide-react";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
 import { generateDocumentationSchema, SEO } from "@/components/SEO";
+import { PageHeader } from "@/components/PageHeader";
+import { ContentSection } from "@/components/ContentSection";
 
 export default function BestPractices() {
   const bestPracticesSchema = generateDocumentationSchema(
@@ -45,45 +47,22 @@ export default function BestPractices() {
         ogType="article"
         schema={[bestPracticesSchema]}
       />
+      <PageHeader
+        icon={CheckCircle}
+        iconColor="text-green-500"
+        iconBgColor="bg-green-500/20"
+        title="Best Practices"
+        description="Follow these proven best practices to create maintainable, accessible, and performant WordPress block themes. These guidelines will help you avoid common pitfalls and build sites that work well for everyone."
+        badges={[
+          { text: "Best Practices", variant: "secondary", className: "bg-green-500/20 text-green-500 border-green-500/30" },
+          { text: "Performance", variant: "outline" },
+          { text: "Accessibility", variant: "outline" },
+          { text: "SEO", variant: "outline" }
+        ]}
+      />
       <div className="space-y-8">
-        {/* Header */}
-        <div className="space-y-4">
-          <div className="flex items-center space-x-2">
-            <div className="p-2 rounded-lg bg-green-500/20">
-              <CheckCircle className="h-6 w-6 text-green-500" />
-            </div>
-            <h1 className="text-4xl font-bold text-foreground mb-0">
-              Best Practices
-            </h1>
-          </div>
-          <p className="text-xl text-muted-foreground">
-            Follow these proven best practices to create maintainable,
-            accessible, and performant WordPress block themes. These guidelines
-            will help you avoid common pitfalls and build sites that work well
-            for everyone.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            <Badge
-              variant="secondary"
-              className="bg-green-500/20 text-green-500 border-green-500/30"
-            >
-              Best Practices
-            </Badge>
-            <Badge variant="outline">Performance</Badge>
-            <Badge variant="outline">Accessibility</Badge>
-            <Badge variant="outline">SEO</Badge>
-          </div>
-        </div>
-
-        <Separator />
-
         {/* Block Structure & Semantic HTML */}
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground flex items-center">
-            <Code className="mr-2 h-5 w-5 text-neon-blue" />
-            Block Structure & Semantic HTML
-          </h2>
-
+        <ContentSection title="Block Structure & Semantic HTML" icon={Code} iconColor="text-neon-blue">
           <div className="space-y-6">
             <Card className="bg-green-500/10 border-green-500/30">
               <CardHeader>
@@ -201,15 +180,10 @@ export default function BestPractices() {
               </CardContent>
             </Card>
           </div>
-        </div>
+        </ContentSection>
 
         {/* Performance Best Practices */}
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground flex items-center">
-            <Zap className="mr-2 h-5 w-5 text-yellow-500" />
-            Performance Best Practices
-          </h2>
-
+        <ContentSection title="Performance Best Practices" icon={Zap} iconColor="text-yellow-500">
           <div className="space-y-6">
             <Card className="bg-yellow-500/10 border-yellow-500/30">
               <CardHeader>
@@ -310,15 +284,10 @@ export default function BestPractices() {
               </CardContent>
             </Card>
           </div>
-        </div>
+        </ContentSection>
 
         {/* Accessibility Best Practices */}
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground flex items-center">
-            <Accessibility className="mr-2 h-5 w-5 text-blue-500" />
-            Accessibility Best Practices
-          </h2>
-
+        <ContentSection title="Accessibility Best Practices" icon={Accessibility} iconColor="text-blue-500">
           <div className="space-y-6">
             <Card className="bg-blue-500/10 border-blue-500/30">
               <CardHeader>
@@ -395,15 +364,10 @@ export default function BestPractices() {
               </CardContent>
             </Card>
           </div>
-        </div>
+        </ContentSection>
 
         {/* Mobile & Responsive Design */}
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground flex items-center">
-            <Smartphone className="mr-2 h-5 w-5 text-purple-500" />
-            Mobile & Responsive Design
-          </h2>
-
+        <ContentSection title="Mobile & Responsive Design" icon={Smartphone} iconColor="text-purple-500">
           <div className="space-y-6">
             <Card className="bg-purple-500/10 border-purple-500/30">
               <CardHeader>
@@ -447,15 +411,10 @@ export default function BestPractices() {
               </CardContent>
             </Card>
           </div>
-        </div>
+        </ContentSection>
 
         {/* SEO Best Practices */}
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground flex items-center">
-            <Search className="mr-2 h-5 w-5 text-green-500" />
-            SEO Best Practices
-          </h2>
-
+        <ContentSection title="SEO Best Practices" icon={Search} iconColor="text-green-500">
           <div className="space-y-6">
             <Card className="bg-green-500/10 border-green-500/30">
               <CardHeader>
@@ -498,7 +457,7 @@ export default function BestPractices() {
               </CardContent>
             </Card>
           </div>
-        </div>
+        </ContentSection>
 
         {/* Summary */}
         <div className="space-y-4">

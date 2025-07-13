@@ -21,6 +21,8 @@ import {
 } from "lucide-react";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
 import { generateDocumentationSchema, SEO } from "@/components/SEO";
+import { PageHeader } from "@/components/PageHeader";
+import { ContentSection } from "@/components/ContentSection";
 
 export default function FSEQuirks() {
   const fseQuirksSchema = generateDocumentationSchema(
@@ -45,43 +47,20 @@ export default function FSEQuirks() {
         ogType="article"
         schema={[fseQuirksSchema]}
       />
-      <div className="space-y-8">
-      {/* Header */}
-      <div className="space-y-4">
-        <div className="flex items-center space-x-2">
-          <div className="p-2 rounded-lg bg-yellow-500/20">
-            <AlertTriangle className="h-6 w-6 text-yellow-500" />
-          </div>
-          <h1 className="text-4xl font-bold text-foreground mb-0">FSE Quirks</h1>
-        </div>
-        <p className="text-xl text-muted-foreground">
-          Full Site Editing (FSE) introduces powerful capabilities but also
-          brings unique challenges and unexpected behaviors. This guide covers
-          the most important quirks, gotchas, and workarounds you need to know
-          when working with WordPress block themes and FSE features.
-        </p>
-        <div className="flex flex-wrap gap-2">
-          <Badge
-            variant="secondary"
-            className="bg-yellow-500/20 text-yellow-500 border-yellow-500/30"
-          >
-            Full Site Editing
-          </Badge>
-          <Badge variant="outline">Block Themes</Badge>
-          <Badge variant="outline">Template Parts</Badge>
-          <Badge variant="outline">Global Styles</Badge>
-        </div>
-      </div>
-
-      <Separator />
-
-      {/* Template Quirks */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold text-foreground flex items-center">
-          <Layout className="mr-2 h-5 w-5 text-neon-pink" />
-          Template & Template Part Quirks
-        </h2>
-
+      <PageHeader
+        icon={AlertTriangle}
+        iconColor="text-yellow-500"
+        iconBgColor="bg-yellow-500/20"
+        title="FSE Quirks"
+        description="Full Site Editing (FSE) introduces powerful capabilities but also brings unique challenges and unexpected behaviors. This guide covers the most important quirks, gotchas, and workarounds you need to know when working with WordPress block themes and FSE features."
+        badges={[
+          { text: "Full Site Editing", className: "bg-yellow-500/20 text-yellow-500 border-yellow-500/30" },
+          { text: "Block Themes", variant: "outline" },
+          { text: "Template Parts", variant: "outline" },
+          { text: "Global Styles", variant: "outline" },
+        ]}
+      />
+      <ContentSection title="Template & Template Part Quirks" icon={Layout} iconColor="text-neon-pink">
         <div className="space-y-6">
           <Card className="bg-red-500/10 border-red-500/30">
             <CardHeader>
@@ -153,15 +132,8 @@ Customized templates in database override file-based templates`}
             </CardContent>
           </Card>
         </div>
-      </div>
-
-      {/* Global Styles Quirks */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold text-foreground flex items-center">
-          <Settings className="mr-2 h-5 w-5 text-neon-blue" />
-          Global Styles & Theme.json Quirks
-        </h2>
-
+      </ContentSection>
+      <ContentSection title="Global Styles & Theme.json Quirks" icon={Settings} iconColor="text-neon-blue">
         <div className="space-y-6">
           <Card className="bg-red-500/10 border-red-500/30">
             <CardHeader>
@@ -243,15 +215,8 @@ Customized templates in database override file-based templates`}
             </CardContent>
           </Card>
         </div>
-      </div>
-
-      {/* Block Rendering Quirks */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold text-foreground flex items-center">
-          <Eye className="mr-2 h-5 w-5 text-neon-cyan" />
-          Block Rendering Quirks
-        </h2>
-
+      </ContentSection>
+      <ContentSection title="Block Rendering Quirks" icon={Eye} iconColor="text-neon-cyan">
         <div className="space-y-6">
           <Card className="bg-red-500/10 border-red-500/30">
             <CardHeader>
@@ -339,15 +304,8 @@ Customized templates in database override file-based templates`}
             </CardContent>
           </Card>
         </div>
-      </div>
-
-      {/* Performance Quirks */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold text-foreground flex items-center">
-          <Zap className="mr-2 h-5 w-5 text-yellow-500" />
-          Performance & Loading Quirks
-        </h2>
-
+      </ContentSection>
+      <ContentSection title="Performance & Loading Quirks" icon={Zap} iconColor="text-yellow-500">
         <div className="space-y-6">
           <Card className="bg-red-500/10 border-red-500/30">
             <CardHeader>
@@ -414,15 +372,8 @@ Customized templates in database override file-based templates`}
             </CardContent>
           </Card>
         </div>
-      </div>
-
-      {/* WordPress Version Quirks */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold text-foreground flex items-center">
-          <Code className="mr-2 h-5 w-5 text-neon-purple" />
-          Version-Specific Quirks
-        </h2>
-
+      </ContentSection>
+      <ContentSection title="Version-Specific Quirks" icon={Code} iconColor="text-neon-purple">
         <div className="space-y-6">
           <Card className="bg-blue-500/10 border-blue-500/30">
             <CardHeader>
@@ -467,15 +418,8 @@ Customized templates in database override file-based templates`}
             </CardContent>
           </Card>
         </div>
-      </div>
-
-      {/* Common Solutions */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold text-foreground flex items-center">
-          <Lightbulb className="mr-2 h-5 w-5 text-green-500" />
-          Common Solutions & Workarounds
-        </h2>
-
+      </ContentSection>
+      <ContentSection title="Common Solutions & Workarounds" icon={Lightbulb} iconColor="text-green-500">
         <div className="grid lg:grid-cols-2 gap-6">
           <Card className="bg-green-500/10 border-green-500/30">
             <CardHeader>
@@ -509,14 +453,8 @@ Customized templates in database override file-based templates`}
             </CardContent>
           </Card>
         </div>
-      </div>
-
-      {/* Resources */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold text-foreground">
-          Additional Resources
-        </h2>
-
+      </ContentSection>
+      <ContentSection title="Additional Resources">
         <Card className="bg-card/50 backdrop-blur border-border/50">
           <CardContent className="py-6">
             <div className="grid md:grid-cols-2 gap-6">
@@ -545,8 +483,7 @@ Customized templates in database override file-based templates`}
             </div>
           </CardContent>
         </Card>
-      </div>
-    </div>
+      </ContentSection>
     </>
   );
 }

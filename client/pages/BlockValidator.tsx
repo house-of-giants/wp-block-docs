@@ -24,6 +24,8 @@ import {
 } from "lucide-react";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
 import { generateDocumentationSchema, SEO } from "@/components/SEO";
+import { PageHeader } from "@/components/PageHeader";
+import { ContentSection } from "@/components/ContentSection";
 
 interface ValidationResult {
   type: "error" | "warning" | "success" | "info";
@@ -452,40 +454,20 @@ export default function BlockValidator() {
         ogType="article"
         schema={[blockValidatorSchema]}
       />
+      <PageHeader
+        icon={CheckCircle}
+        iconColor="text-green-500"
+        iconBgColor="bg-green-500/20"
+        title="Block Validator"
+        description="Validate your WordPress block markup with custom syntax highlighting designed specifically for WP blocks. Get real-time feedback on syntax errors, accessibility issues, and best practices."
+        badges={[
+          { text: "Validator", variant: "secondary", className: "bg-green-500/20 text-green-500 border-green-500/30" },
+          { text: "Accessibility", variant: "outline" },
+          { text: "Best Practices", variant: "outline" },
+        ]}
+      />
       <div className="space-y-8">
-        {/* Header */}
-        <div className="space-y-4">
-          <div className="flex items-center space-x-2">
-            <div className="p-2 rounded-lg bg-neon-blue/20">
-              <Code className="h-6 w-6 text-neon-blue" />
-            </div>
-            <h1 className="text-4xl font-bold text-foreground mb-0">
-              Block Validator
-            </h1>
-          </div>
-          <p className="text-xl text-muted-foreground">
-            Validate your WordPress block markup with custom syntax highlighting
-            designed specifically for WP blocks. Get real-time feedback on syntax
-            errors, accessibility issues, and best practices.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            <Badge
-              variant="secondary"
-              className="bg-neon-blue/20 text-neon-blue border-neon-blue/30"
-            >
-              Real-time Validation
-            </Badge>
-            <Badge variant="outline">Custom Syntax Highlighting</Badge>
-            <Badge variant="outline">Accessibility Checks</Badge>
-            <Badge variant="outline">Performance Tips</Badge>
-            <Badge variant="outline">Auto-fix Suggestions</Badge>
-          </div>
-        </div>
-
-        <Separator />
-
-        {/* Validator Interface */}
-        <div className="grid lg:grid-cols-2 gap-6">
+        <ContentSection title="Block Validator Tool" icon={CheckCircle} iconColor="text-green-500">
           {/* Input Section */}
           <Card className="bg-card/50 backdrop-blur border-border/50">
             <CardHeader>
@@ -609,7 +591,7 @@ export default function BlockValidator() {
               )}
             </CardContent>
           </Card>
-        </div>
+        </ContentSection>
 
         {/* Enhanced Results */}
         {results.length > 0 && (
@@ -749,13 +731,7 @@ export default function BlockValidator() {
         )}
 
         {/* Quick Tips */}
-        <Card className="bg-card/50 backdrop-blur border-border/50">
-          <CardHeader>
-            <CardTitle className="flex items-center">
-              <Lightbulb className="mr-2 h-5 w-5 text-neon-cyan" />
-              Validation Tips
-            </CardTitle>
-          </CardHeader>
+        <ContentSection title="Validation Tips" icon={Lightbulb} iconColor="text-neon-cyan">
           <CardContent>
             <div className="grid md:grid-cols-2 gap-6">
               <div>
@@ -780,7 +756,7 @@ export default function BlockValidator() {
               </div>
             </div>
           </CardContent>
-        </Card>
+        </ContentSection>
       </div>
     </>
   );

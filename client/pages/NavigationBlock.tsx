@@ -25,6 +25,8 @@ import {
   generateBreadcrumbSchema,
 } from "@/components/SEO";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { PageHeader } from "@/components/PageHeader";
+import { ContentSection } from "@/components/ContentSection";
 
 export default function NavigationBlock() {
   const navigationSchema = generateDocumentationSchema(
@@ -63,49 +65,27 @@ export default function NavigationBlock() {
         schema={[navigationSchema, breadcrumbSchema]}
         lastModified="2024-01-15T10:00:00Z"
       />
+      <PageHeader
+        icon={Navigation}
+        iconColor="text-neon-cyan"
+        iconBgColor="bg-neon-cyan/20"
+        title="Navigation Block"
+        description="The Navigation block creates responsive, accessible site navigation menus. Essential for block themes, it replaces traditional WordPress menus with a flexible, block-based approach."
+        badges={[
+          { text: "Site Navigation", variant: "secondary", className: "bg-neon-cyan/20 text-neon-cyan border-neon-cyan/30" },
+          { text: "Block Themes", variant: "outline" },
+          { text: "Responsive", variant: "outline" },
+          { text: "Accessibility", variant: "outline" },
+          { text: "Mobile Menu", variant: "outline" },
+        ]}
+      />
       <div className="space-y-8">
-        {/* Header */}
-        <div className="space-y-4">
-          <div className="flex items-center space-x-2">
-            <div className="p-2 rounded-lg bg-neon-cyan/20">
-              <Navigation className="h-6 w-6 text-neon-cyan" />
-            </div>
-            <h1 className="text-4xl font-bold text-foreground mb-0">
-              Navigation Block
-            </h1>
-          </div>
-          <p className="text-xl text-muted-foreground">
-            The Navigation block creates responsive, accessible site navigation
-            menus. Essential for block themes, it replaces traditional WordPress
-            menus with a flexible, block-based approach.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            <Badge
-              variant="secondary"
-              className="bg-neon-cyan/20 text-neon-cyan border-neon-cyan/30"
-            >
-              Site Navigation
-            </Badge>
-            <Badge variant="outline">Block Themes</Badge>
-            <Badge variant="outline">Responsive</Badge>
-            <Badge variant="outline">Accessibility</Badge>
-            <Badge variant="outline">Mobile Menu</Badge>
-          </div>
-        </div>
-
-        <Separator />
-
-        {/* Basic Usage */}
-        <div className="space-y-6">
+        <ContentSection title="Basic Usage" icon={Menu} iconColor="text-neon-cyan">
           <Card className="bg-card/50 backdrop-blur border-border/50">
             <CardHeader>
-              <CardTitle className="flex items-center">
-                <Menu className="mr-2 h-5 w-5 text-neon-cyan" />
-                Basic Navigation
-              </CardTitle>
-              <CardDescription>
+              <CardTitle className="text-lg">
                 Simple horizontal navigation with manual links
-              </CardDescription>
+              </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center gap-2">
@@ -157,14 +137,9 @@ export default function NavigationBlock() {
               </Alert>
             </CardContent>
           </Card>
-        </div>
+        </ContentSection>
 
-        {/* Advanced Examples */}
-        <div className="space-y-6">
-          <h2 className="text-2xl font-semibold text-foreground">
-            Navigation Patterns
-          </h2>
-
+        <ContentSection title="Navigation Patterns" icon={Navigation} iconColor="text-neon-cyan">
           <Tabs defaultValue="responsive" className="w-full">
             <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="responsive">Responsive</TabsTrigger>
@@ -478,14 +453,10 @@ export default function NavigationBlock() {
               </Card>
             </TabsContent>
           </Tabs>
-        </div>
+        </ContentSection>
 
         {/* Key Concepts */}
-        <div className="space-y-6">
-          <h2 className="text-2xl font-semibold text-foreground">
-            Navigation Concepts & Best Practices
-          </h2>
-
+        <ContentSection title="Navigation Concepts & Best Practices" icon={AlertCircle} iconColor="text-amber-500">
           <div className="grid gap-6 md:grid-cols-2">
             <Card className="bg-amber-500/10 border-amber-500/30">
               <CardContent className="p-6">
@@ -559,15 +530,9 @@ export default function NavigationBlock() {
               </CardContent>
             </Card>
           </div>
-        </div>
+        </ContentSection>
 
-        {/* Properties Reference */}
-        <div className="space-y-6">
-          <h2 className="text-2xl font-semibold text-foreground">
-            Navigation Properties
-          </h2>
-          <PropertiesReference blockType="navigation" />
-        </div>
+        <PropertiesReference blockType="navigation" />
       </div>
     </>
   );

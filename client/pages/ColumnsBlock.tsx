@@ -5,7 +5,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -21,6 +20,8 @@ import {
 import { PropertiesReference } from "@/components/PropertiesReference";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
 import { generateDocumentationSchema, SEO } from "@/components/SEO";
+import { PageHeader } from "@/components/PageHeader";
+import { ContentSection } from "@/components/ContentSection";
 
 export default function ColumnsBlock() {
   const columnsBlockSchema = generateDocumentationSchema(
@@ -45,42 +46,22 @@ export default function ColumnsBlock() {
         ogType="article"
         schema={[columnsBlockSchema]}
       />
-      {/* Header */}
-      <div className="space-y-8">
-        <div className="space-y-4">
-          <div className="flex items-center space-x-2">
-            <div className="p-2 rounded-lg bg-neon-blue/20">
-              <Columns className="h-6 w-6 text-neon-blue" />
-            </div>
-            <h1 className="text-4xl font-bold text-foreground mb-0">Columns Block</h1>
-          </div>
-          <p className="text-xl text-muted-foreground">
-            The Columns block creates responsive multi-column layouts using CSS
-            Grid and Flexbox. It automatically generates individual Column blocks
-            as containers for your content.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            <Badge
-              variant="secondary"
-              className="bg-neon-blue/20 text-neon-blue border-neon-blue/30"
-            >
-              Core Block
-            </Badge>
-            <Badge variant="outline">Layout Container</Badge>
-            <Badge variant="outline">Responsive</Badge>
-            <Badge variant="outline">CSS Grid</Badge>
-          </div>
-        </div>
-
-        <Separator />
-
+      <PageHeader
+        icon={Columns}
+        iconColor="text-neon-blue"
+        iconBgColor="bg-neon-blue/20"
+        title="Columns Block"
+        description="The Columns block creates responsive multi-column layouts using CSS Grid and Flexbox. It automatically generates individual Column blocks as containers for your content."
+        badges={[
+          { text: "Core Block", className: "bg-neon-blue/20 text-neon-blue border-neon-blue/30" },
+          { text: "Layout Container", variant: "outline" },
+          { text: "Responsive", variant: "outline" },
+          { text: "CSS Grid", variant: "outline" },
+        ]}
+      />
+      <ContentSection title="Basic Syntax" icon={Code} iconColor="text-neon-blue">
         {/* Basic Syntax */}
         <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground flex items-center">
-            <Code className="mr-2 h-5 w-5 text-neon-blue" />
-            Basic Syntax
-          </h2>
-
           <Card className="bg-card/50 backdrop-blur border-border/50">
             <CardHeader>
               <CardTitle className="text-lg">Two-Column Layout</CardTitle>
@@ -112,14 +93,10 @@ export default function ColumnsBlock() {
             </CardContent>
           </Card>
         </div>
-
+      </ContentSection>
+      <ContentSection title="Column Configurations" icon={Settings} iconColor="text-neon-pink">
         {/* Column Configurations */}
         <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground flex items-center">
-            <Settings className="mr-2 h-5 w-5 text-neon-pink" />
-            Column Configurations
-          </h2>
-
           <Tabs defaultValue="equal" className="w-full">
             <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="equal">Equal Width</TabsTrigger>
@@ -289,14 +266,10 @@ export default function ColumnsBlock() {
             </TabsContent>
           </Tabs>
         </div>
-
+      </ContentSection>
+      <ContentSection title="Advanced Features" icon={Eye} iconColor="text-neon-cyan">
         {/* Advanced Features */}
         <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground flex items-center">
-            <Eye className="mr-2 h-5 w-5 text-neon-cyan" />
-            Advanced Features
-          </h2>
-
           <div className="grid lg:grid-cols-2 gap-6">
             <Card className="bg-card/50 backdrop-blur border-border/50">
               <CardHeader>
@@ -347,13 +320,10 @@ export default function ColumnsBlock() {
             </Card>
           </div>
         </div>
-
+      </ContentSection>
+      <ContentSection title="Common Layout Patterns">
         {/* Common Patterns */}
         <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground">
-            Common Layout Patterns
-          </h2>
-
           <div className="space-y-6">
             <Card className="bg-card/50 backdrop-blur border-border/50">
               <CardHeader>
@@ -430,14 +400,10 @@ export default function ColumnsBlock() {
             </Card>
           </div>
         </div>
-
+      </ContentSection>
+      <ContentSection title="Tips & Gotchas" icon={Lightbulb} iconColor="text-yellow-500">
         {/* Gotchas & Tips */}
         <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground flex items-center">
-            <Lightbulb className="mr-2 h-5 w-5 text-yellow-500" />
-            Tips & Gotchas
-          </h2>
-
           <div className="space-y-4">
             <Card className="bg-red-500/10 border-red-500/30">
               <CardHeader>
@@ -477,17 +443,15 @@ export default function ColumnsBlock() {
             </Card>
           </div>
         </div>
+      </ContentSection>
 
-        {/* Properties Reference */}
-        <div className="space-y-4">
-          <Separator />
-          <PropertiesReference
-            blockType="columns"
-            title="Columns Block Properties"
-            description="Complete reference of all properties available to the Columns block and individual Column blocks, including universal block properties and Columns-specific attributes"
-          />
-        </div>
+      <PropertiesReference
+        blockType="columns"
+        title="Columns Block Properties"
+        description="Complete reference of all properties available to the Columns block and individual Column blocks, including universal block properties and Columns-specific attributes"
+      />
 
+      <ContentSection title="Related Blocks">
         {/* Related Blocks */}
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-foreground">
@@ -528,7 +492,7 @@ export default function ColumnsBlock() {
             </Card>
           </div>
         </div>
-      </div>
+      </ContentSection>
     </>
   );
 }

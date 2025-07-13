@@ -5,7 +5,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -23,6 +22,8 @@ import {
 import { PropertiesReference } from "@/components/PropertiesReference";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
 import { generateDocumentationSchema, SEO } from "@/components/SEO";
+import { PageHeader } from "@/components/PageHeader";
+import { ContentSection } from "@/components/ContentSection";
 
 export default function ButtonBlock() {
   const buttonBlockSchema = generateDocumentationSchema(
@@ -47,77 +48,21 @@ export default function ButtonBlock() {
         ogType="article"
         schema={[buttonBlockSchema]}
       />
-      {/* Header */}
-      <div className="space-y-8">
-        <div className="space-y-4">
-          <div className="flex items-center space-x-2">
-            <div className="p-2 rounded-lg bg-neon-purple/20">
-              <MousePointer className="h-6 w-6 text-neon-purple" />
-            </div>
-            <h1 className="text-4xl font-bold text-foreground mb-0">Button Block</h1>
-          </div>
-          <p className="text-xl text-muted-foreground">
-            The Button block creates call-to-action elements with customizable
-            styling, links, and accessibility features. It's essential for
-            conversions, navigation, and user interaction throughout your site.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            <Badge
-              variant="secondary"
-              className="bg-neon-purple/20 text-neon-purple border-neon-purple/30"
-            >
-              Core Block
-            </Badge>
-            <Badge variant="outline">Interactive</Badge>
-            <Badge variant="outline">Call-to-Action</Badge>
-            <Badge variant="outline">Customizable</Badge>
-          </div>
-        </div>
+      <PageHeader
+        icon={MousePointer}
+        iconColor="text-neon-purple"
+        iconBgColor="bg-neon-purple/20"
+        title="Button Block"
+        description="The Button block creates call-to-action elements with customizable styling, links, and accessibility features. It's essential for conversions, navigation, and user interaction throughout your site."
+        badges={[
+          { text: "Core Block", variant: "secondary", className: "bg-neon-purple/20 text-neon-purple border-neon-purple/30" },
+          { text: "Interactive", variant: "outline" },
+          { text: "Call-to-Action", variant: "outline" },
+          { text: "Customizable", variant: "outline" }
+        ]}
+      />
 
-        <Separator />
-
-        {/* Basic Syntax */}
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground flex items-center">
-            <Code className="mr-2 h-5 w-5 text-neon-blue" />
-            Basic Syntax
-          </h2>
-
-          <Card className="bg-card/50 backdrop-blur border-border/50">
-            <CardHeader>
-              <CardTitle className="text-lg">Simple Button</CardTitle>
-              <CardDescription>
-                Basic button with text and link destination
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <WPBlockCodeBlock
-                  code={`<!-- wp:buttons -->
-  <div class="wp-block-buttons">
-    <!-- wp:button -->
-    <div class="wp-block-button">
-      <a class="wp-block-button__link wp-element-button">
-        Click Me
-      </a>
-    </div>
-    <!-- /wp:button -->
-  </div>
-  <!-- /wp:buttons -->`}
-                  
-                />
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Button Wrapper Requirement */}
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground flex items-center">
-            <Code className="mr-2 h-5 w-5 text-neon-cyan" />
-            The wp:buttons Wrapper Requirement
-          </h2>
-
+      <ContentSection title="The wp:buttons Wrapper Requirement" icon={Code} iconColor="text-neon-cyan">
           <Card className="bg-yellow-500/10 border-yellow-500/30">
             <CardHeader>
               <CardTitle className="flex items-center text-yellow-600 dark:text-yellow-400">
@@ -199,15 +144,10 @@ export default function ButtonBlock() {
               </div>
             </CardContent>
           </Card>
-        </div>
+        </ContentSection>
 
         {/* Button Configurations */}
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground flex items-center">
-            <Settings className="mr-2 h-5 w-5 text-neon-pink" />
-            Button Configurations
-          </h2>
-
+        <ContentSection title="Button Configurations" icon={Settings} iconColor="text-neon-pink">
           <Tabs defaultValue="styling" className="w-full">
             <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="styling">Styling</TabsTrigger>
@@ -409,15 +349,10 @@ export default function ButtonBlock() {
               </Card>
             </TabsContent>
           </Tabs>
-        </div>
+        </ContentSection>
 
         {/* Button Styles */}
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground flex items-center">
-            <Palette className="mr-2 h-5 w-5 text-neon-cyan" />
-            Built-in Button Styles
-          </h2>
-
+        <ContentSection title="Built-in Button Styles" icon={Palette} iconColor="text-neon-cyan">
           <div className="grid lg:grid-cols-2 gap-6">
             <Card className="bg-card/50 backdrop-blur border-border/50">
               <CardHeader>
@@ -477,15 +412,10 @@ export default function ButtonBlock() {
               </CardContent>
             </Card>
           </div>
-        </div>
+        </ContentSection>
 
         {/* UX & Accessibility */}
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground flex items-center">
-            <Accessibility className="mr-2 h-5 w-5 text-green-500" />
-            UX & Accessibility Best Practices
-          </h2>
-
+        <ContentSection title="UX & Accessibility Best Practices" icon={Accessibility} iconColor="text-green-500">
           <div className="grid lg:grid-cols-2 gap-6">
             <Card className="bg-green-500/10 border-green-500/30">
               <CardHeader>
@@ -530,15 +460,10 @@ export default function ButtonBlock() {
               </CardContent>
             </Card>
           </div>
-        </div>
+        </ContentSection>
 
         {/* Common Issues */}
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground flex items-center">
-            <AlertCircle className="mr-2 h-5 w-5 text-yellow-500" />
-            Common Issues & Solutions
-          </h2>
-
+        <ContentSection title="Common Issues & Solutions" icon={AlertCircle} iconColor="text-yellow-500">
           <div className="grid lg:grid-cols-2 gap-6">
             <Card className="bg-red-500/10 border-red-500/30">
               <CardHeader>
@@ -578,23 +503,16 @@ export default function ButtonBlock() {
               </CardContent>
             </Card>
           </div>
-        </div>
+        </ContentSection>
 
-        {/* Properties Reference */}
-        <div className="space-y-4">
-          <Separator />
-          <PropertiesReference
-            blockType="button"
-            title="Button Block Properties"
-            description="Complete reference of all properties available to the Button block, including universal block properties and Button-specific attributes"
-          />
-        </div>
+        <PropertiesReference
+          blockType="button"
+          title="Button Block Properties"
+          description="Complete reference of all properties available to the Button block, including universal block properties and Button-specific attributes"
+        />
 
         {/* Related Blocks */}
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground">
-            Related Blocks
-          </h2>
+        <ContentSection title="Related Blocks" icon={MousePointer} iconColor="text-neon-cyan">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <Card className="bg-card/50 backdrop-blur border-border/50 hover:border-neon-blue/50 transition-colors cursor-pointer">
               <CardHeader className="pb-2">
@@ -629,8 +547,7 @@ export default function ButtonBlock() {
               </CardContent>
             </Card>
           </div>
-        </div>
-      </div>
+        </ContentSection>
     </>
   );
 }

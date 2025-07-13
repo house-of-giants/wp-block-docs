@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Card,
   CardContent,
@@ -6,9 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Separator } from "@/components/ui/separator";
 import {
   AlertCircle,
   Images,
@@ -27,6 +24,8 @@ import {
   generateBreadcrumbSchema,
 } from "@/components/SEO";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { PageHeader } from "@/components/PageHeader";
+import { ContentSection } from "@/components/ContentSection";
 
 export default function GalleryBlock() {
   const gallerySchema = generateDocumentationSchema(
@@ -65,49 +64,26 @@ export default function GalleryBlock() {
         schema={[gallerySchema, breadcrumbSchema]}
         lastModified="2024-01-15T10:00:00Z"
       />
-      <div className="space-y-8">
-        {/* Header */}
-        <div className="space-y-4">
-          <div className="flex items-center space-x-2">
-            <div className="p-2 rounded-lg bg-neon-purple/20">
-              <Images className="h-6 w-6 text-neon-purple" />
-            </div>
-            <h1 className="text-4xl font-bold text-foreground mb-0">
-              Gallery Block
-            </h1>
-          </div>
-          <p className="text-xl text-muted-foreground">
-            The Gallery block creates responsive image collections with flexible
-            grid layouts. Perfect for portfolios, photo galleries, and visual
-            storytelling with built-in lightbox and optimization features.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            <Badge
-              variant="secondary"
-              className="bg-neon-purple/20 text-neon-purple border-neon-purple/30"
-            >
-              Image Collections
-            </Badge>
-            <Badge variant="outline">Responsive Grid</Badge>
-            <Badge variant="outline">Lightbox</Badge>
-            <Badge variant="outline">Portfolio</Badge>
-            <Badge variant="outline">Visual Content</Badge>
-          </div>
-        </div>
-
-        <Separator />
-
-        {/* Basic Usage */}
-        <div className="space-y-6">
-          <Card className="bg-card/50 backdrop-blur border-border/50">
+      <PageHeader
+        icon={Images}
+        iconColor="text-neon-purple"
+        iconBgColor="bg-neon-purple/20"
+        title="Gallery Block"
+        description="The Gallery block creates responsive image collections with flexible grid layouts. Perfect for portfolios, photo galleries, and visual storytelling with built-in lightbox and optimization features."
+        badges={[
+          { text: "Image Collections", className: "bg-neon-purple/20 text-neon-purple border-neon-purple/30" },
+          { text: "Responsive Grid", variant: "outline" },
+          { text: "Lightbox", variant: "outline" },
+          { text: "Portfolio", variant: "outline" },
+          { text: "Visual Content", variant: "outline" },
+        ]}
+      />
+      <ContentSection title="Basic Gallery" icon={Grid3X3} iconColor="text-neon-purple">
+        <Card className="bg-card/50 backdrop-blur border-border/50">
             <CardHeader>
-              <CardTitle className="flex items-center">
-                <Grid3X3 className="mr-2 h-5 w-5 text-neon-purple" />
-                Basic Gallery
-              </CardTitle>
-              <CardDescription>
+              <CardTitle className="text-lg">
                 Simple responsive gallery with automatic grid layout
-              </CardDescription>
+              </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center gap-2">
@@ -182,15 +158,10 @@ export default function GalleryBlock() {
               </Alert>
             </CardContent>
           </Card>
-        </div>
+      </ContentSection>
 
-        {/* Gallery Variations */}
-        <div className="space-y-6">
-          <h2 className="text-2xl font-semibold text-foreground">
-            Gallery Layouts & Styles
-          </h2>
-
-          <Tabs defaultValue="masonry" className="w-full">
+      <ContentSection title="Gallery Layouts & Styles">
+        <Tabs defaultValue="masonry" className="w-full">
             <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="masonry">Masonry Layout</TabsTrigger>
               <TabsTrigger value="captions">With Captions</TabsTrigger>
@@ -480,14 +451,9 @@ export default function GalleryBlock() {
               </Card>
             </TabsContent>
           </Tabs>
-        </div>
+      </ContentSection>
 
-        {/* Key Concepts */}
-        <div className="space-y-6">
-          <h2 className="text-2xl font-semibold text-foreground">
-            Gallery Best Practices & Guidelines
-          </h2>
-
+      <ContentSection title="Gallery Best Practices & Guidelines">
           <div className="grid gap-6 md:grid-cols-2">
             <Card className="bg-blue-500/10 border-blue-500/30">
               <CardContent className="p-6">
@@ -561,14 +527,9 @@ export default function GalleryBlock() {
               </CardContent>
             </Card>
           </div>
-        </div>
+      </ContentSection>
 
-        {/* Common Use Cases */}
-        <div className="space-y-6">
-          <h2 className="text-2xl font-semibold text-foreground">
-            Common Gallery Use Cases
-          </h2>
-
+      <ContentSection title="Common Gallery Use Cases">
           <div className="grid gap-6 md:grid-cols-2">
             <Card className="bg-card/50 backdrop-blur border-border/50">
               <CardHeader>
@@ -626,16 +587,9 @@ export default function GalleryBlock() {
               </CardContent>
             </Card>
           </div>
-        </div>
+      </ContentSection>
 
-        {/* Properties Reference */}
-        <div className="space-y-6">
-          <h2 className="text-2xl font-semibold text-foreground">
-            Gallery Properties
-          </h2>
-          <PropertiesReference blockType="gallery" />
-        </div>
-      </div>
+      <PropertiesReference blockType="gallery" />
     </>
   );
 }

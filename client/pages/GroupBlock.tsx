@@ -23,6 +23,8 @@ import {
   generateDocumentationSchema,
   generateBreadcrumbSchema,
 } from "@/components/SEO";
+import { PageHeader } from "@/components/PageHeader";
+import { ContentSection } from "@/components/ContentSection";
 
 export default function GroupBlock() {
   const groupBlockSchema = generateDocumentationSchema(
@@ -61,40 +63,21 @@ export default function GroupBlock() {
         schema={[groupBlockSchema, breadcrumbSchema]}
         lastModified="2024-01-15T10:00:00Z"
       />
-      <div className="space-y-8">
-        {/* Header */}
-        <div className="space-y-4">
-          <div className="flex items-center space-x-2">
-            <div className="p-2 rounded-lg bg-neon-purple/20">
-              <Layers className="h-6 w-6 text-neon-purple" />
-            </div>
-            <h1 className="text-4xl font-bold text-foreground mb-0">Group Block</h1>
-          </div>
-          <p className="text-xl text-muted-foreground">
-            The Group block is a container block that allows you to group other
-            blocks together and apply shared styling, spacing, and layout
-            properties.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            <Badge
-              variant="secondary"
-              className="bg-neon-purple/20 text-neon-purple border-neon-purple/30"
-            >
-              Core Block
-            </Badge>
-            <Badge variant="outline">Layout Container</Badge>
-            <Badge variant="outline">Styling Support</Badge>
-          </div>
-        </div>
-
-        <Separator />
-
+      <PageHeader
+        icon={Layers}
+        iconColor="text-neon-purple"
+        iconBgColor="bg-neon-purple/20"
+        title="Group Block"
+        description="The Group block is a container block that allows you to group other blocks together and apply shared styling, spacing, and layout properties."
+        badges={[
+          { text: "Core Block", className: "bg-neon-purple/20 text-neon-purple border-neon-purple/30" },
+          { text: "Layout Container", variant: "outline" },
+          { text: "Styling Support", variant: "outline" },
+        ]}
+      />
+      <ContentSection title="Basic Syntax" icon={Code} iconColor="text-neon-blue">
         {/* Basic Syntax */}
         <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground flex items-center">
-            <Code className="mr-2 h-5 w-5 text-neon-blue" />
-            Basic Syntax
-          </h2>
 
           <Card className="bg-card/50 backdrop-blur border-border/50">
             <CardHeader>
@@ -114,14 +97,10 @@ export default function GroupBlock() {
             </CardContent>
           </Card>
         </div>
-
+      </ContentSection>
+      <ContentSection title="Common Attributes" icon={Settings} iconColor="text-neon-pink">
         {/* Common Attributes */}
         <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground flex items-center">
-            <Settings className="mr-2 h-5 w-5 text-neon-pink" />
-            Common Attributes
-          </h2>
-
           <Tabs defaultValue="spacing" className="w-full">
             <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="spacing">Spacing</TabsTrigger>
@@ -255,14 +234,10 @@ export default function GroupBlock() {
             </TabsContent>
           </Tabs>
         </div>
-
+      </ContentSection>
+      <ContentSection title="Real-World Examples" icon={Eye} iconColor="text-neon-cyan">
         {/* Real-World Examples */}
         <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground flex items-center">
-            <Eye className="mr-2 h-5 w-5 text-neon-cyan" />
-            Real-World Examples
-          </h2>
-
           <div className="grid lg:grid-cols-2 gap-6">
             <Card className="bg-card/50 backdrop-blur border-border/50">
               <CardHeader>
@@ -348,14 +323,10 @@ export default function GroupBlock() {
             </Card>
           </div>
         </div>
-
+      </ContentSection>
+      <ContentSection title="Tips & Gotchas" icon={Lightbulb} iconColor="text-yellow-500">
         {/* Gotchas & Tips */}
         <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground flex items-center">
-            <Lightbulb className="mr-2 h-5 w-5 text-yellow-500" />
-            Tips & Gotchas
-          </h2>
-
           <div className="space-y-4">
             <Card className="bg-yellow-500/10 border-yellow-500/30">
               <CardHeader>
@@ -401,22 +372,16 @@ export default function GroupBlock() {
             </Card>
           </div>
         </div>
-
-        {/* Properties Reference */}
-        <div className="space-y-4">
-          <Separator />
-          <PropertiesReference
-            blockType="group"
-            title="Group Block Properties"
-            description="Complete reference of all properties available to the Group block, including universal block properties and Group-specific attributes"
-          />
-        </div>
-
+      </ContentSection>
+      <PropertiesReference
+        blockType="group"
+        title="Group Block Properties"
+        description="Complete reference of all properties available to the Group block, including universal block properties and Group-specific attributes"
+      />
+      <ContentSection title="Related Blocks">
         {/* Related Blocks */}
         <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground">
-            Related Blocks
-          </h2>
+
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <Card className="bg-card/50 backdrop-blur border-border/50 hover:border-neon-blue/50 transition-colors cursor-pointer">
               <CardHeader className="pb-2">
@@ -452,7 +417,7 @@ export default function GroupBlock() {
             </Card>
           </div>
         </div>
-      </div>
+      </ContentSection>
     </>
   );
 }

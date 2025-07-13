@@ -23,6 +23,8 @@ import {
 import { PropertiesReference } from "@/components/PropertiesReference";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
 import { generateDocumentationSchema, SEO } from "@/components/SEO";
+import { PageHeader } from "@/components/PageHeader";
+import { ContentSection } from "@/components/ContentSection";
 
 export default function HeadingBlock() {
   const headingBlockSchema = generateDocumentationSchema(
@@ -47,98 +49,70 @@ export default function HeadingBlock() {
         ogType="article"
         schema={[headingBlockSchema]}
       />
-      {/* Header */}
+      <PageHeader
+        icon={Type}
+        iconColor="text-neon-pink"
+        iconBgColor="bg-neon-pink/20"
+        title="Heading Block"
+        description="The Heading block creates semantic HTML headings (h1-h6) with customizable styling. It's essential for content hierarchy, SEO, and accessibility, helping screen readers and search engines understand your content structure."
+        badges={[
+          { text: "Core Block", variant: "secondary", className: "bg-neon-pink/20 text-neon-pink border-neon-pink/30" },
+          { text: "Typography", variant: "outline" },
+          { text: "SEO Critical", variant: "outline" },
+          { text: "Accessibility", variant: "outline" },
+        ]}
+      />
       <div className="space-y-8">
-      <div className="space-y-4">
-        <div className="flex items-center space-x-2">
-          <div className="p-2 rounded-lg bg-neon-pink/20">
-            <Type className="h-6 w-6 text-neon-pink" />
-          </div>
-          <h1 className="text-4xl font-bold text-foreground mb-0">Heading Block</h1>
-        </div>
-        <p className="text-xl text-muted-foreground">
-          The Heading block creates semantic HTML headings (h1-h6) with
-          customizable styling. It's essential for content hierarchy, SEO, and
-          accessibility, helping screen readers and search engines understand
-          your content structure.
-        </p>
-        <div className="flex flex-wrap gap-2">
-          <Badge
-            variant="secondary"
-            className="bg-neon-pink/20 text-neon-pink border-neon-pink/30"
-          >
-            Core Block
-          </Badge>
-          <Badge variant="outline">Typography</Badge>
-          <Badge variant="outline">SEO Critical</Badge>
-          <Badge variant="outline">Accessibility</Badge>
-        </div>
-      </div>
-
-      <Separator />
-
-      {/* Basic Syntax */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold text-foreground flex items-center">
-          <Code className="mr-2 h-5 w-5 text-neon-blue" />
-          Basic Syntax
-        </h2>
-
-        <Card className="bg-card/50 backdrop-blur border-border/50">
-          <CardHeader>
-            <CardTitle className="text-lg">Default Heading (H2)</CardTitle>
-            <CardDescription>
-              The most common heading level for content sections
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-              <WPBlockCodeBlock
-                code={`<!-- wp:heading -->
+        <ContentSection title="Basic Syntax" icon={Code} iconColor="text-neon-blue">
+          <Card className="bg-card/50 backdrop-blur border-border/50">
+            <CardHeader>
+              <CardTitle className="text-lg">Default Heading (H2)</CardTitle>
+              <CardDescription>
+                The most common heading level for content sections
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                <WPBlockCodeBlock
+                  code={`<!-- wp:heading -->
 <h2 class="wp-block-heading">Your Heading Text</h2>
 <!-- /wp:heading -->`}
-                
-              />
-            </div>
-            <div className="mt-4 flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">
-                Default level 2 heading
-              </span>
-              <Button variant="ghost" size="sm">
-                <Copy className="h-4 w-4" />
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+                  
+                />
+              </div>
+              <div className="mt-4 flex items-center justify-between">
+                <span className="text-sm text-muted-foreground">
+                  Default level 2 heading
+                </span>
+                <Button variant="ghost" size="sm">
+                  <Copy className="h-4 w-4" />
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </ContentSection>
 
-      {/* Heading Levels */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold text-foreground flex items-center">
-          <Settings className="mr-2 h-5 w-5 text-neon-pink" />
-          Heading Levels & Hierarchy
-        </h2>
+        <ContentSection title="Heading Levels & Hierarchy" icon={Settings} iconColor="text-neon-pink">
+          <Tabs defaultValue="levels" className="w-full">
+            <TabsList className="grid w-full grid-cols-4">
+              <TabsTrigger value="levels">All Levels</TabsTrigger>
+              <TabsTrigger value="styling">Custom Styling</TabsTrigger>
+              <TabsTrigger value="typography">Typography</TabsTrigger>
+              <TabsTrigger value="anchor">Anchor Links</TabsTrigger>
+            </TabsList>
 
-        <Tabs defaultValue="levels" className="w-full">
-          <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="levels">All Levels</TabsTrigger>
-            <TabsTrigger value="styling">Custom Styling</TabsTrigger>
-            <TabsTrigger value="typography">Typography</TabsTrigger>
-            <TabsTrigger value="anchor">Anchor Links</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="levels" className="space-y-4">
-            <Card className="bg-card/50 backdrop-blur border-border/50">
-              <CardHeader>
-                <CardTitle>All Heading Levels (H1-H6)</CardTitle>
-                <CardDescription>
-                  Different heading levels for content hierarchy
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <WPBlockCodeBlock
-                    code={`<!-- wp:heading {"level":1} -->
+            <TabsContent value="levels" className="space-y-4">
+              <Card className="bg-card/50 backdrop-blur border-border/50">
+                <CardHeader>
+                  <CardTitle>All Heading Levels (H1-H6)</CardTitle>
+                  <CardDescription>
+                    Different heading levels for content hierarchy
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                    <WPBlockCodeBlock
+                      code={`<!-- wp:heading {"level":1} -->
 <h1 class="wp-block-heading">Page Title (H1)</h1>
 <!-- /wp:heading -->
 
@@ -161,31 +135,31 @@ export default function HeadingBlock() {
 <!-- wp:heading {"level":6} -->
 <h6 class="wp-block-heading">Smallest Heading (H6)</h6>
 <!-- /wp:heading -->`}
-                    
-                  />
-                </div>
-                <div className="mt-4 p-3 bg-yellow-500/10 rounded border border-yellow-500/30">
-                  <p className="text-sm text-yellow-600 dark:text-yellow-400">
-                    <Accessibility className="inline h-4 w-4 mr-1" />
-                    Use only one H1 per page for optimal SEO and accessibility
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
+                      
+                    />
+                  </div>
+                  <div className="mt-4 p-3 bg-yellow-500/10 rounded border border-yellow-500/30">
+                    <p className="text-sm text-yellow-600 dark:text-yellow-400">
+                      <Accessibility className="inline h-4 w-4 mr-1" />
+                      Use only one H1 per page for optimal SEO and accessibility
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
 
-          <TabsContent value="styling" className="space-y-4">
-            <Card className="bg-card/50 backdrop-blur border-border/50">
-              <CardHeader>
-                <CardTitle>Custom Styling</CardTitle>
-                <CardDescription>
-                  Typography colors, backgrounds, and spacing
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <WPBlockCodeBlock
-                    code={`<!-- wp:heading {
+            <TabsContent value="styling" className="space-y-4">
+              <Card className="bg-card/50 backdrop-blur border-border/50">
+                <CardHeader>
+                  <CardTitle>Custom Styling</CardTitle>
+                  <CardDescription>
+                    Typography colors, backgrounds, and spacing
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                    <WPBlockCodeBlock
+                      code={`<!-- wp:heading {
   "style":{
     "color":{
       "text":"#ff6b9d"
@@ -213,25 +187,25 @@ export default function HeadingBlock() {
   Styled Heading
 </h2>
 <!-- /wp:heading -->`}
-                    
-                  />
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
+                      
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
 
-          <TabsContent value="typography" className="space-y-4">
-            <Card className="bg-card/50 backdrop-blur border-border/50">
-              <CardHeader>
-                <CardTitle>Typography Presets</CardTitle>
-                <CardDescription>
-                  Using theme font sizes and families
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <WPBlockCodeBlock
-                    code={`<!-- wp:heading {
+            <TabsContent value="typography" className="space-y-4">
+              <Card className="bg-card/50 backdrop-blur border-border/50">
+                <CardHeader>
+                  <CardTitle>Typography Presets</CardTitle>
+                  <CardDescription>
+                    Using theme font sizes and families
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                    <WPBlockCodeBlock
+                      code={`<!-- wp:heading {
   "level":2,
   "fontSize":"large",
   "style": {
@@ -249,25 +223,25 @@ export default function HeadingBlock() {
   Typography Heading
 </h2>
 <!-- /wp:heading -->`}
-                    
-                  />
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
+                      
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
 
-          <TabsContent value="anchor" className="space-y-4">
-            <Card className="bg-card/50 backdrop-blur border-border/50">
-              <CardHeader>
-                <CardTitle>Anchor Links</CardTitle>
-                <CardDescription>
-                  Creating jumpable sections and table of contents
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <WPBlockCodeBlock
-                    code={`<!-- wp:heading {
+            <TabsContent value="anchor" className="space-y-4">
+              <Card className="bg-card/50 backdrop-blur border-border/50">
+                <CardHeader>
+                  <CardTitle>Anchor Links</CardTitle>
+                  <CardDescription>
+                    Creating jumpable sections and table of contents
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                    <WPBlockCodeBlock
+                      code={`<!-- wp:heading {
   "level":2,
   "anchor":"getting-started"
 } -->
@@ -275,41 +249,35 @@ export default function HeadingBlock() {
   Getting Started
 </h2>
 <!-- /wp:heading -->`}
-                    
-                  />
-                </div>
-                <div className="mt-4 p-3 bg-blue-500/10 rounded border border-blue-500/30">
-                  <p className="text-sm text-blue-600 dark:text-blue-400">
-                    <Search className="inline h-4 w-4 mr-1" />
-                    Anchor IDs are automatically generated from heading text if
-                    not specified
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
-      </div>
+                      
+                    />
+                  </div>
+                  <div className="mt-4 p-3 bg-blue-500/10 rounded border border-blue-500/30">
+                    <p className="text-sm text-blue-600 dark:text-blue-400">
+                      <Search className="inline h-4 w-4 mr-1" />
+                      Anchor IDs are automatically generated from heading text if
+                      not specified
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
+        </ContentSection>
 
-      {/* Real-World Examples */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold text-foreground flex items-center">
-          <Eye className="mr-2 h-5 w-5 text-neon-cyan" />
-          Real-World Examples
-        </h2>
-
-        <div className="grid lg:grid-cols-2 gap-6">
-          <Card className="bg-card/50 backdrop-blur border-border/50">
-            <CardHeader>
-              <CardTitle>Blog Post Structure</CardTitle>
-              <CardDescription>
-                Proper heading hierarchy for content
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <WPBlockCodeBlock
-                  code={`<!-- Main article title -->
+        <ContentSection title="Real-World Examples" icon={Eye} iconColor="text-neon-cyan">
+          <div className="grid lg:grid-cols-2 gap-6">
+            <Card className="bg-card/50 backdrop-blur border-border/50">
+              <CardHeader>
+                <CardTitle>Blog Post Structure</CardTitle>
+                <CardDescription>
+                  Proper heading hierarchy for content
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                  <WPBlockCodeBlock
+                    code={`<!-- Main article title -->
 <!-- wp:heading {"level":1} -->
 <h1 class="wp-block-heading">
   Complete Guide to WordPress Blocks
@@ -335,23 +303,23 @@ export default function HeadingBlock() {
   Installing WordPress
 </h3>
 <!-- /wp:heading -->`}
-                  
-                />
-              </div>
-            </CardContent>
-          </Card>
+                    
+                  />
+                </div>
+              </CardContent>
+            </Card>
 
-          <Card className="bg-card/50 backdrop-blur border-border/50">
-            <CardHeader>
-              <CardTitle>Landing Page Hero</CardTitle>
-              <CardDescription>
-                Large, styled heading for marketing pages
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <WPBlockCodeBlock
-                  code={`<!-- wp:heading {
+            <Card className="bg-card/50 backdrop-blur border-border/50">
+              <CardHeader>
+                <CardTitle>Landing Page Hero</CardTitle>
+                <CardDescription>
+                  Large, styled heading for marketing pages
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                  <WPBlockCodeBlock
+                    code={`<!-- wp:heading {
   "level":1,
   "className":"hero-title",
   "style":{
@@ -381,164 +349,147 @@ export default function HeadingBlock() {
   Transform Your Business
 </h1>
 <!-- /wp:heading -->`}
-                  
-                />
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
+                    
+                  />
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </ContentSection>
 
-      {/* SEO & Accessibility */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold text-foreground flex items-center">
-          <Accessibility className="mr-2 h-5 w-5 text-green-500" />
-          SEO & Accessibility Best Practices
-        </h2>
+        <ContentSection title="SEO & Accessibility" icon={Accessibility} iconColor="text-green-500">
+          <div className="space-y-4">
+            <Card className="bg-green-500/10 border-green-500/30">
+              <CardHeader>
+                <CardTitle className="flex items-center text-green-600 dark:text-green-400">
+                  <Search className="mr-2 h-5 w-5" />
+                  SEO Guidelines
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm">
+                  <li>
+                    • <strong>Use only one H1 per page</strong> - Usually the page
+                    title
+                  </li>
+                  <li>
+                    • Follow logical hierarchy (H1 → H2 → H3, don't skip levels)
+                  </li>
+                  <li>• Include target keywords naturally in headings</li>
+                  <li>• Keep headings descriptive and meaningful</li>
+                  <li>• Use headings to break up long content sections</li>
+                </ul>
+              </CardContent>
+            </Card>
 
-        <div className="space-y-4">
-          <Card className="bg-green-500/10 border-green-500/30">
-            <CardHeader>
-              <CardTitle className="flex items-center text-green-600 dark:text-green-400">
-                <Search className="mr-2 h-5 w-5" />
-                SEO Guidelines
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  • <strong>Use only one H1 per page</strong> - Usually the page
-                  title
-                </li>
-                <li>
-                  • Follow logical hierarchy (H1 → H2 → H3, don't skip levels)
-                </li>
-                <li>• Include target keywords naturally in headings</li>
-                <li>• Keep headings descriptive and meaningful</li>
-                <li>• Use headings to break up long content sections</li>
-              </ul>
-            </CardContent>
-          </Card>
+            <Card className="bg-blue-500/10 border-blue-500/30">
+              <CardHeader>
+                <CardTitle className="flex items-center text-blue-600 dark:text-blue-400">
+                  <Accessibility className="mr-2 h-5 w-5" />
+                  Accessibility Guidelines
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm">
+                  <li>• Headings create a content outline for screen readers</li>
+                  <li>• Users navigate by headings with keyboard shortcuts</li>
+                  <li>• Ensure sufficient color contrast (4.5:1 minimum)</li>
+                  <li>• Don't use headings solely for visual styling</li>
+                  <li>• Consider font size and readability on mobile devices</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </ContentSection>
 
-          <Card className="bg-blue-500/10 border-blue-500/30">
-            <CardHeader>
-              <CardTitle className="flex items-center text-blue-600 dark:text-blue-400">
-                <Accessibility className="mr-2 h-5 w-5" />
-                Accessibility Guidelines
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2 text-sm">
-                <li>• Headings create a content outline for screen readers</li>
-                <li>• Users navigate by headings with keyboard shortcuts</li>
-                <li>• Ensure sufficient color contrast (4.5:1 minimum)</li>
-                <li>• Don't use headings solely for visual styling</li>
-                <li>• Consider font size and readability on mobile devices</li>
-              </ul>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
+        <ContentSection title="Common Issues" icon={AlertCircle} iconColor="text-yellow-500">
+          <div className="space-y-4">
+            <Card className="bg-red-500/10 border-red-500/30">
+              <CardHeader>
+                <CardTitle className="flex items-center text-red-600 dark:text-red-400">
+                  <AlertCircle className="mr-2 h-5 w-5" />
+                  Common Mistakes
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm">
+                  <li>• Using multiple H1 tags on a single page</li>
+                  <li>• Skipping heading levels (H2 → H4 without H3)</li>
+                  <li>
+                    • Using headings for visual styling instead of semantics
+                  </li>
+                  <li>• Making headings too long or unclear</li>
+                  <li>• Poor color contrast in custom styled headings</li>
+                </ul>
+              </CardContent>
+            </Card>
 
-      {/* Common Issues */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold text-foreground flex items-center">
-          <AlertCircle className="mr-2 h-5 w-5 text-yellow-500" />
-          Common Issues & Solutions
-        </h2>
+            <Card className="bg-blue-500/10 border-blue-500/30">
+              <CardHeader>
+                <CardTitle className="flex items-center text-blue-600 dark:text-blue-400">
+                  <Lightbulb className="mr-2 h-5 w-5" />
+                  Best Practices
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm">
+                  <li>• Plan your heading structure before writing content</li>
+                  <li>• Use CSS classes for consistent heading styles</li>
+                  <li>• Test with screen readers or accessibility tools</li>
+                  <li>• Consider mobile readability for large headings</li>
+                  <li>• Use meaningful anchor IDs for internal linking</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </ContentSection>
 
-        <div className="space-y-4">
-          <Card className="bg-red-500/10 border-red-500/30">
-            <CardHeader>
-              <CardTitle className="flex items-center text-red-600 dark:text-red-400">
-                <AlertCircle className="mr-2 h-5 w-5" />
-                Common Mistakes
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2 text-sm">
-                <li>• Using multiple H1 tags on a single page</li>
-                <li>• Skipping heading levels (H2 → H4 without H3)</li>
-                <li>
-                  • Using headings for visual styling instead of semantics
-                </li>
-                <li>• Making headings too long or unclear</li>
-                <li>• Poor color contrast in custom styled headings</li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-blue-500/10 border-blue-500/30">
-            <CardHeader>
-              <CardTitle className="flex items-center text-blue-600 dark:text-blue-400">
-                <Lightbulb className="mr-2 h-5 w-5" />
-                Best Practices
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2 text-sm">
-                <li>• Plan your heading structure before writing content</li>
-                <li>• Use CSS classes for consistent heading styles</li>
-                <li>• Test with screen readers or accessibility tools</li>
-                <li>• Consider mobile readability for large headings</li>
-                <li>• Use meaningful anchor IDs for internal linking</li>
-              </ul>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-
-      {/* Properties Reference */}
-      <div className="space-y-4">
-        <Separator />
         <PropertiesReference
           blockType="heading"
           title="Heading Block Properties"
           description="Complete reference of all properties available to the Heading block, including universal block properties and Heading-specific attributes"
         />
+
+        <ContentSection title="Related Blocks" icon={Type} iconColor="text-neon-blue">
+          <h2 className="text-2xl font-semibold text-foreground">
+            Related Blocks
+          </h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <Card className="bg-card/50 backdrop-blur border-border/50 hover:border-neon-blue/50 transition-colors cursor-pointer">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base">Paragraph Block</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Body text content blocks
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/50 backdrop-blur border-border/50 hover:border-neon-blue/50 transition-colors cursor-pointer">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base">List Block</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Ordered and unordered lists
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/50 backdrop-blur border-border/50 hover:border-neon-blue/50 transition-colors cursor-pointer">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base">Quote Block</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Highlighted quotations
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </ContentSection>
       </div>
-
-      {/* Related Blocks */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold text-foreground">
-          Related Blocks
-        </h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <Card className="bg-card/50 backdrop-blur border-border/50 hover:border-neon-blue/50 transition-colors cursor-pointer">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-base">Paragraph Block</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Body text content blocks
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-card/50 backdrop-blur border-border/50 hover:border-neon-blue/50 transition-colors cursor-pointer">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-base">List Block</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Ordered and unordered lists
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-card/50 backdrop-blur border-border/50 hover:border-neon-blue/50 transition-colors cursor-pointer">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-base">Quote Block</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Highlighted quotations
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-    </div>
     </>
   );
 }

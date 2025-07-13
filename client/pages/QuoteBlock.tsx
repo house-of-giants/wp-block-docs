@@ -25,6 +25,8 @@ import {
   generateDocumentationSchema,
   generateBreadcrumbSchema,
 } from "@/components/SEO";
+import { PageHeader } from "@/components/PageHeader";
+import { ContentSection } from "@/components/ContentSection";
 
 export default function QuoteBlock() {
   const quoteSchema = generateDocumentationSchema(
@@ -63,47 +65,27 @@ export default function QuoteBlock() {
         schema={[quoteSchema, breadcrumbSchema]}
         lastModified="2024-01-15T10:00:00Z"
       />
+      <PageHeader
+        icon={Quote}
+        iconColor="text-neon-pink"
+        iconBgColor="bg-neon-pink/20"
+        title="Quote Block"
+        description="The Quote block creates semantic blockquotes for testimonials, citations, and highlighted text. Perfect for adding emphasis and credibility to your content with proper attribution."
+        badges={[
+          { text: "Content Emphasis", variant: "secondary", className: "bg-neon-pink/20 text-neon-pink border-neon-pink/30" },
+          { text: "Testimonials", variant: "outline" },
+          { text: "Citations", variant: "outline" },
+          { text: "Semantic HTML", variant: "outline" },
+          { text: "Attribution", variant: "outline" },
+        ]}
+      />
       <div className="space-y-8">
-        {/* Header */}
-        <div className="space-y-4">
-          <div className="flex items-center space-x-2">
-            <div className="p-2 rounded-lg bg-neon-pink/20">
-              <Quote className="h-6 w-6 text-neon-pink" />
-            </div>
-            <h1 className="text-4xl font-bold text-foreground mb-0">Quote Block</h1>
-          </div>
-          <p className="text-xl text-muted-foreground">
-            The Quote block creates semantic blockquotes for testimonials,
-            citations, and highlighted text. Perfect for adding emphasis and
-            credibility to your content with proper attribution.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            <Badge
-              variant="secondary"
-              className="bg-neon-pink/20 text-neon-pink border-neon-pink/30"
-            >
-              Content Emphasis
-            </Badge>
-            <Badge variant="outline">Testimonials</Badge>
-            <Badge variant="outline">Citations</Badge>
-            <Badge variant="outline">Semantic HTML</Badge>
-            <Badge variant="outline">Attribution</Badge>
-          </div>
-        </div>
-
-        <Separator />
-
-        {/* Basic Usage */}
-        <div className="space-y-6">
+        <ContentSection title="Basic Usage" icon={Quote} iconColor="text-neon-pink">
           <Card className="bg-card/50 backdrop-blur border-border/50">
             <CardHeader>
-              <CardTitle className="flex items-center">
-                <Quote className="mr-2 h-5 w-5 text-neon-pink" />
-                Basic Quote
-              </CardTitle>
-              <CardDescription>
+              <CardTitle className="text-lg">
                 Simple blockquote with optional citation
-              </CardDescription>
+              </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center gap-2">
@@ -126,10 +108,9 @@ export default function QuoteBlock() {
               />
             </CardContent>
           </Card>
-        </div>
+        </ContentSection>
 
-        {/* Quote Variations */}
-        <div className="space-y-6">
+        <ContentSection title="Quote Styles & Variations" icon={Sparkles} iconColor="text-neon-pink">
           <h2 className="text-2xl font-semibold text-foreground">
             Quote Styles & Variations
           </h2>
@@ -307,10 +288,9 @@ export default function QuoteBlock() {
               </Card>
             </TabsContent>
           </Tabs>
-        </div>
+        </ContentSection>
 
-        {/* Key Concepts */}
-        <div className="space-y-6">
+        <ContentSection title="Key Concepts" icon={Lightbulb} iconColor="text-neon-pink">
           <h2 className="text-2xl font-semibold text-foreground">
             Quote Best Practices & Guidelines
           </h2>
@@ -388,15 +368,9 @@ export default function QuoteBlock() {
               </CardContent>
             </Card>
           </div>
-        </div>
+        </ContentSection>
 
-        {/* Properties Reference */}
-        <div className="space-y-6">
-          <h2 className="text-2xl font-semibold text-foreground">
-            Quote Properties
-          </h2>
-          <PropertiesReference blockType="quote" />
-        </div>
+        <PropertiesReference blockType="quote" />
       </div>
     </>
   );
