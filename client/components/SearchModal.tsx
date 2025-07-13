@@ -633,16 +633,28 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="font-medium truncate">
-                          {result.title}
-                        </span>
+                        <span
+                          className="font-medium truncate"
+                          dangerouslySetInnerHTML={{
+                            __html: highlightSearchTerms(
+                              result.title,
+                              searchTerms,
+                            ),
+                          }}
+                        />
                         <Badge variant="secondary" className="text-xs shrink-0">
                           {result.category}
                         </Badge>
                       </div>
-                      <p className="text-sm text-muted-foreground truncate">
-                        {result.description}
-                      </p>
+                      <p
+                        className="text-sm text-muted-foreground truncate"
+                        dangerouslySetInnerHTML={{
+                          __html: highlightSearchTerms(
+                            result.description,
+                            searchTerms,
+                          ),
+                        }}
+                      />
                     </div>
 
                     <ArrowRight
