@@ -496,7 +496,7 @@ export default function BlockValidator() {
             <div className="p-2 rounded-lg bg-neon-blue/20">
               <Code className="h-6 w-6 text-neon-blue" />
             </div>
-            <h1 className="text-4xl font-bold text-foreground">
+            <h1 className="text-4xl font-bold text-foreground mb-0">
               Block Validator
             </h1>
           </div>

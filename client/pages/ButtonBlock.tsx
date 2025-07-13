@@ -54,7 +54,7 @@ export default function ButtonBlock() {
             <div className="p-2 rounded-lg bg-neon-purple/20">
               <MousePointer className="h-6 w-6 text-neon-purple" />
             </div>
-            <h1 className="text-4xl font-bold text-foreground">Button Block</h1>
+            <h1 className="text-4xl font-bold text-foreground mb-0">Button Block</h1>
           </div>
           <p className="text-xl text-muted-foreground">
             The Button block creates call-to-action elements with customizable

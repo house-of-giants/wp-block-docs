@@ -10,7 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import {
   AlertCircle,
-  Columns,
+  Columns,  
   Code,
   Eye,
   Settings,
@@ -52,7 +52,7 @@ export default function ColumnsBlock() {
             <div className="p-2 rounded-lg bg-neon-blue/20">
               <Columns className="h-6 w-6 text-neon-blue" />
             </div>
-            <h1 className="text-4xl font-bold text-foreground">Columns Block</h1>
+            <h1 className="text-4xl font-bold text-foreground mb-0">Columns Block</h1>
           </div>
           <p className="text-xl text-muted-foreground">
             The Columns block creates responsive multi-column layouts using CSS

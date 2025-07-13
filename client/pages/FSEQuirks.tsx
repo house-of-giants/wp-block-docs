@@ -52,7 +52,7 @@ export default function FSEQuirks() {
           <div className="p-2 rounded-lg bg-yellow-500/20">
             <AlertTriangle className="h-6 w-6 text-yellow-500" />
           </div>
-          <h1 className="text-4xl font-bold text-foreground">FSE Quirks</h1>
+          <h1 className="text-4xl font-bold text-foreground mb-0">FSE Quirks</h1>
         </div>
         <p className="text-xl text-muted-foreground">
           Full Site Editing (FSE) introduces powerful capabilities but also

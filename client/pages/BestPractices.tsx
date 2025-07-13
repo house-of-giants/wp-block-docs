@@ -52,7 +52,7 @@ export default function BestPractices() {
             <div className="p-2 rounded-lg bg-green-500/20">
               <CheckCircle className="h-6 w-6 text-green-500" />
             </div>
-            <h1 className="text-4xl font-bold text-foreground">Best Practices</h1>
+            <h1 className="text-4xl font-bold text-foreground mb-0">Best Practices</h1>
           </div>
           <p className="text-xl text-muted-foreground">
             Follow these proven best practices to create maintainable, accessible,

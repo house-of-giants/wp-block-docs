@@ -72,7 +72,7 @@ export default function GalleryBlock() {
             <div className="p-2 rounded-lg bg-neon-purple/20">
               <Images className="h-6 w-6 text-neon-purple" />
             </div>
-            <h1 className="text-4xl font-bold text-foreground">
+            <h1 className="text-4xl font-bold text-foreground mb-0">
               Gallery Block
             </h1>
           </div>

@@ -54,7 +54,7 @@ export default function HeadingBlock() {
           <div className="p-2 rounded-lg bg-neon-pink/20">
             <Type className="h-6 w-6 text-neon-pink" />
           </div>
-          <h1 className="text-4xl font-bold text-foreground">Heading Block</h1>
+          <h1 className="text-4xl font-bold text-foreground mb-0">Heading Block</h1>
         </div>
         <p className="text-xl text-muted-foreground">
           The Heading block creates semantic HTML headings (h1-h6) with

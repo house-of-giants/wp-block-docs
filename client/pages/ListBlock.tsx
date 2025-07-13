@@ -68,7 +68,7 @@ export default function ListBlock() {
             <div className="p-2 rounded-lg bg-neon-blue/20">
               <List className="h-6 w-6 text-neon-blue" />
             </div>
-            <h1 className="text-4xl font-bold text-foreground">List Block</h1>
+            <h1 className="text-4xl font-bold text-foreground mb-0">List Block</h1>
           </div>
           <p className="text-xl text-muted-foreground">
             The List block creates semantic ordered and unordered lists with

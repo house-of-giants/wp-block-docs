@@ -70,7 +70,7 @@ export default function NavigationBlock() {
             <div className="p-2 rounded-lg bg-neon-cyan/20">
               <Navigation className="h-6 w-6 text-neon-cyan" />
             </div>
-            <h1 className="text-4xl font-bold text-foreground">
+            <h1 className="text-4xl font-bold text-foreground mb-0">
               Navigation Block
             </h1>
           </div>

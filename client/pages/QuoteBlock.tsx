@@ -70,7 +70,7 @@ export default function QuoteBlock() {
             <div className="p-2 rounded-lg bg-neon-pink/20">
               <Quote className="h-6 w-6 text-neon-pink" />
             </div>
-            <h1 className="text-4xl font-bold text-foreground">Quote Block</h1>
+            <h1 className="text-4xl font-bold text-foreground mb-0">Quote Block</h1>
           </div>
           <p className="text-xl text-muted-foreground">
             The Quote block creates semantic blockquotes for testimonials,

@@ -68,7 +68,7 @@ export default function GroupBlock() {
             <div className="p-2 rounded-lg bg-neon-purple/20">
               <Layers className="h-6 w-6 text-neon-purple" />
             </div>
-            <h1 className="text-4xl font-bold text-foreground">Group Block</h1>
+            <h1 className="text-4xl font-bold text-foreground mb-0">Group Block</h1>
           </div>
           <p className="text-xl text-muted-foreground">
             The Group block is a container block that allows you to group other

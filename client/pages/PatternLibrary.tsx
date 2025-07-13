@@ -50,7 +50,7 @@ export default function PatternLibrary() {
           <div className="p-2 rounded-lg bg-neon-pink/20">
             <Palette className="h-6 w-6 text-neon-pink" />
           </div>
-          <h1 className="text-4xl font-bold text-foreground">
+          <h1 className="text-4xl font-bold text-foreground mb-0">
             Pattern Library
           </h1>
         </div>

@@ -54,7 +54,7 @@ export default function PropertiesReferencePage() {
             <div className="p-2 rounded-lg bg-neon-cyan/20">
               <Book className="h-6 w-6 text-neon-cyan" />
             </div>
-            <h1 className="text-4xl font-bold text-foreground">
+            <h1 className="text-4xl font-bold text-foreground mb-0">
               Properties Reference
             </h1>
           </div>
