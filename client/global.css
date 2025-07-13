@@ -9,103 +9,115 @@
    * A different format will require also updating the theme in tailwind.config.ts.
   */
   :root {
-    /* Base theme - dark retrowave by default */
-    --background: 230 15% 8%;
-    --foreground: 280 30% 90%;
+    /* Base theme - Enhanced dark retrowave with better readability */
+    --background: 230 18% 9%;
+    --foreground: 280 25% 92%;
 
-    --card: 230 15% 10%;
-    --card-foreground: 280 30% 90%;
+    --card: 230 18% 11%;
+    --card-foreground: 280 25% 92%;
 
-    --popover: 230 15% 10%;
-    --popover-foreground: 280 30% 90%;
+    --popover: 230 18% 11%;
+    --popover-foreground: 280 25% 92%;
 
-    --primary: 320 100% 70%;
-    --primary-foreground: 230 15% 8%;
+    --primary: 320 95% 72%;
+    --primary-foreground: 230 18% 9%;
 
-    --secondary: 240 15% 15%;
-    --secondary-foreground: 280 30% 90%;
+    --secondary: 240 18% 16%;
+    --secondary-foreground: 280 25% 92%;
 
-    --muted: 240 15% 12%;
-    --muted-foreground: 280 10% 60%;
+    --muted: 240 18% 14%;
+    --muted-foreground: 280 12% 68%;
 
-    --accent: 260 100% 75%;
-    --accent-foreground: 230 15% 8%;
+    --accent: 260 95% 77%;
+    --accent-foreground: 230 18% 9%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 75% 58%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 240 15% 20%;
-    --input: 240 15% 15%;
-    --ring: 320 100% 70%;
+    --border: 240 18% 22%;
+    --input: 240 18% 16%;
+    --ring: 320 95% 72%;
 
     --radius: 0.75rem;
 
-    --sidebar-background: 230 20% 6%;
-    --sidebar-foreground: 280 30% 85%;
-    --sidebar-primary: 320 100% 70%;
-    --sidebar-primary-foreground: 230 15% 8%;
-    --sidebar-accent: 240 15% 12%;
-    --sidebar-accent-foreground: 280 30% 90%;
-    --sidebar-border: 240 15% 18%;
-    --sidebar-ring: 320 100% 70%;
+    --sidebar-background: 230 22% 7%;
+    --sidebar-foreground: 280 25% 88%;
+    --sidebar-primary: 320 95% 72%;
+    --sidebar-primary-foreground: 230 18% 9%;
+    --sidebar-accent: 240 18% 14%;
+    --sidebar-accent-foreground: 280 25% 92%;
+    --sidebar-border: 240 18% 20%;
+    --sidebar-ring: 320 95% 72%;
 
-    /* Retrowave specific colors */
-    --neon-pink: 320 100% 70%;
-    --neon-blue: 200 100% 70%;
-    --neon-purple: 260 100% 75%;
-    --neon-cyan: 180 100% 70%;
+    /* Enhanced retrowave colors with better contrast */
+    --neon-pink: 320 95% 72%;
+    --neon-blue: 200 90% 72%;
+    --neon-purple: 260 95% 77%;
+    --neon-cyan: 180 90% 72%;
 
-    --retro-dark: 230 15% 8%;
-    --retro-darker: 230 20% 4%;
-    --retro-pink: 320 60% 60%;
-    --retro-purple: 260 60% 65%;
-    --retro-blue: 200 80% 60%;
+    --retro-dark: 230 18% 9%;
+    --retro-darker: 230 22% 5%;
+    --retro-pink: 320 70% 65%;
+    --retro-purple: 260 70% 70%;
+    --retro-blue: 200 75% 65%;
+
+    /* Text color enhancements */
+    --text-high-contrast: 280 25% 95%;
+    --text-medium-contrast: 280 20% 82%;
+    --text-low-contrast: 280 15% 68%;
+    --text-subtle: 280 10% 55%;
   }
 
   .dark {
-    /* Enhanced dark mode for retrowave */
-    --background: 230 20% 4%;
-    --foreground: 280 40% 95%;
+    /* Enhanced dark mode for retrowave with superior readability */
+    --background: 230 22% 5%;
+    --foreground: 280 30% 96%;
 
-    --card: 230 20% 6%;
-    --card-foreground: 280 40% 95%;
+    --card: 230 22% 7%;
+    --card-foreground: 280 30% 96%;
 
-    --popover: 230 20% 6%;
-    --popover-foreground: 280 40% 95%;
+    --popover: 230 22% 7%;
+    --popover-foreground: 280 30% 96%;
 
-    --primary: 320 100% 75%;
-    --primary-foreground: 230 20% 4%;
+    --primary: 320 95% 78%;
+    --primary-foreground: 230 22% 5%;
 
-    --secondary: 240 20% 10%;
-    --secondary-foreground: 280 40% 95%;
+    --secondary: 240 22% 12%;
+    --secondary-foreground: 280 30% 96%;
 
-    --muted: 240 20% 8%;
-    --muted-foreground: 280 15% 70%;
+    --muted: 240 22% 9%;
+    --muted-foreground: 280 18% 75%;
 
-    --accent: 260 100% 80%;
-    --accent-foreground: 230 20% 4%;
+    --accent: 260 95% 82%;
+    --accent-foreground: 230 22% 5%;
 
-    --destructive: 0 70% 55%;
-    --destructive-foreground: 280 40% 95%;
+    --destructive: 0 68% 58%;
+    --destructive-foreground: 280 30% 96%;
 
-    --border: 240 20% 15%;
-    --input: 240 20% 10%;
-    --ring: 320 100% 75%;
+    --border: 240 22% 18%;
+    --input: 240 22% 12%;
+    --ring: 320 95% 78%;
 
-    --sidebar-background: 230 25% 3%;
-    --sidebar-foreground: 280 40% 90%;
-    --sidebar-primary: 320 100% 75%;
-    --sidebar-primary-foreground: 230 20% 4%;
-    --sidebar-accent: 240 20% 8%;
-    --sidebar-accent-foreground: 280 40% 95%;
-    --sidebar-border: 240 20% 12%;
-    --sidebar-ring: 320 100% 75%;
+    --sidebar-background: 230 25% 4%;
+    --sidebar-foreground: 280 30% 92%;
+    --sidebar-primary: 320 95% 78%;
+    --sidebar-primary-foreground: 230 22% 5%;
+    --sidebar-accent: 240 22% 9%;
+    --sidebar-accent-foreground: 280 30% 96%;
+    --sidebar-border: 240 22% 15%;
+    --sidebar-ring: 320 95% 78%;
 
-    /* Enhanced neon colors for dark mode */
-    --neon-pink: 320 100% 75%;
-    --neon-blue: 200 100% 75%;
-    --neon-purple: 260 100% 80%;
-    --neon-cyan: 180 100% 75%;
+    /* Enhanced neon colors for superior dark mode contrast */
+    --neon-pink: 320 95% 78%;
+    --neon-blue: 200 88% 78%;
+    --neon-purple: 260 95% 82%;
+    --neon-cyan: 180 88% 78%;
+
+    /* Enhanced text colors for dark mode */
+    --text-high-contrast: 280 30% 97%;
+    --text-medium-contrast: 280 25% 87%;
+    --text-low-contrast: 280 20% 75%;
+    --text-subtle: 280 15% 62%;
   }
 }
 
