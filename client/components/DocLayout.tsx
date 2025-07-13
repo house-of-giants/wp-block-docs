@@ -196,18 +196,31 @@ export function DocLayout({ children }: DocLayoutProps) {
           </Button>
 
           <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-            <form onSubmit={handleSearch} className="flex flex-1 items-center">
+            <div className="flex flex-1 items-center">
               <div className="relative w-full max-w-lg">
-                <Search className="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-muted-foreground pl-3" />
-                <input
-                  className="block h-full w-full border-0 bg-transparent py-0 pl-10 pr-0 text-foreground placeholder:text-muted-foreground focus:ring-0 sm:text-sm"
-                  placeholder="Search documentation..."
-                  type="search"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
+                <Button
+                  variant="outline"
+                  onClick={openSearch}
+                  className="w-full justify-start text-muted-foreground hover:text-foreground h-9 px-3"
+                >
+                  <Search className="h-4 w-4 mr-2" />
+                  <span className="flex-1 text-left">
+                    Search documentation...
+                  </span>
+                  <div className="hidden sm:flex items-center gap-1 ml-2">
+                    <kbd className="pointer-events-none h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100 flex">
+                      {typeof navigator !== "undefined" &&
+                      navigator.platform.toUpperCase().indexOf("MAC") >= 0
+                        ? "⌘"
+                        : "Ctrl"}
+                    </kbd>
+                    <kbd className="pointer-events-none h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100 flex">
+                      K
+                    </kbd>
+                  </div>
+                </Button>
               </div>
-            </form>
+            </div>
           </div>
         </div>
 
