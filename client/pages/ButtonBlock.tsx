@@ -5,7 +5,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Separator } from "@/components/ui/separator";
 import {
   AlertCircle,
   MousePointer,
@@ -20,27 +22,59 @@ import {
 } from "lucide-react";
 import { PropertiesReference } from "@/components/PropertiesReference";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
-import { BlockPageLayout } from "@/components/BlockPageLayout";
-import { ContentSection } from "@/components/ContentSection";
+import { generateDocumentationSchema, SEO } from "@/components/SEO";
 
 export default function ButtonBlock() {
+  const buttonBlockSchema = generateDocumentationSchema(
+    "WordPress Button Block - Complete HTML Markup Guide & Examples",
+    "Master WordPress button block markup with comprehensive examples, attributes, and best practices. Learn how to create customizable buttons with links, styling, and accessibility features.",
+    "https://wpblockdocs.com/button-block",
+    "WordPress Block Documentation",
+    [
+      "WordPress button block",
+      "WordPress button block markup",
+      "WordPress button block best practices",
+      "WordPress button block examples",
+    ],
+  );
   return (
-    <BlockPageLayout
-      blockName="Button Block"
-      description="The Button block creates call-to-action elements with customizable styling, links, and accessibility features. It's essential for conversions, navigation, and user interaction throughout your site."
-      icon={MousePointer}
-      iconColor="text-neon-purple"
-      iconBgColor="bg-neon-purple/20"
-      category="Interactive"
-      tags={["Interactive", "Call-to-Action", "Customizable"]}
-      canonicalPath="/button-block"
-      keywords={[
-        "WordPress button block",
-        "WordPress button block markup",
-        "WordPress button block best practices",
-        "WordPress button block examples",
-      ]}
-    >
+    <>
+      <SEO
+        title="WordPress Button Block - Complete HTML Markup Guide & Examples"
+        description="Master WordPress button block markup with comprehensive examples, attributes, and best practices. Learn how to create customizable buttons with links, styling, and accessibility features."
+        keywords="WordPress button block, WordPress button block markup, WordPress button block best practices, WordPress button block examples"
+        canonical="/button-block"
+        ogType="article"
+        schema={[buttonBlockSchema]}
+      />
+      {/* Header */}
+      <div className="space-y-8">
+        <div className="space-y-4">
+          <div className="flex items-center space-x-2">
+            <div className="p-2 rounded-lg bg-neon-purple/20">
+              <MousePointer className="h-6 w-6 text-neon-purple" />
+            </div>
+            <h1 className="text-4xl font-bold text-foreground mb-0">Button Block</h1>
+          </div>
+          <p className="text-xl text-muted-foreground">
+            The Button block creates call-to-action elements with customizable
+            styling, links, and accessibility features. It's essential for
+            conversions, navigation, and user interaction throughout your site.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <Badge
+              variant="secondary"
+              className="bg-neon-purple/20 text-neon-purple border-neon-purple/30"
+            >
+              Core Block
+            </Badge>
+            <Badge variant="outline">Interactive</Badge>
+            <Badge variant="outline">Call-to-Action</Badge>
+            <Badge variant="outline">Customizable</Badge>
+          </div>
+        </div>
+
+        <Separator />
 
         {/* Basic Syntax */}
         <div className="space-y-4">
