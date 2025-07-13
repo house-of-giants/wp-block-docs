@@ -513,7 +513,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
       const regex = new RegExp(`(${term})`, "gi");
       highlighted = highlighted.replace(
         regex,
-        '<mark class="bg-yellow-200 dark:bg-yellow-900 rounded px-0.5">$1</mark>',
+        '<mark class="bg-neon-pink/20 text-neon-pink rounded px-0.5 glow-pink">$1</mark>',
       );
     });
     return highlighted;
@@ -525,40 +525,40 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl p-0 gap-0 overflow-hidden bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-2xl border-border/50">
+      <DialogContent className="max-w-2xl p-0 gap-0 overflow-hidden glass-strong shadow-2xl border-border/60 ring-1 ring-border/20">
         <DialogHeader className="sr-only">
           <DialogTitle>Search Documentation</DialogTitle>
         </DialogHeader>
 
         {/* Search Input */}
-        <div className="flex items-center border-b border-border px-4 py-3">
-          <Search className="h-4 w-4 text-muted-foreground mr-3" />
+        <div className="flex items-center border-b border-border/60 px-4 py-3 bg-background/40 backdrop-blur-sm">
+          <Search className="h-4 w-4 text-medium-contrast mr-3" />
           <Input
             placeholder="Search blocks, properties, patterns..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="border-0 focus-visible:ring-0 text-base placeholder:text-muted-foreground bg-transparent"
+            className="border-0 focus-visible:ring-0 text-base placeholder:text-low-contrast bg-transparent text-high-contrast focus-neon"
             autoFocus
             autoComplete="off"
             spellCheck={false}
           />
           <div className="flex items-center gap-1 ml-3">
-            <kbd className="pointer-events-none h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100 flex">
+            <kbd className="pointer-events-none h-5 select-none items-center gap-1 rounded border border-border/40 bg-muted/60 px-1.5 font-mono text-[10px] font-medium text-medium-contrast opacity-100 flex backdrop-blur-sm">
               {isMac ? "⌘" : "Ctrl"}
             </kbd>
-            <kbd className="pointer-events-none h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100 flex">
+            <kbd className="pointer-events-none h-5 select-none items-center gap-1 rounded border border-border/40 bg-muted/60 px-1.5 font-mono text-[10px] font-medium text-medium-contrast opacity-100 flex backdrop-blur-sm">
               K
             </kbd>
           </div>
         </div>
 
         {/* Search Results or Recent Searches */}
-        <div className="max-h-[400px] overflow-y-auto">
+        <div className="max-h-[400px] overflow-y-auto bg-background/20 backdrop-blur-sm">
           {!query.trim() && recentSearches.length > 0 && (
             <div className="p-4">
               <div className="flex items-center gap-2 mb-3">
-                <Clock className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm font-medium text-muted-foreground">
+                <Clock className="h-4 w-4 text-medium-contrast" />
+                <span className="text-sm font-medium text-medium-contrast">
                   Recent Searches
                 </span>
               </div>
@@ -567,7 +567,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                   <button
                     key={index}
                     onClick={() => setQuery(recentQuery)}
-                    className="w-full text-left px-3 py-2 rounded-md hover:bg-muted/50 transition-colors text-sm text-muted-foreground hover:text-foreground"
+                    className="w-full text-left px-3 py-2 rounded-md hover:bg-muted/30 hover:backdrop-blur-sm transition-all duration-200 text-sm text-low-contrast hover:text-high-contrast border border-transparent hover:border-border/30"
                   >
                     {recentQuery}
                   </button>
@@ -578,19 +578,28 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
           {!query.trim() && recentSearches.length === 0 && (
             <div className="p-8 text-center">
-              <Search className="h-8 w-8 text-muted-foreground mx-auto mb-3" />
-              <p className="text-sm text-muted-foreground">
+              <Search className="h-8 w-8 text-medium-contrast mx-auto mb-3 glow-blue" />
+              <p className="text-sm text-medium-contrast">
                 Search for blocks, properties, patterns, and more...
               </p>
-              <div className="flex items-center justify-center gap-2 mt-3 text-xs text-muted-foreground">
+              <div className="flex items-center justify-center gap-2 mt-3 text-xs text-low-contrast">
                 <span>Try:</span>
-                <Badge variant="outline" className="text-xs">
+                <Badge
+                  variant="outline"
+                  className="text-xs glass-subtle border-border/40 hover:border-neon-blue/50 transition-colors"
+                >
                   query loop
                 </Badge>
-                <Badge variant="outline" className="text-xs">
+                <Badge
+                  variant="outline"
+                  className="text-xs glass-subtle border-border/40 hover:border-neon-purple/50 transition-colors"
+                >
                   navigation
                 </Badge>
-                <Badge variant="outline" className="text-xs">
+                <Badge
+                  variant="outline"
+                  className="text-xs glass-subtle border-border/40 hover:border-neon-pink/50 transition-colors"
+                >
                   properties
                 </Badge>
               </div>
@@ -599,9 +608,11 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
           {query.trim() && searchResults.length === 0 && (
             <div className="p-8 text-center">
-              <Search className="h-8 w-8 text-muted-foreground mx-auto mb-3" />
-              <p className="text-sm font-medium">No results found</p>
-              <p className="text-xs text-muted-foreground mt-1">
+              <Search className="h-8 w-8 text-medium-contrast mx-auto mb-3" />
+              <p className="text-sm font-medium text-high-contrast">
+                No results found
+              </p>
+              <p className="text-xs text-low-contrast mt-1">
                 Try searching for blocks, properties, or documentation topics
               </p>
             </div>
@@ -618,25 +629,39 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     key={result.id}
                     onClick={() => handleSelect(result.url)}
                     className={cn(
-                      "w-full flex items-center gap-3 p-3 rounded-lg text-left transition-colors",
+                      "w-full flex items-center gap-3 p-3 rounded-lg text-left transition-all duration-200 border border-transparent",
                       isSelected
-                        ? "bg-accent text-accent-foreground"
-                        : "hover:bg-muted/50",
+                        ? "bg-accent/80 text-accent-foreground backdrop-blur-sm border-accent/30 shadow-lg glow-purple"
+                        : "hover:bg-muted/30 hover:backdrop-blur-sm hover:border-border/40",
                     )}
                   >
                     <div
                       className={cn(
-                        "p-2 rounded-md",
-                        isSelected ? "bg-background/50" : "bg-muted",
+                        "p-2 rounded-md transition-all",
+                        isSelected
+                          ? "bg-background/60 backdrop-blur-sm"
+                          : "bg-muted/60",
                       )}
                     >
-                      <Icon className="h-4 w-4" />
+                      <Icon
+                        className={cn(
+                          "h-4 w-4 transition-colors",
+                          isSelected
+                            ? "text-neon-purple"
+                            : "text-medium-contrast",
+                        )}
+                      />
                     </div>
 
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
                         <span
-                          className="font-medium truncate"
+                          className={cn(
+                            "font-medium truncate transition-colors",
+                            isSelected
+                              ? "text-high-contrast"
+                              : "text-high-contrast",
+                          )}
                           dangerouslySetInnerHTML={{
                             __html: highlightSearchTerms(
                               result.title,
@@ -644,12 +669,25 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                             ),
                           }}
                         />
-                        <Badge variant="secondary" className="text-xs shrink-0">
+                        <Badge
+                          variant="secondary"
+                          className={cn(
+                            "text-xs shrink-0 transition-all",
+                            isSelected
+                              ? "glass-subtle border-accent/30"
+                              : "glass-subtle border-border/30",
+                          )}
+                        >
                           {result.category}
                         </Badge>
                       </div>
                       <p
-                        className="text-sm text-muted-foreground truncate"
+                        className={cn(
+                          "text-sm truncate transition-colors",
+                          isSelected
+                            ? "text-medium-contrast"
+                            : "text-low-contrast",
+                        )}
                         dangerouslySetInnerHTML={{
                           __html: highlightSearchTerms(
                             result.description,
@@ -661,8 +699,10 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
                     <ArrowRight
                       className={cn(
-                        "h-4 w-4 transition-transform",
-                        isSelected ? "translate-x-1" : "",
+                        "h-4 w-4 transition-all duration-200",
+                        isSelected
+                          ? "translate-x-1 text-neon-purple"
+                          : "text-medium-contrast",
                       )}
                     />
                   </button>
@@ -673,31 +713,31 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
         </div>
 
         {/* Footer */}
-        <div className="border-t border-border px-4 py-2">
-          <div className="flex items-center justify-between text-xs text-muted-foreground">
+        <div className="border-t border-border/60 px-4 py-2 bg-background/40 backdrop-blur-sm">
+          <div className="flex items-center justify-between text-xs text-low-contrast">
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-1">
-                <kbd className="h-4 select-none items-center gap-1 rounded border bg-muted px-1 font-mono text-[10px] font-medium opacity-100 flex">
+                <kbd className="h-4 select-none items-center gap-1 rounded border border-border/40 bg-muted/60 px-1 font-mono text-[10px] font-medium opacity-100 flex backdrop-blur-sm">
                   ↑↓
                 </kbd>
                 <span>Navigate</span>
               </div>
               <div className="flex items-center gap-1">
-                <kbd className="h-4 select-none items-center gap-1 rounded border bg-muted px-1 font-mono text-[10px] font-medium opacity-100 flex">
+                <kbd className="h-4 select-none items-center gap-1 rounded border border-border/40 bg-muted/60 px-1 font-mono text-[10px] font-medium opacity-100 flex backdrop-blur-sm">
                   ↵
                 </kbd>
                 <span>Select</span>
               </div>
               <div className="flex items-center gap-1">
-                <kbd className="h-4 select-none items-center gap-1 rounded border bg-muted px-1 font-mono text-[10px] font-medium opacity-100 flex">
+                <kbd className="h-4 select-none items-center gap-1 rounded border border-border/40 bg-muted/60 px-1 font-mono text-[10px] font-medium opacity-100 flex backdrop-blur-sm">
                   Esc
                 </kbd>
                 <span>Close</span>
               </div>
             </div>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 text-subtle">
               <span>Powered by</span>
-              <Hash className="h-3 w-3" />
+              <Hash className="h-3 w-3 text-neon-cyan" />
             </div>
           </div>
         </div>
