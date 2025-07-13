@@ -21,10 +21,6 @@ import {
 } from "lucide-react";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
 import { generateDocumentationSchema, SEO } from "@/components/SEO";
-import { PageHeader } from "@/components/PageHeader";
-import { ContentSection } from "@/components/ContentSection";
-import { PageHeader } from "@/components/PageHeader";
-import { ContentSection } from "@/components/ContentSection";
 
 export default function BestPractices() {
   const bestPracticesSchema = generateDocumentationSchema(
@@ -40,7 +36,7 @@ export default function BestPractices() {
     ],
   );
   return (
-    <> 
+    <>
       <SEO
         title="WordPress Best Practices - Complete HTML Markup Guide & Examples"
         description="Master WordPress best practices with comprehensive examples, attributes, and best practices. Learn how to create flexible layouts using Group blocks with custom styling and semantic HTML."
@@ -50,29 +46,43 @@ export default function BestPractices() {
         schema={[bestPracticesSchema]}
       />
       <div className="space-y-8">
-                <PageHeader
-          icon={CheckCircle}
-          iconColor="text-green-500"
-          iconBgColor="bg-green-500/20"
-          title="Best Practices"
-          description="Follow these proven best practices to create maintainable, accessible, and performant WordPress block themes. These guidelines will help you avoid common pitfalls and build sites that work well for everyone."
-          badges={[
-            {
-              text: "Best Practices",
-              variant: "secondary",
-              className: "bg-green-500/20 text-green-500 border-green-500/30",
-            },
-            { text: "Performance" },
-            { text: "Accessibility" },
-            { text: "SEO" },
-          ]}
-        />
+        {/* Header */}
+        <div className="space-y-4">
+          <div className="flex items-center space-x-2">
+            <div className="p-2 rounded-lg bg-green-500/20">
+              <CheckCircle className="h-6 w-6 text-green-500" />
+            </div>
+            <h1 className="text-4xl font-bold text-foreground mb-0">
+              Best Practices
+            </h1>
+          </div>
+          <p className="text-xl text-muted-foreground">
+            Follow these proven best practices to create maintainable,
+            accessible, and performant WordPress block themes. These guidelines
+            will help you avoid common pitfalls and build sites that work well
+            for everyone.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <Badge
+              variant="secondary"
+              className="bg-green-500/20 text-green-500 border-green-500/30"
+            >
+              Best Practices
+            </Badge>
+            <Badge variant="outline">Performance</Badge>
+            <Badge variant="outline">Accessibility</Badge>
+            <Badge variant="outline">SEO</Badge>
+          </div>
+        </div>
 
-                <ContentSection
-          title="Block Structure & Semantic HTML"
-          icon={Code}
-          iconColor="text-neon-blue"
-                >
+        <Separator />
+
+        {/* Block Structure & Semantic HTML */}
+        <div className="space-y-4">
+          <h2 className="text-2xl font-semibold text-foreground flex items-center">
+            <Code className="mr-2 h-5 w-5 text-neon-blue" />
+            Block Structure & Semantic HTML
+          </h2>
 
           <div className="space-y-6">
             <Card className="bg-green-500/10 border-green-500/30">
@@ -88,44 +98,65 @@ export default function BestPractices() {
               <CardContent className="space-y-4">
                 <div className="grid lg:grid-cols-2 gap-4">
                   <div>
-                    <h4 className="font-medium text-red-600 dark:text-red-400 mb-2">
-                      ❌ Avoid Generic Divs
+                    <h4 className="font-semibold text-green-700 dark:text-green-300 mb-2">
+                      ✅ Good Practice
                     </h4>
-                    <WPBlockCodeBlock
-                      code={`<!-- wp:group {"tagName":"div"} -->
-  <div class="wp-block-group">
-    <div class="wp-block-group">
-      <div>Navigation items</div>
-    </div>
-  </div>
-  <!-- /wp:group -->`}
-                      showCopy={false}
-                    />
+                    <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                      <WPBlockCodeBlock
+                        code={`<!-- wp:group {"tagName":"section"} -->
+<section class="wp-block-group">
+  <!-- wp:heading {"level":2} -->
+  <h2 class="wp-block-heading">Article Title</h2>
+  <!-- /wp:heading -->
+  
+  <!-- wp:paragraph -->
+  <p>Article content...</p>
+  <!-- /wp:paragraph -->
+</section>
+<!-- /wp:group -->`}
+                      />
+                    </div>
                   </div>
                   <div>
-                    <h4 className="font-medium text-green-600 dark:text-green-400 mb-2">
-                      ✅ Use Semantic Elements
+                    <h4 className="font-semibold text-red-700 dark:text-red-300 mb-2">
+                      ❌ Avoid This
                     </h4>
-                    <WPBlockCodeBlock
-                      code={`<!-- wp:group {"tagName":"nav"} -->
-  <nav class="wp-block-group">
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/about">About</a></li>
-    </ul>
-  </nav>
-  <!-- /wp:group -->`}
-                      showCopy={false}
-                    />
+                    <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                      <WPBlockCodeBlock
+                        code={`<!-- wp:group -->
+<div class="wp-block-group">
+  <!-- wp:heading {"level":1} -->
+  <h1 class="wp-block-heading">Article Title</h1>
+  <!-- /wp:heading -->
+  
+  <!-- wp:paragraph -->
+  <p>Article content...</p>
+  <!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->`}
+                      />
+                    </div>
                   </div>
                 </div>
-                <div className="p-3 bg-blue-500/10 rounded border border-blue-500/30">
-                  <p className="text-sm text-blue-600 dark:text-blue-400">
-                    <Lightbulb className="inline h-4 w-4 mr-1" />
-                    Always use appropriate HTML5 semantic elements: nav, main,
-                    article, section, aside, header, footer
-                  </p>
-                </div>
+                <p className="text-sm text-muted-foreground">
+                  Use appropriate semantic elements like{" "}
+                  <code className="bg-muted px-1 py-0.5 rounded text-xs">
+                    &lt;section&gt;
+                  </code>
+                  ,{" "}
+                  <code className="bg-muted px-1 py-0.5 rounded text-xs">
+                    &lt;article&gt;
+                  </code>
+                  ,{" "}
+                  <code className="bg-muted px-1 py-0.5 rounded text-xs">
+                    &lt;nav&gt;
+                  </code>
+                  , and{" "}
+                  <code className="bg-muted px-1 py-0.5 rounded text-xs">
+                    &lt;main&gt;
+                  </code>{" "}
+                  through the Group block's tagName attribute.
+                </p>
               </CardContent>
             </Card>
 
@@ -133,186 +164,285 @@ export default function BestPractices() {
               <CardHeader>
                 <CardTitle className="flex items-center text-blue-600 dark:text-blue-400">
                   <Target className="mr-2 h-5 w-5" />
-                  Logical Heading Hierarchy
+                  Proper Heading Hierarchy
                 </CardTitle>
                 <CardDescription>
-                  Maintain proper heading order for accessibility and SEO
+                  Maintain logical document outline for accessibility
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <WPBlockCodeBlock
-                  code={`<!-- ✅ Proper hierarchy -->
-  <!-- wp:heading {"level":1} -->
-  <h1>Page Title</h1>
-  <!-- /wp:heading -->
+                <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                  <WPBlockCodeBlock
+                    code={`<!-- wp:heading {"level":1} -->
+<h1>Page Title</h1>
+<!-- /wp:heading -->
 
-  <!-- wp:heading {"level":2} -->
-  <h2>Main Section</h2>
-  <!-- /wp:heading -->
+<!-- wp:heading {"level":2} -->
+<h2>Main Section</h2>
+<!-- /wp:heading -->
 
-  <!-- wp:heading {"level":3} -->
-  <h3>Subsection</h3>
-  <!-- /wp:heading -->
+<!-- wp:heading {"level":3} -->
+<h3>Subsection</h3>
+<!-- /wp:heading -->
 
-  <!-- wp:heading {"level":3} -->
-  <h3>Another Subsection</h3>
-  <!-- /wp:heading -->
+<!-- wp:heading {"level":3} -->
+<h3>Another Subsection</h3>
+<!-- /wp:heading -->
 
-  <!-- wp:heading {"level":2} -->
-  <h2>Next Main Section</h2>
-  <!-- /wp:heading -->`}
-                />
-                <ul className="space-y-1 text-sm">
-                  <li>• Only one H1 per page</li>
-                  <li>• Don't skip heading levels (H2 → H4)</li>
-                  <li>• Use headings for structure, not styling</li>
-                </ul>
+<!-- wp:heading {"level":2} -->
+<h2>Another Main Section</h2>
+<!-- /wp:heading -->`}
+                  />
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Never skip heading levels (h1 → h3) and use only one h1 per
+                  page for optimal SEO and accessibility.
+                </p>
               </CardContent>
             </Card>
           </div>
         </div>
 
-        {/* Performance Optimization */}
+        {/* Performance Best Practices */}
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-foreground flex items-center">
             <Zap className="mr-2 h-5 w-5 text-yellow-500" />
-            Performance Optimization
+            Performance Best Practices
           </h2>
 
           <div className="space-y-6">
-            <Card className="bg-blue-500/10 border-blue-500/30">
+            <Card className="bg-yellow-500/10 border-yellow-500/30">
               <CardHeader>
-                <CardTitle className="flex items-center text-blue-600 dark:text-blue-400">
-                  <Zap className="mr-2 h-5 w-5" />
-                  Minimize Inline Styles
+                <CardTitle className="flex items-center text-yellow-600 dark:text-yellow-400">
+                  <Lightbulb className="mr-2 h-5 w-5" />
+                  Optimize Images and Media
                 </CardTitle>
                 <CardDescription>
-                  Use CSS classes instead of inline styles for better performance
+                  Improve loading times with proper image handling
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid lg:grid-cols-2 gap-4">
                   <div>
-                    <h4 className="font-medium text-red-600 dark:text-red-400 mb-2">
-                      ❌ Excessive Inline Styles
+                    <h4 className="font-semibold text-green-700 dark:text-green-300 mb-2">
+                      ✅ Optimized Image Block
                     </h4>
-                    <WPBlockCodeBlock
-                      code={`<!-- wp:group {
-    "style": {
-      "spacing": {"padding": {"top": "2rem"}},
-      "color": {"background": "#ff6b9d"},
-      "border": {"radius": "8px"}
-    }
-  } -->`}
-                      showCopy={false}
-                    />
+                    <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                      <WPBlockCodeBlock
+                        code={`<!-- wp:image {"sizeSlug":"large","linkDestination":"none"} -->
+<figure class="wp-block-image size-large">
+  <img src="example-1024x768.webp" 
+       alt="Descriptive alt text for accessibility"
+       class="wp-image-123" 
+       width="1024" 
+       height="768"
+       loading="lazy" />
+</figure>
+<!-- /wp:image -->`}
+                      />
+                    </div>
                   </div>
                   <div>
-                    <h4 className="font-medium text-green-600 dark:text-green-400 mb-2">
-                      ✅ Reusable CSS Classes
+                    <h4 className="font-semibold text-orange-700 dark:text-orange-300 mb-2">
+                      ⚠️ Considerations
                     </h4>
-                    <WPBlockCodeBlock
-                      code={`<!-- wp:group {"className":"hero-section"} -->
-  <div class="wp-block-group hero-section">
-    <!-- Styles defined in theme CSS -->
-  </div>
-  <!-- /wp:group -->`}
-                      showCopy={false}
-                    />
+                    <ul className="text-sm space-y-2">
+                      <li>
+                        • Use appropriate image sizes (large, medium, thumbnail)
+                      </li>
+                      <li>• Always include descriptive alt text</li>
+                      <li>• Prefer WebP format when supported</li>
+                      <li>• Enable lazy loading for below-fold images</li>
+                      <li>
+                        • Set explicit width/height to prevent layout shift
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-green-500/10 border-green-500/30">
+            <Card className="bg-purple-500/10 border-purple-500/30">
               <CardHeader>
-                <CardTitle className="flex items-center text-green-600 dark:text-green-400">
-                  <CheckCircle className="mr-2 h-5 w-5" />
-                  Optimize Images
+                <CardTitle className="flex items-center text-purple-600 dark:text-purple-400">
+                  <Code className="mr-2 h-5 w-5" />
+                  Minimize Inline Styles
                 </CardTitle>
+                <CardDescription>
+                  Use CSS classes instead of inline styles when possible
+                </CardDescription>
               </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm">
-                  <li>• Always include descriptive alt text</li>
-                  <li>
-                    • Use appropriate image sizes (not full-size for thumbnails)
-                  </li>
-                  <li>• Consider WebP format for better compression</li>
-                  <li>• Use WordPress's responsive image features (srcset)</li>
-                  <li>• Lazy load images below the fold</li>
-                </ul>
+              <CardContent className="space-y-4">
+                <div className="grid lg:grid-cols-2 gap-4">
+                  <div>
+                    <h4 className="font-semibold text-green-700 dark:text-green-300 mb-2">
+                      ✅ CSS Classes (Preferred)
+                    </h4>
+                    <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                      <WPBlockCodeBlock
+                        code={`<!-- wp:group {"className":"hero-section"} -->
+<div class="wp-block-group hero-section">
+  <!-- Content -->
+</div>
+<!-- /wp:group -->`}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-yellow-700 dark:text-yellow-300 mb-2">
+                      ⚠️ Inline Styles (When Necessary)
+                    </h4>
+                    <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                      <WPBlockCodeBlock
+                        code={`<!-- wp:group {"style":{"spacing":{"padding":"2rem"}}} -->
+<div class="wp-block-group" style="padding:2rem">
+  <!-- Content -->
+</div>
+<!-- /wp:group -->`}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Prefer CSS classes for reusable styles. Use inline styles
+                  sparingly for unique, one-off customizations.
+                </p>
               </CardContent>
             </Card>
           </div>
         </div>
 
-        {/* Accessibility */}
+        {/* Accessibility Best Practices */}
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-foreground flex items-center">
-            <Accessibility className="mr-2 h-5 w-5 text-green-500" />
-            Accessibility Excellence
+            <Accessibility className="mr-2 h-5 w-5 text-blue-500" />
+            Accessibility Best Practices
           </h2>
 
           <div className="space-y-6">
+            <Card className="bg-blue-500/10 border-blue-500/30">
+              <CardHeader>
+                <CardTitle className="flex items-center text-blue-600 dark:text-blue-400">
+                  <Shield className="mr-2 h-5 w-5" />
+                  Focus Management and Navigation
+                </CardTitle>
+                <CardDescription>
+                  Ensure keyboard navigation and screen reader compatibility
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                  <WPBlockCodeBlock
+                    code={`<!-- wp:navigation {"className":"skip-link-target"} -->
+<nav class="wp-block-navigation skip-link-target" aria-label="Main navigation">
+  <!-- wp:navigation-link {"label":"Home","url":"/"} -->
+  <a class="wp-block-navigation-item__content" href="/">Home</a>
+  <!-- /wp:navigation-link -->
+  
+  <!-- wp:navigation-link {"label":"About","url":"/about"} -->
+  <a class="wp-block-navigation-item__content" href="/about">About</a>
+  <!-- /wp:navigation-link -->
+</nav>
+<!-- /wp:navigation -->`}
+                  />
+                </div>
+                <ul className="text-sm space-y-2">
+                  <li>
+                    • Always provide descriptive aria-labels for navigation
+                  </li>
+                  <li>• Implement skip links for keyboard users</li>
+                  <li>• Ensure sufficient color contrast (4.5:1 minimum)</li>
+                  <li>
+                    • Test with screen readers and keyboard-only navigation
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
             <Card className="bg-green-500/10 border-green-500/30">
               <CardHeader>
                 <CardTitle className="flex items-center text-green-600 dark:text-green-400">
-                  <Accessibility className="mr-2 h-5 w-5" />
-                  Color Contrast & Typography
+                  <Palette className="mr-2 h-5 w-5" />
+                  Color and Typography
                 </CardTitle>
+                <CardDescription>
+                  Ensure readable and accessible design choices
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid lg:grid-cols-2 gap-4">
                   <div>
-                    <h4 className="font-medium mb-2">Contrast Requirements</h4>
-                    <ul className="space-y-1 text-sm">
-                      <li>• Normal text: 4.5:1 minimum</li>
-                      <li>• Large text (18px+): 3:1 minimum</li>
-                      <li>• UI components: 3:1 minimum</li>
-                      <li>• Focus indicators: 3:1 minimum</li>
+                    <h4 className="font-semibold text-green-700 dark:text-green-300 mb-2">
+                      Color Contrast Guidelines
+                    </h4>
+                    <ul className="text-sm space-y-1">
+                      <li>• Normal text: 4.5:1 contrast ratio</li>
+                      <li>• Large text (18pt+): 3:1 contrast ratio</li>
+                      <li>• Don't rely on color alone for meaning</li>
                     </ul>
                   </div>
                   <div>
-                    <h4 className="font-medium mb-2">Typography Guidelines</h4>
-                    <ul className="space-y-1 text-sm">
+                    <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">
+                      Typography Best Practices
+                    </h4>
+                    <ul className="text-sm space-y-1">
                       <li>• Minimum 16px font size for body text</li>
-                      <li>• Line height 1.4-1.6 for readability</li>
-                      <li>• Adequate letter spacing</li>
-                      <li>• Avoid justified text</li>
+                      <li>• 1.4-1.6 line-height for readability</li>
+                      <li>• 45-75 characters per line optimal</li>
                     </ul>
                   </div>
                 </div>
               </CardContent>
             </Card>
+          </div>
+        </div>
 
-            <Card className="bg-blue-500/10 border-blue-500/30">
+        {/* Mobile & Responsive Design */}
+        <div className="space-y-4">
+          <h2 className="text-2xl font-semibold text-foreground flex items-center">
+            <Smartphone className="mr-2 h-5 w-5 text-purple-500" />
+            Mobile & Responsive Design
+          </h2>
+
+          <div className="space-y-6">
+            <Card className="bg-purple-500/10 border-purple-500/30">
               <CardHeader>
-                <CardTitle className="flex items-center text-blue-600 dark:text-blue-400">
+                <CardTitle className="flex items-center text-purple-600 dark:text-purple-400">
                   <Target className="mr-2 h-5 w-5" />
-                  Interactive Elements
+                  Mobile-First Approach
                 </CardTitle>
+                <CardDescription>
+                  Design for mobile devices first, then enhance for larger
+                  screens
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <WPBlockCodeBlock
-                  code={`<!-- ✅ Accessible button with proper attributes -->
-  <!-- wp:button {
-    "url": "/contact",
-    "title": "Contact us for more information"
-  } -->
-  <div class="wp-block-button">
-    <a class="wp-block-button__link wp-element-button" 
-      href="/contact"
-      title="Contact us for more information">
-      Get in Touch
-    </a>
+                <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                  <WPBlockCodeBlock
+                    code={`<!-- wp:columns {"className":"mobile-stack"} -->
+<div class="wp-block-columns mobile-stack">
+  <!-- wp:column {"width":"66.66%"} -->
+  <div class="wp-block-column" style="flex-basis:66.66%">
+    <!-- Main content -->
   </div>
-  <!-- /wp:button -->`}
-                />
-                <ul className="space-y-1 text-sm">
-                  <li>• Use descriptive link text (avoid "click here")</li>
-                  <li>• Include title attributes for additional context</li>
-                  <li>• Ensure touch targets are at least 44px</li>
-                  <li>• Provide focus indicators</li>
+  <!-- /wp:column -->
+  
+  <!-- wp:column {"width":"33.33%"} -->
+  <div class="wp-block-column" style="flex-basis:33.33%">
+    <!-- Sidebar content -->
+  </div>
+  <!-- /wp:column -->
+</div>
+<!-- /wp:columns -->`}
+                  />
+                </div>
+                <ul className="text-sm space-y-2">
+                  <li>
+                    • Test on actual mobile devices, not just browser tools
+                  </li>
+                  <li>• Ensure touch targets are at least 44px × 44px</li>
+                  <li>• Optimize for thumb navigation on mobile</li>
+                  <li>• Consider data usage and loading speed on mobile</li>
                 </ul>
               </CardContent>
             </Card>
@@ -322,258 +452,121 @@ export default function BestPractices() {
         {/* SEO Best Practices */}
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-foreground flex items-center">
-            <Search className="mr-2 h-5 w-5 text-neon-cyan" />
-            SEO Optimization
+            <Search className="mr-2 h-5 w-5 text-green-500" />
+            SEO Best Practices
           </h2>
 
           <div className="space-y-6">
-            <Card className="bg-cyan-500/10 border-cyan-500/30">
-              <CardHeader>
-                <CardTitle className="flex items-center text-cyan-600 dark:text-cyan-400">
-                  <Search className="mr-2 h-5 w-5" />
-                  Content Structure
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <ul className="space-y-2 text-sm">
-                  <li>
-                    • Use descriptive, keyword-rich headings that reflect content
-                    hierarchy
-                  </li>
-                  <li>
-                    • Include target keywords naturally in headings and content
-                  </li>
-                  <li>• Use anchor links for long-form content navigation</li>
-                  <li>• Structure content with proper paragraph breaks</li>
-                  <li>• Include internal links to related content</li>
-                </ul>
-                <WPBlockCodeBlock
-                  code={`<!-- ✅ SEO-friendly heading with anchor -->
-  <!-- wp:heading {
-    "level": 2,
-    "anchor": "wordpress-block-editor-guide"
-  } -->
-  <h2 id="wordpress-block-editor-guide">
-    Complete WordPress Block Editor Guide
-  </h2>
-  <!-- /wp:heading -->`}
-                />
-              </CardContent>
-            </Card>
-
             <Card className="bg-green-500/10 border-green-500/30">
               <CardHeader>
                 <CardTitle className="flex items-center text-green-600 dark:text-green-400">
-                  <CheckCircle className="mr-2 h-5 w-5" />
-                  Image SEO
+                  <Code className="mr-2 h-5 w-5" />
+                  Structured Data and Schema
                 </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm">
-                  <li>• Use descriptive file names before uploading</li>
-                  <li>
-                    • Write meaningful alt text that describes the image content
-                  </li>
-                  <li>• Add captions when they add value</li>
-                  <li>• Use structured data for important images</li>
-                  <li>• Optimize image file sizes for faster loading</li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-
-        {/* Mobile & Responsive Design */}
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground flex items-center">
-            <Smartphone className="mr-2 h-5 w-5 text-neon-pink" />
-            Mobile & Responsive Design
-          </h2>
-
-          <div className="space-y-6">
-            <Card className="bg-pink-500/10 border-pink-500/30">
-              <CardHeader>
-                <CardTitle className="flex items-center text-pink-600 dark:text-pink-400">
-                  <Smartphone className="mr-2 h-5 w-5" />
-                  Mobile-First Approach
-                </CardTitle>
+                <CardDescription>
+                  Help search engines understand your content structure
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="grid lg:grid-cols-2 gap-4">
-                  <div>
-                    <h4 className="font-medium mb-2">Content Considerations</h4>
-                    <ul className="space-y-1 text-sm">
-                      <li>• Test all blocks on mobile devices</li>
-                      <li>• Ensure text remains readable at small sizes</li>
-                      <li>• Check touch target sizes (44px minimum)</li>
-                      <li>• Verify horizontal scrolling doesn't occur</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="font-medium mb-2">Layout Strategies</h4>
-                    <ul className="space-y-1 text-sm">
-                      <li>• Use flexible layouts (avoid fixed widths)</li>
-                      <li>• Implement responsive spacing</li>
-                      <li>• Stack columns appropriately on mobile</li>
-                      <li>• Hide non-essential content when needed</li>
-                    </ul>
-                  </div>
+                <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                  <WPBlockCodeBlock
+                    code={`<!-- wp:group {"tagName":"article"} -->
+<article class="wp-block-group">
+  <!-- wp:heading {"level":1} -->
+  <h1 class="wp-block-heading">Article Title</h1>
+  <!-- /wp:heading -->
+  
+  <!-- wp:paragraph {"className":"article-meta"} -->
+  <p class="article-meta">
+    Published on <time datetime="2024-01-15">January 15, 2024</time>
+  </p>
+  <!-- /wp:paragraph -->
+  
+  <!-- Article content -->
+</article>
+<!-- /wp:group -->`}
+                  />
                 </div>
-                <WPBlockCodeBlock
-                  code={`/* Mobile-first responsive spacing */
-  .custom-section {
-    padding: 1rem; /* Mobile default */
-  }
-
-  @media (min-width: 768px) {
-    .custom-section {
-      padding: 2rem; /* Tablet and up */
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .custom-section {
-      padding: 4rem; /* Desktop */
-    }
-  }`}
-                />
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-
-        {/* Security & Best Practices */}
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground flex items-center">
-            <Shield className="mr-2 h-5 w-5 text-red-500" />
-            Security Considerations
-          </h2>
-
-          <div className="space-y-6">
-            <Card className="bg-red-500/10 border-red-500/30">
-              <CardHeader>
-                <CardTitle className="flex items-center text-red-600 dark:text-red-400">
-                  <Shield className="mr-2 h-5 w-5" />
-                  Content Security
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm">
+                <ul className="text-sm space-y-2">
                   <li>
-                    • Always use rel="noopener noreferrer" for external links
+                    • Use semantic HTML5 elements (article, section, time)
                   </li>
-                  <li>• Validate and sanitize any user-generated content</li>
-                  <li>• Avoid inline JavaScript in block content</li>
-                  <li>• Use HTTPS for all external resources</li>
-                  <li>• Regularly update WordPress and plugins</li>
-                </ul>
-                <WPBlockCodeBlock
-                  code={`<!-- ✅ Secure external link -->
-  <!-- wp:button {
-    "url": "https://external-site.com",
-    "linkTarget": "_blank",
-    "rel": "noopener noreferrer"
-  } -->
-  <div class="wp-block-button">
-    <a href="https://external-site.com" 
-      target="_blank" 
-      rel="noopener noreferrer">
-      Visit External Site
-    </a>
-  </div>
-  <!-- /wp:button -->`}
-                />
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-
-        {/* Development Workflow */}
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground flex items-center">
-            <Palette className="mr-2 h-5 w-5 text-neon-purple" />
-            Development Workflow
-          </h2>
-
-          <div className="grid lg:grid-cols-2 gap-6">
-            <Card className="bg-purple-500/10 border-purple-500/30">
-              <CardHeader>
-                <CardTitle className="text-purple-600 dark:text-purple-400">
-                  Version Control
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm">
-                  <li>• Keep customized templates in version control</li>
-                  <li>• Document FSE customizations</li>
-                  <li>• Test changes in staging environment</li>
-                  <li>• Backup before major WordPress updates</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-blue-500/10 border-blue-500/30">
-              <CardHeader>
-                <CardTitle className="text-blue-600 dark:text-blue-400">
-                  Testing Checklist
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm">
-                  <li>• Cross-browser compatibility</li>
-                  <li>• Mobile responsiveness</li>
-                  <li>• Accessibility with screen readers</li>
-                  <li>• Page load performance</li>
-                  <li>• SEO optimization checks</li>
+                  <li>• Include proper meta descriptions and titles</li>
+                  <li>• Implement structured data for rich snippets</li>
+                  <li>• Optimize URL structure and internal linking</li>
                 </ul>
               </CardContent>
             </Card>
           </div>
         </div>
 
-        {/* Quick Reference */}
+        {/* Summary */}
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-foreground">
             Quick Reference Checklist
           </h2>
 
           <Card className="bg-card/50 backdrop-blur border-border/50">
-            <CardContent className="py-6">
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <CardHeader>
+              <CardTitle>Before Publishing</CardTitle>
+              <CardDescription>
+                Essential checks for every WordPress block theme page
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-foreground mb-3">
-                    <CheckCircle className="inline h-4 w-4 mr-2 text-green-500" />
-                    Content Structure
-                  </h3>
-                  <ul className="space-y-1 text-sm text-muted-foreground">
-                    <li>□ Proper heading hierarchy</li>
-                    <li>□ Semantic HTML elements</li>
-                    <li>□ Descriptive link text</li>
-                    <li>□ Alt text for images</li>
+                  <h4 className="font-semibold mb-3 text-green-600 dark:text-green-400">
+                    Technical Checklist
+                  </h4>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex items-start space-x-2">
+                      <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                      <span>Proper heading hierarchy (h1 → h2 → h3)</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                      <span>Semantic HTML elements used correctly</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                      <span>All images have descriptive alt text</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                      <span>Color contrast meets WCAG guidelines</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                      <span>Responsive design tested on mobile</span>
+                    </li>
                   </ul>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-3">
-                    <Zap className="inline h-4 w-4 mr-2 text-yellow-500" />
-                    Performance
-                  </h3>
-                  <ul className="space-y-1 text-sm text-muted-foreground">
-                    <li>□ Optimized images</li>
-                    <li>□ Minimal inline styles</li>
-                    <li>□ Fast loading times</li>
-                    <li>□ Mobile performance</li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground mb-3">
-                    <Accessibility className="inline h-4 w-4 mr-2 text-green-500" />
-                    Accessibility
-                  </h3>
-                  <ul className="space-y-1 text-sm text-muted-foreground">
-                    <li>□ Color contrast compliance</li>
-                    <li>□ Keyboard navigation</li>
-                    <li>□ Focus indicators</li>
-                    <li>□ Screen reader testing</li>
+                  <h4 className="font-semibold mb-3 text-blue-600 dark:text-blue-400">
+                    Performance Checklist
+                  </h4>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex items-start space-x-2">
+                      <CheckCircle className="h-4 w-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                      <span>Images optimized for web (WebP when possible)</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <CheckCircle className="h-4 w-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                      <span>Minimal use of inline styles</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <CheckCircle className="h-4 w-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                      <span>Lazy loading enabled for below-fold content</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <CheckCircle className="h-4 w-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                      <span>CSS classes used for reusable styles</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <CheckCircle className="h-4 w-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                      <span>Page loads quickly on mobile networks</span>
+                    </li>
                   </ul>
                 </div>
               </div>
