@@ -5,9 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Separator } from "@/components/ui/separator";
 import {
   AlertCircle,
   MousePointer,
@@ -18,11 +16,12 @@ import {
   ExternalLink,
   Palette,
   Info,
-  CircleHelp
+  CircleHelp,
 } from "lucide-react";
 import { PropertiesReference } from "@/components/PropertiesReference";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
-import { generateDocumentationSchema, SEO } from "@/components/SEO";
+import { BlockPageLayout } from "@/components/BlockPageLayout";
+import { ContentSection } from "@/components/ContentSection";
 
 export default function ButtonBlock() {
   const buttonBlockSchema = generateDocumentationSchema(
@@ -54,7 +53,9 @@ export default function ButtonBlock() {
             <div className="p-2 rounded-lg bg-neon-purple/20">
               <MousePointer className="h-6 w-6 text-neon-purple" />
             </div>
-            <h1 className="text-4xl font-bold text-foreground mb-0">Button Block</h1>
+            <h1 className="text-4xl font-bold text-foreground mb-0">
+              Button Block
+            </h1>
           </div>
           <p className="text-xl text-muted-foreground">
             The Button block creates call-to-action elements with customizable
@@ -104,7 +105,6 @@ export default function ButtonBlock() {
     <!-- /wp:button -->
   </div>
   <!-- /wp:buttons -->`}
-                  
                 />
               </div>
             </CardContent>
@@ -131,10 +131,15 @@ export default function ButtonBlock() {
             <CardContent className="space-y-4">
               <div className="space-y-3">
                 <p className="text-sm">
-                  In WordPress block themes, <strong>individual Button blocks cannot exist alone</strong>. 
-                  They must always be wrapped inside a <code className="bg-muted px-1 py-0.5 rounded text-xs">wp:buttons</code> block.
+                  In WordPress block themes,{" "}
+                  <strong>individual Button blocks cannot exist alone</strong>.
+                  They must always be wrapped inside a{" "}
+                  <code className="bg-muted px-1 py-0.5 rounded text-xs">
+                    wp:buttons
+                  </code>{" "}
+                  block.
                 </p>
-                
+
                 <div className="bg-retro-darker rounded-lg p-4 font-mono text-sm overflow-x-auto">
                   <WPBlockCodeBlock
                     code={`<!-- ❌ INCORRECT: Button block alone -->
@@ -158,14 +163,13 @@ export default function ButtonBlock() {
     <!-- /wp:button -->
   </div>
   <!-- /wp:buttons -->`}
-                    
                   />
                 </div>
                 <Card className="bg-blue-500/10 border-blue-500/30">
                   <CardHeader>
                     <CardTitle className="flex items-center text-blue-600 dark:text-blue-400">
                       <CircleHelp className="mr-2 h-5 w-5" />
-                          Why the wp:buttons wrapper?
+                      Why the wp:buttons wrapper?
                     </CardTitle>
                     <CardDescription>
                       Understanding the importance of the wp:buttons wrapper
@@ -173,26 +177,45 @@ export default function ButtonBlock() {
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2 text-sm">
-                      <li>• <strong>Layout Control:</strong> Handles button group spacing and alignment</li>
-                      <li>• <strong>Responsive Design:</strong> Manages how buttons stack on mobile devices</li>
-                      <li>• <strong>Block Editor Integration:</strong> Provides proper selection and editing experience</li>
-                      <li>• <strong>Theme Consistency:</strong> Ensures buttons follow theme-defined group styles</li>
-                      <li>• <strong>WordPress Standards:</strong> Follows the hierarchical block structure pattern</li>
+                      <li>
+                        • <strong>Layout Control:</strong> Handles button group
+                        spacing and alignment
+                      </li>
+                      <li>
+                        • <strong>Responsive Design:</strong> Manages how
+                        buttons stack on mobile devices
+                      </li>
+                      <li>
+                        • <strong>Block Editor Integration:</strong> Provides
+                        proper selection and editing experience
+                      </li>
+                      <li>
+                        • <strong>Theme Consistency:</strong> Ensures buttons
+                        follow theme-defined group styles
+                      </li>
+                      <li>
+                        • <strong>WordPress Standards:</strong> Follows the
+                        hierarchical block structure pattern
+                      </li>
                     </ul>
                   </CardContent>
                 </Card>
-                
+
                 <Card className="bg-green-500/10 border-green-500/30">
                   <CardHeader>
                     <CardTitle className="flex items-center text-green-600 dark:text-green-400">
                       <Info className="mr-2 h-5 w-5" />
-                          Single vs Multiple Buttons
+                      Single vs Multiple Buttons
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm">
-                      Even for a single button, you still need the <code className="bg-muted px-1 py-0.5 rounded text-xs">wp:buttons</code> wrapper. 
-                      This maintains consistency and ensures proper theme styling is applied.
+                      Even for a single button, you still need the{" "}
+                      <code className="bg-muted px-1 py-0.5 rounded text-xs">
+                        wp:buttons
+                      </code>{" "}
+                      wrapper. This maintains consistency and ensures proper
+                      theme styling is applied.
                     </p>
                   </CardContent>
                 </Card>
@@ -261,7 +284,6 @@ export default function ButtonBlock() {
   <!-- /wp:button -->
   </div>
   <!-- /wp:buttons -->`}
-                      
                     />
                   </div>
                 </CardContent>
@@ -309,7 +331,6 @@ export default function ButtonBlock() {
     <!-- /wp:button -->
   </div>
   <!-- /wp:buttons -->`}
-                      
                     />
                   </div>
                   <div className="mt-4 p-3 bg-green-500/10 rounded border border-green-500/30">
@@ -355,7 +376,6 @@ export default function ButtonBlock() {
     <!-- /wp:button -->
   </div>
   <!-- /wp:buttons -->`}
-                      
                     />
                   </div>
                 </CardContent>
@@ -395,7 +415,6 @@ export default function ButtonBlock() {
     <!-- /wp:button -->
   </div>
   <!-- /wp:buttons -->`}
-                      
                     />
                   </div>
                   <div className="mt-4 p-3 bg-blue-500/10 rounded border border-blue-500/30">
@@ -441,7 +460,6 @@ export default function ButtonBlock() {
     <!-- /wp:button -->
   </div>
   <!-- /wp:buttons -->`}
-                    
                   />
                 </div>
               </CardContent>
@@ -471,7 +489,6 @@ export default function ButtonBlock() {
     <!-- /wp:button -->
   </div>
   <!-- /wp:buttons -->`}
-                    
                   />
                 </div>
               </CardContent>
