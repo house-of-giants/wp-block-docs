@@ -534,11 +534,13 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
         <div className="flex items-center border-b border-border px-4 py-3">
           <Search className="h-4 w-4 text-muted-foreground mr-3" />
           <Input
-            placeholder="Search documentation..."
+            placeholder="Search blocks, properties, patterns..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="border-0 focus-visible:ring-0 text-base placeholder:text-muted-foreground bg-transparent"
             autoFocus
+            autoComplete="off"
+            spellCheck={false}
           />
           <div className="flex items-center gap-1 ml-3">
             <kbd className="pointer-events-none h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100 flex">
