@@ -48,6 +48,7 @@ export default function HeadingBlock() {
         schema={[headingBlockSchema]}
       />
       {/* Header */}
+      <div className="space-y-8">
       <div className="space-y-4">
         <div className="flex items-center space-x-2">
           <div className="p-2 rounded-lg bg-neon-pink/20">
@@ -537,6 +538,7 @@ export default function HeadingBlock() {
           </Card>
         </div>
       </div>
+    </div>
     </>
   );
 }

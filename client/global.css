@@ -154,6 +154,10 @@
     margin-top: 2rem;
     margin-bottom: 0.75rem;
     line-height: 1.3;
+
+    &:not(.font-semibold .tracking-tight .text-lg) {
+      margin-top: 0;
+    }
   }
 
   h4,

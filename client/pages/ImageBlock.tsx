@@ -44,6 +44,7 @@ export default function ImageBlock() {
         ogType="article"
         schema={[imageBlockSchema]}
       />
+      <div className="space-y-8">
       {/* Header */}
       <div className="space-y-4">
         <div className="flex items-center space-x-2">
@@ -462,6 +463,7 @@ export default function ImageBlock() {
             </CardContent>
           </Card>
         </div>
+      </div>
       </div>
     </>
   );

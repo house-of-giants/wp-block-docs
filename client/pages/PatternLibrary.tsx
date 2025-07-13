@@ -10,14 +10,12 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import {
-  Copy,
   Eye,
   Palette,
   Layout,
   Zap,
   Star,
   Download,
-  Code,
 } from "lucide-react";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
 import { generateDocumentationSchema, SEO } from "@/components/SEO";
@@ -45,6 +43,7 @@ export default function PatternLibrary() {
         ogType="article"
         schema={[patternLibrarySchema]}
       />
+      <div className="space-y-8">
       {/* Header */}
       <div className="space-y-4">
         <div className="flex items-center space-x-2">
@@ -1710,6 +1709,7 @@ export default function PatternLibrary() {
             </CardContent>
           </Card>
         </div>
+      </div>
       </div>
     </>
   );

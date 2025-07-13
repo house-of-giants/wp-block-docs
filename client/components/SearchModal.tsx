@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 import {
   Search,
   BookOpen,
@@ -631,7 +630,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     className={cn(
                       "w-full flex items-center gap-3 p-3 rounded-lg text-left transition-all duration-200 border border-transparent",
                       isSelected
-                        ? "bg-accent/80 text-accent-foreground backdrop-blur-sm border-accent/30 shadow-lg glow-purple"
+                        ? "bg-accent/10 text-accent-foreground backdrop-blur-sm border-accent/30 shadow-lg glow-purple"
                         : "hover:bg-muted/30 hover:backdrop-blur-sm hover:border-border/40",
                     )}
                   >

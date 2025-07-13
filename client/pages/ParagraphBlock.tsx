@@ -45,6 +45,7 @@ export default function ParagraphBlock() {
         ogType="article"
         schema={[paragraphBlockSchema]}
       />
+      <div className="space-y-8">
       {/* Header */}
       <div className="space-y-4">
         <div className="flex items-center space-x-2">
@@ -490,6 +491,7 @@ You can also use <code>inline code</code> and
             </CardContent>
           </Card>
         </div>
+      </div>
       </div>
     </>
   );
