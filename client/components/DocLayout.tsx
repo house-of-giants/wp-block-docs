@@ -1,12 +1,10 @@
 import { ReactNode, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Sheet,
   SheetContent,
   SheetTitle,
-  SheetTrigger,
 } from "@/components/ui/sheet";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import {
@@ -27,6 +25,7 @@ import {
   Image,
   Type,
   MousePointer,
+  Columns2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -53,7 +52,7 @@ const navigation = [
         icon: Navigation,
       },
       { name: "Group Block", href: "/blocks/group", icon: Layers },
-      { name: "Columns Block", href: "/blocks/columns", icon: Layers },
+      { name: "Columns Block", href: "/blocks/columns", icon: Columns2},
       { name: "List Block", href: "/blocks/list", icon: List },
       { name: "Quote Block", href: "/blocks/quote", icon: Quote },
       { name: "Gallery Block", href: "/blocks/gallery", icon: Images },

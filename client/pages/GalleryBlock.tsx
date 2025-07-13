@@ -26,6 +26,7 @@ import {
   generateDocumentationSchema,
   generateBreadcrumbSchema,
 } from "@/components/SEO";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 export default function GalleryBlock() {
   const gallerySchema = generateDocumentationSchema(
@@ -167,8 +168,18 @@ export default function GalleryBlock() {
   <!-- /wp:image -->
 </figure>
 <!-- /wp:gallery -->`}
-                showLineNumbers={true}
+                
               />
+              {/* Note about gallery image IDs and portability */}
+              <Alert variant="destructive" className="mt-4">
+                <AlertCircle className="h-5 w-5 text-destructive mr-2 mt-0.5 flex-shrink-0" />
+                <AlertTitle>Warning: Gallery Block Portability</AlertTitle>
+                <AlertDescription>
+                  <b>Image IDs in this gallery block are unique to your WordPress site.</b> <br />
+                  If you copy this block to another site, the images may not appear until you re-select them or use the WordPress editor's recovery tools. <br />
+                  <span className="text-destructive">For best results, always check and update images after pasting on a new site.</span>
+                </AlertDescription>
+              </Alert>
             </CardContent>
           </Card>
         </div>
@@ -204,7 +215,7 @@ export default function GalleryBlock() {
   "allowResize":false,
   "className":"is-style-masonry"
 } -->
-<figure class="wp-block-gallery has-nested-images is-style-masonry">
+<figure class="wp-block-gallery has-nested-images is-style-masonry columns-0 is-cropped">
   <!-- wp:image {"id":201,"sizeSlug":"large","linkDestination":"none"} -->
   <figure class="wp-block-image size-large">
     <img src="/wp-content/uploads/2024/01/nature-1-vertical.jpg" alt="Mountain landscape at sunrise" class="wp-image-201"/>
@@ -230,7 +241,7 @@ export default function GalleryBlock() {
   <!-- /wp:image -->
 </figure>
 <!-- /wp:gallery -->`}
-                    showLineNumbers={true}
+                    
                   />
                 </CardContent>
               </Card>
@@ -298,7 +309,7 @@ export default function GalleryBlock() {
   <!-- /wp:image -->
 </figure>
 <!-- /wp:gallery -->`}
-                    showLineNumbers={true}
+                    
                   />
                 </CardContent>
               </Card>
@@ -325,7 +336,7 @@ export default function GalleryBlock() {
     }
   }
 } -->
-<figure class="wp-block-gallery has-nested-images columns-4 is-cropped responsive-gallery" style="gap:1rem">
+<figure class="wp-block-gallery has-nested-images columns-4 is-cropped responsive-gallery">
   <!-- wp:image {"id":401,"sizeSlug":"medium","linkDestination":"media"} -->
   <figure class="wp-block-image size-medium">
     <a href="/wp-content/uploads/2024/01/product-1-large.jpg">
@@ -358,10 +369,15 @@ export default function GalleryBlock() {
   </figure>
   <!-- /wp:image -->
 </figure>
-<!-- /wp:gallery -->
-
-<!-- Custom CSS for responsive behavior -->
-<style>
+<!-- /wp:gallery -->`}
+                  />
+                  <Card className="bg-card/50 backdrop-blur border-border/50 mt-4">
+                    <CardHeader>
+                      <CardTitle>Custom CSS for responsive behavior</CardTitle>
+                    </CardHeader>
+                  </Card>
+                  <WPBlockCodeBlock
+                    code={`
 .responsive-gallery {
   --columns: 4;
 }
@@ -380,9 +396,7 @@ export default function GalleryBlock() {
 
 .responsive-gallery .wp-block-image {
   width: calc((100% - (var(--columns) - 1) * 1rem) / var(--columns));
-}
-</style>`}
-                    showLineNumbers={true}
+}`}
                   />
                 </CardContent>
               </Card>
@@ -401,7 +415,6 @@ export default function GalleryBlock() {
                     code={`<!-- wp:gallery {
   "columns":3,
   "linkTo":"media",
-  "sizeSlug":"large",
   "className":"styled-gallery",
   "style":{
     "spacing":{
@@ -412,7 +425,7 @@ export default function GalleryBlock() {
     }
   }
 } -->
-<figure class="wp-block-gallery has-nested-images columns-3 is-cropped styled-gallery" style="gap:2rem;border-radius:12px">
+<figure class="wp-block-gallery has-nested-images columns-3 is-cropped styled-gallery" style="border-radius:12px">
   <!-- wp:image {"id":501,"sizeSlug":"large","linkDestination":"media","className":"gallery-item-styled"} -->
   <figure class="wp-block-image size-large gallery-item-styled">
     <a href="/wp-content/uploads/2024/01/artwork-1-large.jpg">
@@ -437,10 +450,15 @@ export default function GalleryBlock() {
   </figure>
   <!-- /wp:image -->
 </figure>
-<!-- /wp:gallery -->
-
-<!-- Custom styling -->
-<style>
+<!-- /wp:gallery -->`}
+                  />
+                  <Card className="bg-card/50 backdrop-blur border-border/50 mt-4">
+                    <CardHeader>
+                      <CardTitle>Custom CSS for gallery item styling</CardTitle>
+                    </CardHeader>
+                  </Card>
+                  <WPBlockCodeBlock
+                    code={`
 .styled-gallery .gallery-item-styled img {
   border-radius: 8px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -456,9 +474,7 @@ export default function GalleryBlock() {
   display: block;
   overflow: hidden;
   border-radius: 8px;
-}
-</style>`}
-                    showLineNumbers={true}
+}`}
                   />
                 </CardContent>
               </Card>
@@ -481,7 +497,7 @@ export default function GalleryBlock() {
                     <h3 className="font-semibold text-blue-700 dark:text-blue-300">
                       Image Optimization
                     </h3>
-                    <p className="text-sm text-blue-600 dark:text-blue-400">
+                    <p className="text-sm text-foreground">
                       Use appropriate image sizes (medium for thumbnails, large
                       for lightbox). WordPress automatically generates multiple
                       sizes for responsive display and faster loading.
@@ -499,7 +515,7 @@ export default function GalleryBlock() {
                     <h3 className="font-semibold text-green-700 dark:text-green-300">
                       Responsive Design
                     </h3>
-                    <p className="text-sm text-green-600 dark:text-green-400">
+                    <p className="text-sm text-foreground">
                       Gallery columns automatically adapt to screen size. Use
                       CSS custom properties and media queries for fine-tuned
                       responsive behavior across devices.
@@ -517,7 +533,7 @@ export default function GalleryBlock() {
                     <h3 className="font-semibold text-purple-700 dark:text-purple-300">
                       Accessibility Features
                     </h3>
-                    <p className="text-sm text-purple-600 dark:text-purple-400">
+                    <p className="text-sm text-foreground">
                       Always include meaningful alt text for each image.
                       Consider keyboard navigation for lightbox functionality
                       and provide adequate color contrast for captions.
@@ -535,7 +551,7 @@ export default function GalleryBlock() {
                     <h3 className="font-semibold text-amber-700 dark:text-amber-300">
                       Performance Considerations
                     </h3>
-                    <p className="text-sm text-amber-600 dark:text-amber-400">
+                    <p className="text-sm text-foreground">
                       Large galleries can impact page load time. Consider lazy
                       loading, image compression, and limiting the number of
                       images per gallery for better performance.
@@ -567,7 +583,7 @@ export default function GalleryBlock() {
               <CardContent>
                 <WPBlockCodeBlock
                   code={`<!-- wp:gallery {"columns":3,"linkTo":"attachment","className":"portfolio-gallery"} -->
-<figure class="wp-block-gallery columns-3 portfolio-gallery">
+<figure class="wp-block-gallery has-nested-images columns-3 is-cropped portfolio-gallery">
   <!-- Images with descriptive alt text -->
   <!-- wp:image {"linkDestination":"attachment"} -->
   <figure class="wp-block-image">
@@ -578,7 +594,7 @@ export default function GalleryBlock() {
   <!-- /wp:image -->
 </figure>
 <!-- /wp:gallery -->`}
-                  showLineNumbers={false}
+                  
                 />
               </CardContent>
             </Card>
@@ -596,7 +612,7 @@ export default function GalleryBlock() {
               <CardContent>
                 <WPBlockCodeBlock
                   code={`<!-- wp:gallery {"columns":4,"linkTo":"none","className":"team-gallery"} -->
-<figure class="wp-block-gallery columns-4 team-gallery">
+<figure class="wp-block-gallery has-nested-images columns-4 is-cropped team-gallery">
   <!-- wp:image -->
   <figure class="wp-block-image">
     <img src="team-member.jpg" alt="Sarah Johnson, Lead Designer"/>
@@ -605,7 +621,7 @@ export default function GalleryBlock() {
   <!-- /wp:image -->
 </figure>
 <!-- /wp:gallery -->`}
-                  showLineNumbers={false}
+                  
                 />
               </CardContent>
             </Card>

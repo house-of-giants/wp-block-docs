@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Card,
   CardContent,
@@ -15,7 +14,6 @@ import {
   ListOrdered,
   CheckCircle,
   Hash,
-  Lightbulb,
   Type,
 } from "lucide-react";
 import { PropertiesReference } from "@/components/PropertiesReference";
@@ -132,7 +130,6 @@ export default function ListBlock() {
   <!-- /wp:list-item -->
 </ul>
 <!-- /wp:list -->`}
-                showLineNumbers={true}
               />
             </CardContent>
           </Card>
@@ -188,7 +185,6 @@ export default function ListBlock() {
   <!-- /wp:list-item -->
 </ol>
 <!-- /wp:list -->`}
-                    showLineNumbers={true}
                   />
                 </CardContent>
               </Card>
@@ -263,7 +259,6 @@ export default function ListBlock() {
   <!-- /wp:list-item -->
 </ul>
 <!-- /wp:list -->`}
-                    showLineNumbers={true}
                   />
                 </CardContent>
               </Card>
@@ -280,9 +275,12 @@ export default function ListBlock() {
                 <CardContent>
                   <WPBlockCodeBlock
                     code={`<!-- wp:list {
+  "className":"custom-feature-list",
   "style":{
     "spacing":{
-      "padding":{"left":"2rem"},
+      "padding":{
+        "left":"2rem"
+        },
       "blockGap":"1rem"
     },
     "typography":{
@@ -292,44 +290,40 @@ export default function ListBlock() {
     "color":{
       "text":"#2563eb"
     }
-  },
-  "className":"custom-feature-list"
+  }
 } -->
-<ul class="wp-block-list custom-feature-list" style="color:#2563eb;font-size:1.1rem;line-height:1.6;padding-left:2rem;gap:1rem">
+<ul style="color:#2563eb;padding-left:2rem;font-size:1.1rem;line-height:1.6"
+  class="wp-block-list custom-feature-list has-text-color">
   <!-- wp:list-item {
     "style":{
-      "color":{"text":"#059669"}
+      "color":{
+        "text":"#059669"
+      }
     }
   } -->
-  <li style="color:#059669">✅ Responsive design across all devices</li>
+  <li class="has-text-color" style="color:#059669">
+    ✅ Responsive design across all devices
+  </li>
   <!-- /wp:list-item -->
-  
-  <!-- wp:list-item {
-    "style":{
-      "color":{"text":"#7c3aed"}
-    }
-  } -->
-  <li style="color:#7c3aed">🚀 Fast loading and optimized performance</li>
+
+  <!-- wp:list-item {"style":{"color":{"text":"#7c3aed"}}} -->
+  <li class="has-text-color" style="color:#7c3aed">
+    🚀 Fast loading and optimized performance
+  </li>
   <!-- /wp:list-item -->
-  
-  <!-- wp:list-item {
-    "style":{
-      "color":{"text":"#dc2626"}
-    }
-  } -->
-  <li style="color:#dc2626">🎨 Customizable design system</li>
+
+  <!-- wp:list-item {"style":{"color":{"text":"#dc2626"}}} -->
+  <li class="has-text-color" style="color:#dc2626">
+    🎨 Customizable design system
+  </li>
   <!-- /wp:list-item -->
-  
-  <!-- wp:list-item {
-    "style":{
-      "color":{"text":"#ea580c"}
-    }
-  } -->
-  <li style="color:#ea580c">🔧 Easy content management</li>
-  <!-- /wp:list-item -->
-</ul>
+
+  <!-- wp:list-item {"style":{"color":{"text":"#ea580c"}}} -->
+  <li class="has-text-color" style="color:#ea580c">
+    🔧 Easy content management
+  </li>
+  <!-- /wp:list-item --></ul>
 <!-- /wp:list -->`}
-                    showLineNumbers={true}
                   />
                 </CardContent>
               </Card>
@@ -371,7 +365,6 @@ export default function ListBlock() {
   <!-- /wp:list-item -->
 </ul>
 <!-- /wp:list -->`}
-                    showLineNumbers={true}
                   />
                 </CardContent>
               </Card>
@@ -394,7 +387,7 @@ export default function ListBlock() {
                     <h3 className="font-semibold text-green-700 dark:text-green-300">
                       Semantic HTML Structure
                     </h3>
-                    <p className="text-sm text-green-600 dark:text-green-400">
+                    <p className="text-sm text-foreground">
                       List blocks generate proper semantic HTML (ul/ol) that
                       improves SEO and accessibility. Search engines understand
                       list structure better than manual formatting.
@@ -412,7 +405,7 @@ export default function ListBlock() {
                     <h3 className="font-semibold text-blue-700 dark:text-blue-300">
                       Ordered vs Unordered
                     </h3>
-                    <p className="text-sm text-blue-600 dark:text-blue-400">
+                    <p className="text-sm text-foreground">
                       Use ordered lists (ol) for sequential steps or ranked
                       items. Use unordered lists (ul) for related items without
                       specific order. This affects both styling and SEO.
@@ -430,7 +423,7 @@ export default function ListBlock() {
                     <h3 className="font-semibold text-purple-700 dark:text-purple-300">
                       Rich Text Support
                     </h3>
-                    <p className="text-sm text-purple-600 dark:text-purple-400">
+                    <p className="text-sm text-foreground">
                       List items support rich text formatting including bold,
                       italic, links, and inline code. Use keyboard shortcuts for
                       faster formatting.
@@ -448,80 +441,13 @@ export default function ListBlock() {
                     <h3 className="font-semibold text-amber-700 dark:text-amber-300">
                       Nesting Limitations
                     </h3>
-                    <p className="text-sm text-amber-600 dark:text-amber-400">
+                    <p className="text-sm text-foreground">
                       While WordPress supports unlimited nesting, consider
                       usability and readability. Deep nesting (more than 3
                       levels) can confuse users and search engines.
                     </p>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-
-        {/* Common Patterns */}
-        <div className="space-y-6">
-          <h2 className="text-2xl font-semibold text-foreground">
-            Common List Patterns
-          </h2>
-
-          <div className="grid gap-6 md:grid-cols-2">
-            <Card className="bg-card/50 backdrop-blur border-border/50">
-              <CardHeader>
-                <CardTitle>Feature List Pattern</CardTitle>
-                <CardDescription>
-                  Highlighting product or service features
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <WPBlockCodeBlock
-                  code={`<!-- wp:list {"className":"features-list"} -->
-<ul class="wp-block-list features-list">
-  <!-- wp:list-item -->
-  <li>🚀 <strong>Fast Performance</strong> - Optimized for speed</li>
-  <!-- /wp:list-item -->
-  
-  <!-- wp:list-item -->
-  <li>📱 <strong>Mobile Responsive</strong> - Works on all devices</li>
-  <!-- /wp:list-item -->
-  
-  <!-- wp:list-item -->
-  <li>🔒 <strong>Secure</strong> - Built with security in mind</li>
-  <!-- /wp:list-item -->
-</ul>
-<!-- /wp:list -->`}
-                  showLineNumbers={false}
-                />
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card/50 backdrop-blur border-border/50">
-              <CardHeader>
-                <CardTitle>Step-by-Step Tutorial</CardTitle>
-                <CardDescription>
-                  Instructional content with clear progression
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <WPBlockCodeBlock
-                  code={`<!-- wp:list {"ordered":true,"className":"tutorial-steps"} -->
-<ol class="wp-block-list tutorial-steps">
-  <!-- wp:list-item -->
-  <li><strong>Install WordPress</strong> on your hosting server</li>
-  <!-- /wp:list-item -->
-  
-  <!-- wp:list-item -->
-  <li><strong>Choose a theme</strong> from the directory</li>
-  <!-- /wp:list-item -->
-  
-  <!-- wp:list-item -->
-  <li><strong>Customize</strong> using the Site Editor</li>
-  <!-- /wp:list-item -->
-</ol>
-<!-- /wp:list -->`}
-                  showLineNumbers={false}
-                />
               </CardContent>
             </Card>
           </div>

@@ -36,7 +36,6 @@ import {
   Move,
   Settings,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 import {
   type PropertyCategory,
   type BlockProperty,
@@ -51,7 +50,12 @@ interface PropertiesReferenceProps {
     | "image"
     | "heading"
     | "paragraph"
-    | "button";
+    | "button"
+    | "query-loop"
+    | "navigation"
+    | "list"
+    | "quote"
+    | "gallery";
   title?: string;
   description?: string;
   showUniversalOnly?: boolean;
@@ -74,8 +78,30 @@ function PropertyRow({ property }: { property: BlockProperty }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async (propertyName: string, example: string) => {
-    // Create proper JSON markup format for the property
-    const markup = `"${propertyName}":${example}`;
+    let markup: string;
+
+    if (propertyName.includes(".")) {
+      // Build nested object from dot notation
+      const keys = propertyName.split(".");
+      // Remove wrapping quotes if present
+      let value = example;
+      if (
+        typeof value === "string" &&
+        value.length > 1 &&
+        value.startsWith('"') &&
+        value.endsWith('"')
+      ) {
+        value = value.slice(1, -1);
+      }
+      let nested: any = value;
+      for (let i = keys.length - 1; i >= 0; i--) {
+        nested = { [keys[i]]: nested };
+      }
+      markup = JSON.stringify(nested, null, 2); // pretty print
+    } else {
+      // Flat property
+      markup = `"${propertyName}":${example}`;
+    }
 
     try {
       await navigator.clipboard.writeText(markup);

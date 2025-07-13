@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Card,
   CardContent,
@@ -25,6 +24,7 @@ import {
   generateDocumentationSchema,
   generateBreadcrumbSchema,
 } from "@/components/SEO";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 export default function NavigationBlock() {
   const navigationSchema = generateDocumentationSchema(
@@ -144,8 +144,17 @@ export default function NavigationBlock() {
   </ul>
 </nav>
 <!-- /wp:navigation -->`}
-                showLineNumbers={true}
               />
+              {/* Note about navigation block recovery and portability */}
+              <Alert variant="destructive" className="mt-4">
+                <AlertCircle className="h-5 w-5 text-destructive mr-2 mt-0.5 flex-shrink-0" />
+                <AlertTitle>Warning: Navigation Block Portability</AlertTitle>
+                <AlertDescription>
+                  <b>After pasting this navigation block, using <i>"Attempt Recovery"</i> in WordPress will convert it to reference a menu by <code>ref</code> (menu ID).</b> <br />
+                  This menu ID is unique to your site. If you copy the recovered block to another site, you will need to use <b>"Attempt Recovery"</b> again to generate a new menu. <br />
+                  <span className="text-destructive">For best portability, always copy the original manual-link version, not the recovered <code>ref</code> version.</span>
+                </AlertDescription>
+              </Alert>
             </CardContent>
           </Card>
         </div>
@@ -174,13 +183,7 @@ export default function NavigationBlock() {
                 </CardHeader>
                 <CardContent>
                   <WPBlockCodeBlock
-                    code={`<!-- wp:navigation {
-  "ref":123,
-  "layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap"},
-  "overlayMenu":"mobile",
-  "overlayBackgroundColor":"background",
-  "overlayTextColor":"foreground"
-} -->
+                    code={`<!-- wp:navigation {"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap"},"overlayMenu":"mobile","overlayBackgroundColor":"background","overlayTextColor":"foreground"} -->
 <nav class="wp-block-navigation has-background-background-color has-foreground-color" aria-label="Main navigation">
   <ul class="wp-block-navigation__container">
     <!-- wp:navigation-link {"label":"Home","url":"/"} -->
@@ -216,7 +219,6 @@ export default function NavigationBlock() {
   </button>
 </nav>
 <!-- /wp:navigation -->`}
-                    showLineNumbers={true}
                   />
                 </CardContent>
               </Card>
@@ -286,7 +288,6 @@ export default function NavigationBlock() {
   </ul>
 </nav>
 <!-- /wp:navigation -->`}
-                    showLineNumbers={true}
                   />
                 </CardContent>
               </Card>
@@ -377,7 +378,6 @@ export default function NavigationBlock() {
   </div>
 </nav>
 <!-- /wp:navigation -->`}
-                    showLineNumbers={true}
                   />
                 </CardContent>
               </Card>
@@ -473,7 +473,6 @@ export default function NavigationBlock() {
   </ul>
 </nav>
 <!-- /wp:navigation -->`}
-                    showLineNumbers={true}
                   />
                 </CardContent>
               </Card>
@@ -496,7 +495,7 @@ export default function NavigationBlock() {
                     <h3 className="font-semibold text-amber-700 dark:text-amber-300">
                       Menu vs Navigation Block
                     </h3>
-                    <p className="text-sm text-amber-600 dark:text-amber-400">
+                    <p className="text-sm text-foreground">
                       Navigation blocks replace traditional WordPress menus in
                       block themes. They can reference existing menus via ref
                       attribute or use manual links.
@@ -514,7 +513,7 @@ export default function NavigationBlock() {
                     <h3 className="font-semibold text-blue-700 dark:text-blue-300">
                       Mobile Responsiveness
                     </h3>
-                    <p className="text-sm text-blue-600 dark:text-blue-400">
+                    <p className="text-sm text-foreground">
                       Use overlayMenu attribute for mobile behavior: "never",
                       "mobile", or "always". Mobile overlays provide better UX
                       on small screens.
@@ -532,7 +531,7 @@ export default function NavigationBlock() {
                     <h3 className="font-semibold text-green-700 dark:text-green-300">
                       Accessibility Features
                     </h3>
-                    <p className="text-sm text-green-600 dark:text-green-400">
+                    <p className="text-sm text-foreground">
                       Navigation blocks include proper ARIA labels, keyboard
                       navigation, and screen reader support. Always include
                       aria-label on the nav element.
@@ -550,7 +549,7 @@ export default function NavigationBlock() {
                     <h3 className="font-semibold text-purple-700 dark:text-purple-300">
                       Template Part Integration
                     </h3>
-                    <p className="text-sm text-purple-600 dark:text-purple-400">
+                    <p className="text-sm text-foreground">
                       Navigation blocks are typically placed in header template
                       parts. Use consistent styling across all pages by
                       centralizing navigation in template parts.

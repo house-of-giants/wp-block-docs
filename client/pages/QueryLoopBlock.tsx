@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Card,
   CardContent,
@@ -7,11 +6,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import {
   AlertCircle,
-  Search,
   Database,
   Filter,
   Layout,
@@ -25,6 +22,7 @@ import {
   generateDocumentationSchema,
   generateBreadcrumbSchema,
 } from "@/components/SEO";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 export default function QueryLoopBlock() {
   const queryLoopSchema = generateDocumentationSchema(
@@ -117,51 +115,36 @@ export default function QueryLoopBlock() {
                 </span>
               </div>
               <WPBlockCodeBlock
-                code={`<!-- wp:query {"queryId":1,"query":{"perPage":3,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false}} -->
+                code={`<!-- wp:query {"queryId":19,"query":{"perPage":10,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false,"taxQuery":null,"parents":[],"format":[]}} -->
 <div class="wp-block-query">
   <!-- wp:post-template -->
-    <!-- wp:post-title {"isLink":true} -->
-    <h2 class="wp-block-post-title"><a href="#">Sample Post Title</a></h2>
-    <!-- /wp:post-title -->
-    
-    <!-- wp:post-excerpt -->
-    <div class="wp-block-post-excerpt">
-      <p class="wp-block-post-excerpt__excerpt">This is the post excerpt...</p>
-    </div>
-    <!-- /wp:post-excerpt -->
+    <!-- wp:post-title /-->
+    <!-- wp:post-date /-->
+    <!-- wp:post-excerpt /-->
   <!-- /wp:post-template -->
-  
   <!-- wp:query-pagination -->
-  <div class="wp-block-query-pagination">
-    <!-- wp:query-pagination-previous -->
-    <div class="wp-block-query-pagination-previous">
-      <a href="#">Previous</a>
-    </div>
-    <!-- /wp:query-pagination-previous -->
-    
-    <!-- wp:query-pagination-numbers -->
-    <div class="wp-block-query-pagination-numbers"></div>
-    <!-- /wp:query-pagination-numbers -->
-    
-    <!-- wp:query-pagination-next -->
-    <div class="wp-block-query-pagination-next">
-      <a href="#">Next</a>
-    </div>
-    <!-- /wp:query-pagination-next -->
-  </div>
+    <!-- wp:query-pagination-previous /-->
+    <!-- wp:query-pagination-numbers /-->
+    <!-- wp:query-pagination-next /-->
   <!-- /wp:query-pagination -->
-  
   <!-- wp:query-no-results -->
-  <div class="wp-block-query-no-results">
-    <!-- wp:paragraph -->
-    <p>No posts were found.</p>
+    <!-- wp:paragraph {"placeholder":"Add text or blocks that will display when a query returns no results."} -->
+      <p>No results found.</p>
     <!-- /wp:paragraph -->
-  </div>
   <!-- /wp:query-no-results -->
 </div>
 <!-- /wp:query -->`}
-                showLineNumbers={true}
               />
+              {/* Note about copying the block and using 'Attempt to fix' */}
+              <Alert variant="destructive" className="mt-4">
+                <AlertCircle className="h-5 w-5 text-destructive mr-2 mt-0.5 flex-shrink-0" />
+                <AlertTitle>Warning: Block Copy Issues</AlertTitle>
+                <AlertDescription>
+                  <b>Copying this Query Loop block may break!</b> <br />
+                  The <b>queryId</b> and <b>postType</b> values are often unique to each site or template. If you paste this block into your WordPress editor and see a warning, <b>click the "Attempt to fix" button</b> to automatically resolve these issues. <br />
+                  <span className="text-destructive">If you skip this step, the block may not display posts correctly.</span>
+                </AlertDescription>
+              </Alert>
             </CardContent>
           </Card>
         </div>
@@ -181,7 +164,7 @@ export default function QueryLoopBlock() {
                     <h3 className="font-semibold text-amber-700 dark:text-amber-300">
                       Query Loop vs Query Block
                     </h3>
-                    <p className="text-sm text-amber-600 dark:text-amber-400">
+                    <p className="text-sm text-foreground">
                       The Query Loop block replaced the older Query block.
                       Always use Query Loop for new implementations. The main
                       difference is that Query Loop includes the post template
@@ -200,7 +183,7 @@ export default function QueryLoopBlock() {
                     <h3 className="font-semibold text-blue-700 dark:text-blue-300">
                       Inherit Query Context
                     </h3>
-                    <p className="text-sm text-blue-600 dark:text-blue-400">
+                    <p className="text-sm text-foreground">
                       Set inherit:true to use the main query context (like on
                       archive pages). This is essential for proper archive and
                       search functionality.
@@ -218,7 +201,7 @@ export default function QueryLoopBlock() {
                     <h3 className="font-semibold text-green-700 dark:text-green-300">
                       Template Layouts
                     </h3>
-                    <p className="text-sm text-green-600 dark:text-green-400">
+                    <p className="text-sm text-foreground">
                       Post templates can use grid layouts with columnCount or
                       default stacked layouts. Essential for creating flexible
                       post displays.
@@ -236,7 +219,7 @@ export default function QueryLoopBlock() {
                     <h3 className="font-semibold text-purple-700 dark:text-purple-300">
                       Performance Considerations
                     </h3>
-                    <p className="text-sm text-purple-600 dark:text-purple-400">
+                    <p className="text-sm text-foreground">
                       Complex meta queries and large perPage values can impact
                       performance. Always test with realistic data volumes and
                       consider caching strategies.
