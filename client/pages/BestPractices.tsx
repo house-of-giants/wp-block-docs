@@ -38,7 +38,7 @@ export default function BestPractices() {
     ],
   );
   return (
-    <>
+    <> 
       <SEO
         title="WordPress Best Practices - Complete HTML Markup Guide & Examples"
         description="Master WordPress best practices with comprehensive examples, attributes, and best practices. Learn how to create flexible layouts using Group blocks with custom styling and semantic HTML."
@@ -48,7 +48,7 @@ export default function BestPractices() {
         schema={[bestPracticesSchema]}
       />
       <div className="space-y-8">
-        <PageHeader
+                <PageHeader
           icon={CheckCircle}
           iconColor="text-green-500"
           iconBgColor="bg-green-500/20"
@@ -66,10 +66,11 @@ export default function BestPractices() {
           ]}
         />
 
-        {/* Block Structure & Semantic HTML */}
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground flex items-center">
-            <Code className="mr-2 h-5 w-5 text-neon-blue" />
+                <ContentSection
+          title="Block Structure & Semantic HTML"
+          icon={Code}
+          iconColor="text-neon-blue"
+        >
             Block Structure & Semantic HTML
           </h2>
 
@@ -186,8 +187,7 @@ export default function BestPractices() {
                   Minimize Inline Styles
                 </CardTitle>
                 <CardDescription>
-                  Use CSS classes instead of inline styles for better
-                  performance
+                  Use CSS classes instead of inline styles for better performance
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -337,8 +337,8 @@ export default function BestPractices() {
               <CardContent className="space-y-4">
                 <ul className="space-y-2 text-sm">
                   <li>
-                    • Use descriptive, keyword-rich headings that reflect
-                    content hierarchy
+                    • Use descriptive, keyword-rich headings that reflect content
+                    hierarchy
                   </li>
                   <li>
                     • Include target keywords naturally in headings and content
@@ -546,7 +546,7 @@ export default function BestPractices() {
                     Content Structure
                   </h3>
                   <ul className="space-y-1 text-sm text-muted-foreground">
-                    <li>�� Proper heading hierarchy</li>
+                    <li>□ Proper heading hierarchy</li>
                     <li>□ Semantic HTML elements</li>
                     <li>□ Descriptive link text</li>
                     <li>□ Alt text for images</li>
