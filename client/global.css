@@ -242,3 +242,57 @@
     @apply bg-primary/20 text-foreground;
   }
 }
+
+@layer utilities {
+  /* Enhanced text readability utilities */
+  .text-high-contrast {
+    color: hsl(var(--text-high-contrast));
+  }
+
+  .text-medium-contrast {
+    color: hsl(var(--text-medium-contrast));
+  }
+
+  .text-low-contrast {
+    color: hsl(var(--text-low-contrast));
+  }
+
+  .text-subtle {
+    color: hsl(var(--text-subtle));
+  }
+
+  /* Glass morphism utilities */
+  .glass {
+    @apply backdrop-blur-md bg-background/80 border border-border/50;
+  }
+
+  .glass-subtle {
+    @apply backdrop-blur-sm bg-background/60 border border-border/30;
+  }
+
+  .glass-strong {
+    @apply backdrop-blur-lg bg-background/90 border border-border/70;
+  }
+
+  /* Enhanced focus states */
+  .focus-neon {
+    @apply focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  /* Glow effects for neon elements */
+  .glow-pink {
+    filter: drop-shadow(0 0 8px hsl(var(--neon-pink) / 0.3));
+  }
+
+  .glow-blue {
+    filter: drop-shadow(0 0 8px hsl(var(--neon-blue) / 0.3));
+  }
+
+  .glow-purple {
+    filter: drop-shadow(0 0 8px hsl(var(--neon-purple) / 0.3));
+  }
+
+  .glow-cyan {
+    filter: drop-shadow(0 0 8px hsl(var(--neon-cyan) / 0.3));
+  }
+}
