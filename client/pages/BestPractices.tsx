@@ -21,6 +21,8 @@ import {
 } from "lucide-react";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
 import { generateDocumentationSchema, SEO } from "@/components/SEO";
+import { PageHeader } from "@/components/PageHeader";
+import { ContentSection } from "@/components/ContentSection";
 
 export default function BestPractices() {
   const bestPracticesSchema = generateDocumentationSchema(
@@ -36,7 +38,7 @@ export default function BestPractices() {
     ],
   );
   return (
-    <> 
+    <>
       <SEO
         title="WordPress Best Practices - Complete HTML Markup Guide & Examples"
         description="Master WordPress best practices with comprehensive examples, attributes, and best practices. Learn how to create flexible layouts using Group blocks with custom styling and semantic HTML."
@@ -46,33 +48,23 @@ export default function BestPractices() {
         schema={[bestPracticesSchema]}
       />
       <div className="space-y-8">
-        {/* Header */}
-        <div className="space-y-4">
-          <div className="flex items-center space-x-2">
-            <div className="p-2 rounded-lg bg-green-500/20">
-              <CheckCircle className="h-6 w-6 text-green-500" />
-            </div>
-            <h1 className="text-4xl font-bold text-foreground mb-0">Best Practices</h1>
-          </div>
-          <p className="text-xl text-muted-foreground">
-            Follow these proven best practices to create maintainable, accessible,
-            and performant WordPress block themes. These guidelines will help you
-            avoid common pitfalls and build sites that work well for everyone.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            <Badge
-              variant="secondary"
-              className="bg-green-500/20 text-green-500 border-green-500/30"
-            >
-              Best Practices
-            </Badge>
-            <Badge variant="outline">Performance</Badge>
-            <Badge variant="outline">Accessibility</Badge>
-            <Badge variant="outline">SEO</Badge>
-          </div>
-        </div>
-
-        <Separator />
+        <PageHeader
+          icon={CheckCircle}
+          iconColor="text-green-500"
+          iconBgColor="bg-green-500/20"
+          title="Best Practices"
+          description="Follow these proven best practices to create maintainable, accessible, and performant WordPress block themes. These guidelines will help you avoid common pitfalls and build sites that work well for everyone."
+          badges={[
+            {
+              text: "Best Practices",
+              variant: "secondary",
+              className: "bg-green-500/20 text-green-500 border-green-500/30",
+            },
+            { text: "Performance" },
+            { text: "Accessibility" },
+            { text: "SEO" },
+          ]}
+        />
 
         {/* Block Structure & Semantic HTML */}
         <div className="space-y-4">
@@ -194,7 +186,8 @@ export default function BestPractices() {
                   Minimize Inline Styles
                 </CardTitle>
                 <CardDescription>
-                  Use CSS classes instead of inline styles for better performance
+                  Use CSS classes instead of inline styles for better
+                  performance
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -344,8 +337,8 @@ export default function BestPractices() {
               <CardContent className="space-y-4">
                 <ul className="space-y-2 text-sm">
                   <li>
-                    • Use descriptive, keyword-rich headings that reflect content
-                    hierarchy
+                    • Use descriptive, keyword-rich headings that reflect
+                    content hierarchy
                   </li>
                   <li>
                     • Include target keywords naturally in headings and content
@@ -553,7 +546,7 @@ export default function BestPractices() {
                     Content Structure
                   </h3>
                   <ul className="space-y-1 text-sm text-muted-foreground">
-                    <li>□ Proper heading hierarchy</li>
+                    <li>�� Proper heading hierarchy</li>
                     <li>□ Semantic HTML elements</li>
                     <li>□ Descriptive link text</li>
                     <li>□ Alt text for images</li>
