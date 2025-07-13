@@ -21,8 +21,6 @@ import {
 } from "lucide-react";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
 import { generateDocumentationSchema, SEO } from "@/components/SEO";
-import { PageHeader } from "@/components/PageHeader";
-import { ContentSection } from "@/components/ContentSection";
 
 export default function BestPractices() {
   const bestPracticesSchema = generateDocumentationSchema(
@@ -48,29 +46,40 @@ export default function BestPractices() {
         schema={[bestPracticesSchema]}
       />
       <div className="space-y-8">
-                <PageHeader
-          icon={CheckCircle}
-          iconColor="text-green-500"
-          iconBgColor="bg-green-500/20"
-          title="Best Practices"
-          description="Follow these proven best practices to create maintainable, accessible, and performant WordPress block themes. These guidelines will help you avoid common pitfalls and build sites that work well for everyone."
-          badges={[
-            {
-              text: "Best Practices",
-              variant: "secondary",
-              className: "bg-green-500/20 text-green-500 border-green-500/30",
-            },
-            { text: "Performance" },
-            { text: "Accessibility" },
-            { text: "SEO" },
-          ]}
-        />
+        {/* Header */}
+        <div className="space-y-4">
+          <div className="flex items-center space-x-2">
+            <div className="p-2 rounded-lg bg-green-500/20">
+              <CheckCircle className="h-6 w-6 text-green-500" />
+            </div>
+            <h1 className="text-4xl font-bold text-foreground mb-0">Best Practices</h1>
+          </div>
+          <p className="text-xl text-muted-foreground">
+            Follow these proven best practices to create maintainable, accessible,
+            and performant WordPress block themes. These guidelines will help you
+            avoid common pitfalls and build sites that work well for everyone.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <Badge
+              variant="secondary"
+              className="bg-green-500/20 text-green-500 border-green-500/30"
+            >
+              Best Practices
+            </Badge>
+            <Badge variant="outline">Performance</Badge>
+            <Badge variant="outline">Accessibility</Badge>
+            <Badge variant="outline">SEO</Badge>
+          </div>
+        </div>
 
-                <ContentSection
-          title="Block Structure & Semantic HTML"
-          icon={Code}
-          iconColor="text-neon-blue"
-                >
+        <Separator />
+
+        {/* Block Structure & Semantic HTML */}
+        <div className="space-y-4">
+          <h2 className="text-2xl font-semibold text-foreground flex items-center">
+            <Code className="mr-2 h-5 w-5 text-neon-blue" />
+            Block Structure & Semantic HTML
+          </h2>
 
           <div className="space-y-6">
             <Card className="bg-green-500/10 border-green-500/30">
