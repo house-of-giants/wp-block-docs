@@ -70,9 +70,7 @@ export default function BestPractices() {
           title="Block Structure & Semantic HTML"
           icon={Code}
           iconColor="text-neon-blue"
-        >
-            Block Structure & Semantic HTML
-          </h2>
+                >
 
           <div className="space-y-6">
             <Card className="bg-green-500/10 border-green-500/30">
