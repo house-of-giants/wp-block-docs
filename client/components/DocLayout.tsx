@@ -1,11 +1,7 @@
 import { ReactNode, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetTitle,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import {
   Menu,
@@ -28,6 +24,8 @@ import {
   Columns2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { SearchModal } from "@/components/SearchModal";
+import { useGlobalSearch } from "@/hooks/useGlobalSearch";
 
 interface DocLayoutProps {
   children: ReactNode;
@@ -52,7 +50,7 @@ const navigation = [
         icon: Navigation,
       },
       { name: "Group Block", href: "/blocks/group", icon: Layers },
-      { name: "Columns Block", href: "/blocks/columns", icon: Columns2},
+      { name: "Columns Block", href: "/blocks/columns", icon: Columns2 },
       { name: "List Block", href: "/blocks/list", icon: List },
       { name: "Quote Block", href: "/blocks/quote", icon: Quote },
       { name: "Gallery Block", href: "/blocks/gallery", icon: Images },
