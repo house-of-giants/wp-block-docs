@@ -504,6 +504,25 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
     typeof navigator !== "undefined" &&
     navigator.platform.toUpperCase().indexOf("MAC") >= 0;
 
+  // Highlight search terms in text
+  const highlightSearchTerms = useCallback((text: string, terms: string[]) => {
+    if (!terms.length) return text;
+
+    let highlighted = text;
+    terms.forEach((term) => {
+      const regex = new RegExp(`(${term})`, "gi");
+      highlighted = highlighted.replace(
+        regex,
+        '<mark class="bg-yellow-200 dark:bg-yellow-900 rounded px-0.5">$1</mark>',
+      );
+    });
+    return highlighted;
+  }, []);
+
+  const searchTerms = useMemo(() => {
+    return query.toLowerCase().split(" ").filter(Boolean);
+  }, [query]);
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-2xl p-0 gap-0 overflow-hidden bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
