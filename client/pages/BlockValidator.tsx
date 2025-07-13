@@ -28,7 +28,6 @@ import { generateDocumentationSchema, SEO } from "@/components/SEO";
 interface ValidationResult {
   type: "error" | "warning" | "success" | "info";
   message: string;
-  line?: number;
   suggestion?: string;
   fixedCode?: string;
 }
@@ -57,7 +56,6 @@ export default function BlockValidator() {
   const [blockInfo, setBlockInfo] = useState<BlockInfo[]>([]);
   const [isValidating, setIsValidating] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const lineNumbersRef = useRef<HTMLDivElement>(null);
 
   // Sample code for demonstration
   const sampleCode = `<!-- wp:group {
@@ -101,8 +99,7 @@ export default function BlockValidator() {
     const blocks: Array<{
       type: string;
       attributes: string;
-      startLine: number;
-      endLine?: number;
+      // startLine and endLine removed
       isValid: boolean;
       errors: string[];
     }> = [];
@@ -138,7 +135,7 @@ export default function BlockValidator() {
         blocks.push({
           type: blockType,
           attributes: attributesStr,
-          startLine: i + 1,
+          // startLine and endLine removed
           isValid: true,
           errors: [],
         });
@@ -169,22 +166,19 @@ export default function BlockValidator() {
     const parsedBlocks = parseBlocks(code);
 
     // Track opened and closed blocks with enhanced logic
-    const blockStack: Array<{ type: string; line: number }> = [];
-    let lineNumber = 0;
-
-    lines.forEach((line, index) => {
-      lineNumber = index + 1;
+    const blockStack: Array<{ type: string }> = [];
+    lines.forEach((line) => {
       const trimmed = line.trim();
 
       // Handle opening block comments (including multi-line)
       const openMatch = trimmed.match(/^<!--\s*wp:(\w+)/);
       if (openMatch) {
         const blockType = openMatch[1];
-        blockStack.push({ type: blockType, line: lineNumber });
+        blockStack.push({ type: blockType });
 
         // Find the complete block definition
         let fullComment = line;
-        let checkLine = index;
+        let checkLine = lines.indexOf(line);
         while (!fullComment.includes("-->") && checkLine < lines.length - 1) {
           checkLine++;
           fullComment += "\n" + lines[checkLine];
@@ -201,7 +195,6 @@ export default function BlockValidator() {
             results.push({
               type: "success",
               message: `Valid ${blockType} block with proper JSON attributes`,
-              line: lineNumber,
             });
 
             // Block-specific validations with parsed attributes
@@ -220,7 +213,6 @@ export default function BlockValidator() {
                   type: "warning",
                   message:
                     "Multiple H1 headings found - only one H1 per page is recommended for SEO",
-                  line: lineNumber,
                   suggestion: "Consider using H2-H6 for subsequent headings",
                 });
               }
@@ -231,7 +223,6 @@ export default function BlockValidator() {
                 results.push({
                   type: "warning",
                   message: "Image block missing alt text",
-                  line: lineNumber,
                   suggestion:
                     'Add alt text for accessibility: {"alt":"Descriptive text"}',
                 });
@@ -243,7 +234,6 @@ export default function BlockValidator() {
                 results.push({
                   type: "warning",
                   message: "External button link missing rel attribute",
-                  line: lineNumber,
                   suggestion: 'Add rel="noopener noreferrer" for security',
                 });
               }
@@ -252,7 +242,6 @@ export default function BlockValidator() {
             results.push({
               type: "error",
               message: `Invalid JSON in ${blockType} block attributes`,
-              line: lineNumber,
               suggestion:
                 "Check for missing quotes, commas, or brackets in block attributes. JSON must be valid.",
               fixedCode: attributesStr
@@ -273,15 +262,13 @@ export default function BlockValidator() {
           results.push({
             type: "error",
             message: `Unexpected closing block: ${blockType} (no matching opening block)`,
-            line: lineNumber,
             suggestion:
               "Remove this closing comment or add the corresponding opening block comment",
           });
         } else if (lastOpened.type !== blockType) {
           results.push({
             type: "error",
-            message: `Mismatched block closing: expected ${lastOpened.type} (opened at line ${lastOpened.line}), found ${blockType}`,
-            line: lineNumber,
+            message: `Mismatched block closing: expected ${lastOpened.type}, found ${blockType}`,
             suggestion:
               "Check that all blocks are properly nested and closed in the correct order",
           });
@@ -295,7 +282,6 @@ export default function BlockValidator() {
         results.push({
           type: "error",
           message: "Image missing alt attribute",
-          line: lineNumber,
           suggestion: "Add alt attribute for screen reader accessibility",
         });
       }
@@ -311,7 +297,6 @@ export default function BlockValidator() {
               results.push({
                 type: "warning",
                 message: "Non-standard spacing preset format",
-                line: lineNumber,
                 suggestion:
                   "Use standard spacing presets like var:preset|spacing|50",
               });
@@ -323,7 +308,7 @@ export default function BlockValidator() {
       // Semantic HTML suggestions
       if (trimmed.includes('<div class="wp-block-group"')) {
         const groupBlock = parsedBlocks.find(
-          (b) => b.type === "group" && Math.abs(b.startLine - lineNumber) <= 3,
+          (b) => b.type === "group"
         );
         if (groupBlock && groupBlock.attributes) {
           try {
@@ -335,7 +320,6 @@ export default function BlockValidator() {
               results.push({
                 type: "info",
                 message: "Consider using semantic HTML",
-                line: lineNumber,
                 suggestion: 'Add "tagName":"nav" for navigation sections',
               });
             }
@@ -351,8 +335,7 @@ export default function BlockValidator() {
       blockStack.forEach((block) => {
         results.push({
           type: "error",
-          message: `Unclosed block: ${block.type} (opened at line ${block.line})`,
-          line: block.line,
+          message: `Unclosed block: ${block.type}`,
           suggestion: `Add closing comment: <!-- /wp:${block.type} -->`,
         });
       });
@@ -419,29 +402,9 @@ export default function BlockValidator() {
     }, 500);
   };
 
-  const updateLineNumbers = () => {
-    if (!lineNumbersRef.current || !textareaRef.current) return;
-
-    const lines = inputCode.split("\n");
-    const lineNumbers = lines.map((_, index) => index + 1).join("\n");
-    lineNumbersRef.current.textContent = lineNumbers;
-
-    // Sync scroll
-    lineNumbersRef.current.scrollTop = textareaRef.current.scrollTop;
-  };
-
-  const handleScroll = () => {
-    updateLineNumbers();
-  };
-
   const handleInputChange = (value: string) => {
     setInputCode(value);
-    setTimeout(updateLineNumbers, 0);
   };
-
-  useEffect(() => {
-    updateLineNumbers();
-  }, [inputCode]);
 
   const loadSample = () => {
     setInputCode(sampleCode);
@@ -546,11 +509,6 @@ export default function BlockValidator() {
                 {/* Input Editor */}
                 <div className="relative">
                   <div className="flex border rounded-md overflow-hidden">
-                    <div
-                      ref={lineNumbersRef}
-                      className="bg-muted/50 px-2 py-3 text-xs font-mono text-muted-foreground select-none overflow-hidden whitespace-pre min-w-[3rem] text-right border-r"
-                      style={{ lineHeight: "1.5" }}
-                    />
                     <Textarea
                       ref={textareaRef}
                       placeholder='<!-- wp:group -->
@@ -562,7 +520,6 @@ export default function BlockValidator() {
   <!-- /wp:group -->'
                       value={inputCode}
                       onChange={(e) => handleInputChange(e.target.value)}
-                      onScroll={handleScroll}
                       className={cn(
                         "min-h-[400px] font-mono text-sm border-0 resize-none focus:ring-0 rounded-none",
                         "scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border",
@@ -637,11 +594,6 @@ export default function BlockValidator() {
                               <p className="font-medium text-sm">
                                 {result.message}
                               </p>
-                              {result.line && (
-                                <Badge variant="outline" className="text-xs">
-                                  Line {result.line}
-                                </Badge>
-                              )}
                             </div>
                             {result.suggestion && (
                               <p className="text-xs text-muted-foreground">
