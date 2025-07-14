@@ -263,6 +263,12 @@ export default function Index() {
                 Block Anatomy Guide
               </Button>
             </Link>
+            <Link to="/resources">
+              <Button variant="outline" size="lg">
+                <ExternalLink className="mr-2 h-5 w-5" />
+                Developer Resources
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
