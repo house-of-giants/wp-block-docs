@@ -138,12 +138,6 @@ export default function Resources() {
           type: "community",
         },
         {
-          title: "Block Theme Templates",
-          url: "https://developer.wordpress.org/themes/block-themes/theme-templates/",
-          description: "Guide to creating and using block theme templates",
-          type: "official",
-        },
-        {
           title: "Global Styles & Style Variations",
           url: "https://developer.wordpress.org/themes/global-settings-and-styles/",
           description: "Documentation for global styles and style variations",
