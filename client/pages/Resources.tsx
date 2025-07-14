@@ -225,12 +225,6 @@ export default function Resources() {
           type: "community",
         },
         {
-          title: "Carolina Nymark's Blog",
-          url: "https://fullsiteediting.com/lessons/",
-          description: "In-depth FSE tutorials and theme development guides",
-          type: "community",
-        },
-        {
           title: "Block Editor Dev Blog",
           url: "https://make.wordpress.org/core/components/block-editor/",
           description: "Official WordPress block editor development updates",
