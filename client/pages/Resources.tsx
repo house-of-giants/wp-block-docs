@@ -375,12 +375,6 @@ export default function Resources() {
           type: "official",
         },
         {
-          title: "Block Editor UX Guidelines",
-          url: "https://make.wordpress.org/design/handbook/design-guide/block-editor/",
-          description: "User experience guidelines for block development",
-          type: "official",
-        },
-        {
           title: "WordPress Icons",
           url: "https://developer.wordpress.org/resource/dashicons/",
           description: "Official WordPress icon font (Dashicons)",
