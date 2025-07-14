@@ -16,6 +16,7 @@ import {
   GraduationCap,
   Star,
   Github,
+  FileText,
   Layers,
   Zap,
   Heart,
