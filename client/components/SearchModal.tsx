@@ -342,6 +342,26 @@ const searchData: SearchResult[] = [
     ],
     priority: 6,
   },
+  {
+    id: "resources",
+    title: "Developer Resources",
+    description:
+      "Comprehensive collection of WordPress block development resources and links",
+    url: "/resources",
+    category: "Tools",
+    icon: ExternalLink,
+    keywords: [
+      "resources",
+      "links",
+      "documentation",
+      "tools",
+      "community",
+      "tutorials",
+      "guides",
+      "external",
+    ],
+    priority: 7,
+  },
 ];
 
 // Recent searches storage
