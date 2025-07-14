@@ -120,17 +120,11 @@ export default function PropertiesReferencePage() {
         <ContentSection title="How to Use This Reference" icon={Info} iconColor="text-neon-pink">
           {/* How to Use */}
           <Card className="bg-gradient-to-r from-neon-pink/10 to-neon-purple/10 border-neon-pink/20">
-            <CardHeader>
-              <CardTitle className="flex items-center text-foreground">
-                <Info className="mr-2 h-5 w-5 text-neon-pink" />
-                How to Use This Reference
-              </CardTitle>
-            </CardHeader>
             <CardContent className="space-y-3">
               <div className="grid md:grid-cols-2 gap-4 text-sm">
                 <div>
                   <h4 className="font-medium text-foreground mb-2">
-                    �� Search Properties
+                    🔍 Search Properties
                   </h4>
                   <p className="text-muted-foreground">
                     Use the search box to quickly find specific properties by name
