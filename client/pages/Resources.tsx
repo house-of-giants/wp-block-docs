@@ -271,12 +271,6 @@ export default function Resources() {
           type: "official",
         },
         {
-          title: "Block Theme Development Workshop",
-          url: "https://learn.wordpress.org/workshop/building-your-first-block-theme/",
-          description: "Hands-on workshop for creating block themes",
-          type: "official",
-        },
-        {
           title: "WordPress TV",
           url: "https://wordpress.tv/",
           description: "Video content from WordCamps and WordPress events",
