@@ -271,6 +271,16 @@ export default function Index() {
                 Developer Resources
               </Button>
             </Link>
+            <a
+              href="https://github.com/house-of-giants/wp-block-docs"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="outline" size="lg">
+                <Github className="mr-2 h-5 w-5" />
+                Open Source
+              </Button>
+            </a>
           </div>
         </div>
       </div>
