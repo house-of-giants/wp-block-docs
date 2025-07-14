@@ -29,6 +29,7 @@ import BlockValidator from "./pages/BlockValidator";
 import Resources from "./pages/Resources";
 import NotFound from "./pages/NotFound";
 import { ScrollToTop } from "./components/ScrollToTop";
+import { PlausibleTracker } from "./components/PlausibleTracker";
 
 // Create query client instance
 const queryClient = new QueryClient({
@@ -69,6 +70,7 @@ export default function App() {
         <TooltipProvider>
           <BrowserRouter>
             <ScrollToTop />
+            <PlausibleTracker />
             <DocLayout>
               <Routes>
                 <Route path="/" element={<Index />} />
