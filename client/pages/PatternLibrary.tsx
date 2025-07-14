@@ -6,15 +6,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
-  Eye,
   Palette,
   Layout,
   Zap,
   Star,
-  Download,
 } from "lucide-react";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
 import { generateDocumentationSchema, SEO } from "@/components/SEO";
@@ -84,14 +81,6 @@ export default function PatternLibrary() {
                           Clean, centered hero section with heading, description,
                           and call-to-action buttons
                         </CardDescription>
-                      </div>
-                      <div className="flex space-x-2">
-                        <Button variant="outline" size="sm">
-                          <Eye className="h-4 w-4" />
-                        </Button>
-                        <Button variant="outline" size="sm">
-                          <Download className="h-4 w-4" />
-                        </Button>
                       </div>
                     </div>
                   </CardHeader>
@@ -185,14 +174,6 @@ export default function PatternLibrary() {
                         <CardDescription>
                           Two-column hero with content on left, image on right
                         </CardDescription>
-                      </div>
-                      <div className="flex space-x-2">
-                        <Button variant="outline" size="sm">
-                          <Eye className="h-4 w-4" />
-                        </Button>
-                        <Button variant="outline" size="sm">
-                          <Download className="h-4 w-4" />
-                        </Button>
                       </div>
                     </div>
                   </CardHeader>
@@ -429,14 +410,6 @@ export default function PatternLibrary() {
                           Individual testimonial with quote, author, and photo
                         </CardDescription>
                       </div>
-                      <div className="flex space-x-2">
-                        <Button variant="outline" size="sm">
-                          <Eye className="h-4 w-4" />
-                        </Button>
-                        <Button variant="outline" size="sm">
-                          <Download className="h-4 w-4" />
-                        </Button>
-                      </div>
                     </div>
                   </CardHeader>
                   <CardContent>
@@ -532,14 +505,6 @@ export default function PatternLibrary() {
                         <CardDescription>
                           Three-column testimonials layout with star ratings
                         </CardDescription>
-                      </div>
-                      <div className="flex space-x-2">
-                        <Button variant="outline" size="sm">
-                          <Eye className="h-4 w-4" />
-                        </Button>
-                        <Button variant="outline" size="sm">
-                          <Download className="h-4 w-4" />
-                        </Button>
                       </div>
                     </div>
                   </CardHeader>
@@ -700,14 +665,6 @@ export default function PatternLibrary() {
                           Complete pricing section with features comparison and
                           popular badge
                         </CardDescription>
-                      </div>
-                      <div className="flex space-x-2">
-                        <Button variant="outline" size="sm">
-                          <Eye className="h-4 w-4" />
-                        </Button>
-                        <Button variant="outline" size="sm">
-                          <Download className="h-4 w-4" />
-                        </Button>
                       </div>
                     </div>
                   </CardHeader>
@@ -980,14 +937,7 @@ export default function PatternLibrary() {
                           Email capture section with compelling copy and form
                         </CardDescription>
                       </div>
-                      <div className="flex space-x-2">
-                        <Button variant="outline" size="sm">
-                          <Eye className="h-4 w-4" />
-                        </Button>
-                        <Button variant="outline" size="sm">
-                          <Download className="h-4 w-4" />
-                        </Button>
-                      </div>
+
                     </div>
                   </CardHeader>
                   <CardContent>
@@ -1088,14 +1038,6 @@ export default function PatternLibrary() {
                         <CardDescription>
                           Conversion-focused section with urgency and benefits
                         </CardDescription>
-                      </div>
-                      <div className="flex space-x-2">
-                        <Button variant="outline" size="sm">
-                          <Eye className="h-4 w-4" />
-                        </Button>
-                        <Button variant="outline" size="sm">
-                          <Download className="h-4 w-4" />
-                        </Button>
                       </div>
                     </div>
                   </CardHeader>
@@ -1228,14 +1170,6 @@ export default function PatternLibrary() {
                         <CardDescription>
                           Article layout with sidebar, meta information, and content
                         </CardDescription>
-                      </div>
-                      <div className="flex space-x-2">
-                        <Button variant="outline" size="sm">
-                          <Eye className="h-4 w-4" />
-                        </Button>
-                        <Button variant="outline" size="sm">
-                          <Download className="h-4 w-4" />
-                        </Button>
                       </div>
                     </div>
                   </CardHeader>
@@ -1442,14 +1376,6 @@ export default function PatternLibrary() {
                         <CardDescription>
                           Showcase work with image gallery and project details
                         </CardDescription>
-                      </div>
-                      <div className="flex space-x-2">
-                        <Button variant="outline" size="sm">
-                          <Eye className="h-4 w-4" />
-                        </Button>
-                        <Button variant="outline" size="sm">
-                          <Download className="h-4 w-4" />
-                        </Button>
                       </div>
                     </div>
                   </CardHeader>

@@ -24,7 +24,6 @@ import {
   Grid3X3,
   FileText,
   Zap,
-  BookOpen,
   ArrowRight,
   Star,
   TrendingUp,

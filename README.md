@@ -63,7 +63,6 @@ WordPress Block Documentation provides comprehensive, developer-focused document
 - **Styling**: TailwindCSS with custom retrowave theme
 - **UI Components**: Radix UI primitives
 - **Icons**: Lucide React
-- **Backend**: Express.js (for API endpoints)
 - **Search**: Client-side fuzzy search
 - **Analytics**: Plausible (privacy-focused)
 
@@ -72,7 +71,7 @@ WordPress Block Documentation provides comprehensive, developer-focused document
 ### Prerequisites
 
 - Node.js 18+
-- npm or yarn
+- pnpm
 
 ### Installation
 
@@ -86,13 +85,13 @@ WordPress Block Documentation provides comprehensive, developer-focused document
 2. **Install dependencies**
 
    ```bash
-   npm install
+   pnpm install
    ```
 
 3. **Start development server**
 
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 
 4. **Open in browser**
@@ -117,10 +116,6 @@ WordPress Block Documentation provides comprehensive, developer-focused document
 │   ├── hooks/            # Custom React hooks
 │   ├── lib/              # Utility functions
 │   └── global.css        # Global styles and theme
-├── server/               # Express.js backend
-│   ├── routes/          # API route handlers
-│   └── index.ts         # Server configuration
-├── shared/              # Shared TypeScript types
 └── public/              # Static assets
 ```
 
@@ -129,17 +124,12 @@ WordPress Block Documentation provides comprehensive, developer-focused document
 ### Available Scripts
 
 ```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run start        # Start production server
-npm run typecheck    # TypeScript type checking
-npm test            # Run test suite
-npm run format.fix  # Format code with Prettier
+pnpm run dev          # Start development server
+pnpm run build        # Build for production
+pnpm run typecheck    # TypeScript type checking
+pnpm test            # Run test suite
+pnpm run format.fix  # Format code with Prettier
 ```
-
-### Environment Setup
-
-The project uses a single development server that serves both the React frontend and Express.js backend. The Vite dev server proxies API requests to the Express server automatically.
 
 ### Adding New Block Documentation
 
@@ -175,7 +165,7 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
 3. Make your changes
-4. Test locally (`npm run dev`)
+4. Test locally (`pnpm run dev`)
 5. Commit your changes (`git commit -m 'Add amazing feature'`)
 6. Push to the branch (`git push origin feature/amazing-feature`)
 7. Open a Pull Request
@@ -192,13 +182,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-- **WordPress Community**: For creating the amazing Gutenberg editor
 - **Full Site Editing**: [fullsiteediting.com](https://fullsiteediting.com/) for invaluable FSE resources
-- **WordPress.org**: For the official documentation foundation
 - **Contributors**: All the developers who help improve this documentation
 
 ---
 
 **[Visit wpblockdocs.com →](https://wpblockdocs.com)**
-
-_Built with ❤️ for the WordPress community_

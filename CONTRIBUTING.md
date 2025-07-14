@@ -77,13 +77,13 @@ This project follows the [WordPress Community Code of Conduct](https://make.word
 1. **Install dependencies**:
 
    ```bash
-   npm install
+   pnpm install
    ```
 
 2. **Start development server**:
 
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 
 3. **Verify setup**:
@@ -119,9 +119,9 @@ This project follows the [WordPress Community Code of Conduct](https://make.word
 3. **Make your changes**
 4. **Test locally**:
    ```bash
-   npm run dev        # Start dev server
-   npm run typecheck  # Check TypeScript
-   npm test          # Run tests
+   pnpm run dev        # Start dev server
+   pnpm run typecheck  # Check TypeScript
+   pnpm test          # Run tests
    ```
 
 ## Documentation Standards
@@ -202,13 +202,11 @@ style(ui): improve button hover states
 ### Pull Request Process
 
 1. **Ensure Quality**:
-
-   - Run `npm run typecheck` with no errors
+   - Run `pnpm run typecheck` with no errors
    - Test your changes thoroughly
    - Follow coding standards
 
 2. **Create Pull Request**:
-
    - Use a descriptive title
    - Provide detailed description
    - Reference related issues

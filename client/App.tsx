@@ -6,7 +6,6 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HelmetProvider } from "react-helmet-async";
-import { initGA, trackWebVitals, initScrollTracking } from "@/lib/analytics";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { DocLayout } from "@/components/DocLayout";
 import Index from "./pages/Index";
@@ -53,13 +52,6 @@ const CustomBlocks = () => (
     </p>
   </div>
 );
-
-// Initialize analytics on app start
-if (typeof window !== "undefined") {
-  initGA();
-  trackWebVitals();
-  initScrollTracking();
-}
 
 const App = () => (
   <HelmetProvider>

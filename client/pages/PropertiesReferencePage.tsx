@@ -7,8 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 import { Book, Info, Zap, Code } from "lucide-react";
 import { generateDocumentationSchema, SEO } from "@/components/SEO";
 import { PageHeader } from "@/components/PageHeader";
