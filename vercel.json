@@ -1,0 +1,9 @@
+{
+  "outputDirectory": "dist/spa",
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "dist/spa/index.html"
+    }
+  ]
+}
