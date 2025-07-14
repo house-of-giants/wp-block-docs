@@ -197,12 +197,6 @@ export default function Resources() {
           type: "tool",
         },
         {
-          title: "Local by Flywheel",
-          url: "https://localwp.com/",
-          description: "Local WordPress development environment",
-          type: "tool",
-        },
-        {
           title: "wp-env",
           url: "https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/",
           description:
@@ -308,12 +302,6 @@ export default function Resources() {
       icon: Code,
       iconColor: "text-cyan-500",
       resources: [
-        {
-          title: "Block Pattern Library",
-          url: "https://wordpress.org/patterns/",
-          description: "Official collection of block patterns",
-          type: "official",
-        },
         {
           title: "Twenty Twenty-Four Theme",
           url: "https://github.com/WordPress/twentytwentyfour",
