@@ -91,6 +91,7 @@ const App = () => (
               <Route path="/custom-blocks" element={<CustomBlocks />} />
               <Route path="/fse-quirks" element={<FSEQuirks />} />
               <Route path="/best-practices" element={<BestPractices />} />
+              <Route path="/resources" element={<Resources />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
