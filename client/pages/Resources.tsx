@@ -6,7 +6,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 import {
   ExternalLink,
   BookOpen,
@@ -17,10 +16,7 @@ import {
   GraduationCap,
   Star,
   Github,
-  FileText,
-  Video,
   Layers,
-  Database,
   Zap,
   Heart,
 } from "lucide-react";
@@ -341,12 +337,6 @@ export default function Resources() {
           url: "https://github.com/WordPress/theme-experiments",
           description: "Experimental themes showcasing new features",
           type: "example",
-        },
-        {
-          title: "Block Theme Patterns",
-          url: "https://fullsiteediting.com/block-theme-patterns/",
-          description: "Collection of useful block theme patterns",
-          type: "community",
         },
       ],
     },
