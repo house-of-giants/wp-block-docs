@@ -120,12 +120,6 @@ export default function Resources() {
           featured: true,
         },
         {
-          title: "Block Theme Directory",
-          url: "https://wordpress.org/themes/browse/block-themes/",
-          description: "Official directory of WordPress block themes",
-          type: "official",
-        },
-        {
           title: "FSE Outreach",
           url: "https://make.wordpress.org/test/handbook/full-site-editing-outreach-experiment/",
           description: "WordPress testing and feedback for FSE features",
