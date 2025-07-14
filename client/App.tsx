@@ -2,7 +2,6 @@ import "./global.css";
 
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
-import { createRoot } from "react-dom/client";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -63,68 +62,51 @@ const CustomBlocks = () => (
 );
 
 // Main App component
-function App() {
+export default function App() {
   return (
-    <React.StrictMode>
-      <HelmetProvider>
-        <QueryClientProvider client={queryClient}>
-          <TooltipProvider>
-            <BrowserRouter>
-              <ScrollToTop />
-              <DocLayout>
-                <Routes>
-                  <Route path="/" element={<Index />} />
-                  <Route path="/anatomy" element={<Anatomy />} />
-                  <Route path="/blocks" element={<BlockIndex />} />
-                  <Route
-                    path="/blocks/query-loop"
-                    element={<QueryLoopBlock />}
-                  />
-                  <Route
-                    path="/blocks/navigation"
-                    element={<NavigationBlock />}
-                  />
-                  <Route path="/blocks/list" element={<ListBlock />} />
-                  <Route path="/blocks/quote" element={<QuoteBlock />} />
-                  <Route path="/blocks/gallery" element={<GalleryBlock />} />
-                  <Route path="/blocks/group" element={<GroupBlock />} />
-                  <Route path="/blocks/columns" element={<ColumnsBlock />} />
-                  <Route path="/blocks/image" element={<ImageBlock />} />
-                  <Route path="/blocks/heading" element={<HeadingBlock />} />
-                  <Route
-                    path="/blocks/paragraph"
-                    element={<ParagraphBlock />}
-                  />
-                  <Route path="/blocks/button" element={<ButtonBlock />} />
-                  <Route
-                    path="/properties"
-                    element={<PropertiesReferencePage />}
-                  />
-                  <Route path="/patterns" element={<PatternLibrary />} />
-                  <Route path="/validator" element={<BlockValidator />} />
-                  <Route path="/custom-blocks" element={<CustomBlocks />} />
-                  <Route path="/fse-quirks" element={<FSEQuirks />} />
-                  <Route path="/best-practices" element={<BestPractices />} />
-                  <Route path="/resources" element={<Resources />} />
-                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </DocLayout>
-              <Toaster />
-              <Sonner />
-            </BrowserRouter>
-          </TooltipProvider>
-        </QueryClientProvider>
-      </HelmetProvider>
-    </React.StrictMode>
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <BrowserRouter>
+            <ScrollToTop />
+            <DocLayout>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/anatomy" element={<Anatomy />} />
+                <Route path="/blocks" element={<BlockIndex />} />
+                <Route path="/blocks/query-loop" element={<QueryLoopBlock />} />
+                <Route
+                  path="/blocks/navigation"
+                  element={<NavigationBlock />}
+                />
+                <Route path="/blocks/list" element={<ListBlock />} />
+                <Route path="/blocks/quote" element={<QuoteBlock />} />
+                <Route path="/blocks/gallery" element={<GalleryBlock />} />
+                <Route path="/blocks/group" element={<GroupBlock />} />
+                <Route path="/blocks/columns" element={<ColumnsBlock />} />
+                <Route path="/blocks/image" element={<ImageBlock />} />
+                <Route path="/blocks/heading" element={<HeadingBlock />} />
+                <Route path="/blocks/paragraph" element={<ParagraphBlock />} />
+                <Route path="/blocks/button" element={<ButtonBlock />} />
+                <Route
+                  path="/properties"
+                  element={<PropertiesReferencePage />}
+                />
+                <Route path="/patterns" element={<PatternLibrary />} />
+                <Route path="/validator" element={<BlockValidator />} />
+                <Route path="/custom-blocks" element={<CustomBlocks />} />
+                <Route path="/fse-quirks" element={<FSEQuirks />} />
+                <Route path="/best-practices" element={<BestPractices />} />
+                <Route path="/resources" element={<Resources />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </DocLayout>
+            <Toaster />
+            <Sonner />
+          </BrowserRouter>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </HelmetProvider>
   );
 }
-
-// Render the app
-const container = document.getElementById("root");
-if (!container) {
-  throw new Error("Root container not found");
-}
-
-const root = createRoot(container);
-root.render(<App />);
