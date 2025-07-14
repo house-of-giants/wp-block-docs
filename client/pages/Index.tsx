@@ -15,6 +15,7 @@ import {
   ArrowRight,
   Sparkles,
   ExternalLink,
+  Github,
 } from "lucide-react";
 import { WPBlockCodeBlock } from "@/components/WPBlockCodeBlock";
 import {
