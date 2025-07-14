@@ -27,6 +27,7 @@ import FSEQuirks from "./pages/FSEQuirks";
 import BestPractices from "./pages/BestPractices";
 import PatternLibrary from "./pages/PatternLibrary";
 import BlockValidator from "./pages/BlockValidator";
+import Resources from "./pages/Resources";
 import NotFound from "./pages/NotFound";
 import { ScrollToTop } from "./components/ScrollToTop";
 
