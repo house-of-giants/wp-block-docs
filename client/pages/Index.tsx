@@ -12,7 +12,6 @@ import {
   BookOpen,
   Zap,
   Search,
-  Github,
   ArrowRight,
   Sparkles,
 } from "lucide-react";
@@ -264,10 +263,6 @@ export default function Index() {
                 Block Anatomy Guide
               </Button>
             </Link>
-            <Button variant="outline" size="lg">
-              <Github className="mr-2 h-5 w-5" />
-              Contribute on GitHub
-            </Button>
           </div>
         </div>
       </div>
