@@ -1,35 +1,23 @@
 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="blockGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#E879F9;stop-opacity:1" />
-      <stop offset="33%" style="stop-color:#A855F7;stop-opacity:1" />
-      <stop offset="66%" style="stop-color:#3B82F6;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#22D3EE;stop-opacity:1" />
-    </linearGradient>
-    <linearGradient id="darkBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#1e1b4b;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#0f172a;stop-opacity:1" />
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E879F9"/>
+      <stop offset="50%" style="stop-color:#A855F7"/>
+      <stop offset="100%" style="stop-color:#38BDF8"/>
     </linearGradient>
   </defs>
   
-  <!-- Dark background with subtle gradient -->
-  <rect width="32" height="32" rx="6" fill="url(#darkBg)"/>
+  <!-- Dark background -->
+  <rect width="32" height="32" rx="4" fill="#0f172a"/>
   
-  <!-- Main block structure representing WordPress blocks -->
-  <!-- Top block -->
-  <rect x="4" y="4" width="24" height="6" rx="2" fill="url(#blockGradient)" opacity="0.9"/>
+  <!-- Block structure representing WordPress blocks -->
+  <rect x="4" y="6" width="24" height="4" rx="1" fill="url(#gradient)" opacity="0.9"/>
+  <rect x="6" y="12" width="20" height="8" rx="1" fill="none" stroke="url(#gradient)" stroke-width="1.5" opacity="0.7"/>
+  <rect x="8" y="14" width="8" height="2" rx="0.5" fill="url(#gradient)" opacity="0.6"/>
+  <rect x="8" y="17" width="6" height="2" rx="0.5" fill="url(#gradient)" opacity="0.6"/>
+  <rect x="4" y="22" width="24" height="4" rx="1" fill="url(#gradient)" opacity="0.8"/>
   
-  <!-- Middle container block -->
-  <rect x="6" y="12" width="20" height="8" rx="2" fill="none" stroke="url(#blockGradient)" stroke-width="1.5" opacity="0.7"/>
-  
-  <!-- Nested blocks inside -->
-  <rect x="8" y="14" width="6" height="2" rx="1" fill="url(#blockGradient)" opacity="0.6"/>
-  <rect x="8" y="17" width="8" height="2" rx="1" fill="url(#blockGradient)" opacity="0.6"/>
-  
-  <!-- Bottom block -->
-  <rect x="4" y="22" width="24" height="6" rx="2" fill="url(#blockGradient)" opacity="0.8"/>
-  
-  <!-- Code brackets overlay -->
-  <path d="M2 10 L6 16 L2 22" stroke="url(#blockGradient)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
-  <path d="M30 10 L26 16 L30 22" stroke="url(#blockGradient)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+  <!-- Code brackets -->
+  <path d="M2 12 L6 16 L2 20" stroke="url(#gradient)" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
+  <path d="M30 12 L26 16 L30 20" stroke="url(#gradient)" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
 </svg>
