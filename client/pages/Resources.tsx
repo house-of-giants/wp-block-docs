@@ -126,12 +126,6 @@ export default function Resources() {
           type: "official",
         },
         {
-          title: "WordPress Block Themes",
-          url: "https://github.com/WordPress/block-themes",
-          description: "Official collection of example block themes",
-          type: "official",
-        },
-        {
           title: "FSE Outreach",
           url: "https://make.wordpress.org/test/handbook/full-site-editing-outreach-experiment/",
           description: "WordPress testing and feedback for FSE features",
