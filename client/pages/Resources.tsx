@@ -666,40 +666,6 @@ export default function Resources() {
             </CardContent>
           </Card>
         </div>
-
-        {/* Submit Resource */}
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-foreground">
-            Missing a Resource?
-          </h2>
-
-          <Card className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 border-blue-500/30">
-            <CardContent className="p-6">
-              <p className="text-muted-foreground mb-4">
-                Know of an excellent WordPress block development resource that's
-                missing from our list? We'd love to include it!
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href="https://github.com/your-repo/wp-block-docs/issues/new"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
-                >
-                  <Github className="mr-2 h-4 w-4" />
-                  Submit on GitHub
-                </a>
-                <a
-                  href="mailto:hello@wpblockdocs.com?subject=Resource Suggestion"
-                  className="inline-flex items-center justify-center px-4 py-2 border border-border rounded-lg hover:bg-muted transition-colors"
-                >
-                  <FileText className="mr-2 h-4 w-4" />
-                  Email Suggestion
-                </a>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
       </div>
     </>
   );
