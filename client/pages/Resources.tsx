@@ -418,12 +418,6 @@ export default function Resources() {
           description: "Guidelines for creating accessible WordPress themes",
           type: "official",
         },
-        {
-          title: "Block Testing Checklist",
-          url: "https://make.wordpress.org/test/handbook/block-editor/",
-          description: "Testing guidelines for block editor features",
-          type: "official",
-        },
       ],
     },
   ];
