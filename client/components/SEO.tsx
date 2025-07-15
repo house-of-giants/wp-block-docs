@@ -124,9 +124,11 @@ export function SEO({
       />
 
       {/* Schema.org JSON-LD */}
-      <script type="application/ld+json">
-        {JSON.stringify(combinedSchema)}
-      </script>
+      {[organizationSchema, websiteSchema, ...(schema ? [schema] : [])].map((obj, i) => (
+        <script key={i} type="application/ld+json">
+          {JSON.stringify(obj)}
+        </script>
+      ))}
     </Helmet>
   );
 }
