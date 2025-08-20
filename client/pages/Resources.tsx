@@ -12,6 +12,7 @@ import {
   Code,
   Palette,
   Users,
+  User,
   Wrench,
   GraduationCap,
   Star,
@@ -31,6 +32,8 @@ interface ResourceLink {
   description: string;
   type: "official" | "community" | "tool" | "tutorial" | "example";
   featured?: boolean;
+  submitter?: string;
+  submitterUrl?: string;
 }
 
 interface ResourceCategory {
@@ -131,6 +134,22 @@ export default function Resources() {
           url: "https://developer.wordpress.org/themes/global-settings-and-styles/",
           description: "Documentation for global styles and style variations",
           type: "official",
+        },
+        {
+          title: "Theme dev courses by Mike McAlister from Ollie Team",
+          url: "https://olliewp.com/theme-academy/",
+          description: "Comprehensive courses on theme development focusing on modern practices and techniques for building WordPress websites.",
+          type: "community",
+          submitter: "EviLuci",
+          submitterUrl: "https://github.com/EviLuci",
+        },
+        {
+          title: "Block dev courses by Mike McAlister from Ollie Team",
+          url: "https://olliewp.com/block-academy/",
+          description: "Comprehensive courses on block development focusing on modern practices and techniques for building WordPress websites.",
+          type: "community",
+          submitter: "EviLuci",
+          submitterUrl: "https://github.com/EviLuci",
         },
       ],
     },
@@ -485,15 +504,36 @@ export default function Resources() {
                         <p className="text-sm text-muted-foreground mb-3">
                           {resource.description}
                         </p>
-                        <a
-                          href={resource.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors"
-                        >
-                          Visit Resource
-                          <ExternalLink className="ml-1 h-3 w-3" />
-                        </a>
+                        <div className="space-y-3">
+                          {/* Visit Resource Link */}
+                          <div className="flex items-center">
+                            <a
+                              href={resource.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+                            >
+                              Visit Resource
+                              <ExternalLink className="ml-1 h-3 w-3" />
+                            </a>
+                          </div>
+                          
+                          {/* Submitted by Section */}
+                          {resource.submitter && (
+                            <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                              <User className="h-3 w-3" />
+                              <span>Submitted by</span>
+                              <a
+                                href={resource.submitterUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-primary hover:text-primary/80 transition-colors underline decoration-dotted hover:decoration-solid"
+                              >
+                                {resource.submitter}
+                              </a>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </CardContent>
